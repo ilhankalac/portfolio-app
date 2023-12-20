@@ -62,7 +62,7 @@
               start
             />
 
-            Community
+            Zajednica
           </v-btn>
         </v-col>
       </v-row>
