@@ -1,8 +1,8 @@
 <template>
-    <NavigationDrawer />
+    <NavBar />
 </template>
 
 
 <script lang="ts" setup>
-import NavigationDrawer from "@/components/NavBar.vue";
+import NavBar from "@/components/NavBar.vue";
 </script>
