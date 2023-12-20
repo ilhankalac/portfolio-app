@@ -20,10 +20,11 @@
   "devDependencies": {
     "@babel/types": "^7.21.4",
     "@types/node": "^18.15.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
-    "eslint": "^8.37.0",
-    "eslint-plugin-vue": "^9.3.0",
+    "eslint-plugin-vue": "^9.19.2",
     "sass": "^1.60.0",
     "typescript": "^5.0.0",
     "unplugin-fonts": "^1.0.3",
