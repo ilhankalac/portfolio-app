@@ -5,7 +5,7 @@
         <v-card 
             min-width="350"
             max-width="350"
-            class="d-flex flex-column align-center justify-center pt-5"
+            class="d-flex flex-column align-center justify-center"
             flat
         >
             <v-avatar
@@ -64,6 +64,5 @@
         </v-card>
     </div>
 </template>
-
 <script lang="ts" setup>
 </script>
