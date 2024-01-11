@@ -12,19 +12,34 @@
 			<CategoryCard
 				:title="'Experience'"
 			>
-				<v-sheet 
-					v-for="(experience, index) in experiences" 
-					:key="experience.key"
-				>
-					<div class="py-2">
-						<div> <b>{{ experience.title }}</b> • <span style="opacity:60%">{{ experience.date }}</span></div>
-						<div>
-							- {{ experience.description }}
-						</div>
-					</div>
-					<v-divider v-if="experiences.length - 1 !== index"></v-divider>
-				</v-sheet>
+				<v-expansion-panels>
+					<v-expansion-panel
+						:key="1"
+						v-for="(experience, index) in experiences"
+					>
+						<v-expansion-panel-title>
+							<div class="d-flex align-center">
+								<div>
+									<div> <b>{{ experience.title }}</b> • <span style="opacity:70%">{{ experience.date }}</span></div>
+								</div>
+							</div>
+						</v-expansion-panel-title>
+						<v-expansion-panel-text>
+							<div class="d-flex align-center">
+								<div>
+									<div>
+										{{ experience.description }}
+									</div>
+								</div>
+							</div>
+						</v-expansion-panel-text>
+					</v-expansion-panel>
+				</v-expansion-panels>
 			</CategoryCard>
+			<CategoryCard
+				:title="'Education'"
+				:text="'Bachelor of Science in Computer Science'"
+			/>
 		</v-col>
 	</v-container>
 </template>

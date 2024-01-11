@@ -1,6 +1,7 @@
 <template>
     <div 
         class="d-flex align-center justify-center"
+        style="height: 50vh;"
     >
         <v-card 
             min-width="350"

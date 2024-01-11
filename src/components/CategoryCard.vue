@@ -2,7 +2,7 @@
 <template>
 	<v-col>
 		<div class="d-flex align-center">  
-			<div>
+			<v-row class="mb-2">
 				<v-responsive class="border pa-4">
                     <h2>{{ title }}</h2>
                     <div v-if="text">
@@ -10,7 +10,7 @@
                     </div>
                     <slot v-else></slot>
 				</v-responsive>
-			</div>
+			</v-row>
 		</div>
 	</v-col>
 </template>
