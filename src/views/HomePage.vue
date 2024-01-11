@@ -1,35 +1,40 @@
 <template>
-	<v-col cols="3">
+	<v-container 
+		class="d-flex"
+		:class="smAndDown ? 'flex-column' : 'flex-row'"
+	>
 		<BasicInfo />
-	</v-col>
-	<v-col cols="6" style="font-size: 15px;">
-		<CategoryCard
-			:title="'About'"
-			:text="'Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3. Throughout my career, I have honed my skills in developing interactive and dynamic web applications, leveraging these technologies to create seamless user experiences.'"
-		/>
-		<CategoryCard
-			:title="'Experience'"
-		>
-			<v-sheet 
-				v-for="(experience, index) in experiences" 
-				:key="experience.key"
+		<v-col style="font-size: 15px;">
+			<CategoryCard
+				:title="'About'"
+				:text="'Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3. Throughout my career, I have honed my skills in developing interactive and dynamic web applications, leveraging these technologies to create seamless user experiences.'"
+			/>
+			<CategoryCard
+				:title="'Experience'"
 			>
-				<div class="py-2">
-					<div> <b>{{ experience.title }}</b> • <span style="opacity:60%">{{ experience.date }}</span></div>
-					<div>
-						- {{ experience.description }}
+				<v-sheet 
+					v-for="(experience, index) in experiences" 
+					:key="experience.key"
+				>
+					<div class="py-2">
+						<div> <b>{{ experience.title }}</b> • <span style="opacity:60%">{{ experience.date }}</span></div>
+						<div>
+							- {{ experience.description }}
+						</div>
 					</div>
-				</div>
-				<v-divider v-if="experiences.length - 1 !== index"></v-divider>
-			</v-sheet>
-		</CategoryCard>
-	</v-col>
+					<v-divider v-if="experiences.length - 1 !== index"></v-divider>
+				</v-sheet>
+			</CategoryCard>
+		</v-col>
+	</v-container>
 </template>
 
 <script lang="ts" setup>
 import BasicInfo from "@/components/BasicInfo.vue";
 import CategoryCard from "@/components/CategoryCard.vue";
 import { ref, Ref } from "vue";
+import { useDisplay } from 'vuetify'
+const { smAndDown } = useDisplay();
 
 const experiences : Ref<any[]> = ref(
 	[
