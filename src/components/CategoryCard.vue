@@ -2,14 +2,12 @@
 <template>
 	<v-col>
 		<div class="d-flex align-center">  
-			<v-row class="mb-2">
-				<v-responsive class="border pa-4" content-class="white">
-                    <h2>{{ title }}</h2>
-                    <div v-if="text">
-                        {{ text }}
-                    </div>
-                    <slot v-else></slot>
-				</v-responsive>
+			<v-row class="mb-2 d-flex flex-column">
+                <h2>{{ title }}</h2>
+                <div v-if="text">
+                    {{ text }}
+                </div>
+                <slot v-else></slot>
 			</v-row>
 		</div>
 	</v-col>
@@ -21,3 +19,11 @@ const props = defineProps<{
   text?: string
 }>()
 </script>
+
+
+<style scoped>
+.v-responsive {
+	border: 1px solid white;
+}
+
+</style>

@@ -1,14 +1,16 @@
 <template>
 	<v-container 
-		class="d-flex"
-		:class="smAndDown ? 'flex-column' : 'flex-row'"
+		class="d-flex "
+		:class="smAndDown ? 'flex-column' : 'flex-row justify-center'"
 	>
 		<BasicInfo />
-		<v-col style="font-size: 15px;">
+		<v-col style="font-size: 15px;" :cols="smAndDown ? 12 : 6">
 			<CategoryCard
 				:title="'About'"
 				:text="'Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3. Throughout my career, I have honed my skills in developing interactive and dynamic web applications, leveraging these technologies to create seamless user experiences.'"
 			/>
+			<v-divider class="mb-4"></v-divider>
+
 			<CategoryCard
 				:title="'Experience'"
 			>
@@ -38,10 +40,11 @@
 					</v-expansion-panel>
 				</v-expansion-panels>
 			</CategoryCard>
+			<v-divider class="mb-4"></v-divider>
 			<CategoryCard
 				:title="'Education'"
+				:text="`Information Technology School Bachelor's degree, Computer Programming, Belgrade Serbia 2016 - 2020`"
 			> 
-				Information Technology School Bachelor's degree, Computer Programming, Belgrade Serbia 2016 - 2020
 			</CategoryCard>
 		</v-col>
 	</v-container>
