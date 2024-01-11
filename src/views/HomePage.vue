@@ -24,11 +24,14 @@
 								</div>
 							</div>
 						</v-expansion-panel-title>
-						<v-expansion-panel-text>
+						<v-expansion-panel-text style="background-color: #6D8287; color:white;">
 							<div class="d-flex align-center">
-								<div>
+								<div class="d-flex align-center">
 									{{ experience.description }}   
-									<v-btn flat icon="mdi-open-in-new"></v-btn>
+									<v-btn
+										color="#6D8287"
+										class="mt-2" flat icon="mdi-open-in-new"
+									/>
 								</div>
 							</div>
 						</v-expansion-panel-text>
@@ -37,8 +40,9 @@
 			</CategoryCard>
 			<CategoryCard
 				:title="'Education'"
-				:text="'Bachelor of Science in Computer Science'"
-			/>
+			> 
+				Information Technology School Bachelor's degree, Computer Programming, Belgrade Serbia 2016 - 2020
+			</CategoryCard>
 		</v-col>
 	</v-container>
 </template>
