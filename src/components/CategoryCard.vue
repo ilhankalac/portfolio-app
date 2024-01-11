@@ -3,7 +3,7 @@
 	<v-col>
 		<div class="d-flex align-center">  
 			<v-row class="mb-2">
-				<v-responsive class="border pa-4">
+				<v-responsive class="border pa-4" content-class="white">
                     <h2>{{ title }}</h2>
                     <div v-if="text">
                         {{ text }}

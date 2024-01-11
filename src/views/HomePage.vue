@@ -12,12 +12,12 @@
 			<CategoryCard
 				:title="'Experience'"
 			>
-				<v-expansion-panels>
+				<v-expansion-panels >
 					<v-expansion-panel
 						:key="1"
 						v-for="(experience, index) in experiences"
 					>
-						<v-expansion-panel-title>
+						<v-expansion-panel-title color="#6D8287">
 							<div class="d-flex align-center">
 								<div>
 									<div> <b>{{ experience.title }}</b> • <span style="opacity:70%">{{ experience.date }}</span></div>
@@ -27,9 +27,8 @@
 						<v-expansion-panel-text>
 							<div class="d-flex align-center">
 								<div>
-									<div>
-										{{ experience.description }}
-									</div>
+									{{ experience.description }}   
+									<v-btn flat icon="mdi-open-in-new"></v-btn>
 								</div>
 							</div>
 						</v-expansion-panel-text>

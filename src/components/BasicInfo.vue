@@ -8,6 +8,7 @@
             max-width="350"
             class="d-flex flex-column align-center justify-center"
             flat
+            color="#6D8287"
         >
             <v-avatar
                 size="200px"
