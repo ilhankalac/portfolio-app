@@ -54,45 +54,18 @@
 		v-model="jobDialog"
 		max-width="700"
 	>
-		<v-card>
-			<v-card-title style="height: 60px; background-color: #596a6e;" class="text-white d-flex justify-space-between">
-				<span class="ma-2">{{ selectedExperience?.title }}</span>
-				<div>
-					<v-btn
-						style="color:white;"
-						color="#596a6e"
-						flat 
-						icon="mdi-close"
-						@click="jobDialog = false"
-					/>
-				</div>
-			</v-card-title>
-			<v-sheet 
-				class="d-flex pa-2"
-				:class="smAndDown ? 'flex-column justify-center align-center' : 'flex-row'"
-			>
-				<div style="max-width: 200px; max-height: 150px; overflow: hidden;">
-					<img style="width: 100%; height: 100%; object-fit: contain;" :src="selectedExperience.logoSrc" alt="">
-				</div>
-				<v-card-text>
-					{{ selectedExperience?.description }}
-				</v-card-text>
-			</v-sheet>
-		</v-card>
+		<ExperienceCard
+			:selectedExperience="selectedExperience"
+			@close="jobDialog = false"
+		/>
 	</v-dialog>
 </template>
 
 <script lang="ts" setup>
-interface IExperience {
-	key: number;
-	title: string;
-	date: string;
-	description: string;
-	logoSrc?: string;
-}
 
 import BasicInfo from "@/components/BasicInfo.vue";
 import CategoryCard from "@/components/CategoryCard.vue";
+import ExperienceCard from "@/components/ExperienceCard.vue";
 import { Interface } from "readline";
 import { ref, Ref } from "vue";
 import { useDisplay } from 'vuetify'
