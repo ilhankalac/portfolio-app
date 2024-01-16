@@ -1,4 +1,5 @@
 <template>
+    <LandingPage />
     <v-container fill-height="100%">
         <v-row justify="center" fill-height>
             <HomePage />
@@ -10,4 +11,5 @@
 <script lang="ts" setup>
 import HomePage from '@/views/HomePage.vue';
 import Navbar from '@/components/Navbar.vue';
+import LandingPage from '@/views/LandingPage.vue';
 </script>

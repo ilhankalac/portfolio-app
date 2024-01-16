@@ -1,14 +1,14 @@
 <template>
     <div
-        class="mb-8 d-flex justify-center align-center"
+        class="d-flex justify-end align-center"
         :class="smAndDown ? 'flex-column' : 'flex-row'"
-        style="height: 100px;"
+        style="height: 10vh; background-color: rgba(0, 0, 0, 0.3); position:sticky; top:0; z-index: 1000; ;"
     >   
         <v-btn 
             :variant="clickedButton === '0' ? 'tonal' : 'text'" 
-            @click="changeThePage('0', 'GuestLayout')"
+            @click="scrollToNextSection"
         >   
-            PROFESSIONAL CAREER 
+            WORK 
         </v-btn> 
         <v-btn 
             :variant="clickedButton === '1' ? 'tonal' : 'text'" 
@@ -32,4 +32,16 @@ const changeThePage = (buttonNumber: string, pageName: string) => {
     clickedButton.value = buttonNumber;
     router.push({ name: pageName }); 
 }
+
+const scrollToNextSection = () => {
+  const section2 = document.getElementById('section2');
+
+  if (section2) {
+    // Scroll to the top of Section 2
+    window.scrollTo({
+      top: section2.offsetTop,
+      behavior: 'smooth', // Use smooth scrolling for a smoother transition
+    });
+  }
+};
 </script>

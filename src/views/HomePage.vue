@@ -1,15 +1,16 @@
 <template>
 	<v-container 
 		class="d-flex "
-		:class="smAndDown ? 'flex-column' : 'flex-row justify-center'"
+		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
+		id="section2"
+		style="min-height: 100vh;"
 	>
-		<BasicInfo />
 		<v-col style="font-size: 15px;" :cols="smAndDown ? 12 : 6">
-			<CategoryCard
+			<!-- <CategoryCard
 				:title="'About'"
 				:text="'Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3. Throughout my career, I have honed my skills in developing interactive and dynamic web applications, leveraging these technologies to create seamless user experiences.'"
 			/>
-			<v-divider class="mb-4"></v-divider>
+			<v-divider class="mb-4"></v-divider> -->
 
 			<CategoryCard
 				:title="'Experience'"
@@ -19,19 +20,19 @@
 						:key="1"
 						v-for="(experience, index) in experiences"
 					>
-						<v-expansion-panel-title color="#6D8287">
+						<v-expansion-panel-title color="#192129">
 							<div class="d-flex align-center">
 								<div>
 									<div> <b>{{ experience.title }}</b> • <span style="opacity:70%">{{ experience.date }}</span></div>
 								</div>
 							</div>
 						</v-expansion-panel-title>
-						<v-expansion-panel-text style="background-color: #6D8287; color:white;">
+						<v-expansion-panel-text style="background-color: #192129; color:white;">
 							<div class="d-flex align-center">
 								<div class="d-flex align-center">
 									{{ experience.description }}   
 									<v-btn
-										color="#6D8287"
+										color="#192129"
 										class="mt-2" flat icon="mdi-open-in-new"
 										@click="openDialog(experience)"
 									/>
@@ -41,12 +42,12 @@
 					</v-expansion-panel>
 				</v-expansion-panels>
 			</CategoryCard>
-			<v-divider class="mb-4"></v-divider>
-			<CategoryCard
+			<!-- <v-divider class="mb-4"></v-divider> -->
+			<!-- <CategoryCard
 				:title="'Education'"
 				:text="`Information Technology School Bachelor's degree, Computer Programming, Belgrade Serbia 2016 - 2020`"
 			> 
-			</CategoryCard>
+			</CategoryCard> -->
 		</v-col>
 	</v-container>
 

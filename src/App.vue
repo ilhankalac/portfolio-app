@@ -1,9 +1,5 @@
 <template>
-	<v-container>
-		<NavBar />
-		<router-view />
-	</v-container>
-
+	<router-view />
 </template>
 
 <script lang="ts" setup>
@@ -13,7 +9,7 @@ import NavBar from "@/components/NavBar.vue";
 
 <style>
 body {
-	background-color: #6D8287;
+	background-color: #192129;
 	color: white;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-card color="#6D8287">
+  <v-card color="#192129">
     <v-card-title
       style="height: 60px; background-color: #596a6e"
       class="text-white d-flex justify-space-between"
