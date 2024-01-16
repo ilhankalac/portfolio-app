@@ -5,6 +5,7 @@ const routes = [
   {
     path: '/',
     component: () => import('@/layouts/GuestLayout.vue'),
+    name: 'GuestLayout',
     // children: [
     //   {
     //     path: '',
@@ -16,6 +17,11 @@ const routes = [
     //   },
     // ],
   },
+  {
+    path: '/interests',
+    component: () => import('@/views/InterestsPage.vue'),
+    name: 'Interests',
+  }
 ]
 
 const router = createRouter({
