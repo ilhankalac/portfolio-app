@@ -5,7 +5,7 @@
 		id="section2"
 		style="min-height: 100vh;"
 	>
-		<v-col style="font-size: 15px;" :cols="smAndDown ? 12 : 6">
+		<v-col style="font-size: 15px;">
 			<!-- <CategoryCard
 				:title="'About'"
 				:text="'Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3. Throughout my career, I have honed my skills in developing interactive and dynamic web applications, leveraging these technologies to create seamless user experiences.'"

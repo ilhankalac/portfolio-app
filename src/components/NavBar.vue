@@ -12,7 +12,6 @@
         </v-btn> 
         <v-btn 
             :variant="clickedButton === '1' ? 'tonal' : 'text'" 
-            @click="changeThePage('1', 'Interests')"
         >
             PERSONAL INTERESTS
         </v-btn>
@@ -25,7 +24,7 @@ import { useDisplay } from 'vuetify'
 import { useRoute, useRouter } from 'vue-router'
 
 const { smAndDown } = useDisplay()
-const clickedButton: Ref<string> = ref('0')
+const clickedButton: Ref<string> = ref('')
 const router = useRouter()
 
 const changeThePage = (buttonNumber: string, pageName: string) => {

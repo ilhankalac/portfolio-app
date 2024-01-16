@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="content">
+        <div class="content" :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'">
             <!-- Your text goes here -->
             <div class="text-left">
                 <h1>Ilhan Kalač</h1>
@@ -17,6 +17,8 @@
 
 <script lang="ts" setup>
 import Navbar from "@/components/Navbar.vue";
+import { useDisplay } from "vuetify";
+const { smAndDown } = useDisplay();
 </script>
 
 <style scoped>
@@ -37,7 +39,6 @@ import Navbar from "@/components/Navbar.vue";
   transform: translate(-50%, -50%);
   text-align: center;
   color: white; /* Adjust the text color as needed */
-  font-size: 20px;
   z-index: 1;
 }
 
