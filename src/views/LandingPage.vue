@@ -2,9 +2,11 @@
     <div class="container">
         <div class="content" :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'">
             <!-- Your text goes here -->
-            <div class="text-left">
-                <h1>Ilhan Kalač</h1>
-                <p style="opacity:0.6">Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3</p>
+            <div :class="smAndDown ? 'text-center' : 'text-left'">
+                <h1 >Ilhan Kalač</h1>
+                <p style="opacity:0.6">
+                    Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3
+                </p>
             </div>
         </div>
         <div style="min-height: 100vh;">

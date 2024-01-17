@@ -78,7 +78,7 @@ const experiences : Ref<any[]> = ref(
 		{
 			key: 3,
 			title: "Codeus",
-			date: "Feb 2021 - Present · " + (new Date().getFullYear() - 2021) + " yrs " + (new Date().getMonth() - 2) + " mos",
+			date: "Feb 2021 - Present · " + (new Date().getFullYear() - 2021) + " yrs ·" + (new Date().getMonth() > 0 ? new Date().getMonth() : '') + " mos",
 			description: "The current project I am working on as a Frontend Engineer, utilizing Vue.js 2 and Vuetify to develop a sophisticated and intuitive user interface for seamless data management and integration within the healthcare domain. Leveraging the power of Vue.js 2 and the rich UI components provided by Vuetify, I am able to create a visually appealing and user-friendly experience for healthcare providers and patients, implementing responsive design principles and optimizing the frontend architecture.",
 			logoSrc: 'https://codeus.me/img/codeus_logo.png'
 		}
