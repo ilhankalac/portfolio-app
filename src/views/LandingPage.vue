@@ -5,7 +5,7 @@
             <div :class="smAndDown ? 'text-center' : 'text-left'">
                 <h1 >Ilhan Kalač</h1>
                 <p style="opacity:0.6">
-                    Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3
+                   Experienced frontend engineer with expertise in Vue.js. Let's craft exceptional web experiences together!
                 </p>
             </div>
         </div>
