@@ -1,9 +1,9 @@
 <template>
     <LandingPage />
-    <HomePage />
+    <WorkExperience />
 </template>
 
 <script lang="ts" setup>
-import HomePage from '@/views/HomePage.vue';
 import LandingPage from '@/views/LandingPage.vue';
+import WorkExperience from '@/views/WorkExperience.vue';
 </script>

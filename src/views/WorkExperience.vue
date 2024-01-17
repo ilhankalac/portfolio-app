@@ -5,52 +5,41 @@
 		id="section2"
 		style="min-height: 100vh;"
 	>
-		<v-col style="font-size: 15px;">
-			<!-- <CategoryCard
-				:title="'About'"
-				:text="'Experienced frontend engineer with strong proficiency in JavaScript, Vue.js 2, and Vue.js 3. Throughout my career, I have honed my skills in developing interactive and dynamic web applications, leveraging these technologies to create seamless user experiences.'"
-			/>
-			<v-divider class="mb-4"></v-divider> -->
-
-			<CategoryCard
-				:title="'Experience'"
-			>
-				<v-expansion-panels >
-					<v-expansion-panel
-						:key="1"
-						v-for="(experience, index) in experiences"
-					>
-						<v-expansion-panel-title color="#192129">
-							<div class="d-flex align-center">
-								<div>
-									<div> <b>{{ experience.title }}</b> • <span style="opacity:70%">{{ experience.date }}</span></div>
-								</div>
-							</div>
-						</v-expansion-panel-title>
-						<v-expansion-panel-text style="background-color: #192129; color:white;">
-							<div class="d-flex align-center">
-								<div class="d-flex align-center">
-									{{ experience.description }}   
-									<v-btn
-										color="#192129"
-										class="mt-2" flat icon="mdi-open-in-new"
-										@click="openDialog(experience)"
-									/>
-								</div>
-							</div>
-						</v-expansion-panel-text>
-					</v-expansion-panel>
-				</v-expansion-panels>
-			</CategoryCard>
-			<!-- <v-divider class="mb-4"></v-divider> -->
-			<!-- <CategoryCard
-				:title="'Education'"
-				:text="`Information Technology School Bachelor's degree, Computer Programming, Belgrade Serbia 2016 - 2020`"
+		<v-col :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'">
+			<p 
+				class="text-center text-overline pb-10" 
+				style="font-size: 30px !important;"
 			> 
-			</CategoryCard> -->
+				My Developer Journey 
+			</p>
+			<v-timeline side="end">
+                <v-timeline-item 
+					v-for="experience in experiences" 
+					:key="experience.id"
+					style="cursor: pointer;"
+					dot-color="#637686"
+					size="large"
+				>
+					<template v-slot:icon>
+						<v-avatar :image="experience.logoSrc"></v-avatar>
+					</template>
+                    <template v-slot:opposite>
+                        {{ experience.date  }}
+                    </template>
+                    <div 
+						class="timeline-item pa-2"
+						:class="smAndDown ? 'text-center' : 'text-justify'"
+						@click="openDialog(experience)"
+					>
+                        <div class="text-h6">{{ experience.title }}</div>
+                        <p>
+							{{ experience.description }}
+                        </p>
+                    </div>
+                </v-timeline-item>
+            </v-timeline>
 		</v-col>
 	</v-container>
-
 	<v-dialog 
 		v-model="jobDialog"
 		max-width="700"
@@ -65,9 +54,7 @@
 <script lang="ts" setup>
 
 import BasicInfo from "@/components/BasicInfo.vue";
-import CategoryCard from "@/components/CategoryCard.vue";
 import ExperienceCard from "@/components/ExperienceCard.vue";
-import { Interface } from "readline";
 import { ref, Ref } from "vue";
 import { useDisplay } from 'vuetify'
 const { smAndDown } = useDisplay();
@@ -109,5 +96,8 @@ const openDialog = (experience: IExperience) => {
 <style lang="scss" scoped>
 .mdi-close::before{
 	color: white;
+}
+.timeline-item:hover {
+	background-color: rgba(180, 180, 180, 0.1);
 }
 </style>
