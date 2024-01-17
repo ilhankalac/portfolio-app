@@ -41,6 +41,17 @@
                   <span class="font-weight-light" style="font-size: small;"> - {{ experience.startDate }} · {{ experience.endDate }}</span>
                 </div>
                 <div>{{ experience.description }}</div>
+                <div class="py-2">
+                  <v-chip
+                    v-for="tech in experience.technologies"
+                    :key="tech"
+                    text-color="white"
+                    small
+                    class="mt-1 mr-1"
+                  >
+                    {{ tech }}
+                  </v-chip>
+                </div>
               </div>
             </v-timeline-item>
           </v-timeline>
