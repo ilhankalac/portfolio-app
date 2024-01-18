@@ -4,13 +4,13 @@
       <v-card 
         color="#192129" 
         style="overflow-y: auto !important;"
-        height="600px"
+        :height="smAndDown ? '500px' : ''"
       >
         <div 
           style="height: 50px; background-color:#54638D;"
           class="d-flex justify-space-between align-center pl-5 mb-2"
         >
-          <span>{{ selectedExperience?.title }}</span>
+          <span>{{ selectedExperience?.position }}</span>
           <div class="d-flex justify-end">
             <v-btn
               flat
@@ -21,24 +21,19 @@
           </div>
         </div>
 
-        <v-img
-          height="200"
-          :src="selectedExperience?.logoSrc"
-          cover
-          class="text-white"
-        >
-        </v-img>
-
         <v-card-text>
           <div class="font-weight-bold ms-1 mb-2">
             List of projects I worked on at {{ selectedExperience?.title }}
           </div>
 
-          <v-timeline density="compact" align="start">
+          <v-timeline 
+            density="compact" align="start"
+            line-color="#54638D"
+          >
             <v-timeline-item
               v-for="experience in selectedExperience.projects"
               :key="experience.time"
-              :dot-color="experience.color"
+              dot-color="white"
               size="x-small"
             >
               <div class="mb-4">
@@ -75,6 +70,7 @@ interface IExperience {
   description?: string;
   logoSrc?: string;
   projects: any
+  position?: string
 }
 import { computed, defineProps, defineEmits } from "vue";
 import { useDisplay } from "vuetify";

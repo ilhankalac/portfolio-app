@@ -12,11 +12,14 @@
 			> 
 				My Professional Developer Journey 
 			</p>
-			<v-timeline side="end">
+			<v-timeline 
+				side="end"
+				line-color="#54638D"
+			>
                 <v-timeline-item 
 					v-for="experience in experiences" 
 					:key="experience.id"
-					dot-color="#637686"
+					dot-color="white"
 					size="large"
 				>
 					<template v-slot:icon>
@@ -76,6 +79,7 @@ const experiences : Ref<any[]> = ref(
 			date: "Oct 2019 - Feb 2021 · 1 yr 5 mos",
 			description: "Comtrade is a dynamic and well-established group of technology companies, with a 30-year track record of innovation and steady development. Founded as a software engineering and services company, today it stands at the forefront of the industry in Southeast Europe, offering high quality vendor and proprietary software solutions, as well as outstanding system integration services to improve digital transformation across industries.",
 			logoSrc: 'https://itkonekt.com/media/2022/09/Comtrade_transparent.png',
+			position: "Backend Engineer",
 			projects: [
 				{
 					name: "Comtrade Digital Services",
@@ -97,6 +101,7 @@ const experiences : Ref<any[]> = ref(
 			date: "Apr 2018 - Oct 2018 · 7 mos",
 			description: "Established in 1993 in Belgrade, Serbia, has been a key player in various information technology domains. Over the last 21 years, the primary focus has been on designing and developing web applications, particularly specialized school management software. Founded by Nebojša Obradović, a software engineer, the company collaborates with top experts from diverse IT fields.",
 			logoSrc: 'https://galilej.com/wp-content/uploads/2022/08/galilei-en-300x87-1-200x58.png',
+			position: "Frontend Engineer",
 			projects: [
 				{
 					name: "Musical instruments WEB application",
@@ -113,6 +118,7 @@ const experiences : Ref<any[]> = ref(
 			date: "Feb 2021 - Present · " + (new Date().getFullYear() - 2021) + " yrs ·" + (new Date().getMonth() > 0 ? new Date().getMonth() : '	') + " mos",
 			description: "Company for crafting elegant web and mobile solutions. From app development to system design, we bring ideas to life. Specializing in efficient backend solutions and offering expert consultancy, we ensure your projects thrive. Transform concepts into reality with Codeus.",
 			logoSrc: 'https://codeus.me/img/codeus_logo.png',
+			position: "Frontend Engineer",
 			projects: [
 				{
 					name: "Seqster",
@@ -128,6 +134,7 @@ const experiences : Ref<any[]> = ref(
 					endDate: "Present",
 					technologies: ["JavaScript", "Vue.js 2", "Vuetify", "TypeScript", "HTML", "CSS",  "Git", "Linux"]
 				},
+				
 			]
 		}
 	].reverse()
