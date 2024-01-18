@@ -3,9 +3,18 @@
         <div class="content" :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'">
             <!-- Your text goes here -->
             <div :class="smAndDown ? 'text-center' : 'text-left'">
-                <h1 >Ilhan Kalač</h1>
-                <p style="opacity:0.6">
-                   Experienced frontend engineer with expertise in Vue.js. Let's craft exceptional web experiences together!
+                <span 
+                    class="font-weight-bold"
+                    :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
+                >
+                    Ilhan Kalač
+                </span>
+                <p 
+                    style="opacity:0.6"
+                    :style="smAndDown ? 'font-size: 15px' : 'font-size:30px'"
+                    class="text-center"
+                >
+                   Frontend Developer
                 </p>
             </div>
         </div>
