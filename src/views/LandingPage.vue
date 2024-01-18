@@ -16,6 +16,20 @@
                 >
                    Frontend Developer
                 </p>
+                <div class="d-flex justify-center mt-4 ga-1">
+                    <v-btn
+                        flat
+                        variant="text"
+                        icon="mdi-github"
+                        @click="openLink('https://github.com/ilhankalac')"
+                    />
+                    <v-btn
+                        flat
+                        variant="text"
+                        icon="mdi-linkedin"
+                        @click="openLink('https://www.linkedin.com/in/ilhankalac/')"
+                    />
+                </div>
             </div>
         </div>
         <div style="min-height: 100vh;">
@@ -30,6 +44,10 @@
 import NavBar from "@/components/NavBar.vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
+
+const openLink = (link: string) => {
+    window.open(link);
+}
 </script>
 
 <style scoped>
