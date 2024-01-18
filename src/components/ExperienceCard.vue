@@ -7,7 +7,7 @@
         :height="smAndDown ? '500px' : ''"
       >
         <div 
-          style="height: 50px; background-color:#54638D;"
+          style="height: 50px; background-color:#54638D; position: sticky; top: 0; z-index: 1000;"
           class="d-flex justify-space-between align-center pl-5 mb-2"
         >
           <span>{{ selectedExperience?.position }}</span>
