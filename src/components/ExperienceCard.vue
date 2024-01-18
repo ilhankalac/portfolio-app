@@ -3,24 +3,30 @@
     <v-row justify="space-around" >
       <v-card 
         color="#192129" 
-        class="pa-4"
         style="overflow-y: auto !important;"
         height="600px"
       >
+        <div 
+          style="height: 50px; background-color:#54638D;"
+          class="d-flex justify-space-between align-center pl-5 mb-2"
+        >
+          <span>{{ selectedExperience?.title }}</span>
+          <div class="d-flex justify-end">
+            <v-btn
+              flat
+              color="#54638D"
+              icon="mdi-close"
+              @click="close"
+            />
+          </div>
+        </div>
+
         <v-img
           height="200"
           :src="selectedExperience?.logoSrc"
           cover
           class="text-white"
         >
-            <div class="d-flex justify-end">
-              <v-btn
-                  flat
-                  color="#192129"
-                  icon="mdi-close"
-                  @click="close"
-              />
-            </div>
         </v-img>
 
         <v-card-text>
