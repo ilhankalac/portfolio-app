@@ -11,14 +11,14 @@
         </div>
         <div style="min-height: 100vh;">
             <img src="@/assets/landing-image.jpg" alt="Background Image" class="background-image" />
-            <Navbar />
+            <NavBar />
         </div>
     </div>
 </template>
 
 
 <script lang="ts" setup>
-import Navbar from "@/components/Navbar.vue";
+import NavBar from "@/components/NavBar.vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 </script>
