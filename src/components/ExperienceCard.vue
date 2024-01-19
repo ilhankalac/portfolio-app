@@ -7,14 +7,13 @@
         :height="smAndDown ? '500px' : ''"
       >
         <div 
-          style="height: 50px; background-color:#54638D; position: sticky; top: 0; z-index: 1000;"
-          class="d-flex justify-space-between align-center pl-5 mb-2"
+          class="card-header d-flex justify-space-between align-center pl-5 mb-2"
         >
           <span>{{ selectedExperience?.position }}</span>
           <div class="d-flex justify-end">
             <v-btn
               flat
-              color="#54638D"
+              color="secondary"
               icon="mdi-close"
               @click="close"
             />
@@ -29,7 +28,7 @@
           <v-timeline 
             align="start"
             density="compact" 
-            line-color="#54638D"
+            line-color="secondary"
           >
             <v-timeline-item
               v-for="experience in selectedExperience.projects"
@@ -112,5 +111,13 @@ const close = () => {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+.card-header {
+  height: 50px;
+  background-color:  rgb(var(--v-theme-secondary)); 
+  position: sticky; 
+  top: 0; 
+  z-index: 1000;
 }
 </style>
