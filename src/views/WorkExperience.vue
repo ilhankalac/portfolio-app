@@ -16,7 +16,7 @@
 				side="end"
 				line-color="secondary"
 			>
-                <v-timeline-item 
+        <v-timeline-item 
 					v-for="experience in experiences" 
 					:key="experience.id"
 					dot-color="white"
@@ -25,22 +25,22 @@
 					<template v-slot:icon>
 						<v-avatar :image="experience.logoSrc"></v-avatar>
 					</template>
-                    <template v-slot:opposite>
-                        {{ experience.date  }}
-                    </template>
-                    <div 
+            <template v-slot:opposite>
+              {{ experience.date  }}
+            </template>
+          <div 
 						class="timeline-item pa-2"
 						:class="smAndDown ? 'text-center' : 'text-justify'"
 						style="cursor: pointer;"
 						@click="openDialog(experience)"
 					>
-                        <div class="text-h6">{{ experience.title }}</div>
-                        <p>
+          <div class="text-h6">{{ experience.title }}</div>
+            <p>
 							{{ experience.description }}
-                        </p>
-                    </div>
-                </v-timeline-item>
-            </v-timeline>
+            </p>
+          </div>
+        </v-timeline-item>
+      </v-timeline>
 		</v-col>
 	</v-container>
 	<v-dialog 
