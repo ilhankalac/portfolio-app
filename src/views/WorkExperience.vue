@@ -14,7 +14,7 @@
 			</p>
 			<v-timeline 
 				side="end"
-				line-color="#54638D"
+				line-color="secondary"
 			>
                 <v-timeline-item 
 					v-for="experience in experiences" 
