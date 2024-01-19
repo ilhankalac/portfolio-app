@@ -48,7 +48,7 @@
 		max-width="700"
 	>
 		<ExperienceCard
-			:selectedExperience="selectedExperience"
+			:selected-item="selectedExperience"
 			@close="jobDialog = false"
 		/>
 	</v-dialog>
@@ -56,17 +56,9 @@
 
 <script lang="ts" setup>
 
-interface IExperience {
-	id: number;
-	title?: string;
-	date?: string;
-	description?: string;
-	logoSrc?: string;
-	projects: any
-}
-
 import BasicInfo from "@/components/BasicInfo.vue";
 import ExperienceCard from "@/components/ExperienceCard.vue";
+import { IExperience } from "@/types";
 import { ref, Ref } from "vue";
 import { useDisplay } from 'vuetify'
 const { smAndDown } = useDisplay();

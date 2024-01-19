@@ -9,7 +9,7 @@
         <div 
           class="card-header d-flex justify-space-between align-center pl-5 mb-2"
         >
-          <span>{{ selectedExperience?.position }}</span>
+          <span>{{ props.selectedItem.position }}</span>
           <div class="d-flex justify-end">
             <v-btn
               flat
@@ -22,7 +22,7 @@
 
         <v-card-text>
           <div class="font-weight-bold ms-1 mb-2">
-            List of projects I worked on at {{ selectedExperience?.title }}
+            List of projects I worked on at {{ props.selectedItem.title }}
           </div>
 
           <v-timeline 
@@ -31,7 +31,7 @@
             line-color="secondary"
           >
             <v-timeline-item
-              v-for="experience in selectedExperience.projects"
+              v-for="experience in props.selectedItem.projects"
               :key="experience.time"
               dot-color="white"
               size="x-small"
@@ -68,23 +68,16 @@
 </template>
 
 <script lang="ts" setup>
-interface IExperience {
-  key: number;
-  title?: string;
-  date?: string;
-  description?: string;
-  logoSrc?: string;
-  projects: any
-  position?: string
-}
-import { computed, defineProps, defineEmits } from "vue";
+import { IExperience } from "@/types";
+import {defineProps, defineEmits } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 
-const props = defineProps<{
-  selectedExperience?: IExperience | null;
-}>();
+interface IExperienceProps {
+  selectedItem: IExperience;
+}
 
+const props = defineProps<IExperienceProps>();
 const emit = defineEmits(['close'])
 
 const close = () => {
