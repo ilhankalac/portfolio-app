@@ -8,12 +8,13 @@
             <div :class="smAndDown ? 'text-center' : 'text-left'">
                 <span 
                     class="font-weight-bold"
+                    style="font-family: 'Be Vietnam Pro', sans-serif;"
                     :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
                 >
                     Ilhan Kalač
                 </span>
                 <p 
-                    style="opacity:0.6"
+                    style="opacity:0.6; font-family: 'Bebas Neue', sans-serif;"
                     :style="smAndDown ? 'font-size: 15px' : 'font-size:30px'"
                     class="text-center"
                 >
@@ -53,7 +54,9 @@ const openLink = (link: string) => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500&display=swap');
 .background-image {
   position: absolute;
   top: 0;
@@ -73,5 +76,4 @@ const openLink = (link: string) => {
   color: white; /* Adjust the text color as needed */
   z-index: 1;
 }
-
 </style>
