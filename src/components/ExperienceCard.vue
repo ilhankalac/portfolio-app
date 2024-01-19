@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="space-around" >
+    <v-row justify="space-around">
       <v-card 
         color="#192129" 
         style="overflow-y: auto !important;"
@@ -27,7 +27,8 @@
           </div>
 
           <v-timeline 
-            density="compact" align="start"
+            align="start"
+            density="compact" 
             line-color="#54638D"
           >
             <v-timeline-item
@@ -39,7 +40,12 @@
               <div class="mb-4">
                 <div class="font-weight-normal">
                   <strong>{{ experience.name }}</strong>
-                  <span class="font-weight-light" style="font-size: small;"> - {{ experience.startDate }} · {{ experience.endDate }}</span>
+                  <span 
+                    class="font-weight-light" 
+                    style="font-size: small;"
+                  > 
+                    - {{ experience.startDate }} · {{ experience.endDate }}
+                  </span>
                 </div>
                 <div>{{ experience.description }}</div>
                 <div class="py-2">

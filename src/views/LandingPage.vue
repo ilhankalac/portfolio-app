@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <div class="content" :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'">
+        <div 
+            class="content" 
+            :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'"
+        >
             <!-- Your text goes here -->
             <div :class="smAndDown ? 'text-center' : 'text-left'">
                 <span 
