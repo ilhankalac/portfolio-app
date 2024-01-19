@@ -7,7 +7,7 @@
 
 <style>
 body {
-	background-color: #192129;
+	background-color: rgb(var(--v-theme-primary));
 	color: white;
 }
 </style>

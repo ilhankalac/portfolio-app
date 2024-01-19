@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-around">
       <v-card 
-        color="#192129" 
+        color="primary" 
         style="overflow-y: auto !important;"
         :height="smAndDown ? '500px' : ''"
       >
@@ -101,7 +101,7 @@ const close = () => {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #192129; 
+  background: rgb(var(--v-theme-primary));
 }
  
 /* Handle */
