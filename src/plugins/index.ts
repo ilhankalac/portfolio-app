@@ -12,9 +12,10 @@ import router from '../router'
 // Types
 import type { App } from 'vue'
 
-export function registerPlugins (app: App) {
+export function registerPlugins (app: App, firebaseApp: any) {
   app
     .use(vuetify)
     .use(router)
     .use(pinia)
+    .use(firebaseApp)
 }
