@@ -11,6 +11,11 @@ const routes = [
     path: '/interests',
     component: () => import('@/views/InterestsPage.vue'),
     name: 'Interests',
+  },
+  {
+    path: '/create-realtime-data',
+    component: () => import('@/components/CreateRealtimeData.vue'),
+    name: 'CreateRealtimeData',
   }
 ]
 
