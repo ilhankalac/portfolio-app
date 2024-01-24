@@ -5,6 +5,11 @@
     style="max-width: 700px; margin: auto;"
   >
     <h2 class="pa-10">Add the data to Firebase Realtime database</h2>
+    <v-text-field 
+      v-model="path"
+      label="Path of the data in the database"
+    />
+
     <div 
       v-for="(val, index) of data"
       class="d-flex ga-2" 
@@ -38,7 +43,7 @@
     </div>
   
     <v-btn 
-      @click=""
+      @click="pushValue"
       variant="outlined"
     >
       Save
@@ -56,5 +61,28 @@ const data = ref([
     value: "",
   },
 ])
+
+const path = ref("")
+
+const writeData = async () => {
+	setVal("test", { test: "test" })
+}
+
+const getData = async () => {
+	const data = await getVal("test")
+	console.log(data)
+}
+
+const pushValue = async () => {
+  let dataObj = {};
+
+  data.value.forEach((item, index) => {
+    const { key } = data.value[index]
+    const { value } = data.value[index]
+    dataObj = { ...dataObj, [key]: value}
+  })
+  
+	await pushVal(path.value, dataObj)
+}
 
 </script>
