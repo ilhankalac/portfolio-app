@@ -10,37 +10,12 @@
       label="Path of the data in the database"
     />
 
-    <div 
-      v-for="(val, index) of data"
-      class="d-flex ga-2" 
+    <v-textarea 
+      label="Paste the JSON data here"
+      v-model="rawStringData"
+      rows="15"
     >
-      <v-text-field
-        v-model="val.key"
-        label="key_name"
-        outlined
-      />
-      <v-text-field
-        v-model="val.value"
-        label="value"
-        outlined
-      />
-      <v-btn 
-        v-if="index === data.length - 1"
-        variant="text"
-        class="mt-2" 
-        @click="data.push({ key: '', value: '' })"
-      >
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
-      <v-btn 
-        v-if="data.length > 1"
-        variant="text" 
-        class="mt-2" 
-        @click="data.splice(index, 1)"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-    </div>
+    </v-textarea>
   
     <v-btn 
       @click="pushValue"
@@ -53,14 +28,10 @@
 
 <script lang="ts" setup>
 import { setVal, getVal, pushVal } from "@/services/DataService"
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
 
-const data = ref([
-  {
-    key: "",
-    value: "",
-  },
-])
+const rawStringData = ref("")
+
 
 const path = ref("")
 
@@ -69,20 +40,19 @@ const writeData = async () => {
 }
 
 const getData = async () => {
-	const data = await getVal("test")
+	const data = await getVal("working-experience")
 	console.log(data)
 }
 
-const pushValue = async () => {
-  let dataObj = {};
+onMounted(() => {
+  getData()
+})
 
-  data.value.forEach((item, index) => {
-    const { key } = data.value[index]
-    const { value } = data.value[index]
-    dataObj = { ...dataObj, [key]: value}
-  })
-  
+const pushValue = async () => {
+  const dataObj = JSON.parse(rawStringData.value);
 	await pushVal(path.value, dataObj)
+  path.value = ""
+  rawStringData.value = ""
 }
 
 </script>
