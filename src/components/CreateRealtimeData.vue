@@ -39,15 +39,6 @@ const writeData = async () => {
 	setVal("test", { test: "test" })
 }
 
-const getData = async () => {
-	const data = await getVal("working-experience")
-	console.log(data)
-}
-
-onMounted(() => {
-  getData()
-})
-
 const pushValue = async () => {
   const dataObj = JSON.parse(rawStringData.value);
 	await pushVal(path.value, dataObj)
