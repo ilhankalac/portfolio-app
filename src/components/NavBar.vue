@@ -14,7 +14,7 @@
       :variant="clickedButton === '0' ? 'tonal' : 'text'" 
       @click="scrollToNextSection"
     >   
-      WORK 
+      Experience 
     </v-btn> 
     <v-btn 
       :variant="clickedButton === '1' ? 'tonal' : 'text'" 
