@@ -5,7 +5,30 @@
 		id="section2"
 		style="min-height: 100vh; max-width: 1000px;"
 	>
-		<v-col :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'">
+    <div
+      v-if="!isDataLoaded"
+      class="d-flex flex-column ga-3"
+    >
+      <v-skeleton-loader
+        color="primary"
+        class="mx-auto mb-10"
+        type="heading"
+        :min-width="smAndDown ? '100px' : '700px'"
+      >
+
+      </v-skeleton-loader>
+      <v-skeleton-loader
+        v-for="index in 5"
+        color="primary"
+        class="mx-auto border"
+        type="list-item-three-line"
+        :min-width="smAndDown ? '100px' : '700px'"
+      />
+    </div>
+		<v-col
+      v-else
+      :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'"
+    >
 			<p 
 				class="text-center text-overline pb-10" 
 				style="font-size: 30px !important;"
@@ -68,6 +91,7 @@ import {  getVal } from "@/services/DataService"
 const experiences = ref([])
 const jobDialog = ref(false);
 const selectedExperience = ref<IExperience | null>(null);
+const isDataLoaded = ref(false);
 
 const openDialog = (experience: IExperience) => {
 	jobDialog.value = true;
@@ -77,8 +101,9 @@ const openDialog = (experience: IExperience) => {
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
     if (fetchedData) {
+      isDataLoaded.value = true;
       const key = Object.keys(fetchedData);
-      experiences.value = fetchedData[key[0]];
+      experiences.value = fetchedData[key[0]].reverse()
     } else {
       // Handle the case where the fetched data is null or undefined
       console.error("Error fetching data from Firebase.");
