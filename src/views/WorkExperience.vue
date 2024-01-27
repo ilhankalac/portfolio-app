@@ -48,9 +48,12 @@
 					<template v-slot:icon>
 						<v-avatar :image="experience.logoSrc"></v-avatar>
 					</template>
-            <template v-slot:opposite>
-              {{ experience.date  }}
-            </template>
+          <template 
+            v-if="!smAndDown" 
+            v-slot:opposite
+          >
+            {{ experience.date  }}
+          </template>
           <div 
 						class="timeline-item pa-2"
 						:class="smAndDown ? 'text-center' : 'text-justify'"
