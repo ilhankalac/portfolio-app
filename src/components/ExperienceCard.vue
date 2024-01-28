@@ -37,14 +37,27 @@
               size="x-small"
             >
               <div class="mb-4">
-                <div class="font-weight-normal">
+                <div class="font-weight-normal d-flex align-center ga-5 mb-1">
                   <strong>{{ experience.name }}</strong>
                   <span 
                     class="font-weight-light" 
-                    style="font-size: small;"
+                    style="font-size: small; opacity: 0.8;"
                   > 
-                    - {{ experience.startDate }} · {{ experience.endDate }}
+                  {{ experience.startDate }} · {{ experience.endDate }}
                   </span>
+                  
+                  <div class="d-flex  align-center">
+                    <v-btn
+                      flat
+                      variant="text"
+                      :style="experience.project_link ? 'opacity: 0.8' : 'opacity: 0.3'"
+                      :disabled="!experience.project_link"
+                      @click="openLink(experience.project_link)"
+                    >
+                      <v-icon>mdi-code-tags</v-icon>
+                        <span class="text-caption ml-2">{{ experience.project_link ? 'Source Code' : 'Private Repo' }}</span>
+                    </v-btn>
+                  </div>
                 </div>
                 <div>{{ experience.description }}</div>
                 <div class="py-2">
@@ -83,6 +96,10 @@ const emit = defineEmits(['close'])
 const close = () => {
   emit("close");
 };
+
+const openLink = (link: string) => {
+  window.open(link);
+}
 </script>
 
 <style scoped>

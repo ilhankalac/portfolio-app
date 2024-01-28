@@ -93,7 +93,7 @@ import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 
 const openLink = (link: string) => {
-    window.open(link);
+  window.open(link);
 }
 
 const scrollToNextSection = () => {
