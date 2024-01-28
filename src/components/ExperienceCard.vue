@@ -37,7 +37,10 @@
               size="x-small"
             >
               <div class="mb-4">
-                <div class="font-weight-normal d-flex align-center ga-5 mb-1">
+                <div 
+                  class="font-weight-normal d-flex mb-1"
+                  :class="smAndDown ? 'flex-column ga-2 mb-5' : 'align-center ga-5'"
+                >
                   <strong>{{ experience.name }}</strong>
                   <span 
                     class="font-weight-light" 
@@ -46,10 +49,13 @@
                   {{ experience.startDate }} · {{ experience.endDate }}
                   </span>
                   
-                  <div class="d-flex  align-center">
+                  <div 
+                    class="d-flex align-center"
+                    :class="smAndDown ? 'pr-10' : ''"
+                  >
                     <v-btn
                       flat
-                      variant="text"
+                      :variant="smAndDown ? 'outlined' : 'text'"
                       :style="experience.project_link ? 'opacity: 0.8' : 'opacity: 0.3'"
                       :disabled="!experience.project_link"
                       @click="openLink(experience.project_link)"
