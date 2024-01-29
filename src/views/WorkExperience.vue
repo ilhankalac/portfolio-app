@@ -63,7 +63,9 @@
             v-if="!smAndDown" 
             v-slot:opposite
           >
-            {{ experience.date  }}
+            <span class="text-subtitle-2 font-weight-light">
+              {{ experience.date }}
+            </span>
           </template>
           <div 
 						class="timeline-item pa-2"
@@ -78,9 +80,9 @@
           >
             {{ experience.position }}
           </div>
-          <p>
+          <span class="font-weight-light">
 						{{ experience.description }}
-          </p>
+          </span>
           </div>
         </v-timeline-item>
       </v-timeline>

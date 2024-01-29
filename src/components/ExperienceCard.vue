@@ -36,22 +36,27 @@
               dot-color="white"
               size="x-small"
             >
-              <div class="mb-4">
+              <div>
                 <div 
-                  class="font-weight-normal d-flex mb-1"
+                  class="font-weight-normal d-flex mb-1 justify-space-between"
                   :class="smAndDown ? 'flex-column ga-2 mb-5' : 'align-center ga-5'"
                 >
-                  <strong>{{ experience.name }}</strong>
-                  <span 
-                    class="font-weight-light" 
-                    style="font-size: small; opacity: 0.8;"
-                  > 
-                  {{ experience.startDate }} · {{ experience.endDate }}
-                  </span>
+                  <div 
+                    class="d-flex ga-2"
+                    :class="smAndDown ? 'flex-column ga-2 mb-5 justify-center' : 'align-center ga-5'"
+                  >
+                    <strong>{{ experience.name }}</strong>
+                    <span 
+                      class="font-weight-light" 
+                      style="font-size: small; opacity: 0.8;"
+                    > 
+                    {{ experience.startDate }} · {{ experience.endDate }}
+                    </span>
+                  </div>
                   
                   <div 
-                    class="d-flex align-center"
-                    :class="smAndDown ? 'pr-10' : ''"
+                    class="d-flex"
+                    :class="smAndDown ? 'flex-column ga-2 mb-5' : 'align-center ga-5'"
                   >
                     <v-btn
                       flat
@@ -61,12 +66,22 @@
                       @click="openLink(experience.project_link)"
                     >
                       <v-icon>mdi-code-tags</v-icon>
-                        <span class="text-caption ml-2">{{ experience.project_link ? 'Source Code' : 'Private Repo' }}</span>
+                      <span class="text-caption ml-2">{{ experience.project_link ? 'Source Code' : 'Private Repo' }}</span>
                     </v-btn>
+                    <div class="d-flex">
+                      <v-btn :variant="smAndDown ? 'outlined' : 'text'" block> 
+                        <v-icon class="mr-1">mdi-open-in-new</v-icon> 
+                        <span class="text-caption ml-2">Visit Now</span>
+                      </v-btn>
+                    </div>
                   </div>
                 </div>
-                <div>{{ experience.description }}</div>
-                <div class="py-2">
+                <div class="text-subtitle-2 font-weight-light text-justify mb-3">
+                  {{ experience.description }}
+                </div>
+
+                <div>
+                  <span class="text-subtitle-2">Technologies used:</span><br>
                   <v-chip
                     v-for="tech in experience.technologies"
                     :key="tech"
