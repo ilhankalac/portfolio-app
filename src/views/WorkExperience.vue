@@ -45,8 +45,19 @@
 					dot-color="white"
 					size="large"
 				>
-					<template v-slot:icon>
-						<v-avatar :image="experience.logoSrc"></v-avatar>
+					<template
+            v-slot:icon
+          >
+            <v-tooltip :text="`${experience.title} Web Page`">
+              <template v-slot:activator="{ props }">
+                <v-avatar
+                  v-bind="props"
+                  :image="experience.logoSrc"
+                  @click="openCompanyLink(experience.company_link)"
+                  style="cursor: pointer;"
+                />
+              </template>
+          </v-tooltip>
 					</template>
           <template 
             v-if="!smAndDown" 
@@ -61,9 +72,15 @@
 						@click="openDialog(experience)"
 					>
           <div class="text-h6">{{ experience.title }}</div>
-            <p>
-							{{ experience.description }}
-            </p>
+          <div 
+            class="text-subtitle-1"
+            style="opacity: 0.5"
+          >
+            {{ experience.position }}
+          </div>
+          <p>
+						{{ experience.description }}
+          </p>
           </div>
         </v-timeline-item>
       </v-timeline>
@@ -113,6 +130,10 @@ const getData = async () => {
     }
   })
 };
+
+const openCompanyLink = (link: string) => {
+  window.open(link);
+}
 
 onMounted(async () => {
   await getData()
