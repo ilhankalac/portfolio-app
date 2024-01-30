@@ -14,12 +14,11 @@
       <div
         style="white-space: nowrap; min-width: 200px;"
       >
-
-          <span 
-            class="text-h4 mb-2" 
-          >
-            About me
-          </span>
+        <span 
+          class="text-h4 mb-2" 
+        >
+          About me
+        </span>
       </div>
       <v-divider :thickness="2" vertical/>
       <v-sheet color="secondary">
