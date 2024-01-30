@@ -2,7 +2,6 @@
 	<v-container 
 		class="d-flex "
 		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
-		id="section2"
 		style="min-height: 100vh; max-width: 1000px;"
 	>
     <div

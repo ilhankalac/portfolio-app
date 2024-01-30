@@ -14,12 +14,12 @@
       :variant="clickedButton === '0' ? 'tonal' : 'text'" 
       @click="scrollToNextSection"
     >   
-      Experience 
+      About Me 
     </v-btn> 
     <v-btn 
       :variant="clickedButton === '1' ? 'tonal' : 'text'" 
     >
-      PERSONAL INTERESTS
+      Experience
     </v-btn>
   </div>
 </template>
