@@ -1,6 +1,6 @@
 <template>
 	<v-container 
-		class="d-flex"
+		class="d-flex pa-0"
 		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
 		style="min-height: 100vh; max-width: 1000px;"
 	>

@@ -36,7 +36,7 @@
               </div>
               </div>
               <v-divider :thickness="2" vertical/>
-              <v-sheet color="secondary" class="mr-10">
+              <v-sheet color="secondary">
                 I'm Ilhan Kalač, a 26-year-old software developer currently based in Podgorica. 
                 I pursued my education at a faculty in Belgrade, laying the groundwork for my tech journey. <br><br>
                 Advanced proficiency in <strong>VueJS</strong> and <strong>Typescript</strong>, with a history of building intuitive and responsive web applications.<br> <br>
