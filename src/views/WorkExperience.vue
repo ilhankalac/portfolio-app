@@ -30,17 +30,21 @@
       v-else
       :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'"
     >
-      <v-col>
+      <v-col :class="{ 'pa-5': smAndDown }">
         <p 
           class="text-center text-overline pb-2" 
-          style="font-size: 30px !important;"
+          :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
         > 
           My Professional Developer Journey 
         </p>
-        <div class="d-flex justify-end">
+        <div 
+          class="d-flex mb-5"
+          :class="smAndDown ? 'justify-center' : 'justify-end'"
+        >
           <span 
             class="text-h5 text-overline"
-            style="font-size: 15px !important; opacity: 0.5;"
+            style="opacity: 0.5;"
+            :style="smAndDown ? 'font-size: 14px !important' : 'font-size: 16px !important'"
           >
             Years of Experience → <strong>{{ calculateYearsWithDecimal() }}</strong> 
           </span>

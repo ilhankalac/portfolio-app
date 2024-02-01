@@ -1,5 +1,5 @@
 <template>
-  <v-container class="ma-0 pa-0 " fluid>
+  <v-container class="ma-0 pa-0" fluid>
     <v-row>
       <v-col>
         <v-sheet 
@@ -16,7 +16,7 @@
           >
             <span 
               class="text-h4 mb-2 text-overline"
-              style="font-size: 30px !important;"
+              :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
             >
               About me
             </span>
