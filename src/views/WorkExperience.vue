@@ -1,36 +1,38 @@
 <template>
 	<v-container 
-		class="d-flex "
+		class="d-flex"
 		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
 		style="min-height: 100vh; max-width: 1000px;"
 	>
-    <div
+    <v-row
       v-if="!isDataLoaded"
       class="d-flex flex-column ga-3"
     >
-      <v-skeleton-loader
-        color="primary"
-        class="mx-auto mb-10"
-        type="heading"
-        :min-width="smAndDown ? '100px' : '700px'"
-      >
-
-      </v-skeleton-loader>
-      <v-skeleton-loader
-        v-for="index in 5"
-        color="primary"
-        class="mx-auto border"
-        type="list-item-three-line"
-        :min-width="smAndDown ? '100px' : '700px'"
-      />
-    </div>
-		<v-col
+      <v-col>
+        <v-skeleton-loader
+          color="primary"
+          class="mx-auto mb-10"
+          type="heading"
+          :min-width="smAndDown ? '100px' : '700px'"
+        >
+  
+        </v-skeleton-loader>
+        <v-skeleton-loader
+          v-for="index in 5"
+          color="primary"
+          class="mx-auto border"
+          type="list-item-three-line"
+          :min-width="smAndDown ? '100px' : '700px'"
+        />
+      </v-col>
+    </v-row>
+		<v-row
       v-else
       :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'"
     >
-      <div>
+      <v-col>
         <p 
-          class="text-center text-overline pb-10" 
+          class="text-center text-overline pb-2" 
           style="font-size: 30px !important;"
         > 
           My Professional Developer Journey 
@@ -38,66 +40,66 @@
         <div class="d-flex justify-end">
           <span 
             class="text-h5 text-overline"
-            style="font-size: 16px !important;"
+            style="font-size: 15px !important; opacity: 0.5;"
           >
             Years of Experience → <strong>{{ calculateYearsWithDecimal() }}</strong> 
           </span>
         </div>
-      </div>
-			<v-timeline 
-				side="end"
-				line-color="secondary"
-			>
-        <v-timeline-item 
-					v-for="experience in experiences" 
-					:key="experience.id"
-					dot-color="white"
-					size="large"
-          density="compact"
-          line-inset="15"
-				>
-					<template
-            v-slot:icon
+        <v-timeline 
+          side="end"
+          line-color="secondary"
+        >
+          <v-timeline-item 
+            v-for="experience in experiences" 
+            :key="experience.id"
+            dot-color="white"
+            size="large"
+            density="compact"
+            line-inset="15"
           >
-            <v-tooltip :text="`${experience.title} Web Page`">
-              <template v-slot:activator="{ props }">
-                <v-avatar
-                  v-bind="props"
-                  :image="experience.logoSrc"
-                  @click="openCompanyLink(experience.company_link)"
-                  style="cursor: pointer;"
-                />
-              </template>
-          </v-tooltip>
-					</template>
-          <div 
-						class="timeline-item pa-3 rounded"
-						:class="smAndDown ? 'text-center' : 'text-justify'"
-						style="cursor: pointer;  background-color: rgb(var(--v-theme-secondary)); "
-						@click="openDialog(experience)"
-					>
-          <div class="d-flex justify-space-between align-center">
-            <div class="text-h6">{{ experience.title }}</div>
-            <span 
-              class="text-overline font-weight-light"
+            <template
+              v-slot:icon
+            >
+              <v-tooltip :text="`${experience.title} Web Page`">
+                <template v-slot:activator="{ props }">
+                  <v-avatar
+                    v-bind="props"
+                    :image="experience.logoSrc"
+                    @click="openCompanyLink(experience.company_link)"
+                    style="cursor: pointer;"
+                  />
+                </template>
+            </v-tooltip>
+            </template>
+            <div 
+              class="timeline-item pa-3 rounded"
+              :class="smAndDown ? 'text-center' : 'text-justify'"
+              style="cursor: pointer;"
+              @click="openDialog(experience)"
+            >
+            <div class="d-flex justify-space-between align-center">
+              <div class="text-h6">{{ experience.title }}</div>
+              <span 
+                class="text-overline font-weight-light"
+                style="opacity: 0.5"
+              >
+                {{ experience.date }}
+              </span>
+            </div>
+            <div 
+              class="text-subtitle-1"
               style="opacity: 0.5"
             >
-              {{ experience.date }}
+              {{ experience.position }}
+            </div>
+            <span class="font-weight-light">
+              {{ experience.description }}
             </span>
-          </div>
-          <div 
-            class="text-subtitle-1"
-            style="opacity: 0.5"
-          >
-            {{ experience.position }}
-          </div>
-          <span class="font-weight-light">
-						{{ experience.description }}
-          </span>
-          </div>
-        </v-timeline-item>
-      </v-timeline>
-		</v-col>
+            </div>
+          </v-timeline-item>
+        </v-timeline>
+      </v-col>
+		</v-row>
 	</v-container>
 	<v-dialog 
 		v-model="jobDialog"
@@ -170,6 +172,6 @@ onMounted(async () => {
 	color: white;
 }
 .timeline-item:hover {
-	background-color: rgba(78, 93, 138) !important;
+	background-color: rgba(180, 180, 180, 0.1) !important;
 }
 </style>
