@@ -28,12 +28,22 @@
       v-else
       :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'"
     >
-			<p 
-				class="text-center text-overline pb-10" 
-				style="font-size: 30px !important;"
-			> 
-				My Professional Developer Journey 
-			</p>
+      <div>
+        <p 
+          class="text-center text-overline pb-10" 
+          style="font-size: 30px !important;"
+        > 
+          My Professional Developer Journey 
+        </p>
+        <div class="d-flex justify-end">
+          <span 
+            class="text-h5 text-overline"
+            style="font-size: 16px !important;"
+          >
+            Years of Experience → <strong>{{ calculateYearsWithDecimal() }}</strong> 
+          </span>
+        </div>
+      </div>
 			<v-timeline 
 				side="end"
 				line-color="secondary"
@@ -43,6 +53,8 @@
 					:key="experience.id"
 					dot-color="white"
 					size="large"
+          density="compact"
+          line-inset="15"
 				>
 					<template
             v-slot:icon
@@ -58,21 +70,21 @@
               </template>
           </v-tooltip>
 					</template>
-          <template 
-            v-if="!smAndDown" 
-            v-slot:opposite
-          >
-            <span class="text-subtitle-2 font-weight-light">
-              {{ experience.date }}
-            </span>
-          </template>
           <div 
-						class="timeline-item pa-2"
+						class="timeline-item pa-3 rounded"
 						:class="smAndDown ? 'text-center' : 'text-justify'"
-						style="cursor: pointer;"
+						style="cursor: pointer;  background-color: rgb(var(--v-theme-secondary)); "
 						@click="openDialog(experience)"
 					>
-          <div class="text-h6">{{ experience.title }}</div>
+          <div class="d-flex justify-space-between align-center">
+            <div class="text-h6">{{ experience.title }}</div>
+            <span 
+              class="text-overline font-weight-light"
+              style="opacity: 0.5"
+            >
+              {{ experience.date }}
+            </span>
+          </div>
           <div 
             class="text-subtitle-1"
             style="opacity: 0.5"
@@ -136,6 +148,18 @@ const openCompanyLink = (link: string) => {
   window.open(link);
 }
 
+
+const calculateYearsWithDecimal = (startDate: Date = new Date('2019-10-01')): string => {
+  const currentDate: Date = new Date();
+  const monthsDiff: number =
+    (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
+    currentDate.getMonth() - startDate.getMonth();
+
+  const yearsWithDecimal: number = monthsDiff / 12;
+
+  return yearsWithDecimal.toFixed(2);
+}
+
 onMounted(async () => {
   await getData()
 })
@@ -146,6 +170,6 @@ onMounted(async () => {
 	color: white;
 }
 .timeline-item:hover {
-	background-color: rgba(180, 180, 180, 0.1);
+	background-color: rgba(78, 93, 138) !important;
 }
 </style>

@@ -12,7 +12,8 @@
       :style="smAndDown ? 'max-width: 500px;' : 'max-width: 1000px;'"
     >
       <span 
-        class="text-h4 mb-2" 
+        class="text-h4 mb-2 text-overline"
+				style="font-size: 30px !important;"
       >
         About me
       </span>
