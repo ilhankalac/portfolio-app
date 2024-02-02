@@ -1,4 +1,5 @@
 <template>
+  <v-divider thickness="2" />
 	<v-container 
 		class="d-flex pa-0"
 		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"

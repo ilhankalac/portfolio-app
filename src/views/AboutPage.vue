@@ -4,14 +4,14 @@
       <v-col>
         <v-sheet 
           id="section2"
-          class="d-flex pa-16 text-white"
-          style="height: 50vh; background-color: rgb(var(--v-theme-secondary));"
-          :class="smAndDown ? 'flex-column justify-center' : 'flex-row justify-center'"
-          :style="smAndDown ? 'height: 100vh;' : 'height: 50vh;'"
+          class="d-flex text-white"
+          style="background-color: rgb(var(--v-theme-secondary)); "
+          :class="smAndDown ? 'flex-column justify-center px-4 py-8' : 'flex-row justify-center pa-8 py-16'"
+          :style="smAndDown ? '' : 'height: 50vh;'"
         >
           <div 
             class="d-flex ga-10 align-center font-weight-light "
-            :class="smAndDown ? 'flex-column text-center' : ' flex-column justify-center text-justify'"
+            :class="smAndDown ? 'flex-column text-left' : ' flex-column justify-center text-justify'"
             :style="smAndDown ? 'max-width: 500px;' : 'max-width: 1000px;'"
           >
             <span 
@@ -37,10 +37,10 @@
               </div>
               <v-divider :thickness="2" vertical/>
               <v-sheet color="secondary">
-                I'm Ilhan Kalač, a 26-year-old software developer currently based in Podgorica. 
-                I pursued my education at a faculty in Belgrade, laying the groundwork for my tech journey. <br><br>
-                Advanced proficiency in <strong>VueJS</strong> and <strong>Typescript</strong>, with a history of building intuitive and responsive web applications.<br> <br>
-                Beyond coding, my interests span philosophy and the world of cinema. Let's weave together technology, creativity, and philosophy to craft exceptional digital experiences.
+                <p>I'm a Frontend Developer with a passion for creating seamless user experiences and a keen interest in expanding my skills. </p><br>
+                <p><strong>Frontend Proficiency:</strong> Advanced skills in Vue.js and TypeScript, specializing in crafting responsive and intuitive web applications.</p><br>
+                <p><strong>Initial Backend Experience:</strong> I started my journey in the programming world with a focus on C# and ASP.NET Core, gaining foundational knowledge in Transact-SQL. While my backend experience is from my early career, I am actively expanding and refining my skills in frontend development. Additionally, I have hands-on experience with Firebase services, enhancing my understanding of serverless architectures and cloud-based solutions.</p><br>
+                <p><strong>Mentorship and Collaboration:</strong> With a history of mentoring aspiring developers and a collaborative approach, I'm dedicated to sharing knowledge and fostering growth within the developer community.</p>
               </v-sheet>
             </div>
           </div>
