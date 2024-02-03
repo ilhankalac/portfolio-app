@@ -1,6 +1,7 @@
 <template>
   <v-divider thickness="2" />
 	<v-container 
+    id="section3"
 		class="d-flex pa-0"
 		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
 		style="min-height: 100vh; max-width: 1000px;"
@@ -78,7 +79,7 @@
             </template>
             <div 
               class="timeline-item pa-3 rounded"
-              :class="smAndDown ? 'text-center' : 'text-justify'"
+              :class="smAndDown ? 'text-left' : 'text-justify'"
               style="cursor: pointer;"
               @click="openDialog(experience)"
             >

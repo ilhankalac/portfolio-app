@@ -12,12 +12,13 @@
   >   
     <v-btn 
       :variant="clickedButton === '0' ? 'tonal' : 'text'" 
-      @click="scrollToNextSection"
+      @click="scrollToNextSection('section2')"
     >   
       About Me 
     </v-btn> 
     <v-btn 
       :variant="clickedButton === '1' ? 'tonal' : 'text'" 
+      @click="scrollToNextSection('section3')"
     >
       Experience
     </v-btn>
@@ -44,14 +45,14 @@ const changeThePage = (buttonNumber: string, pageName: string) => {
   router.push({ name: pageName }); 
 }
 
-const scrollToNextSection = () => {
-  const section2 = document.getElementById('section2');
+const scrollToNextSection = (sectionName: string = '') => {
+  const section = document.getElementById(sectionName);
 
-  if (section2) {
+  if (section) {
     // Scroll to the top of Section 2
     window.scrollTo({
-      top: section2.offsetTop,
-      behavior: 'smooth', // Use smooth scrolling for a smoother transition
+      top: section.offsetTop,
+      behavior: 'smooth', 
     });
   }
 };
