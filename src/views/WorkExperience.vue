@@ -41,7 +41,7 @@
           :class="smAndDown ? 'justify-center' : 'justify-end'"
         >
           <span 
-            class="text-h5 text-overline"
+            class="text-h5 text-overline mr-2"
             style="opacity: 0.5;"
             :style="smAndDown ? 'font-size: 14px !important' : 'font-size: 16px !important'"
           >
@@ -86,14 +86,14 @@
                 class="text-overline font-weight-light"
                 style="opacity: 0.5"
               >
-                {{ experience.date }}
+                {{ experience.position }}
               </span>
             </div>
             <div 
-              class="text-subtitle-1"
+              class="text-subtitle-1 font-weight-light"
               style="opacity: 0.5"
             >
-              {{ experience.position }}
+              {{ experience.date }}
             </div>
             <span class="font-weight-light">
               {{ experience.description }}

@@ -14,12 +14,12 @@
             :class="smAndDown ? 'flex-column text-left' : ' flex-column justify-center text-justify'"
             :style="smAndDown ? 'max-width: 500px;' : 'max-width: 1000px;'"
           >
-            <span 
+            <!-- <span 
               class="text-h4 mb-2 text-overline"
               :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
             >
               About me
-            </span>
+            </span> -->
             <div 
               :class="smAndDown ? 'd-flex flex-column ga-5' : 'd-flex align-center ga-10'"
             >
@@ -27,7 +27,7 @@
                 style="white-space: nowrap; min-width: 200px;"
               >
               <div class="d-flex flex-column align-center ga-5">
-                <v-avatar size="150" variant="outlined">
+                <v-avatar size="210" variant="outlined">
                   <v-img
                     src="@/assets/profile_photo.jpg"
                     alt="avatar"

@@ -4,7 +4,7 @@
     id="section4"
     class="pa-10 pt-5 ma-0 d-flex"
     fluid
-    style="background-color: rgb(var(--v-theme-secondary)); "
+    style="background-color: rgb(var(--v-theme-secondary));"
   >
     <v-row class="d-flex justify-center ">
       <v-col 
