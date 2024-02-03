@@ -8,7 +8,7 @@
   <div
     class="d-flex justify-end align-center"
     :class="smAndDown ? 'flex-column' : 'flex-row'"
-    style="height: 10vh; background-color: rgba(0, 0, 0, 0.3); position:sticky; top:0; z-index: 1000;"
+    style="min-height: 10vh; background-color: rgba(0, 0, 0, 0.3); position:sticky; top:0; z-index: 1000;"
   >   
     <v-btn 
       :variant="clickedButton === '0' ? 'tonal' : 'text'" 
@@ -21,6 +21,12 @@
       @click="scrollToNextSection('section3')"
     >
       Experience
+    </v-btn>
+    <v-btn 
+      :variant="clickedButton === '1' ? 'tonal' : 'text'" 
+      @click="scrollToNextSection('section4')"
+    >
+      Skills
     </v-btn>
   </div>
 </template>

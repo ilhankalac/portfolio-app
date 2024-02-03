@@ -2,7 +2,7 @@
   <v-divider thickness="2" />
 	<v-container 
     id="section3"
-		class="d-flex pa-0"
+		class="d-flex pa-0 mb-16 pb-16"
 		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
 		style="min-height: 100vh; max-width: 1000px;"
 	>
