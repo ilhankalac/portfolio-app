@@ -28,10 +28,7 @@
         />
       </v-col>
     </v-row>
-		<v-row
-      v-else
-      :style="smAndDown ? 'font-size: 12px;' : 'font-size: 15px;'"
-    >
+		<v-row v-else>
       <v-col :class="{ 'pa-5': smAndDown }">
         <p 
           class="text-center text-overline pb-2" 
