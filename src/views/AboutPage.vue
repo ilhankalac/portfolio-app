@@ -27,7 +27,10 @@
                 style="white-space: nowrap; min-width: 200px;"
               >
               <div class="d-flex flex-column align-center ga-5">
-                <v-avatar size="210" variant="outlined">
+                <v-avatar
+                  :size="smAndDown ? 150 : 210"
+                  variant="outlined"
+                >
                   <v-img
                     src="@/assets/profile_photo.jpg"
                     alt="avatar"

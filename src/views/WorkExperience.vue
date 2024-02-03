@@ -38,12 +38,12 @@
         </p>
         <div 
           class="d-flex mb-5"
-          :class="smAndDown ? 'justify-center' : 'justify-end'"
+          :class="smAndDown ? 'justify-start ml-2' : 'justify-end'"
         >
           <span 
             class="text-h5 text-overline mr-2"
             style="opacity: 0.5;"
-            :style="smAndDown ? 'font-size: 14px !important' : 'font-size: 16px !important'"
+            :style="smAndDown ? 'font-size: 15px !important' : 'font-size: 16px !important'"
           >
             Years of Experience → <strong>{{ calculateYearsWithDecimal() }}</strong> 
           </span>
@@ -81,7 +81,7 @@
               @click="openDialog(experience)"
             >
             <div class="d-flex justify-space-between align-center">
-              <div class="text-h6">{{ experience.title }}</div>
+              <div class="text-h6 font-weight-light">{{ experience.title }}</div>
               <span 
                 class="text-overline font-weight-light"
                 style="opacity: 0.5"
