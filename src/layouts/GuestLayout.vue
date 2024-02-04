@@ -1,13 +1,13 @@
 <template>
-    <LandingPage />
-    <AboutPage />
-    <WorkExperience />
-    <SkillsPage />
+  <Initial />
+  <About />
+  <Experience />
+	<Skills />
 </template>
 
 <script lang="ts" setup>
-import LandingPage from '@/views/LandingPage.vue';
-import WorkExperience from '@/views/WorkExperience.vue';
-import AboutPage from '@/views/AboutPage.vue';
-import SkillsPage from '@/views/SkillsPage.vue';
+import Initial from '@/views/Initial.vue';
+import About from '@/views/About.vue';
+import Experience from '@/views/Experience.vue';
+import Skills from '@/views/Skills.vue';
 </script>
