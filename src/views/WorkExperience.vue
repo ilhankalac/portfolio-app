@@ -1,15 +1,11 @@
 <template>
   <v-divider thickness="2" />
-	<v-container 
-    id="section3"
-		class="d-flex pa-0 mb-16 pb-16"
-		:class="smAndDown ? 'flex-column' : 'flex-row justify-center align-center'"
-		style="min-height: 100vh; max-width: 1000px;"
-	>
-    <v-row
-      v-if="!isDataLoaded"
-      class="d-flex flex-column ga-3"
-    >
+  <Section 
+    :header="'My Professional Developer Journey'"
+    :customStyle="'min-height: 100vh; max-width: 1000px'"
+    :sectionId="'section3'"
+  >
+    <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
       <v-col>
         <v-skeleton-loader
           color="primary"
@@ -17,7 +13,6 @@
           type="heading"
           :min-width="smAndDown ? '100px' : '700px'"
         >
-  
         </v-skeleton-loader>
         <v-skeleton-loader
           v-for="index in 5"
@@ -28,153 +23,143 @@
         />
       </v-col>
     </v-row>
-		<v-row v-else>
-      <v-col :class="{ 'pa-5': smAndDown }">
-        <p 
-          class="text-center text-overline pb-2" 
-          :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
-        > 
-          My Professional Developer Journey 
-        </p>
-        <div 
-          class="d-flex mb-5"
-          :class="smAndDown ? 'justify-start ml-2' : 'justify-end'"
+    <v-row v-else>
+      <v-col
+        class="d-flex flex-column mb-5"
+        :class="smAndDown ? 'justify-start ml-2' : 'justify-start'"
+      >
+        <span
+          class="text-h5 text-overline mr-2 mb-4"
+          style="opacity: 0.5"
+          :style="
+            smAndDown
+              ? 'font-size: 15px !important'
+              : 'font-size: 16px !important'
+          "
         >
-          <span 
-            class="text-h5 text-overline mr-2"
-            style="opacity: 0.5;"
-            :style="smAndDown ? 'font-size: 15px !important' : 'font-size: 16px !important'"
-          >
-            Years of Experience → <strong>{{ calculateYearsWithDecimal() }}</strong> 
-          </span>
-        </div>
-        <v-timeline 
-          side="end"
-          line-color="secondary"
-        >
-          <v-timeline-item 
-            v-for="experience in experiences" 
+          Years of Experience →
+          <strong>{{ calculateYearsWithDecimal() }}</strong>
+        </span>
+        <v-timeline side="end" line-color="secondary">
+          <v-timeline-item
+            v-for="experience in experiences"
             :key="experience.id"
             dot-color="white"
             size="large"
             density="compact"
             line-inset="15"
           >
-            <template
-              v-slot:icon
-            >
+            <template v-slot:icon>
               <v-tooltip :text="`${experience.title} Web Page`">
                 <template v-slot:activator="{ props }">
                   <v-avatar
                     v-bind="props"
                     :image="experience.logoSrc"
                     @click="openCompanyLink(experience.company_link)"
-                    style="cursor: pointer;"
+                    style="cursor: pointer"
                   />
                 </template>
-            </v-tooltip>
+              </v-tooltip>
             </template>
-            <div 
+            <div
               class="timeline-item pa-3 rounded"
               :class="smAndDown ? 'text-left' : 'text-justify'"
-              style="cursor: pointer;"
+              style="cursor: pointer"
               @click="openDialog(experience)"
             >
-            <div class="d-flex justify-space-between align-center">
-              <div class="text-h6 font-weight-light">{{ experience.title }}</div>
-              <span 
-                class="text-overline font-weight-light"
-                style="opacity: 0.5"
-              >
-                {{ experience.position }}
+              <div class="d-flex justify-space-between align-center">
+                <div class="text-h6 font-weight-light">
+                  {{ experience.title }}
+                </div>
+                <span
+                  class="text-overline font-weight-light"
+                  style="opacity: 0.5"
+                >
+                  {{ experience.position }}
+                </span>
+              </div>
+              <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
+                {{ experience.date }}
+              </div>
+              <span class="font-weight-light">
+                {{ experience.description }}
               </span>
-            </div>
-            <div 
-              class="text-subtitle-1 font-weight-light"
-              style="opacity: 0.5"
-            >
-              {{ experience.date }}
-            </div>
-            <span class="font-weight-light">
-              {{ experience.description }}
-            </span>
             </div>
           </v-timeline-item>
         </v-timeline>
       </v-col>
-		</v-row>
-	</v-container>
-	<v-dialog 
-		v-model="jobDialog"
-		max-width="700"
-	>
-		<ExperienceCard
-			:selected-item="selectedExperience"
-			@close="jobDialog = false"
-		/>
-	</v-dialog>
+
+    </v-row>
+  </Section>
+  <v-dialog v-model="jobDialog" max-width="700">
+    <ExperienceCard
+      :selected-item="selectedExperience"
+      @close="jobDialog = false"
+    />
+  </v-dialog>
 </template>
 
 <script lang="ts" setup>
-
 import BasicInfo from "@/components/BasicInfo.vue";
 import ExperienceCard from "@/components/ExperienceCard.vue";
+import Section from "@/components/Section.vue";
 import { IExperience } from "@/types";
 import { onMounted, ref, Ref } from "vue";
-import { useDisplay } from 'vuetify'
+import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
-import {  getVal } from "@/services/DataService"
+import { getVal } from "@/services/DataService";
 
-
-const experiences = ref([])
+const experiences = ref([]);
 const jobDialog = ref(false);
 const selectedExperience = ref<IExperience | null>(null);
 const isDataLoaded = ref(false);
 
 const openDialog = (experience: IExperience) => {
-	jobDialog.value = true;
-	selectedExperience.value = experience;
-}
+  jobDialog.value = true;
+  selectedExperience.value = experience;
+};
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
     if (fetchedData) {
       isDataLoaded.value = true;
       const key = Object.keys(fetchedData);
-      experiences.value = fetchedData[key[0]].reverse()
+      experiences.value = fetchedData[key[0]].reverse();
     } else {
       // Handle the case where the fetched data is null or undefined
       console.error("Error fetching data from Firebase.");
     }
-  })
+  });
 };
 
 const openCompanyLink = (link: string) => {
   window.open(link);
-}
+};
 
-
-const calculateYearsWithDecimal = (startDate: Date = new Date('2019-10-01')): string => {
+const calculateYearsWithDecimal = (
+  startDate: Date = new Date("2019-10-01")
+): string => {
   const currentDate: Date = new Date();
   const monthsDiff: number =
     (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
-    currentDate.getMonth() - startDate.getMonth();
+    currentDate.getMonth() -
+    startDate.getMonth();
 
   const yearsWithDecimal: number = monthsDiff / 12;
 
   return yearsWithDecimal.toFixed(2);
-}
+};
 
 onMounted(async () => {
-  await getData()
-})
+  await getData();
+});
 </script>
 
 <style lang="scss" scoped>
-.mdi-close::before{
-	color: white;
+.mdi-close::before {
+  color: white;
 }
 .timeline-item:hover {
-	background-color: rgba(180, 180, 180, 0.1) !important;
+  background-color: rgba(180, 180, 180, 0.1) !important;
 }
 </style>
