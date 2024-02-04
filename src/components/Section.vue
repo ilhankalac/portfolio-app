@@ -11,7 +11,11 @@
     >
       {{ header }}
     </p>
-    <slot />
+    <v-row class="d-flex justify-center align-center">
+      <v-col :cols="smAndDown ? 12 : 8">
+        <slot />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <v-divider thickness="2" />
-  <Section 
+  <Section
     :header="'My Professional Developer Journey'"
-    :customStyle="'min-height: 100vh; max-width: 1000px'"
+    :customStyle="'min-height: 100vh;'"
     :sectionId="'section3'"
   >
     <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
@@ -23,73 +23,61 @@
         />
       </v-col>
     </v-row>
-    <v-row v-else>
-      <v-col
-        class="d-flex flex-column mb-5"
-        :class="smAndDown ? 'justify-start ml-2' : 'justify-start'"
-      >
-        <span
-          class="text-h5 text-overline mr-2 mb-4"
-          style="opacity: 0.5"
-          :style="
-            smAndDown
-              ? 'font-size: 15px !important'
-              : 'font-size: 16px !important'
-          "
-        >
-          Years of Experience →
-          <strong>{{ calculateYearsWithDecimal() }}</strong>
-        </span>
-        <v-timeline side="end" line-color="secondary">
-          <v-timeline-item
-            v-for="experience in experiences"
-            :key="experience.id"
-            dot-color="white"
-            size="large"
-            density="compact"
-            line-inset="15"
-          >
-            <template v-slot:icon>
-              <v-tooltip :text="`${experience.title} Web Page`">
-                <template v-slot:activator="{ props }">
-                  <v-avatar
-                    v-bind="props"
-                    :image="experience.logoSrc"
-                    @click="openCompanyLink(experience.company_link)"
-                    style="cursor: pointer"
-                  />
-                </template>
-              </v-tooltip>
-            </template>
-            <div
-              class="timeline-item pa-3 rounded"
-              :class="smAndDown ? 'text-left' : 'text-justify'"
-              style="cursor: pointer"
-              @click="openDialog(experience)"
-            >
-              <div class="d-flex justify-space-between align-center">
-                <div class="text-h6 font-weight-light">
-                  {{ experience.title }}
-                </div>
-                <span
-                  class="text-overline font-weight-light"
-                  style="opacity: 0.5"
-                >
-                  {{ experience.position }}
-                </span>
-              </div>
-              <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
-                {{ experience.date }}
-              </div>
-              <span class="font-weight-light">
-                {{ experience.description }}
-              </span>
-            </div>
-          </v-timeline-item>
-        </v-timeline>
-      </v-col>
 
-    </v-row>
+    <span
+      class="text-h5 text-overline mr-2 mb-4"
+      style="opacity: 0.5"
+      :style="
+        smAndDown ? 'font-size: 15px !important' : 'font-size: 16px !important'
+      "
+    >
+      Years of Experience →
+      <strong>{{ calculateYearsWithDecimal() }}</strong>
+    </span>
+    <v-timeline side="end" line-color="secondary">
+      <v-timeline-item
+        v-for="experience in experiences"
+        :key="experience.id"
+        dot-color="white"
+        size="large"
+        density="compact"
+        line-inset="15"
+      >
+        <template v-slot:icon>
+          <v-tooltip :text="`${experience.title} Web Page`">
+            <template v-slot:activator="{ props }">
+              <v-avatar
+                v-bind="props"
+                :image="experience.logoSrc"
+                @click="openCompanyLink(experience.company_link)"
+                style="cursor: pointer"
+              />
+            </template>
+          </v-tooltip>
+        </template>
+        <div
+          class="timeline-item pa-3 rounded"
+          :class="smAndDown ? 'text-left' : 'text-justify'"
+          style="cursor: pointer"
+          @click="openDialog(experience)"
+        >
+          <div class="d-flex justify-space-between align-center">
+            <div class="text-h6 font-weight-light">
+              {{ experience.title }}
+            </div>
+            <span class="text-overline font-weight-light" style="opacity: 0.5">
+              {{ experience.position }}
+            </span>
+          </div>
+          <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
+            {{ experience.date }}
+          </div>
+          <span class="font-weight-light">
+            {{ experience.description }}
+          </span>
+        </div>
+      </v-timeline-item>
+    </v-timeline>
   </Section>
   <v-dialog v-model="jobDialog" max-width="700">
     <ExperienceCard

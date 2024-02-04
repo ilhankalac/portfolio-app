@@ -1,31 +1,18 @@
 <template>
   <v-divider thickness="2" />
-  <Section 
+  <Section
     :header="'My skills'"
     :customStyle="'background-color: rgb(var(--v-theme-secondary)); min-height: 33vh'"
     :sectionId="'section4'"
   >
-    <v-row class="d-flex justify-center">
-      <v-col
-        :cols="smAndDown ? 12 : 6"
-        :class="{ 'pa-5': smAndDown }"
-        class="d-flex flex-column align-center ga-4"
-      >
-        <v-row class="d-flex justify-center">
-          <v-sheet v-for="skill in skills" :key="skill.id" color="secondary">
-            <v-chip
-              label
-              class="ma-2"
-              link
-              :size="smAndDown ? 'default' : 'large'"
-            >
-              <v-icon start :icon="`mdi-${skill.icon}`"></v-icon>
-              {{ skill.name }}
-            </v-chip>
-          </v-sheet>
-        </v-row>
-      </v-col>
-    </v-row>
+    <div class="text-center">
+      <template v-for="skill in skills" :key="skill.id" color="secondary">
+        <v-chip label class="ma-2" link :size="smAndDown ? 'default' : 'large'">
+          <v-icon start :icon="`mdi-${skill.icon}`"></v-icon>
+          {{ skill.name }}
+        </v-chip>
+      </template>
+    </div>
   </Section>
 </template>
 
