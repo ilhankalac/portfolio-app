@@ -1,6 +1,6 @@
 <template>
   <Section
-    sectionId="section2"
+    sectionId="'section2'"
     :customStyle="'background-color: rgb(var(--v-theme-secondary)); min-height: 33vh'"
   >
     <div class="font-weight-light text-justify">

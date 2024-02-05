@@ -103,7 +103,7 @@
 
 <script lang="ts" setup>
 import { IExperience } from "@/types";
-import {defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 

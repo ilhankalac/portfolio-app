@@ -20,25 +20,17 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, Ref } from "vue";
+interface ISection {
+  sectionId: string;
+  customStyle?: string;
+  header?: string;
+}
+import { onMounted, ref, Ref, defineProps } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
 
-const props = defineProps({
-  header: {
-    type: String,
-    required: true,
-  },
-  customStyle: {
-    type: String,
-    default: "",
-  },
-  sectionId: {
-    type: String,
-    default: "",
-  },
-});
+const props = defineProps<ISection>();
 </script>
 
 <style lang="scss" scoped>
