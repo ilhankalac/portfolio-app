@@ -5,12 +5,15 @@
     :style="customStyle"
     fluid
   >
-    <p
-      class="text-center text-overline pb-5"
-      :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
-    >
-      {{ header }}
-    </p>
+    <div class="pb-5 text-center">
+      <p
+        class="text-center text-overline mb-1"
+        :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
+      >
+        {{ header }}
+      </p>
+      <v-divider style="width: 50%; margin: 0 auto;" class="border-opacity-50" thickness="1" color="white" />
+    </div>
     <v-row class="d-flex justify-center align-center">
       <v-col :cols="smAndDown ? 12 : 8">
         <slot />

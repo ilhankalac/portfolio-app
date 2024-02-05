@@ -1,7 +1,7 @@
 <template>
   <v-divider thickness="2" />
   <Section
-    :header="'My Professional Developer Journey'"
+    :header="'Experience'"
     :customStyle="'min-height: 100vh;'"
     :sectionId="'section3'"
   >
