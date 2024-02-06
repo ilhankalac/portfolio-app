@@ -15,7 +15,7 @@
       <v-divider style="width: 50%; margin: 0 auto;" class="border-opacity-50" thickness="1" color="white" />
     </div>
     <v-row class="d-flex justify-center align-center">
-      <v-col :cols="smAndDown ? 12 : 8">
+      <v-col :cols="smAndDown ? 12 : 6">
         <slot />
       </v-col>
     </v-row>
