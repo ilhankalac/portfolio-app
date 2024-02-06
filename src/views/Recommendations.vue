@@ -18,7 +18,7 @@
       </v-avatar>
       <v-card-title class=" text-overline font-weight-light"> 
         <span> {{ recommendation.fullName }} </span> -
-        <span style="opacity: 0.7">{{ recommendation.position }}</span>
+        <span style="opacity: 0.7">{{ recommendation.role }}</span>
       </v-card-title> 
     </v-card-actions>
     <v-divider />
