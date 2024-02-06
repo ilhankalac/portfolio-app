@@ -2,7 +2,7 @@
   <v-divider thickness="2" />
   <Section
     :header="'My skills'"
-    :customStyle="'background-color: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :customStyle="'background-color: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :sectionId="'section4'"
   >
     <div class="text-center">

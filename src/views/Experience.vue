@@ -85,6 +85,7 @@
       @close="jobDialog = false"
     />
   </v-dialog>
+  <v-divider thickness="2" />
 </template>
 
 <script lang="ts" setup>

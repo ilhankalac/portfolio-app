@@ -6,3 +6,10 @@ export interface IExperience {
 	logoSrc?: string;
 	projects: any
 }
+
+export interface IColleagueInfo {
+	id: number;
+	fullName: string;
+  role: string;
+  text: string
+}
