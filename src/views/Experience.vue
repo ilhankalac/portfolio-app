@@ -91,18 +91,18 @@
 import BasicInfo from "@/components/BasicInfo.vue";
 import ExperienceCard from "@/components/ExperienceCard.vue";
 import Section from "@/components/Section.vue";
-import { IExperience } from "@/types";
+import { IExperience } from "@/types/other";
 import { onMounted, ref, Ref } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
 
-const experiences = ref([]);
+const experiences: any = ref([]);
 const jobDialog = ref(false);
-const selectedExperience = ref<IExperience | null>(null);
+const selectedExperience = ref<any | null>(null);
 const isDataLoaded = ref(false);
 
-const openDialog = (experience: IExperience) => {
+const openDialog = (experience: any) => {
   jobDialog.value = true;
   selectedExperience.value = experience;
 };

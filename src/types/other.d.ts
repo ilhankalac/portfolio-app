@@ -4,7 +4,8 @@ export interface IExperience {
 	date?: string;
 	description?: string;
 	logoSrc?: string;
-	projects: any
+  projects: any
+  position?: string
 }
 
 export interface IColleagueInfo {

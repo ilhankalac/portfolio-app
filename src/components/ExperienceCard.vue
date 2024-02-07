@@ -102,13 +102,13 @@
 </template>
 
 <script lang="ts" setup>
-import { IExperience } from "@/types";
+import { IExperience } from "@/types/other";
 import { defineProps, defineEmits } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 
 interface IExperienceProps {
-  selectedItem: IExperience;
+  selectedItem: any;
 }
 
 const props = defineProps<IExperienceProps>();
