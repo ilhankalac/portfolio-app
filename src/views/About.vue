@@ -17,7 +17,8 @@
           </div>
         </div>
         <v-divider :thickness="2" vertical />
-        <div>
+        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary))); color: white;">
+
           <p>
             I'm a Frontend Developer with a passion for creating seamless user
             experiences and a keen interest in expanding my skills.
@@ -45,7 +46,7 @@
             dedicated to sharing knowledge and fostering growth within the
             developer community.
           </p>
-        </div>
+        </v-sheet>
       </div>
     </div>
   </Section>
@@ -60,8 +61,6 @@ const { smAndDown } = useDisplay();
 
 <style  scoped>
 .about-section {
-  background: var(--v-theme-secondary);
-  color: white;
   animation: fade linear both;
   animation-timeline: view();
   animation-range: entry 5% cover 50%;

@@ -174,7 +174,7 @@ const scrollToNextSection = () => {
 
 @keyframes scale {
   from {
-    transform: scale(1.5);
+    transform: scale(5);
   }
   to {
     transform: scale(1);
