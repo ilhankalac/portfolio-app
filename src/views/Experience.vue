@@ -1,5 +1,4 @@
 <template>
-  <v-divider thickness="2" />
   <Section
     :header="'Experience'"
     :customStyle="'min-height: 100vh;'"
@@ -85,7 +84,6 @@
       @close="jobDialog = false"
     />
   </v-dialog>
-  <v-divider thickness="2" />
 </template>
 
 <script lang="ts" setup>

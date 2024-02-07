@@ -2,7 +2,7 @@
   <Section
     sectionId="section2"
     header="About Me"
-    :customStyle="'background-color: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :customStyle="'background: linear-gradient(rgb(var(--v-theme-secondary)), rgb(var(--v-theme-primary))); min-height: 33vh'"
   >
     <div class="font-weight-light text-justify">
       <div
@@ -16,7 +16,7 @@
           </div>
         </div>
         <v-divider :thickness="2" vertical />
-        <v-sheet color="secondary">
+        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)); color: white;">
           <p>
             I'm a Frontend Developer with a passion for creating seamless user
             experiences and a keen interest in expanding my skills.

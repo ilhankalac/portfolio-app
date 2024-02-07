@@ -18,6 +18,7 @@
       <v-col :cols="smAndDown ? 12 : 6">
         <slot />
       </v-col>
+      <v-divider thickness="2"></v-divider>
     </v-row>
   </v-container>
 </template>

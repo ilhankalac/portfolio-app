@@ -2,7 +2,7 @@
   <Section
     sectionId="section2"
     header="Recommendations"
-    :customStyle="'background-color: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :customStyle="'background-color: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :cols="2"
   >
   <div
