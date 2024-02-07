@@ -1,5 +1,6 @@
 <template>
   <Section
+    :class="smAndDown ? '' : 'experience-section'"
     :header="'Experience'"
     :customStyle="'min-height: 100vh;'"
     :sectionId="'section3'"
@@ -148,5 +149,22 @@ onMounted(async () => {
 }
 .timeline-item:hover {
   background-color: rgba(180, 180, 180, 0.1) !important;
+}
+
+.experience-section {
+  background: var(--v-theme-secondary);
+  color: white;
+  animation: fade linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 50%;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
 }
 </style>

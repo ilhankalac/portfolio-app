@@ -7,7 +7,7 @@
         <!-- Your text goes here -->
         <div :class="smAndDown ? 'text-center' : 'text-left'">
             <span
-              class="font-weight-bold"
+              class="font-weight-bold full-name"
               style="font-family: 'Be Vietnam Pro', sans-serif;"
               :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
             >
@@ -38,7 +38,7 @@
       </div>
       <div
         style="bottom: 0 !important; position: absolute; left: 50%; transform: translateX(-50%); z-index: 1000;"
-        class="d-flex justify-center mb-5"
+        class="d-flex justify-center mb-5 scroll-down-icon"
       >
         <svg
           :width="smAndDown ? '20' : '25'"
@@ -119,7 +119,8 @@ const scrollToNextSection = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6; /* Adjust the opacity as needed */
+  opacity: 0.6; 
+  animation: scale 3s ease;
 }
 
 .content {
@@ -130,6 +131,7 @@ const scrollToNextSection = () => {
   text-align: center;
   color: white; /* Adjust the text color as needed */
   z-index: 1;
+  animation: slideFromLeft 2.5s ease;
 }
 
 .circle {
@@ -159,4 +161,25 @@ const scrollToNextSection = () => {
     transform: translate(262px, 830px);
   }
 }
+@keyframes slideFromLeft {
+  from {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+
 </style>

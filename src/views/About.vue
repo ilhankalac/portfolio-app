@@ -1,5 +1,6 @@
 <template>
   <Section
+    :class="smAndDown ? '' : 'about-section'"
     sectionId="section2"
     header="About Me"
     :customStyle="'background: linear-gradient(rgb(var(--v-theme-secondary)), rgb(var(--v-theme-primary))); min-height: 33vh'"
@@ -16,7 +17,7 @@
           </div>
         </div>
         <v-divider :thickness="2" vertical />
-        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)); color: white;">
+        <div>
           <p>
             I'm a Frontend Developer with a passion for creating seamless user
             experiences and a keen interest in expanding my skills.
@@ -44,7 +45,7 @@
             dedicated to sharing knowledge and fostering growth within the
             developer community.
           </p>
-        </v-sheet>
+        </div>
       </div>
     </div>
   </Section>
@@ -55,3 +56,23 @@ import { useDisplay } from "vuetify";
 import Section from "@/components/Section.vue";
 const { smAndDown } = useDisplay();
 </script>
+
+
+<style  scoped>
+.about-section {
+  background: var(--v-theme-secondary);
+  color: white;
+  animation: fade linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 50%;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+</style>

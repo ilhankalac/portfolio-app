@@ -1,6 +1,7 @@
 <template>
   <Section
     sectionId="section2"
+    class="recommendations-section"
     header="Recommendations"
     :customStyle="'background-color: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :cols="2"
@@ -45,4 +46,19 @@ const recommendations: Ref<IColleagueInfo[]> = ref([{
 
 <style lang="scss" scoped>
 $card-background: white;
+
+.recommendations-section {
+  animation: fade linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 50%;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
 </style>
