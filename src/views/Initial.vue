@@ -1,53 +1,24 @@
 <template>
-    <div class="container">
-      <div
-        class="content"
-        :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'"
+  <div class="container" >
+    <NavBar />
+    <div
+      style="
+        bottom: 0 !important;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+      "
+      class="d-flex justify-center mb-5 scroll-down-icon"
+    >
+      <svg
+        :width="smAndDown ? '20' : '25'"
+        :height="smAndDown ? '38.5' : '50'"
+        viewBox="0 0 40 77"
+        style="transform: translate(0px, 0px); opacity: 1; cursor: pointer"
+        @click="scrollToNextSection"
       >
-        <!-- Your text goes here -->
-        <div :class="smAndDown ? 'text-center' : 'text-left'">
-            <span
-              class="font-weight-bold full-name"
-              style="font-family: 'Be Vietnam Pro', sans-serif;"
-              :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
-            >
-              Ilhan Kalač
-            </span>
-            <p
-              style="opacity:0.6; font-family: 'Bebas Neue', sans-serif;"
-              :style="smAndDown ? 'font-size: 15px' : 'font-size:30px'"
-              class="text-center"
-            >
-              Frontend Developer
-            </p>
-            <div class="d-flex justify-center mt-4 ga-1">
-              <v-btn
-                flat
-                variant="text"
-                icon="mdi-github"
-                @click="openLink('https://github.com/ilhankalac')"
-              />
-              <v-btn
-                flat
-                variant="text"
-                icon="mdi-linkedin"
-                @click="openLink('https://www.linkedin.com/in/ilhankalac/')"
-              />
-            </div>
-        </div>
-      </div>
-      <div
-        style="bottom: 0 !important; position: absolute; left: 50%; transform: translateX(-50%); z-index: 1000;"
-        class="d-flex justify-center mb-5 scroll-down-icon"
-      >
-        <svg
-          :width="smAndDown ? '20' : '25'"
-          :height="smAndDown ? '38.5' : '50'"
-          viewBox="0 0 40 77"
-          style="transform: translate(0px, 0px); opacity: 1; cursor: pointer;"
-          @click="scrollToNextSection"
-        >
-          <g id="scroll" transform="translate(-253 -787)">
+        <g id="scroll" transform="translate(-253 -787)">
           <g
             id="Rectangle_12"
             data-name="Rectangle 12"
@@ -57,14 +28,7 @@
             stroke-width="4"
           >
             <rect width="40" height="77" rx="20" stroke="none"></rect>
-            <rect
-              x="2"
-              y="2"
-              width="36"
-              height="73"
-              rx="18"
-              fill="none"
-            ></rect>
+            <rect x="2" y="2" width="36" height="73" rx="18" fill="none"></rect>
           </g>
           <circle
             class="circle"
@@ -76,16 +40,48 @@
             transform="translate(262 798)"
             fill="#fff"
           ></circle>
-          </g>
+        </g>
       </svg>
-      </div>
-      <div style="min-height: 100vh;">
-        <img src="@/assets/landing-image.jpg" alt="Background Image" class="background-image" />
-        <NavBar />
+    </div>
+  </div>
+  <div
+    class="content"
+    :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'"
+  >
+
+    <!-- Your text goes here -->
+    <div :class="smAndDown ? 'text-center' : 'text-left'">
+      <span
+        class="font-weight-bold full-name"
+        style="font-family: 'Be Vietnam Pro', sans-serif"
+        :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
+      >
+        Ilhan Kalač
+      </span>
+      <p
+        style="opacity: 0.6; font-family: 'Bebas Neue', sans-serif"
+        :style="smAndDown ? 'font-size: 15px' : 'font-size:30px'"
+        class="text-center"
+      >
+        Frontend Developer
+      </p>
+      <div class="d-flex justify-center mt-4 ga-1">
+        <v-btn
+          flat
+          variant="text"
+          icon="mdi-github"
+          @click="openLink('https://github.com/ilhankalac')"
+        />
+        <v-btn
+          flat
+          variant="text"
+          icon="mdi-linkedin"
+          @click="openLink('https://www.linkedin.com/in/ilhankalac/')"
+        />
       </div>
     </div>
+  </div>
 </template>
-
 
 <script lang="ts" setup>
 import NavBar from "@/components/NavBar.vue";
@@ -94,35 +90,32 @@ const { smAndDown } = useDisplay();
 
 const openLink = (link: string) => {
   window.open(link);
-}
+};
 
 const scrollToNextSection = () => {
-  const section2 = document.getElementById('section2');
+  const section2 = document.getElementById("section2");
 
   if (section2) {
     // Scroll to the top of Section 2
     window.scrollTo({
       top: section2.offsetTop,
-      behavior: 'smooth', // Use smooth scrolling for a smoother transition
+      behavior: "smooth", // Use smooth scrolling for a smoother transition
     });
   }
 };
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500&display=swap');
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6; 
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500&display=swap");
+.container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("@/assets/landing-image.jpg");
+  background-size: cover;
+  background-position: center;
   animation: scale 3s ease;
+  height: 100vh;
 }
-
 .content {
   position: absolute;
   top: 50%;
@@ -180,6 +173,4 @@ const scrollToNextSection = () => {
     transform: scale(1);
   }
 }
-
-
 </style>
