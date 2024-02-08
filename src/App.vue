@@ -7,6 +7,7 @@
 
 <style>
 body {
+  overflow-x: hidden;
 	background-color: rgb(var(--v-theme-primary));
 	color: white;
 
