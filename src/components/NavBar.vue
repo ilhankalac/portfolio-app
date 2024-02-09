@@ -6,7 +6,7 @@
     style="z-index: 1100; position: absolute"
   />
 
-  <div
+  <nav
     class="nav-bar"
     :style="isMenuClicked && smAndDown ? 'min-height: 22vh' : 'min-height: 8vh'"
     :class="smAndDown ? 'flex-column' : 'd-flex justify-space-around align-center'"
@@ -46,7 +46,7 @@
         Skills
       </v-btn>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts" setup>

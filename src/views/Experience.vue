@@ -2,7 +2,7 @@
   <Section
     :class="'experience-section'"
     :header="'Experience'"
-    :customStyle="'min-height: 100vh;'"
+    :customStyle="'min-height: 100vh; background: rgb(var(--v-theme-primary))'" 
     :sectionId="'section3'"
   >
     <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
