@@ -113,7 +113,7 @@ const scrollToNextSection = () => {
   background-size: cover;
   background-position: center;
   animation: scale 3s ease;
-  height: 92vh;
+  height: 100vh;
 }
 .content {
   position: absolute;
