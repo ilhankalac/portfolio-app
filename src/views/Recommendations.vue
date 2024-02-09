@@ -7,7 +7,7 @@
   >
   <div
     v-for="recommendation in recommendations"
-    class="text-justify font-weight-light ma-auto pa-4" 
+    class="text-justify font-weight-light ma-auto" 
     color="primary"
     border="white"
   >
@@ -17,7 +17,7 @@
       <v-avatar size="60">
         <v-img src="@/assets/omar_profile.jpg" alt="avatar" />
       </v-avatar>
-      <v-card-title class=" text-overline font-weight-light"> 
+      <v-card-title class="text-overline font-weight-light"> 
         <span> {{ recommendation.fullName }} </span> -
         <span style="opacity: 0.7">{{ recommendation.role }}</span>
       </v-card-title> 
