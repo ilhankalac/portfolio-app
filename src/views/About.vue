@@ -1,5 +1,4 @@
 <template>
-  <v-divider thickness="2" />
   <Section
     :class="'about-section'"
     sectionId="section2"
@@ -58,21 +57,3 @@ import { useDisplay } from "vuetify";
 import Section from "@/components/Section.vue";
 const { smAndDown } = useDisplay();
 </script>
-
-
-<style  scoped>
-.about-section {
-  animation: fade linear both;
-  animation-timeline: view();
-  animation-range: entry 5% cover 50%;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0
-  }
-  to {
-    opacity: 1
-  }
-}
-</style>

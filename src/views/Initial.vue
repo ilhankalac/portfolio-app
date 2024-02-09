@@ -1,6 +1,5 @@
 <template>
   <div class="container" >
-    <NavBar />
     <div
       style="
         bottom: 0 !important;
@@ -114,7 +113,7 @@ const scrollToNextSection = () => {
   background-size: cover;
   background-position: center;
   animation: scale 3s ease;
-  height: 100vh;
+  height: 92vh;
 }
 .content {
   position: absolute;

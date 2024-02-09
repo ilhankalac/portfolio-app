@@ -1,4 +1,5 @@
 <template>
+  <NavBar />
   <Initial />
   <About />
   <Experience />
@@ -7,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+import NavBar from '@/components/NavBar.vue';
 import Initial from '@/views/Initial.vue';
 import About from '@/views/About.vue';
 import Experience from '@/views/Experience.vue';

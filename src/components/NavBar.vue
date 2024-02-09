@@ -5,29 +5,35 @@
     color="secondary"
     style="z-index: 1100; position:absolute"
   />
+
   <div
-    class="d-flex justify-end align-center"
+    class="d-flex justify-space-around align-center nav-bar"
     :class="smAndDown ? 'flex-column' : 'flex-row'"
-    style="min-height: 10vh; background-color: rgba(0, 0, 0, 0.3); position:sticky; top:0; z-index: 1000;"
-  >   
-    <v-btn 
-      :variant="clickedButton === '0' ? 'tonal' : 'text'" 
-      @click="scrollToNextSection('section2')"
-    >   
-      About Me 
-    </v-btn> 
-    <v-btn 
-      :variant="clickedButton === '1' ? 'tonal' : 'text'" 
-      @click="scrollToNextSection('section3')"
-    >
-      Experience
-    </v-btn>
-    <v-btn 
-      :variant="clickedButton === '1' ? 'tonal' : 'text'" 
-      @click="scrollToNextSection('section4')"
-    >
-      Skills
-    </v-btn>
+    style=""
+  >
+    <div class="text-darkText text-subtitle font-weight-bold">
+      I K
+    </div>
+    <div>
+      <v-btn 
+        :variant="clickedButton === '0' ? 'tonal' : 'text'" 
+        @click="scrollToNextSection('section2')"
+      >   
+        About Me 
+      </v-btn> 
+      <v-btn 
+        :variant="clickedButton === '1' ? 'tonal' : 'text'" 
+        @click="scrollToNextSection('section3')"
+      >
+        Experience
+      </v-btn>
+      <v-btn 
+        :variant="clickedButton === '1' ? 'tonal' : 'text'" 
+        @click="scrollToNextSection('section4')"
+      >
+        Skills
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -57,9 +63,21 @@ const scrollToNextSection = (sectionName: string = '') => {
   if (section) {
     // Scroll to the top of Section 2
     window.scrollTo({
-      top: section.offsetTop,
+      top: section.offsetTop - window.innerHeight * 0.08,
       behavior: 'smooth', 
     });
   }
 };
 </script>
+
+<style scoped>
+.nav-bar{
+  min-height: 8vh; 
+  background-color: rgba(255, 255, 255, 1); 
+  position:sticky; 
+  top:0;
+  color: rgb(var(--v-theme-darkText));
+  z-index: 1200;
+}
+
+</style>
