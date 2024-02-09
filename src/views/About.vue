@@ -3,7 +3,8 @@
     :class="'about-section'"
     sectionId="section2"
     header="About Me"
-    :customStyle="'background: linear-gradient(rgb(var(--v-theme-secondary)), rgb(var(--v-theme-primary))); min-height: 33vh'"
+    :customStyle="'background: white; min-height: 33vh'"
+    :textColor="'darkText'"
   >
     <div class="font-weight-light text-justify">
       <div
@@ -16,8 +17,8 @@
             </v-avatar>
           </div>
         </div>
-        <v-divider :thickness="2" vertical />
-        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary))); color: white;">
+        <v-divider :thickness="2" vertical color="darkText"/>
+        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)));" class="text-darkText">
 
           <p>
             I'm a Frontend Developer with a passion for creating seamless user
@@ -57,3 +58,20 @@ import { useDisplay } from "vuetify";
 import Section from "@/components/Section.vue";
 const { smAndDown } = useDisplay();
 </script>
+
+<style  scoped>
+.about-section {
+  animation: fade linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 50%;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+</style>

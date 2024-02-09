@@ -7,18 +7,17 @@
   >
     <div class="pb-5 text-center">
       <p
-        class="text-center text-overline mb-1"
+        :class="`text-center text-overline mb-1 text-${textColor}`"
         :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
       >
         {{ header }}
       </p>
-      <v-divider style="width: 50%; margin: 0 auto;" class="border-opacity-50" thickness="1" color="white" />
+      <v-divider style="width: 50%; margin: 0 auto;" class="border-opacity-50" thickness="1" :color="`${textColor}`" />
     </div>
     <v-row class="d-flex justify-center align-center">
       <v-col :cols="smAndDown ? 12 : 6">
         <slot />
       </v-col>
-      <v-divider thickness="2"></v-divider>
     </v-row>
   </v-container>
 </template>
@@ -28,6 +27,7 @@ interface ISection {
   sectionId: string;
   customStyle?: string;
   header?: string;
+  textColor?: string;
 }
 import { onMounted, ref, Ref, defineProps } from "vue";
 import { useDisplay } from "vuetify";

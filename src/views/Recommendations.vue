@@ -3,13 +3,15 @@
     sectionId="section3"
     :class="'recommendations-section'"
     header="Recommendations"
-    :customStyle="'background-color: rgb(var(--v-theme-primary)); min-height: 33vh;'"
+    :customStyle="'background-color: white; min-height: 33vh;'"
+    :textColor="'darkText'"
   >
   <div
     v-for="recommendation in recommendations"
     class="text-justify font-weight-light ma-auto" 
     color="primary"
     border="white"
+    style="color: rgb(var(--v-theme-darkText));"
   >
     <span class="text-h2">&#x201F;</span> 
     <p>{{ recommendation.text }}</p>
@@ -48,7 +50,7 @@ const recommendations: Ref<IColleagueInfo[]> = ref([{
 .recommendations-section {
   animation: fade linear both;
   animation-timeline: view();
-  animation-range: entry 50% cover 50%;
+  animation-range: entry 10% cover 50%;
 }
 
 @keyframes fade {

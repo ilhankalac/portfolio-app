@@ -97,7 +97,7 @@ const scrollToNextSection = () => {
   if (section2) {
     // Scroll to the top of Section 2
     window.scrollTo({
-      top: section2.offsetTop,
+      top: section2.offsetTop - window.innerHeight * 0.08,
       behavior: "smooth", // Use smooth scrolling for a smoother transition
     });
   }
