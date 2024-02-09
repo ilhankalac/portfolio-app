@@ -1,6 +1,6 @@
 <template>
   <Section
-    :class="smAndDown ? '' : 'experience-section'"
+    :class="'experience-section'"
     :header="'Experience'"
     :customStyle="'min-height: 100vh;'"
     :sectionId="'section3'"

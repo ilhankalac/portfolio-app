@@ -1,5 +1,6 @@
 <template>
   <Section
+    class="skills-section"
     :header="'My skills'"
     :customStyle="'background: linear-gradient(rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary))); min-height: 33vh'"
     :sectionId="'section4'"
@@ -100,4 +101,19 @@ const skills = ref([
 ]);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.skills-section {
+  animation: fade linear both;
+  animation-timeline: view();
+  animation-range: entry 15%;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+</style>

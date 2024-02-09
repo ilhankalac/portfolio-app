@@ -6,10 +6,16 @@
 </script>
 
 <style>
+:root {
+  height: 100%;
+}
 body {
-  overflow-x: hidden;
 	background-color: rgb(var(--v-theme-primary));
 	color: white;
+
+  position: relative;
+  overflow-x: hidden;
+  height: 100%;
 
   /* Smaller font size for mobile devices */
   @media (max-width: 600px) {

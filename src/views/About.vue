@@ -1,6 +1,7 @@
 <template>
+  <v-divider thickness="2" />
   <Section
-    :class="smAndDown ? '' : 'about-section'"
+    :class="'about-section'"
     sectionId="section2"
     header="About Me"
     :customStyle="'background: linear-gradient(rgb(var(--v-theme-secondary)), rgb(var(--v-theme-primary))); min-height: 33vh'"

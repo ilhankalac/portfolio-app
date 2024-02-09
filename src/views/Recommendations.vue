@@ -1,10 +1,9 @@
 <template>
   <Section
-    sectionId="section2"
-    class="recommendations-section"
+    sectionId="section3"
+    :class="'recommendations-section'"
     header="Recommendations"
-    :customStyle="'background-color: rgb(var(--v-theme-primary)); min-height: 33vh'"
-    :cols="2"
+    :customStyle="'background-color: rgb(var(--v-theme-primary)); min-height: 33vh;'"
   >
   <div
     v-for="recommendation in recommendations"
@@ -12,7 +11,8 @@
     color="primary"
     border="white"
   >
-    <span class="text-h2">&#x201F;</span> {{ recommendation.text }}
+    <span class="text-h2">&#x201F;</span> 
+    <p>{{ recommendation.text }}</p>
     <v-card-actions>
       <v-avatar size="60">
         <v-img src="@/assets/omar_profile.jpg" alt="avatar" />
@@ -45,12 +45,10 @@ const recommendations: Ref<IColleagueInfo[]> = ref([{
 </script>
 
 <style lang="scss" scoped>
-$card-background: white;
-
 .recommendations-section {
   animation: fade linear both;
   animation-timeline: view();
-  animation-range: entry 5% cover 50%;
+  animation-range: entry 50% cover 50%;
 }
 
 @keyframes fade {
