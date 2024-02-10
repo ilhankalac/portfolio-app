@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="section0">
+  <section class="container" id="section1">
     <div
       style="
         bottom: 0 !important;
@@ -42,7 +42,7 @@
         </g>
       </svg>
     </div>
-  </div>
+  </section>
   <div
     class="content"
     :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'"

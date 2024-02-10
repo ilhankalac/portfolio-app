@@ -50,10 +50,10 @@
               <v-icon
                 v-if="smAndDown"
                 class="text-center"
-                color="white"
+                :color="currentSection === item.sectionName ? 'grey' : 'white'"
                 > mdi-chevron-right
               </v-icon>
-              <span class="text-overline font-weight-light">
+              <span class="text-overline font-weight-light" :class="currentSection === item.sectionName ? 'text-grey' : 'text-white'">
                 {{ item.name }}
               </span>
             </v-list-item-icon>
@@ -73,7 +73,7 @@ const { smAndDown } = useDisplay();
 const clickedButton: Ref<string> = ref("");
 const router = useRouter();
 const navButtons = [
-  { id: "0", name: "Home", sectionName: "section0" },
+  { id: "0", name: "Home", sectionName: "section1" },
   { id: "1", name: "About", sectionName: "section2" },
   { id: "2", name: "Experience", sectionName: "section3" },
   { id: "3", name: "Recommendations", sectionName: "section4" },
@@ -101,6 +101,27 @@ const scrollToNextSection = (sectionName: string = "") => {
     isMenuClicked.value = false;
   }
 };
+
+const currentSection: any = ref("section1");
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if(currentSection.value !== '' &&  entry.target.getAttribute('id') !== 'shadow-host-companion')
+          currentSection.value = entry.target.getAttribute('id');
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0.5
+  });
+
+  document.querySelectorAll('section').forEach((section) => {
+    observer.observe(section);
+  });
+});
 
 </script>
 
