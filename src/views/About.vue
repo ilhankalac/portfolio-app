@@ -10,10 +10,8 @@
       <div
         :class="smAndDown ? 'd-flex flex-column ga-5' : 'd-flex align-center ga-10'"
       >
-        <div style="white-space: nowrap; min-width: 200px">
-          <div class="d-flex flex-column align-center ga-5">
-            <BasicInfo />
-          </div>
+        <div>
+          <BasicInfo /> <br>
         </div>
         <v-divider :thickness="2" vertical color="white"/>
         <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)));" class="text-white">
