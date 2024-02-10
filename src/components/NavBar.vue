@@ -12,7 +12,11 @@
     :class="smAndDown ? 'flex-column' : 'd-flex justify-space-around align-center'"
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
-      <div class="text-darkText text-subtitle font-weight-bold mt-2">I K</div>
+      <div class="text-darkText text-subtitle font-weight-bold">
+        <v-avatar class="ml-5" :size="smAndDown ? 40 : 50" variant="outlined">
+          <v-img src="@/assets/profile_photo.jpg" alt="avatar" />
+        </v-avatar>
+      </div>
       <div v-show="smAndDown">
         <v-btn variant="text" @click="isMenuClicked = !isMenuClicked">
           <v-icon>
@@ -21,7 +25,11 @@
         </v-btn>
       </div>
     </div>
-    <div v-if="!smAndDown" class="text-darkText text-subtitle font-weight-bold">I K</div>
+    <div v-if="!smAndDown" class="text-darkText text-subtitle font-weight-bold">
+      <v-avatar :size="smAndDown ? 20 : 50" variant="outlined">
+        <v-img src="@/assets/profile_photo.jpg" alt="avatar" />
+      </v-avatar>
+    </div>
     <div 
       v-if="(smAndDown && isMenuClicked) || !smAndDown"
       class="d-flex align-center"
