@@ -53,7 +53,9 @@
                 color="white"
                 > mdi-chevron-right
               </v-icon>
-              {{ item.name }}
+              <span class="text-overline font-weight-light">
+                {{ item.name }}
+              </span>
             </v-list-item-icon>
           </template>
         </v-list-item>
@@ -70,6 +72,13 @@ import { useRoute, useRouter } from "vue-router";
 const { smAndDown } = useDisplay();
 const clickedButton: Ref<string> = ref("");
 const router = useRouter();
+const navButtons = [
+  { id: "0", name: "Home", sectionName: "section0" },
+  { id: "1", name: "About", sectionName: "section2" },
+  { id: "2", name: "Experience", sectionName: "section3" },
+  { id: "3", name: "Recommendations", sectionName: "section4" },
+  { id: "4", name: "Skills", sectionName: "section5" },
+];
 
 const isDataLoaded = ref(false);
 onMounted(() => {
@@ -93,13 +102,6 @@ const scrollToNextSection = (sectionName: string = "") => {
   }
 };
 
-const navButtons = [
-  { id: "0", name: "Home", sectionName: "section0" },
-  { id: "1", name: "About", sectionName: "section2" },
-  { id: "2", name: "Experience", sectionName: "section3" },
-  { id: "3", name: "Recommendations", sectionName: "section4" },
-  { id: "4", name: "Skills", sectionName: "section5" },
-];
 </script>
 
 <style scoped lang="scss">
