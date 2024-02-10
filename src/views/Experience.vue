@@ -25,7 +25,7 @@
     </v-row>
 
     <span
-      class="text-h5 text-overline mr-2 mb-4"
+      class="text-h5 text-overline mr-2"
       style="opacity: 0.5"
       :style="
         smAndDown ? 'font-size: 15px !important' : 'font-size: 16px !important'
@@ -34,7 +34,7 @@
       Years of Experience →
       <strong>{{ calculateYearsWithDecimal() }}</strong>
     </span>
-    <v-timeline side="end" line-color="secondary">
+    <v-timeline side="end" line-color="secondary" class="mt-10">
       <v-timeline-item
         v-for="experience in experiences"
         :key="experience.id"
@@ -62,17 +62,17 @@
           @click="openDialog(experience)"
         >
           <div class="d-flex justify-space-between align-center">
-            <div class="text-h6 font-weight-light">
+            <div class="font-weight-bold">
               {{ experience.title }}
             </div>
-            <span class="text-overline font-weight-light" style="opacity: 0.5">
+            <span class="text-overline font-weight-light text-right" style="opacity: 0.5">
               {{ experience.position }}
             </span>
           </div>
           <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
             {{ experience.date }}
           </div>
-          <span class="font-weight-light">
+          <span class="font-weight-light" style="opacity: 0.9">
             {{ experience.description }}
           </span>
         </div>
@@ -156,7 +156,7 @@ onMounted(async () => {
   color: white;
   animation: fade linear both;
   animation-timeline: view();
-  animation-range: entry 5% cover 50%;
+  animation-range: entry 5% cover 20%;
 }
 
 @keyframes fade {
