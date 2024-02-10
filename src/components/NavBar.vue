@@ -8,7 +8,7 @@
 
   <nav
     class="nav-bar"
-    :style="isMenuClicked && smAndDown ? 'min-height: 22vh' : 'min-height: 8vh'"
+    :style="isMenuClicked && smAndDown ? 'min-height: 42vh' : 'min-height: 8vh'"
     :class="smAndDown ? 'flex-column' : 'd-flex justify-space-around align-center'"
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
@@ -32,27 +32,31 @@
     </div>
     <div 
       v-if="(smAndDown && isMenuClicked) || !smAndDown"
-      class="d-flex align-center"
+      class="d-flex slideOut"
       :class="smAndDown ? 'flex-column justify-center' : 'justify-center'"
-    >
-      <v-btn
-        :variant="clickedButton === '0' ? 'tonal' : 'text'"
-        @click="scrollToNextSection('section2')"
-      >
-        About Me
-      </v-btn>
-      <v-btn
-        :variant="clickedButton === '1' ? 'tonal' : 'text'"
-        @click="scrollToNextSection('section3')"
-      >
-        Experience
-      </v-btn>
-      <v-btn
-        :variant="clickedButton === '1' ? 'tonal' : 'text'"
-        @click="scrollToNextSection('section4')"
-      >
-        Skills
-      </v-btn>
+    > 
+      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden;">
+        <v-list-item
+          v-for="(item, i) in navButtons"
+          item-title="name"
+          item-value="id"
+          style="cursor: pointer"
+          class="text-darkText navbar-item"
+          @click="scrollToNextSection(item.sectionName)"
+        >
+          <template v-slot:prepend>
+            <v-list-item-icon>
+              <v-icon
+                v-if="smAndDown"
+                class="text-center"
+                :color="clickedButton === item.id ? 'primary' : 'darkText'"
+                > mdi-chevron-right
+              </v-icon>
+              {{ item.name }}
+            </v-list-item-icon>
+          </template>
+        </v-list-item>
+      </v-list>
     </div>
   </nav>
 </template>
@@ -74,10 +78,6 @@ onMounted(() => {
 });
 const isMenuClicked = ref(false);
 
-const changeThePage = (buttonNumber: string, pageName: string) => {
-  clickedButton.value = buttonNumber;
-  router.push({ name: pageName });
-};
 
 const scrollToNextSection = (sectionName: string = "") => {
   const section = document.getElementById(sectionName);
@@ -91,9 +91,17 @@ const scrollToNextSection = (sectionName: string = "") => {
     isMenuClicked.value = false;
   }
 };
+
+const navButtons = [
+  { id: "0", name: "Home", sectionName: "section0" },
+  { id: "1", name: "About", sectionName: "section2" },
+  { id: "2", name: "Experience", sectionName: "section3" },
+  { id: "3", name: "Recommendations", sectionName: "section4" },
+  { id: "4", name: "Skills", sectionName: "section5" },
+];
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .nav-bar {
   min-height: 8vh;
   background-color: rgba(255, 255, 255, 1);
@@ -102,5 +110,27 @@ const scrollToNextSection = (sectionName: string = "") => {
   top: 0;
   color: rgb(var(--v-theme-darkText));
   z-index: 1200;
+}
+
+.slideOut {
+  animation: slideOut 1s ease-in-out;
+}
+
+@keyframes slideOut {
+  from {
+    max-height: 1vh;
+  }
+  to {
+    max-height: 42vh;
+  }
+}
+
+.navbar-item {
+  font-size: 1.2 rem;
+  transition: 0.3s;
+  border-radius: 0.5rem;
+  &:hover {
+    background-color: rgba(77, 84, 128, 0.1);
+  }
 }
 </style>

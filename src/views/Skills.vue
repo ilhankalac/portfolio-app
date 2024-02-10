@@ -3,7 +3,7 @@
     class="skills-section"
     :header="'My skills'"
     :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
-    :sectionId="'section4'"
+    :sectionId="'section5'"
   >
     <div class="text-center">
       <template v-for="skill in skills" :key="skill.id" color="secondary">

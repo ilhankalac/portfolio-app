@@ -1,6 +1,6 @@
 <template>
   <Section
-    sectionId="section3"
+    sectionId="section4"
     :class="'recommendations-section'"
     header="Recommendations"
     :customStyle="'background-color: white; min-height: 33vh;'"
