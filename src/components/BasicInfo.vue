@@ -19,7 +19,7 @@
       </v-card-subtitle>
       <v-card-subtitle class="d-flex ga-3 font-weight-light">
         <v-icon> mdi-phone </v-icon>
-        <a href="tel:+38268186196" style="color: white; text-decoration: none;"> +382 69 186 196</a>
+        <a href="tel:+38268186196" style="color: white; text-decoration: none;"> +382 68 186 196</a>
       </v-card-subtitle>
       <v-card-subtitle class="d-flex ga-3 font-weight-light">
         <v-icon> mdi-github </v-icon>
