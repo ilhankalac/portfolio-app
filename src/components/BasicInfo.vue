@@ -32,7 +32,7 @@
       </v-card-subtitle>
       <v-card-subtitle class="d-flex ga-3 font-weight-light">
         <v-icon>mdi-instagram</v-icon>
-        <a href="https://www.instagram.com/ilhan_kalac/" target="_blank">@vizija</a>
+        <a href="https://www.instagram.com/vizija/" target="_blank">@vizija</a>
       </v-card-subtitle>
       <v-card-actions>
         <v-btn variant="tonal" block> Download CV </v-btn>
