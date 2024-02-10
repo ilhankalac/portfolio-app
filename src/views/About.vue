@@ -1,7 +1,7 @@
 <template>
   <Section
     :class="'about-section'"
-    sectionId="section2"
+    :sectionId="'section2'"
     header="About Me"
     :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
     :textColor="'white'"
@@ -12,9 +12,7 @@
       >
         <div style="white-space: nowrap; min-width: 200px">
           <div class="d-flex flex-column align-center ga-5">
-            <v-avatar :size="smAndDown ? 150 : 210" variant="outlined">
-              <v-img src="@/assets/profile_photo.jpg" alt="avatar" />
-            </v-avatar>
+            <BasicInfo />
           </div>
         </div>
         <v-divider :thickness="2" vertical color="white"/>
@@ -56,6 +54,7 @@
 <script lang="ts" setup>
 import { useDisplay } from "vuetify";
 import Section from "@/components/Section.vue";
+import BasicInfo from "@/components/BasicInfo.vue";
 const { smAndDown } = useDisplay();
 </script>
 
