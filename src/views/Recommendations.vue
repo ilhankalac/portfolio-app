@@ -3,15 +3,14 @@
     sectionId="section4"
     :class="'recommendations-section'"
     header="Recommendations"
-    :customStyle="'background-color: white; min-height: 33vh;'"
-    :textColor="'darkText'"
+    :customStyle="'background-color: rgb(var(--v-theme-secondary)); min-height: 33vh;'"
+    :textColor="'white'"
   >
   <div
     v-for="recommendation in recommendations"
     class="text-justify font-weight-light ma-auto" 
     color="primary"
     border="white"
-    style="color: rgb(var(--v-theme-darkText));"
   >
     <span class="text-h2">&#x201F;</span> 
     <p>{{ recommendation.text }}</p>

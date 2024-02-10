@@ -3,8 +3,8 @@
     :class="'about-section'"
     sectionId="section2"
     header="About Me"
-    :customStyle="'background: white; min-height: 33vh'"
-    :textColor="'darkText'"
+    :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :textColor="'white'"
   >
     <div class="font-weight-light text-justify">
       <div
@@ -17,8 +17,8 @@
             </v-avatar>
           </div>
         </div>
-        <v-divider :thickness="2" vertical color="darkText"/>
-        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)));" class="text-darkText">
+        <v-divider :thickness="2" vertical color="white"/>
+        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)));" class="text-white">
 
           <p>
             I'm a Frontend Developer with a passion for creating seamless user

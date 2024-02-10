@@ -18,7 +18,7 @@
         </v-avatar>
       </div>
       <div v-show="smAndDown">
-        <v-btn variant="text" @click="isMenuClicked = !isMenuClicked">
+        <v-btn color="white" variant="text" @click="isMenuClicked = !isMenuClicked">
           <v-icon>
             {{ isMenuClicked ? "mdi-close" : "mdi-menu" }}
           </v-icon>
@@ -35,13 +35,13 @@
       class="d-flex slideOut"
       :class="smAndDown ? 'flex-column justify-center' : 'justify-center'"
     > 
-      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden;">
+      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-secondary));">
         <v-list-item
           v-for="(item, i) in navButtons"
           item-title="name"
           item-value="id"
           style="cursor: pointer"
-          class="text-darkText navbar-item"
+          class="text-white font-weight-light navbar-item"
           @click="scrollToNextSection(item.sectionName)"
         >
           <template v-slot:prepend>
@@ -49,7 +49,7 @@
               <v-icon
                 v-if="smAndDown"
                 class="text-center"
-                :color="clickedButton === item.id ? 'primary' : 'darkText'"
+                color="white"
                 > mdi-chevron-right
               </v-icon>
               {{ item.name }}
@@ -104,7 +104,7 @@ const navButtons = [
 <style scoped lang="scss">
 .nav-bar {
   min-height: 8vh;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgb(var(--v-theme-secondary));
   position: fixed;
   min-width: 100%;
   top: 0;
