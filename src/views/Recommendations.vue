@@ -8,9 +8,7 @@
   >
   <div
     v-for="recommendation in recommendations"
-    class="text-justify font-weight-light ma-auto" 
-    color="primary"
-    border="white"
+    class="text-justify font-weight-light ma-auto text-white" 
   >
     <span class="text-h2">&#x201F;</span> 
     <p>{{ recommendation.text }}</p>

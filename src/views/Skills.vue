@@ -4,8 +4,9 @@
     :header="'My skills'"
     :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :sectionId="'section5'"
+    :textColor="'white'"
   >
-    <div class="text-center">
+    <div class="text-center text-white">
       <template v-for="skill in skills" :key="skill.id" color="secondary">
         <v-chip label class="ma-2" link :size="smAndDown ? 'default' : 'large'">
           <v-icon start :icon="`mdi-${skill.icon}`"></v-icon>

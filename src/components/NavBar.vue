@@ -8,7 +8,7 @@
 
   <nav
     class="nav-bar"
-    :style="isMenuClicked && smAndDown ? 'min-height: 42vh' : 'min-height: 8vh'"
+    :style="isMenuClicked && smAndDown ? 'min-height: 42vh' : 'min-height: 6vh'"
     :class="smAndDown ? 'flex-column' : 'd-flex justify-space-around align-center'"
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
@@ -41,6 +41,7 @@
           item-title="name"
           item-value="id"
           style="cursor: pointer"
+          tabindex="0"
           class="text-white font-weight-light navbar-item"
           @click="scrollToNextSection(item.sectionName)"
         >
@@ -103,13 +104,15 @@ const navButtons = [
 
 <style scoped lang="scss">
 .nav-bar {
-  min-height: 8vh;
+  min-height: 6vh;
   background-color: rgb(var(--v-theme-secondary));
   position: fixed;
   min-width: 100%;
   top: 0;
   color: rgb(var(--v-theme-darkText));
   z-index: 1200;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
 }
 
 .slideOut {
@@ -126,7 +129,6 @@ const navButtons = [
 }
 
 .navbar-item {
-  font-size: 1.2 rem;
   transition: 0.3s;
   border-radius: 0.5rem;
   &:hover {
