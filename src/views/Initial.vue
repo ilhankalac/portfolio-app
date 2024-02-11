@@ -83,7 +83,6 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from "@/components/NavBar.vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 
@@ -125,7 +124,6 @@ const scrollToNextSection = () => {
   z-index: 1;
   animation: slideFromLeft 2.5s ease;
 }
-
 .circle {
   animation: circleAnim 1s infinite alternate-reverse;
 }

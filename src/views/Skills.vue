@@ -20,9 +20,9 @@
 <script lang="ts" setup>
 import Section from "@/components/Section.vue";
 import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
-
 import { ref } from "vue";
+
+const { smAndDown } = useDisplay();
 const skills = ref([
   {
     id: 1,

@@ -88,11 +88,9 @@
 </template>
 
 <script lang="ts" setup>
-import BasicInfo from "@/components/BasicInfo.vue";
 import ExperienceCard from "@/components/ExperienceCard.vue";
 import Section from "@/components/Section.vue";
-import { IExperience } from "@/types/other";
-import { onMounted, ref, Ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
@@ -124,9 +122,7 @@ const openCompanyLink = (link: string) => {
   window.open(link);
 };
 
-const calculateYearsWithDecimal = (
-  startDate: Date = new Date("2019-10-01")
-): string => {
+const calculateYearsWithDecimal = (startDate: Date = new Date("2019-10-01")): string => {
   const currentDate: Date = new Date();
   const monthsDiff: number =
     (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
@@ -134,7 +130,6 @@ const calculateYearsWithDecimal = (
     startDate.getMonth();
 
   const yearsWithDecimal: number = monthsDiff / 12;
-
   return yearsWithDecimal.toFixed(2);
 };
 
