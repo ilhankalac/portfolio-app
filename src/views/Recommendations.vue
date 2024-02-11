@@ -16,7 +16,7 @@
         <v-img :src="recommendation.avatarSrc" alt="avatar" />
       </v-avatar>
       <v-card-title class="d-flex text-overline font-weight-light" :class="smAndDown ? 'flex-column' : ''"> 
-        <span> {{ recommendation.fullName }} </span> {{ smAndDown ? "" : "-" }}
+        <span> {{ recommendation.fullName }} </span> {{ smAndDown ? "" : " - " }}
         <span style="opacity: 0.7">{{ recommendation.role }}</span>
       </v-card-title> 
     </v-card-actions>

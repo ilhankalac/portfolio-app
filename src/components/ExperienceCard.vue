@@ -1,6 +1,4 @@
 <template>
-  <v-container>
-    <v-row justify="space-around">
       <v-card 
         color="secondary"
         flat
@@ -20,9 +18,9 @@
           </div>
         </div> -->
 
-        <v-card-text>
-          <div class="font-weight-bold ms-1 mb-2">
-            List of projects I worked on at {{ props.selectedItem.title }}
+        <v-card-text class="ma-0 pa-0">
+          <div class="font-weight-light mt-2 mb-2">
+            Projects I worked on:
           </div>
 
           <v-timeline 
@@ -33,22 +31,20 @@
             <v-timeline-item
               v-for="experience in props.selectedItem.projects"
               :key="experience.time"
-              dot-color="white"
-              size="x-small"
+              :hide-dot="true"
+              :hide-opposite="true"
             >
               <div>
                 <div 
-                  class="font-weight-normal d-flex mb-1 justify-space-between"
-                  :class="smAndDown ? 'flex-column ga-2 mb-5' : 'align-center ga-5'"
+                  class="font-weight-normal d-flex justify-space-between"
                 >
                   <div 
                     class="d-flex ga-2"
-                    :class="smAndDown ? 'flex-column ga-2 mb-5 justify-center' : 'align-center ga-5'"
+                    :class="smAndDown ? 'flex-column mb-5' : 'align-center ga-5'"
                   >
                     <strong>{{ experience.name }}</strong>
                     <span 
                       class="font-weight-light" 
-                      style="font-size: small; opacity: 0.8;"
                     > 
                     {{ experience.startDate }} · {{ experience.endDate }}
                     </span>
@@ -81,9 +77,9 @@
                 </div>
                 <div>
                   <span class="text-subtitle-2">Technologies used:</span><br>
-                  <div class="text-white">
-                    <template v-for="tech in experience.technologies" :key="tech.id" color="secondary">
-                      <v-chip label class="ma-2" link size="small">
+                  <div class="text-white ">
+                    <template v-for="tech in experience.technologies" :key="tech.id" color="secondary" class="">
+                      <v-chip label  link size="small" class="my-1 mr-1">
                         <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
                         {{ tech.name }}
                       </v-chip>
@@ -95,8 +91,6 @@
           </v-timeline>
         </v-card-text>
       </v-card>
-    </v-row>
-  </v-container>
 </template>
 
 <script lang="ts" setup>
@@ -153,7 +147,7 @@ const skills = ref([
 ]);
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -180,5 +174,9 @@ const skills = ref([
   position: sticky; 
   top: 0; 
   z-index: 1000;
+}
+
+.v-timeline-item::v-deep .v-timeline-item__body {
+  padding: 20px !important;
 }
 </style>

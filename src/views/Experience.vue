@@ -39,7 +39,7 @@
         v-for="experience in experiences"
         :key="experience.id"
         dot-color="white"
-        size="large"
+        :size="smAndDown ? 'small' : 'large'"
         density="compact"
         line-inset="15"
       >
@@ -71,7 +71,7 @@
                 {{ experience.position }}
               </span>
             </div>
-            <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
+            <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5; font-size: small !important;">
               {{ experience.date }}
             </div>
             <span class="font-weight-light" style="opacity: 0.9">
@@ -169,5 +169,10 @@ onMounted(async () => {
   to {
     opacity: 1
   }
+}
+
+.v-timeline-item::v-deep .v-timeline-item__body {
+  margin: 0 !important;
+  padding: 5px !important;
 }
 </style>

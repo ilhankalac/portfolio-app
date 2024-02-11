@@ -6,7 +6,7 @@
     color="secondary"
   >
     <v-avatar
-      :size="smAndDown ? '150' : '200'"
+      :size="smAndDown ? '120' : '200'"
       color="white"
       :class="smAndDown ? '' : 'ma-7'"
     >
