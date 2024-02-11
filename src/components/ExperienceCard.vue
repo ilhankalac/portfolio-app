@@ -2,11 +2,11 @@
   <v-container>
     <v-row justify="space-around">
       <v-card 
-        color="primary" 
+        color="secondary"
+        flat
         style="overflow-y: auto !important;"
-        :height="smAndDown ? '500px' : ''"
       >
-        <div 
+        <!-- <div 
           class="card-header d-flex justify-space-between align-center pl-5 mb-2"
         >
           <span>{{ props.selectedItem.position }}</span>
@@ -18,7 +18,7 @@
               @click="close"
             />
           </div>
-        </div>
+        </div> -->
 
         <v-card-text>
           <div class="font-weight-bold ms-1 mb-2">
@@ -28,7 +28,7 @@
           <v-timeline 
             align="start"
             density="compact" 
-            line-color="secondary"
+            line-color="darkText"
           >
             <v-timeline-item
               v-for="experience in props.selectedItem.projects"
@@ -79,18 +79,16 @@
                 <div class="text-subtitle-2 font-weight-light text-justify mb-3">
                   {{ experience.description }}
                 </div>
-
                 <div>
                   <span class="text-subtitle-2">Technologies used:</span><br>
-                  <v-chip
-                    v-for="tech in experience.technologies"
-                    :key="tech"
-                    text-color="white"
-                    small
-                    class="mt-1 mr-1"
-                  >
-                    {{ tech }}
-                  </v-chip>
+                  <div class="text-white">
+                    <template v-for="tech in experience.technologies" :key="tech.id" color="secondary">
+                      <v-chip label class="ma-2" link size="small">
+                        <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
+                        {{ tech.name }}
+                      </v-chip>
+                    </template>
+                  </div>
                 </div>
               </div>
             </v-timeline-item>
@@ -102,6 +100,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 
@@ -119,6 +118,39 @@ const close = () => {
 const openLink = (link: string) => {
   window.open(link);
 }
+
+const skills = ref([
+  {
+    id: 1,
+    name: "Vue.js",
+    icon: "vuejs",
+  },
+  {
+    id: 2,
+    name: "TypeScript",
+    icon: "language-typescript",
+  },
+  {
+    id: 3,
+    name: "JavaScript",
+    icon: "language-javascript",
+  },
+  {
+    id: 4,
+    name: "HTML5",
+    icon: "language-html5",
+  },
+  {
+    id: 5,
+    name: "CSS3",
+    icon: "language-css3",
+  },
+  {
+    id: 6,
+    name: "Vuetify",
+    icon: "vuetify",
+  },
+]);
 </script>
 
 <style scoped>

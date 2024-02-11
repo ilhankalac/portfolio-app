@@ -50,7 +50,6 @@
                 v-bind="props"
                 :image="experience.logoSrc"
                 @click="openCompanyLink(experience.company_link)"
-                style="cursor: pointer"
               />
             </template>
           </v-tooltip>
@@ -58,33 +57,42 @@
         <div
           class="timeline-item pa-3 rounded"
           :class="smAndDown ? 'text-left' : 'text-justify'"
-          style="cursor: pointer"
           @click="openDialog(experience)"
         >
-          <div class="d-flex justify-space-between align-center">
-            <div class="font-weight-bold">
-              {{ experience.title }}
+          <v-card 
+            class="pa-4"
+            color="secondary"
+          >
+            <div class="d-flex justify-space-between align-center">
+              <div class="text-overline font-weight-bold" :style="smAndDown ? '' : 'font-size: 18px !important'">
+                {{ experience.title }}
+              </div>
+              <span class="text-overline font-weight-light text-right" style="opacity: 0.5">
+                {{ experience.position }}
+              </span>
             </div>
-            <span class="text-overline font-weight-light text-right" style="opacity: 0.5">
-              {{ experience.position }}
+            <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
+              {{ experience.date }}
+            </div>
+            <span class="font-weight-light" style="opacity: 0.9">
+              {{ experience.description }}
             </span>
-          </div>
-          <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5">
-            {{ experience.date }}
-          </div>
-          <span class="font-weight-light" style="opacity: 0.9">
-            {{ experience.description }}
-          </span>
+  
+            <ExperienceCard
+              :selected-item="experience"
+              @close="jobDialog = false"
+            />
+          </v-card>
         </div>
       </v-timeline-item>
     </v-timeline>
   </Section>
-  <v-dialog v-model="jobDialog" max-width="700">
+  <!-- <v-dialog v-model="jobDialog" max-width="700">
     <ExperienceCard
       :selected-item="selectedExperience"
       @close="jobDialog = false"
     />
-  </v-dialog>
+  </v-dialog> -->
 </template>
 
 <script lang="ts" setup>
@@ -142,9 +150,9 @@ onMounted(async () => {
 .mdi-close::before {
   color: white;
 }
-.timeline-item:hover {
-  background-color: rgba(180, 180, 180, 0.1) !important;
-}
+// .timeline-item:hover {
+//   background-color: rgba(180, 180, 180, 0.1) !important;
+// }
 
 .experience-section {
   background: var(--v-theme-secondary);
