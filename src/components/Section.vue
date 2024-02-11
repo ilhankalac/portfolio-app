@@ -30,11 +30,8 @@ interface ISection {
   header?: string;
   textColor?: string;
 }
-import { onMounted, ref, Ref, defineProps } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
-import { getVal } from "@/services/DataService";
-
 const props = defineProps<ISection>();
 </script>
 

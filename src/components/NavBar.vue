@@ -32,8 +32,8 @@
     </div>
     <div 
       v-if="(smAndDown && isMenuClicked) || !smAndDown"
-      class="d-flex slideOut"
-      :class="smAndDown ? 'flex-column justify-center' : 'justify-center'"
+      class="d-flex"
+      :class="smAndDown ? 'flex-column justify-center  slideOut' : 'justify-center'"
     > 
       <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-secondary));">
         <v-list-item
@@ -67,11 +67,14 @@
 <script lang="ts" setup>
 import { onMounted, Ref, ref } from "vue";
 import { useDisplay } from "vuetify";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 const { smAndDown } = useDisplay();
 const clickedButton: Ref<string> = ref("");
 const router = useRouter();
+const isMenuClicked = ref(false);
+const currentSection: any = ref("section1");
+
 const navButtons = [
   { id: "0", name: "Home", sectionName: "section1" },
   { id: "1", name: "About", sectionName: "section2" },
@@ -86,14 +89,11 @@ onMounted(() => {
     isDataLoaded.value = true;
   }, 1000);
 });
-const isMenuClicked = ref(false);
-
 
 const scrollToNextSection = (sectionName: string = "") => {
   const section = document.getElementById(sectionName);
 
   if (section) {
-    // Scroll to the top of Section 2
     window.scrollTo({
       top: section.offsetTop - window.innerHeight * 0.08,
       behavior: "smooth",
@@ -101,8 +101,6 @@ const scrollToNextSection = (sectionName: string = "") => {
     isMenuClicked.value = false;
   }
 };
-
-const currentSection: any = ref("section1");
 
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {

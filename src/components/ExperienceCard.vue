@@ -102,8 +102,6 @@
 </template>
 
 <script lang="ts" setup>
-import { IExperience } from "@/types/other";
-import { defineProps, defineEmits } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 

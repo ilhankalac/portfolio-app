@@ -27,12 +27,10 @@
 </template>
 
 <script lang="ts" setup>
-import { setVal, getVal, pushVal } from "@/services/DataService"
-import { onMounted, ref } from "vue"
+import { setVal, pushVal } from "@/services/DataService"
+import { ref } from "vue"
 
 const rawStringData = ref("")
-
-
 const path = ref("")
 
 const writeData = async () => {
@@ -45,5 +43,4 @@ const pushValue = async () => {
   path.value = ""
   rawStringData.value = ""
 }
-
 </script>
