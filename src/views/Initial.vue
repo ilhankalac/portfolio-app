@@ -47,18 +47,16 @@
     class="content"
     :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'"
   >
-
-    <!-- Your text goes here -->
     <div :class="smAndDown ? 'text-center' : 'text-left'">
       <span
         class="font-weight-bold full-name"
-        style="font-family: 'Be Vietnam Pro', sans-serif"
+        style="font-family: 'Be Vietnam Pro', sans-serif; text-shadow: 4px 2px rgb(var(--v-theme-secondary));"
         :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
       >
         Ilhan Kalač
       </span>
       <p
-        style="opacity: 0.6; font-family: 'Bebas Neue', sans-serif"
+        style="opacity: 0.6; font-family: 'Bebas Neue', sans-serif; text-shadow: 4px 2px rgb(var(--v-theme-secondary));"
         :style="smAndDown ? 'font-size: 15px' : 'font-size:30px'"
         class="text-center"
       >
