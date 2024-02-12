@@ -9,7 +9,7 @@
       v-for="recommendation in recommendations"
       class="text-justify font-weight-light text-white"
     >
-      <blockquote class="otro-blockquote font-weight-light" :style="smAndDown ? 'padding:1.2em 30px 1.2em 38px;' : 'padding:1.2em 30px 1.2em 75px;'">
+      <blockquote class="otro-blockquote font-weight-light mb-8 mt-4" :style="smAndDown ? 'padding:1.2em 30px 1.2em 38px;' : 'padding:1.2em 30px 1.2em 75px;'">
         <div v-html="recommendation.textHtml"></div>
         <div class="d-flex justify-space-between align-center">
           <div class="pa-0 mt-5 d-flex align-center">
@@ -106,7 +106,6 @@ onMounted(async () => {
 }
 
 .otro-blockquote{
-  margin:50px auto;
   color: white;
   border-left:4px solid white ;
   line-height:1.6;
