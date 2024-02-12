@@ -30,21 +30,23 @@
           >
             <v-timeline-item
               v-for="experience in props.selectedItem.projects"
+              size="10px"
               :key="experience.time"
-              :hide-dot="true"
-              :hide-opposite="true"
+              :fill-dot="true"
+              dot-color="white"
+              style="font-size: 16px !important"
             >
               <div>
                 <div 
                   class="font-weight-normal d-flex justify-space-between"
                 >
                   <div 
-                    class="d-flex ga-2"
-                    :class="smAndDown ? 'flex-column mb-5' : 'align-center ga-5'"
+                    class="d-flex ga-2 text-left flex-column"
                   >
                     <strong>{{ experience.name }}</strong>
                     <span 
-                      class="font-weight-light" 
+                      class="font-weight-light"
+                      style="opacity: 0.5; font-size: 14px !important;" 
                     > 
                     {{ experience.startDate }} · {{ experience.endDate }}
                     </span>
@@ -72,7 +74,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-subtitle-2 font-weight-light text-justify mb-3">
+                <div class="font-weight-light my-3" style="opacity: 0.9">
                   {{ experience.description }}
                 </div>
                 <div>
@@ -176,7 +178,9 @@ const skills = ref([
   z-index: 1000;
 }
 
-.v-timeline-item::v-deep .v-timeline-item__body {
-  padding: 20px !important;
+
+
+:deep(.v-timeline-item) .v-timeline-item__body {
+  padding: 5px !important;
 }
 </style>

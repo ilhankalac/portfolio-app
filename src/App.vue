@@ -11,9 +11,10 @@
 }
 body {
 	background-color: rgba(var(--v-theme-secondary));
+  font-size: 1rem !important;
   /* Smaller font size for mobile devices */
   @media (max-width: 600px) {
-    font-size: 0.8rem;
+    font-size: 0.95rem !important;
   }
 }
 </style>

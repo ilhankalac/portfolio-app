@@ -34,14 +34,20 @@
       Years of Experience →
       <strong>{{ calculateYearsWithDecimal() }}</strong>
     </span>
-    <v-timeline side="end" line-color="secondary" class="mt-10">
+    <v-timeline 
+      side="end" 
+      line-color="secondary" 
+      class="mt-10"
+      :line-thickness="smAndDown ? '0': '2'"
+    >
       <v-timeline-item
         v-for="experience in experiences"
         :key="experience.id"
         dot-color="white"
-        :size="smAndDown ? 'small' : 'large'"
         density="compact"
-        line-inset="15"
+        :size="smAndDown ? 'small' : 'large'"
+        :hide-dot="smAndDown"
+        :hide-opposite="smAndDown"
       >
         <template v-slot:icon>
           <v-tooltip :text="`${experience.title} Web Page`">
@@ -55,23 +61,23 @@
           </v-tooltip>
         </template>
         <div
-          class="timeline-item pa-3 rounded"
+          class="timeline-item rounded"
           :class="smAndDown ? 'text-left' : 'text-justify'"
           @click="openDialog(experience)"
         >
           <v-card 
-            class="pa-4"
+            class="pa-4 text-justify"
             color="secondary"
           >
             <div class="d-flex justify-space-between align-center">
-              <div class="text-overline font-weight-bold" :style="smAndDown ? '' : 'font-size: 18px !important'">
-                {{ experience.title }}
+              <div class="text-left font-weight-bold">
+                {{ experience.title.toUpperCase() }}
               </div>
-              <span class="text-overline font-weight-light text-right" style="opacity: 0.5">
-                {{ experience.position }}
+              <span class="text-right font-weight-light" style="opacity: 0.5">
+                {{ experience.position.toUpperCase() }}
               </span>
             </div>
-            <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5; font-size: small !important;">
+            <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5; font-size: 14px !important;">
               {{ experience.date }}
             </div>
             <span class="font-weight-light" style="opacity: 0.9">
@@ -170,9 +176,7 @@ onMounted(async () => {
     opacity: 1
   }
 }
-
-.v-timeline-item::v-deep .v-timeline-item__body {
-  margin: 0 !important;
+:deep(.v-timeline-item) .v-timeline-item__body {
   padding: 5px !important;
 }
 </style>
