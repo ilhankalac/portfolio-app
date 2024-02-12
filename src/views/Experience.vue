@@ -38,6 +38,7 @@
       side="end" 
       line-color="secondary" 
       class="mt-10"
+      :line-inset="20"
       :line-thickness="smAndDown ? '0': '2'"
     >
       <v-timeline-item
@@ -67,7 +68,8 @@
         >
           <v-card 
             class="pa-4 text-justify"
-            color="secondary"
+            color="primary"
+            flat
           >
             <div class="d-flex justify-space-between align-center">
               <div class="text-left font-weight-bold">
