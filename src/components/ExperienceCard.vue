@@ -34,7 +34,6 @@
               :key="experience.time"
               :fill-dot="true"
               dot-color="white"
-              style="font-size: 16px !important"
             >
               <div>
                 <div 
