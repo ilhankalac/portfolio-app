@@ -13,5 +13,7 @@ export interface IColleagueInfo {
 	fullName: string;
   role: string;
   text: string
-  avatarSrc: string;
+	avatarSrc: string;
+	githubLink: string;
+	linkedinLink: string;
 }
