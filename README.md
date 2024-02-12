@@ -1,69 +1,26 @@
-# essentials
+# My Portfolio
 
-## Project setup
+Welcome to my personal portfolio repository! This portfolio showcases my skills, projects, and experience as a frontend developer. It is built using Vue 3, Vuetify, and Vite, providing a modern and responsive user interface.
 
-```
-# yarn
-yarn
+## Features
 
-# npm
-npm install
+- **Vue 3**: Utilizes the latest features and enhancements of Vue.js for efficient and scalable development.
+- **Vuetify**: Implements Vuetify for beautiful and customizable UI components, ensuring a sleek and professional design.
+- **Vite**: Takes advantage of Vite for fast and optimized development and build processes.
+- **Responsive Design**: Ensures a seamless experience across various devices and screen sizes, making it accessible to a wider audience.
 
-# pnpm
-pnpm install
+## Getting Started
 
-# bun 
-bun install
-```
+To get a local copy of this project up and running, follow these steps:
 
-### Compiles and hot-reloads for development
+1. **Clone the repository:**
 
-```
-# yarn
-yarn dev
+   ```bash
+   git clone https://github.com/your-username/portfolio.git
 
-# npm
-npm run dev
+## Contributing
 
-# pnpm
-pnpm dev
+Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
-# bun 
-bun run dev
-```
-
-### Compiles and minifies for production
-
-```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# bun 
-bun run build
-```
-
-### Lints and fixes files
-
-```
-# yarn
-yarn lint
-
-# npm
-npm run lint
-
-# pnpm
-pnpm lint
-
-# bun 
-bun run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://vitejs.dev/config/).
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
