@@ -13,11 +13,6 @@ Welcome to my personal portfolio repository! This portfolio showcases my skills,
 
 To get a local copy of this project up and running, follow these steps:
 
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/your-username/portfolio.git
-
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
