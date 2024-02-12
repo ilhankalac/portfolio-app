@@ -36,7 +36,7 @@
     </span>
     <v-timeline 
       side="end" 
-      line-color="secondary" 
+      line-color="primary" 
       class="mt-10"
       :line-inset="20"
       :line-thickness="smAndDown ? '0': '2'"
@@ -68,7 +68,7 @@
         >
           <v-card 
             class="pa-4 text-justify"
-            color="primary"
+            color="secondary"
             flat
           >
             <div class="d-flex justify-space-between align-center">
@@ -163,7 +163,7 @@ onMounted(async () => {
 // }
 
 .experience-section {
-  background: var(--v-theme-secondary);
+  background: var(--v-theme-primary);
   color: white;
   animation: fade linear both;
   animation-timeline: view();

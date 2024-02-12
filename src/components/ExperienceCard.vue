@@ -1,6 +1,7 @@
 <template>
       <v-card 
-        color="primary"
+        color="secondary"
+        flat
         style="overflow-y: auto !important;"
       >
         <!-- <div 
