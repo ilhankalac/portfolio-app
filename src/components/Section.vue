@@ -35,17 +35,17 @@ import { useDisplay } from "vuetify";
 const { smAndDown, name } = useDisplay();
 const props = defineProps<ISection>();
 
- const colsNumber = computed(() => {
-    switch (name.value) {
-      case 'xs': return 12
-      case 'sm': return 12
-      case 'md': return 8
-      case 'lg': return 6
-      case 'xl': return 6
-      case 'xxl': return 6
-    }
-    return undefined
-  })
+const colsNumber = computed(() => {
+  switch (name.value) {
+    case 'xs': return 12
+    case 'sm': return 12
+    case 'md': return 8
+    case 'lg': return 6
+    case 'xl': return 6
+    case 'xxl': return 6
+  }
+  return undefined
+})
 </script>
 
 <style lang="scss" scoped>
