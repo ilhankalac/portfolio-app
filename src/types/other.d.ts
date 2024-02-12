@@ -12,7 +12,7 @@ export interface IColleagueInfo {
 	id: number;
 	fullName: string;
   role: string;
-  text: string
+  textHtml: string
 	avatarSrc: string;
 	githubLink: string;
 	linkedinLink: string;
