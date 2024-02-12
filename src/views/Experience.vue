@@ -36,7 +36,7 @@
     </span>
     <v-timeline 
       side="end" 
-      line-color="primary" 
+      line-color="secondary" 
       class="mt-10"
       :line-inset="20"
       :line-thickness="smAndDown ? '0': '2'"
