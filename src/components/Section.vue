@@ -15,7 +15,7 @@
         <v-divider style="width: 50%; margin: 0 auto;" class="border-opacity-50" thickness="1" :color="`${textColor}`" />
       </div>
       <v-row class="d-flex justify-center align-center">
-        <v-col :cols="smAndDown ? 12 : 6">
+        <v-col :cols="colsNumber">
           <slot />
         </v-col>
       </v-row>
@@ -30,9 +30,22 @@ interface ISection {
   header?: string;
   textColor?: string;
 }
+import { computed } from "vue";
 import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
+const { smAndDown, name } = useDisplay();
 const props = defineProps<ISection>();
+
+ const colsNumber = computed(() => {
+    switch (name.value) {
+      case 'xs': return 12
+      case 'sm': return 12
+      case 'md': return 8
+      case 'lg': return 6
+      case 'xl': return 6
+      case 'xxl': return 6
+    }
+    return undefined
+  })
 </script>
 
 <style lang="scss" scoped>
