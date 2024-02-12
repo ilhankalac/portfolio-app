@@ -79,8 +79,13 @@
                 {{ experience.position.toUpperCase() }}
               </span>
             </div>
-            <div class="text-subtitle-1 font-weight-light" style="opacity: 0.5; font-size: 14px !important;">
-              {{ experience.date }}
+            <div class="d-flex justify-space-between mb-2" style="opacity: 0.5; font-size: 14px !important;">
+              <div class="font-weight-light">
+                {{ experience.date }}
+              </div>
+              <div>
+                <v-icon> mdi-map-marker </v-icon> {{ experience.location }}
+              </div>
             </div>
             <span class="font-weight-light" style="opacity: 0.9">
               {{ experience.description }}

@@ -54,22 +54,19 @@
                   
                   <div 
                     class="d-flex"
-                    :class="smAndDown ? 'flex-column ga-2 mb-5' : 'align-center ga-5'"
                   >
                     <v-btn
+                      v-if="experience.project_link"
                       flat
-                      :variant="smAndDown ? 'outlined' : 'text'"
+                      variant="text"
                       :style="experience.project_link ? 'opacity: 0.8' : 'opacity: 0.3'"
-                      :disabled="!experience.project_link"
                       @click="openLink(experience.project_link)"
                     >
                       <v-icon>mdi-code-tags</v-icon>
-                      <span class="text-caption ml-2">{{ experience.project_link ? 'Source Code' : 'Private Repo' }}</span>
                     </v-btn>
                     <div class="d-flex">
-                      <v-btn :variant="smAndDown ? 'outlined' : 'text'" block> 
+                      <v-btn variant="text"> 
                         <v-icon class="mr-1">mdi-open-in-new</v-icon> 
-                        <span class="text-caption ml-2">Visit Now</span>
                       </v-btn>
                     </div>
                   </div>
