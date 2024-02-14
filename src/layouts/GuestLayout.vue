@@ -4,6 +4,7 @@
   <About />
   <Experience />
   <Recommendations />
+  <GetInTouch />
 	<Skills />
 </template>
 
@@ -14,4 +15,5 @@ import About from '@/views/About.vue';
 import Experience from '@/views/Experience.vue';
 import Recommendations from '@/views/Recommendations.vue';
 import Skills from '@/views/Skills.vue';
+import GetInTouch from '@/views/GetInTouch.vue';
 </script>

@@ -2,7 +2,7 @@
   <Section
     class="skills-section"
     :header="'My skills'"
-    :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
+    :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
     :sectionId="'section5'"
     :textColor="'white'"
   >
