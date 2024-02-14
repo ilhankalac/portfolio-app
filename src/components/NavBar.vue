@@ -13,9 +13,7 @@
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
       <div class="text-darkText text-subtitle font-weight-bold">
-        <v-avatar class="ml-5" :size="smAndDown ? 40 : 50" variant="outlined">
-          <v-img src="@/assets/profile_photo.jpg" alt="avatar" />
-        </v-avatar>
+        <div class="text-white logo">ilhandev</div>
       </div>
       <div v-show="smAndDown">
         <v-btn color="white" variant="text" @click="isMenuClicked = !isMenuClicked">
@@ -26,9 +24,7 @@
       </div>
     </div>
     <div v-if="!smAndDown" class="text-darkText text-subtitle font-weight-bold">
-      <v-avatar :size="smAndDown ? 20 : 50" variant="outlined">
-        <v-img src="@/assets/profile_photo.jpg" alt="avatar" />
-      </v-avatar>
+      <div class="text-white logo">ilhandev</div>
     </div>
     <div 
       v-if="(smAndDown && isMenuClicked) || !smAndDown"
@@ -125,6 +121,13 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+.logo {
+  font-family: 'Bebas Neue', sans-serif; 
+  font-size: 1.5rem; 
+  letter-spacing: 3px;
+  text-shadow: 4px 2px rgb(var(--v-theme-primary));
+}
 .nav-bar {
   min-height: 6vh;
   background-color: rgb(var(--v-theme-secondary));
