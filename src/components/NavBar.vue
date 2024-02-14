@@ -80,7 +80,8 @@ const navButtons = [
   { id: "1", name: "About", sectionName: "section2" },
   { id: "2", name: "Experience", sectionName: "section3" },
   { id: "3", name: "Recommendations", sectionName: "section4" },
-  { id: "4", name: "Skills", sectionName: "section5" },
+  { id: "4", name: "Get in Touch", sectionName: "section5" },
+  { id: "5", name: "Skills", sectionName: "section6" },
 ];
 
 const isDataLoaded = ref(false);
