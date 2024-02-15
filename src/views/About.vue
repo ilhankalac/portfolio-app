@@ -1,11 +1,12 @@
 <template>
+  <v-divider color="white" thickness="1" />
   <Section
     :class="'about-section'"
     :sectionId="'section2'"
     header="About Me"
     :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
     :textColor="'white'"
-  >
+  > 
     <div class="font-weight-light text-justify">
       <div
         :class="smAndDown ? 'd-flex flex-column ga-5' : 'd-flex align-center ga-10'"
