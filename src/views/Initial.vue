@@ -50,8 +50,8 @@
     <div :class="smAndDown ? 'text-center' : 'text-left'">
       <span
         class="font-weight-bold full-name"
-        style="font-family: 'Be Vietnam Pro', sans-serif; text-shadow: 4px 2px rgb(var(--v-theme-secondary));"
-        :style="smAndDown ? 'font-size: 30px' : 'font-size:70px'"
+        style="font-family: 'Be Vietnam Pro', sans-serif; text-shadow: 2px 2px rgb(var(--v-theme-secondary));"
+        :style="smAndDown ? 'font-size: 30px' : 'font-size:50px'"
       >
         Ilhan Kalač
       </span>
