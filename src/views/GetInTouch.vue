@@ -42,13 +42,18 @@ import Section from "@/components/Section.vue";
 import { useDisplay } from "vuetify";
 import { ref } from "vue";
 const { smAndDown } = useDisplay();
+import { pushVal } from "@/services/DataService"
 
 const email = ref("");
 const message = ref("");
 
 const sendEmail = () => {
-  console.log("Email: ", email.value);
-  console.log("Message: ", message.value);
+  const dataObj = {
+    email: email.value,
+    message: message.value
+  };
+
+  pushVal("contacted", dataObj);
 
   email.value = "";
   message.value = "";

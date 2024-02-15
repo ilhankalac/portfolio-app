@@ -14,7 +14,7 @@ body {
   font-size: 1rem !important;
   /* Smaller font size for mobile devices */
   @media (max-width: 600px) {
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
   }
 }
 </style>
