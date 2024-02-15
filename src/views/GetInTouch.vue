@@ -1,6 +1,6 @@
 <template>
   <Section
-    class="skills-section"
+    class="get-in-section"
     :header="'Get in Touch'"
     :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :sectionId="'section5'"
@@ -16,7 +16,6 @@
         color="white"
         variant="outlined"
         bg-color="secondary"
-        autofocus 
         @blur="validateEmail"
       /> <br>
 
