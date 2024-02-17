@@ -4,8 +4,8 @@
   <About />
   <Experience />
   <Recommendations />
-  <GetInTouch />
 	<Skills />
+  <GetInTouch />
 </template>
 
 <script lang="ts" setup>
