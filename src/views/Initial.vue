@@ -1,5 +1,7 @@
 <template>
-  <section class="container" id="section1">
+  <section 
+    class="container"
+  >
     <div
       style="
         bottom: 0 !important;
@@ -160,12 +162,12 @@ const scrollToNextSection = () => {
   }
 }
 
-@keyframes scale {
-  from {
-    transform: scale(5);
-  }
-  to {
-    transform: scale(1);
-  }
-}
+// @keyframes scale {
+//   from {
+//     transform: scale(5);
+//   }
+//   to {
+//     transform: scale(1);
+//   }
+// }
 </style>

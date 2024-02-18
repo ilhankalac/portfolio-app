@@ -2,7 +2,7 @@
   <v-divider color="white" thickness="1" />
   <Section
     :class="'about-section'"
-    :sectionId="'section2'"
+    :sectionId="'#about'"
     header="About Me"
     :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
     :textColor="'white'"

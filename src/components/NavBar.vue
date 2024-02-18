@@ -39,17 +39,17 @@
           style="cursor: pointer"
           tabindex="0"
           class="text-white font-weight-light navbar-item"
-          @click="scrollToNextSection(item.sectionName)"
+          @click="scrollToNextSection(item.sectionId)"
         >
           <template v-slot:prepend>
             <v-list-item-icon>
               <v-icon
                 v-if="smAndDown"
                 class="text-center"
-                :color="currentSection === item.sectionName ? 'grey' : 'white'"
+                :color="currentSection === item.sectionId ? 'grey' : 'white'"
                 > mdi-chevron-right
               </v-icon>
-              <span class="text-overline font-weight-light" :class="currentSection === item.sectionName ? 'text-grey' : 'text-white'">
+              <span class="text-overline font-weight-light" :class="route.hash === item.sectionId ? 'text-grey' : 'text-white'">
                 {{ item.name }}
               </span>
             </v-list-item-icon>
@@ -64,20 +64,22 @@
 import { onMounted, Ref, ref } from "vue";
 import { useDisplay } from "vuetify";
 import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
 const { smAndDown } = useDisplay();
 const clickedButton: Ref<string> = ref("");
 const router = useRouter();
 const isMenuClicked = ref(false);
-const currentSection: any = ref("section1");
+const currentSection: any = ref("#initial");
+const route = useRoute();
 
 const navButtons = [
-  { id: "0", name: "Home", sectionName: "section1" },
-  { id: "1", name: "About", sectionName: "section2" },
-  { id: "2", name: "Experience", sectionName: "section3" },
-  { id: "3", name: "Recommendations", sectionName: "section4" },
-  { id: "4", name: "Get in Touch", sectionName: "section5" },
-  { id: "5", name: "Skills", sectionName: "section6" },
+  { id: "0", name: "Home", sectionId: "#initial" },
+  { id: "1", name: "About", sectionId: "#about" },
+  { id: "2", name: "Experience", sectionId: "#experience" },
+  { id: "3", name: "Recommendations", sectionId: "#recommendations" },
+  { id: "5", name: "Skills", sectionId: "#skills" },
+  { id: "6", name: "Get in Touch", sectionId: "#get-in-touch" },
 ];
 
 const isDataLoaded = ref(false);
@@ -87,16 +89,18 @@ onMounted(() => {
   }, 1000);
 });
 
-const scrollToNextSection = (sectionName: string = "") => {
-  const section = document.getElementById(sectionName);
+const scrollToNextSection = (sectionId: string = "") => {
+  const section = document.getElementById(sectionId);
 
-  if (section) {
+  if (sectionId === '#initial') {
+    router.push({ path: '/' });
     window.scrollTo({
-      top: section.offsetTop - window.innerHeight * 0.08,
+      top: 0,
       behavior: "smooth",
     });
-    isMenuClicked.value = false;
+    return;
   }
+  router.push({ hash: sectionId });
 };
 
 onMounted(() => {
@@ -110,7 +114,7 @@ onMounted(() => {
   }, {
     root: null,
     // rootMargin: '0px 0px -10% 0px',
-    threshold: 0.5
+    threshold: 0.25
   });
 
   document.querySelectorAll('section').forEach((section) => {

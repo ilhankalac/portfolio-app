@@ -3,7 +3,7 @@
     class="skills-section"
     :header="'My skills'"
     :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
-    :sectionId="'section6'"
+    :sectionId="'#skills'"
     :textColor="'white'"
   >
     <div class="text-center text-white">
