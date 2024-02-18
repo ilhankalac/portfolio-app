@@ -39,7 +39,7 @@
           style="cursor: pointer"
           tabindex="0"
           class="text-white font-weight-light navbar-item"
-          @click="scrollToNextSection(item.sectionId)"
+          @click="changeTheRoute(item.sectionId)"
         >
           <template v-slot:prepend>
             <v-list-item-icon>
@@ -89,9 +89,7 @@ onMounted(() => {
   }, 1000);
 });
 
-const scrollToNextSection = (sectionId: string = "") => {
-  const section = document.getElementById(sectionId);
-
+const changeTheRoute = (sectionId: string = "") => {
   if (sectionId === '#initial') {
     router.push({ path: '/' });
     window.scrollTo({
@@ -102,25 +100,6 @@ const scrollToNextSection = (sectionId: string = "") => {
   }
   router.push({ hash: sectionId });
 };
-
-onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if(currentSection.value !== '' &&  entry.target.getAttribute('id') !== 'shadow-host-companion')
-          currentSection.value = entry.target.getAttribute('id');
-      }
-    });
-  }, {
-    root: null,
-    // rootMargin: '0px 0px -10% 0px',
-    threshold: 0.25
-  });
-
-  document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section);
-  });
-});
 
 </script>
 

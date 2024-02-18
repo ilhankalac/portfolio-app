@@ -62,7 +62,6 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       const element = document.getElementById(to.hash);
-      console.log(element);
       if (element) {
         return { el: element, behavior: 'smooth', top: 60 }
       }
