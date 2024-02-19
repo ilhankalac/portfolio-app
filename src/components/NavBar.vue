@@ -49,7 +49,7 @@
                 :color="currentSection === item.sectionId ? 'grey' : 'white'"
                 > mdi-chevron-right
               </v-icon>
-              <span class="text-overline font-weight-light" :class="route.hash === item.sectionId ? 'text-grey' : 'text-white'">
+              <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-grey' : 'text-white'">
                 {{ item.name }}
               </span>
             </v-list-item-icon>
@@ -101,6 +101,24 @@ const changeTheRoute = (sectionId: string = "") => {
   router.push({ hash: sectionId });
 };
 
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.getAttribute('id');
+        const url = sectionId === '#initial' ? '/' : `/${sectionId}`;
+        window.history.pushState({}, '', url);
+        currentSection.value = sectionId;
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  document.querySelectorAll('section').forEach((section) => {
+    observer.observe(section);
+  });
+});
 </script>
 
 <style scoped lang="scss">
