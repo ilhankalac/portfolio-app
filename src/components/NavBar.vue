@@ -49,7 +49,7 @@
                 :color="currentSection === item.sectionId ? 'grey' : 'white'"
                 > mdi-chevron-right
               </v-icon>
-              <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-grey' : 'text-white'">
+              <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-white' : 'text-grey'">
                 {{ item.name }}
               </span>
             </v-list-item-icon>
