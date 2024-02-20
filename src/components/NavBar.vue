@@ -70,16 +70,16 @@ const { smAndDown } = useDisplay();
 const clickedButton: Ref<string> = ref("");
 const router = useRouter();
 const isMenuClicked = ref(false);
-const currentSection: any = ref("#initial");
+const currentSection: any = ref("initial");
 const route = useRoute();
 
 const navButtons = [
   { id: "0", name: "Home", sectionId: "#initial" },
-  { id: "1", name: "About", sectionId: "#about" },
-  { id: "2", name: "Experience", sectionId: "#experience" },
-  { id: "3", name: "Recommendations", sectionId: "#recommendations" },
-  { id: "5", name: "Skills", sectionId: "#skills" },
-  { id: "6", name: "Get in Touch", sectionId: "#get-in-touch" },
+  { id: "1", name: "About", sectionId: "about" },
+  { id: "2", name: "Experience", sectionId: "experience" },
+  { id: "3", name: "Recommendations", sectionId: "recommendations" },
+  { id: "5", name: "Skills", sectionId: "skills" },
+  { id: "6", name: "Get in Touch", sectionId: "get-in-touch" },
 ];
 
 const isDataLoaded = ref(false);
@@ -90,7 +90,7 @@ onMounted(() => {
 });
 
 const changeTheRoute = (sectionId: string = "") => {
-  if (sectionId === '#initial') {
+  if (sectionId === 'initial') {
     router.push({ path: '/' });
     window.scrollTo({
       top: 0,
@@ -98,7 +98,7 @@ const changeTheRoute = (sectionId: string = "") => {
     });
     return;
   }
-  router.push({ hash: sectionId });
+  router.push({ hash: '#' + sectionId });
 };
 
 onMounted(() => {
@@ -106,7 +106,7 @@ onMounted(() => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const sectionId = entry.target.getAttribute('id');
-        const url = sectionId === '#initial' ? '/' : `/${sectionId}`;
+        const url = sectionId === '#initial' ? '/' : `/#${sectionId}`;
         window.history.pushState({}, '', url);
         currentSection.value = sectionId;
       }

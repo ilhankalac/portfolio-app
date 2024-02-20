@@ -1,6 +1,6 @@
 <template>
   <Section
-    :sectionId="'#recommendations'"
+    :sectionId="'recommendations'"
     :class="'recommendations-section'"
     header="Recommendations"
     :textColor="'white'"
