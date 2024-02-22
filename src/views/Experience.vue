@@ -2,7 +2,7 @@
   <Section
     :class="'experience-section'"
     :header="'Experience'"
-    :customStyle="'min-height: 100vh; background: rgb(var(--v-theme-primary))'" 
+    :customStyle="smAndDown ? 'min-height: 2250px; background: rgb(var(--v-theme-primary))' : 'min-height: 1700px; background: rgb(var(--v-theme-primary))'" 
     :sectionId="'experience'"
   >
     <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">

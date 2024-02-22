@@ -27,7 +27,7 @@ const router = createRouter({
     if (to.hash) {
       const element = document.getElementById(to.hash.slice(1));
       if (element) {
-        return { el: element, behavior: 'smooth', top: 60 }
+        return { el: element, behavior: 'smooth', top: 60, left: 0 }
       }
     } 
   },

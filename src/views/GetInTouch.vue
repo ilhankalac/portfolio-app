@@ -3,7 +3,6 @@
     class="get-in-section"
     :header="'Get in Touch'"
     :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
-    :sectionId="'get-in-touch'"
     :textColor="'white'"
     :colsNumber="12"
   >

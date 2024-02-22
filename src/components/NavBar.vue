@@ -49,7 +49,7 @@
                 :color="currentSection === item.sectionId ? 'grey' : 'white'"
                 > mdi-chevron-right
               </v-icon>
-              <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-white' : 'text-grey'">
+              <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-white font-weight-bold' : 'text-grey'">
                 {{ item.name }}
               </span>
             </v-list-item-icon>
@@ -78,8 +78,7 @@ const navButtons = [
   { id: "1", name: "About", sectionId: "about" },
   { id: "2", name: "Experience", sectionId: "experience" },
   { id: "3", name: "Recommendations", sectionId: "recommendations" },
-  { id: "5", name: "Skills", sectionId: "skills" },
-  { id: "6", name: "Get in Touch", sectionId: "get-in-touch" },
+  { id: "5", name: "Explore", sectionId: "explore" },
 ];
 
 const isDataLoaded = ref(false);
@@ -107,8 +106,10 @@ onMounted(() => {
       if (entry.isIntersecting) {
         const sectionId = entry.target.getAttribute('id');
         const url = sectionId === '#initial' ? '/' : `/#${sectionId}`;
-        window.history.pushState({}, '', url);
-        currentSection.value = sectionId;
+        if (sectionId && sectionId !== 'shadow-host-companion') {
+          window.history.pushState({}, '', url);
+          currentSection.value = sectionId;
+        }
       }
     });
   }, {

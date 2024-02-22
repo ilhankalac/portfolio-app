@@ -4,7 +4,19 @@
     :class="'recommendations-section'"
     header="Recommendations"
     :textColor="'white'"
+    :customStyle="'min-height: 1000px'"
   >
+    <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
+      <v-col>
+        <v-skeleton-loader
+          v-for="index in 5"
+          color="primary"
+          class="mx-auto border ma-2"
+          type="card"
+          :min-width="smAndDown ? '100px' : '700px'"
+        />
+      </v-col>
+    </v-row>
     <div
       v-for="recommendation in recommendations"
       class="text-justify font-weight-light text-white"
@@ -49,11 +61,13 @@ const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
 
 const recommendations: Ref<IColleagueInfo[]> = ref([]);
+const isDataLoaded = ref(false);
 
 const getData = async () => {
   await getVal("recommendations").then((fetchedData) => {
     if (fetchedData) {
       recommendations.value = fetchedData;
+      isDataLoaded.value = true;
     } else {
       // Handle the case where the fetched data is null or undefined
       console.error("Error fetching data from Firebase.");
