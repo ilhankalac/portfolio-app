@@ -6,7 +6,7 @@
     >
       <div class="pb-5 text-center">
         <p
-          :class="`text-center text-overline mb-1 text-${textColor}`"
+          :class="`text-center text-overline mb-1 text-grey-lighten-1`"
           :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
         >
           {{ header }}
