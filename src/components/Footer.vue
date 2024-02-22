@@ -3,7 +3,7 @@
     <footer class="footer-content">
       <div class="d-flex" :class="[{'flex-column': smAndDown, 'justify-space-around': !smAndDown}]">
         <div class="footer-section">
-          <div class="footer-heading text-overline text-with-underline text-grey-lighten-3">Useful Links</div>
+          <div class="footer-heading text-overline text-with-underline text-grey-lighten-3 ml-2">Useful Links</div>
           <div class="footer-links ga-2" :class="smAndDown ? 'd-flex' : 'flex-column'">
             <span v-for="link in navigationLinks" :key="link"><v-icon>mdi-chevron-right</v-icon> {{ link }}</span>
           </div>
