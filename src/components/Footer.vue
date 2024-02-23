@@ -67,7 +67,6 @@ const changeTheRoute = (sectionId: string = "") => {
   }
   router.push({ hash: '#' + sectionId });
 };
-
 </script>
 
 <style scoped lang="scss">
