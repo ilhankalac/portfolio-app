@@ -92,7 +92,7 @@ const openLink = (link: string) => {
 };
 
 const scrollToNextSection = () => {
-  const section2 = document.getElementById("section2");
+  const section2 = document.getElementById("about");
 
   if (section2) {
     // Scroll to the top of Section 2

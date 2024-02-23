@@ -13,7 +13,9 @@
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
       <div class="text-darkText text-subtitle font-weight-bold">
-        <div class="text-white logo">ilhandev</div>
+        <v-avatar>
+          <v-img src="@/assets/ilhan_kalac_small.png" alt="avatar" />
+        </v-avatar>
       </div>
       <div v-show="smAndDown">
         <v-btn color="white" variant="text" @click="isMenuClicked = !isMenuClicked">
@@ -24,7 +26,9 @@
       </div>
     </div>
     <div v-if="!smAndDown" class="text-darkText text-subtitle font-weight-bold">
-      <div class="text-white logo">ilhandev</div>
+      <v-avatar>
+        <v-img src="@/assets/ilhan_kalac_small.png" alt="avatar" />
+      </v-avatar>
     </div>
     <div 
       v-if="(smAndDown && isMenuClicked) || !smAndDown"
