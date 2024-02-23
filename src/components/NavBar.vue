@@ -9,7 +9,7 @@
   <nav
     class="nav-bar"
     :style="isMenuClicked && smAndDown ? 'min-height: 42vh' : 'min-height: 6vh'"
-    :class="smAndDown ? 'flex-column' : 'd-flex justify-space-around align-center'"
+    :class="smAndDown ? 'flex-column' : 'd-flex justify-center align-center'"
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
       <div class="text-darkText text-subtitle font-weight-bold">

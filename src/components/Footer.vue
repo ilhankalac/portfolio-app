@@ -5,10 +5,13 @@
         <div class="footer-section">
           <div class="footer-heading text-overline text-with-underline text-grey-lighten-3">Useful Links</div>
           <div class="footer-links ga-2" :class="smAndDown ? 'd-flex flex-wrap' : 'flex-column'">
-            <span v-for="link in navigationLinks" :key="link">
-              <div class="d-flex">
+            <span v-for="link in navigationLinks" :key="link.sectionId">
+              <div 
+                class="d-flex"
+                @click="changeTheRoute(link.sectionId)"
+              >
                 <div>
-                  <v-icon v-if="!smAndDown">mdi-chevron-right</v-icon> {{ link }}
+                  <v-icon v-if="!smAndDown">mdi-chevron-right</v-icon> {{ link.text }}
                 </div>
               </div>
             </span>
@@ -39,12 +42,31 @@
 </template>
 
 <script lang="ts" setup>
+import router from "@/router";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
 
-const navigationLinks = ["Home", "About", "Experience", "Recommendations", "Skills", "Get in touch"];
+const navigationLinks = [
+  { text: "Home", sectionId: "initial" },
+  { text: "About", sectionId: "about" },
+  { text: "Experience", sectionId: "experience" },
+  { text: "Recommendations", sectionId: "recommendations" },
+  { text: "Explore", sectionId: "explore" },
+]
 const otherInterestsLinks = ["Blog", "Projects", "Resume"];
 const socialMediaLinks = ["LinkedIn", "GitHub", "Twitter"];
+
+const changeTheRoute = (sectionId: string = "") => {
+  if (sectionId === 'initial') {
+    router.push({ path: '/' });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    return;
+  }
+  router.push({ hash: '#' + sectionId });
+};
 
 </script>
 
