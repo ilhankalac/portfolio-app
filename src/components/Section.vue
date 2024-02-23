@@ -11,7 +11,12 @@
         >
           {{ header }}
         </p>
-        <v-divider style="width: 150px !important; margin: 0 auto;" class="border-opacity-50" thickness="1" :color="`${textColor}`" />
+        <v-divider 
+          v-if="header" 
+          style="width: 150px !important; margin: 0 auto;" class="border-opacity-50" 
+          thickness="1" 
+          :color="`${textColor}`" 
+        />
       </div>
       <v-row class="d-flex justify-center align-center">
         <v-col :cols="colsNumber">
