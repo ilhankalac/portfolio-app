@@ -46,7 +46,7 @@
               <v-icon
                 v-if="smAndDown"
                 class="text-center"
-                :color="currentSection === item.sectionId ? 'grey' : 'white'"
+                :color="currentSection === item.sectionId ? 'grey-lighten' : 'grey'"
                 > mdi-chevron-right
               </v-icon>
               <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-grey-lighten-1 font-weight-bold' : 'text-grey'">

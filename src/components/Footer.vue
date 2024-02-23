@@ -7,7 +7,9 @@
           <div class="footer-links ga-2" :class="smAndDown ? 'd-flex flex-wrap' : 'flex-column'">
             <span v-for="link in navigationLinks" :key="link">
               <div class="d-flex">
-                <v-icon v-if="!smAndDown">mdi-chevron-right</v-icon> {{ link }}
+                <div>
+                  <v-icon v-if="!smAndDown">mdi-chevron-right</v-icon> {{ link }}
+                </div>
               </div>
             </span>
           </div>
@@ -25,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="footer-bottom pt-5">
         <div>
           <span>&copy; {{ new Date().getFullYear() }}</span>
           <span> • </span>
