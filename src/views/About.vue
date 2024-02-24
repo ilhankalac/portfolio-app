@@ -18,32 +18,21 @@
         <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)));" class="text-white">
 
           <p>
-            I'm a Frontend Developer with a passion for creating seamless user
-            experiences and a keen interest in expanding my skills.
+            I am a software developer who is passionate about creating user-friendly web experiences, skilled in Vue.js and TypeScript, focusing on building responsive and modern web applications. <br /> <br />
+            I have a Bachelor's degree of Applied Science in Electrical Engineering, completing my studies in Belgrade, Serbia. 
           </p>
           <br />
           <p>
-            <strong>Frontend Proficiency:</strong> Advanced skills in Vue.js and
-            TypeScript, specializing in crafting responsive and intuitive web
-            applications.
+            Although I initially started with C# and ASP.NET Core framework, my career shifted towards frontend development. <br /> <br />
+            As a fully employed frontend developer at a company specializing in web applications, I am constantly advancing and refining my frontend expertise.
           </p>
           <br />
           <p>
-            <strong>Initial Backend Experience:</strong> I started my journey in
-            the programming world with a focus on C# and ASP.NET Core, gaining
-            foundational knowledge in Transact-SQL. While my backend experience
-            is from my early career, I am actively expanding and refining my
-            skills in frontend development. Additionally, I have hands-on
-            experience with Firebase services, enhancing my understanding of
-            serverless architectures and cloud-based solutions.
+            Apart from my work, I'm really into artsy movies, photography, diving into philosophical books, staying active with calisthenics, and always striving for self-improvement in every way possible. I firmly believe that the great things only come with the discipline.
           </p>
           <br />
-          <p>
-            <strong>Mentorship and Collaboration:</strong> With a history of
-            mentoring aspiring developers and a collaborative approach, I'm
-            dedicated to sharing knowledge and fostering growth within the
-            developer community.
-          </p>
+          <p></p>
+          <br />
         </v-sheet>
       </div>
     </div>
