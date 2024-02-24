@@ -74,7 +74,7 @@ const changeTheRoute = (sectionId: string = "") => {
 
 <style scoped lang="scss">
 .footer-container {
-  background: rgb(var(--v-theme-primary));
+  background: rgb(var(--v-theme-secondary));
 
   .footer-content {
     .footer-heading {
@@ -114,7 +114,7 @@ const changeTheRoute = (sectionId: string = "") => {
   }
 
   .footer-bottom {
-    background: rgb(var(--v-theme-primary));
+    background: rgb(var(--v-theme-secondary));
     color: white;
     text-align: center;
     font-size: smaller;

@@ -2,7 +2,7 @@
   <Section
     class="get-in-section"
     :header="'Get in Touch'"
-    :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :textColor="'white'"
     :colsNumber="12"
   >

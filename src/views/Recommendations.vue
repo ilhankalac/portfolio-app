@@ -4,7 +4,7 @@
     :class="'recommendations-section'"
     header="Recommendations"
     :textColor="'white'"
-    :customStyle="'min-height: 1000px'"
+    :customStyle="'min-height: 1000px; background: rgb(var(--v-theme-primary));'"
   >
     <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
       <v-col>
@@ -124,6 +124,6 @@ onMounted(async () => {
   border-left:4px solid white ;
   line-height:1.6;
   position: relative;
-  background: rgb(var(--v-theme-primary));
+  background: rgb(var(--v-theme-secondary));
 }
 </style>
