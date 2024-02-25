@@ -18,15 +18,13 @@
           <span class="ml-2">Covid-19 Statistic tracker for my hometown</span>
         </v-card-title>
         <div 
-          class="d-flex justify-space-between pa-4 text-justify ga-14"
+          class="d-flex justify-space-between pa-4 text-justify ga-6 align-center"
           :class="smAndDown ? 'flex-column flex-column-reverse' : 'flex-row'"
         >
           <div class="font-weight-light">
             I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic. <br /> <br /> To complement this, I developed a web scraper using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a YAML script that runs daily at a specific time to automate the scraping of data from ijzcg.me.
           </div>
-          <div style="width: 1000px; height: 200px; overflow: hidden;">
-            <img src="https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
+            <img src="https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png" alt="Your Image" class="fixed-size-image">
         </div>
         <v-card-actions 
           class="d-flex justify-space-between pa-4"
@@ -73,3 +71,13 @@ const technologies = [
   { id: 4, name: "YAML", icon: "code-tags" },
 ];
 </script>
+
+<style scoped> 
+.fixed-size-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+}
+</style>
