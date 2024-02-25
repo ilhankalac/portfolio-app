@@ -82,7 +82,9 @@ const navButtons = [
   { id: "1", name: "About", sectionId: "about" },
   { id: "2", name: "Experience", sectionId: "experience" },
   { id: "3", name: "Recommendations", sectionId: "recommendations" },
+  { id: "4", name: "Projects", sectionId: "self-projects" },
   { id: "5", name: "Explore", sectionId: "explore" },
+
 ];
 
 const isDataLoaded = ref(false);
