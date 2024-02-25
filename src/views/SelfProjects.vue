@@ -24,7 +24,11 @@
           <div class="font-weight-light">
             I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic. <br /> <br /> To complement this, I developed a web scraper using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a YAML script that runs daily at a specific time to automate the scraping of data from ijzcg.me.
           </div>
-            <img src="https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png" alt="Your Image" class="fixed-size-image">
+            <img 
+              src="https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png" 
+              alt="Your Image" class="fixed-size-image" 
+              :style="smAndDown ? 'width: 350px' : 'width: 300px'"
+            >
         </div>
         <v-card-actions 
           class="d-flex justify-space-between pa-4"
@@ -74,7 +78,6 @@ const technologies = [
 
 <style scoped> 
 .fixed-size-image {
-  width: 300px;
   height: 200px;
   object-fit: cover;
   border-radius: 5px;
