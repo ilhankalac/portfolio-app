@@ -8,7 +8,7 @@
 
   <nav
     class="nav-bar"
-    :style="isMenuClicked && smAndDown ? 'min-height: 36vh' : 'min-height: 6vh'"
+    :style="isMenuClicked && smAndDown ? 'min-height: 42vh' : 'min-height: 6vh'"
     :class="smAndDown ? 'flex-column' : 'd-flex justify-center align-center'"
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
@@ -157,7 +157,7 @@ onMounted(() => {
     max-height: 1vh;
   }
   to {
-    max-height: 38vh;
+    max-height: 42vh;
   }
 }
 
