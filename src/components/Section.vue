@@ -44,9 +44,9 @@ const colsNumber = computed(() => {
     case 'xs': return 12
     case 'sm': return 12
     case 'md': return 8
-    case 'lg': return 6
-    case 'xl': return 6
-    case 'xxl': return 6
+    case 'lg': return 7
+    case 'xl': return 7
+    case 'xxl': return 7
   }
   return undefined
 })

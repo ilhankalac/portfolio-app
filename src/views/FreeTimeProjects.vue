@@ -7,10 +7,14 @@
     :colsNumber="12"
   >
     <div v-for="(project, index) in projects" :key="index" class="mb-10">
-      <v-card outlined color="primary" class="pa-2">
+      <v-card outlined color="secondary" class="pa-2" elevation="0">
         <v-card-title
           class="text-overline"
-          :class="smAndDown ? 'text-center' : ''"
+          :class="{
+            'text-center': smAndDown,
+            'text-left': !smAndDown,
+            'text-right': index % 2 === 1
+          }"
           :style="
             smAndDown
               ? 'font-size: 14px !important'
@@ -20,9 +24,22 @@
           <v-icon left>{{ project.icon }}</v-icon>
           <span class="ml-2">{{ project.title }}</span>
         </v-card-title>
+        <v-card-subtitle
+          :class="{
+            'text-center': smAndDown,
+            'text-left': !smAndDown,
+            'text-right': index % 2 === 1
+          }"
+        >
+          Date of creation: {{ project.dateOfCreation }}
+        </v-card-subtitle>
         <div
           class="d-flex justify-space-between pa-4 text-justify ga-6 align-center"
-          :class="smAndDown ? 'flex-column flex-column-reverse' : 'flex-row'"
+          :class="{
+            'flex-column flex-column-reverse': smAndDown,
+            'flex-row': !smAndDown,
+            'flex-row-reverse': index % 2 === 1
+          }"
         >
           <div class="font-weight-light" v-html="project.description" />
            
@@ -30,12 +47,16 @@
             :src="project.image"
             alt="Project Image"
             class="fixed-size-image"
-            :style="smAndDown ? 'width: 350px' : 'width: 300px'"
+            :style="smAndDown ? 'width: 350px' : 'width: 450px'"
           />
         </div>
         <v-card-actions
           class="d-flex justify-space-between pa-4"
-          :class="smAndDown ? 'flex-column ga-3' : 'flex-row'"
+          :class="{
+            'flex-column ga-3': smAndDown,
+            'flex-row': !smAndDown,
+            'flex-row-reverse': index % 2 === 1
+          }"
         >
           <div class="text-white">
             <template v-for="tech in project.technologies" :key="tech.id">
@@ -47,7 +68,7 @@
           </div>
           <div class="d-flex ga-2">
             <v-btn class="text-none" @click="openLink(project.source_code)">
-              Source Code
+              Code
               <v-icon class="ml-2">mdi-github</v-icon>
             </v-btn>
             <v-btn class="text-none" @click="openLink(project.live_demo)">
@@ -88,6 +109,7 @@ const projects = [
     ],
     source_code: "https://github.com/ilhankalac/covid-19-rozaje",
     live_demo: "https://covid-19-rozaje.web.app/",
+    dateOfCreation: "January 2021.",
   },
 ];
 
@@ -98,7 +120,7 @@ const openLink = (link: string) => {
 
 <style scoped>
 .fixed-size-image {
-  height: 200px;
+  height: 300px;
   object-fit: cover;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
