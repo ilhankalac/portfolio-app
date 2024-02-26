@@ -10,9 +10,10 @@
       <v-card outlined color="primary" class="pa-2">
         <v-card-title
           class="text-overline"
+          :class="smAndDown ? 'text-center' : ''"
           :style="
             smAndDown
-              ? 'font-size: 15px !important'
+              ? 'font-size: 14px !important'
               : 'font-size: 16px !important'
           "
         >
@@ -23,9 +24,8 @@
           class="d-flex justify-space-between pa-4 text-justify ga-6 align-center"
           :class="smAndDown ? 'flex-column flex-column-reverse' : 'flex-row'"
         >
-          <div class="font-weight-light">
-            {{ project.description }}
-          </div>
+          <div class="font-weight-light" v-html="project.description" />
+           
           <img
             :src="project.image"
             alt="Project Image"
@@ -77,14 +77,14 @@ const projects = [
   {
     title: "Covid-19 Statistic tracker for my hometown",
     description:
-      "I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic. To complement this, I developed a web scraper using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a YAML script that runs daily at a specific time to automate the scraping of data from ijzcg.me.",
+      "<p> I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic.<br /> <br /> To complement this, I developed a <a href='https://github.com/ilhankalac/covid-19-scraper' alt='Scraper' style='color: grey;' target='_blank'>web scraper</a> using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a <a href='https://github.com/ilhankalac/covid-19-scraper/blob/main/.github/workflows/integrated.yml' alt='Scraper' style='color: grey;' target='_blank'>YML script</a> that runs daily at a specific time to automate the scraping of data from ijzcg.me. </p>",
     icon: "mdi-virus",
     image: "https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png",
     technologies: [
       { id: 1, icon: "angular", name: "Angular" },
       { id: 2, icon: "firebase", name: "Firebase" },
       { id: 3, icon: "code-tags", name: "Puppeteer" },
-      { id: 4, icon: "code-tags", name: "YAML" },
+      { id: 4, icon: "code-tags", name: "YML" },
     ],
     source_code: "https://github.com/ilhankalac/covid-19-rozaje",
     live_demo: "https://covid-19-rozaje.web.app/",
