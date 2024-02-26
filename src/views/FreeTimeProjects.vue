@@ -1,6 +1,6 @@
 <template>
   <Section
-    :id="'self-projects'"
+    :id="'freetime-projects'"
     :header="'Freetime Projects'"
     :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
     :textColor="'white'"

@@ -81,7 +81,7 @@ const navButtons = [
   { id: "0", name: "Home", sectionId: "#initial" },
   { id: "1", name: "About", sectionId: "about" },
   { id: "2", name: "Experience", sectionId: "experience" },
-  { id: "3", name: "Projects", sectionId: "self-projects" },
+  { id: "3", name: "Projects", sectionId: "freetime-projects" },
   { id: "4", name: "Recommendations", sectionId: "recommendations" },
   { id: "5", name: "Explore", sectionId: "explore" },
 

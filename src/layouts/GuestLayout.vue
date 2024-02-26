@@ -7,7 +7,7 @@
       <Initial />
       <About />
       <Experience />
-      <SelfProjects />
+      <FreeTimeProjects />
       <Recommendations />
       <Skills />
       <GetInTouch />
@@ -25,5 +25,5 @@ import Recommendations from '@/views/Recommendations.vue';
 import Skills from '@/views/Skills.vue';
 import GetInTouch from '@/views/GetInTouch.vue';
 import Footer from '@/components/Footer.vue';
-import SelfProjects from '@/views/SelfProjects.vue';
+import FreeTimeProjects from '@/views/FreeTimeProjects.vue';
 </script>
