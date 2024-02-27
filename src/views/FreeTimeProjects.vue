@@ -7,9 +7,9 @@
     :colsNumber="12"
   >
     <div v-for="(project, index) in projects" :key="index" class="mb-10">
-      <v-card outlined color="secondary" class="pa-2" elevation="0">
+      <v-card outlined color="secondary" elevation="0">
         <v-card-title
-          class="text-overline"
+          class="text-overline ma-0 pa-0"
           :class="{
             'text-center': smAndDown,
             'text-left': !smAndDown,
@@ -26,7 +26,7 @@
         </v-card-title>
         <v-card-subtitle
           :class="{
-            'text-center': smAndDown,
+            'text-center mb-2': smAndDown,
             'text-left': !smAndDown,
             'text-right': index % 2 === 1
           }"
@@ -34,7 +34,7 @@
           Date of creation: {{ project.dateOfCreation }}
         </v-card-subtitle>
         <div
-          class="d-flex justify-space-between pa-4 text-justify ga-6 align-center"
+          class="d-flex justify-space-between text-justify ga-6 align-center"
           :class="{
             'flex-column flex-column-reverse': smAndDown,
             'flex-row': !smAndDown,
@@ -47,7 +47,7 @@
             :src="project.image"
             alt="Project Image"
             class="fixed-size-image"
-            :style="smAndDown ? 'width: 350px' : 'width: 450px'"
+            :style="smAndDown ? 'width: 400px' : 'width: 450px'"
           />
         </div>
         <v-card-actions
