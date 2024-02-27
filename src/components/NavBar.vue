@@ -2,7 +2,7 @@
   <v-progress-linear
     v-if="!isDataLoaded"
     indeterminate
-    color="secondary"
+    color="primary"
     style="z-index: 1100; position: absolute"
   />
 
@@ -35,7 +35,7 @@
       class="d-flex"
       :class="smAndDown ? 'flex-column justify-center  slideOut' : 'justify-center'"
     > 
-      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-secondary));">
+      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-primary));">
         <v-list-item
           v-for="(item, i) in navButtons"
           item-title="name"
@@ -138,7 +138,7 @@ onMounted(() => {
 }
 .nav-bar {
   min-height: 6vh;
-  background-color: rgb(var(--v-theme-secondary));
+  background-color: rgb(var(--v-theme-primary));
   position: fixed;
   min-width: 100%;
   top: 0;

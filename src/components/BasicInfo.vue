@@ -3,7 +3,7 @@
     class="d-flex align-center justify-space-between"
     :class="{ 'flex-column': !smAndDown }"
     flat
-    color="secondary"
+    color="primary"
   >
     <v-avatar
       :size="smAndDown ? '120' : '200'"

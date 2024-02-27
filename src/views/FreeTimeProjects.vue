@@ -2,12 +2,12 @@
   <Section
     :id="'freetime-projects'"
     :header="'Freetime Projects'"
-    :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :textColor="'white'"
     :colsNumber="12"
   >
     <div v-for="(project, index) in projects" :key="index" class="mb-10">
-      <v-card outlined color="secondary" elevation="0">
+      <v-card outlined color="primary" elevation="0">
         <v-card-title
           class="text-overline ma-0 pa-0"
           :class="{
@@ -41,7 +41,7 @@
             'flex-row-reverse': index % 2 === 1
           }"
         >
-          <div class="font-weight-light" v-html="project.description" />
+          <div class="font-weight-light text-greyText" v-html="project.description" />
            
           <img
             :src="project.image"
@@ -98,7 +98,7 @@ const projects = [
   {
     title: "Covid-19 Statistic tracker for my hometown",
     description:
-      "<p> I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic.<br /> <br /> To complement this, I developed a <a href='https://github.com/ilhankalac/covid-19-scraper' alt='Scraper' style='color: grey;' target='_blank'>web scraper</a> using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a <a href='https://github.com/ilhankalac/covid-19-scraper/blob/main/.github/workflows/integrated.yml' alt='Scraper' style='color: grey;' target='_blank'>YML script</a> that runs daily at a specific time to automate the scraping of data from ijzcg.me. </p>",
+      "<p> I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic.<br /> <br /> To complement this, I developed a <a href='https://github.com/ilhankalac/covid-19-scraper' alt='Scraper' style='color: white;' target='_blank'>web scraper</a> using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a <a href='https://github.com/ilhankalac/covid-19-scraper/blob/main/.github/workflows/integrated.yml' alt='Scraper' style='color: white;' target='_blank'>YML script</a> that runs daily at a specific time to automate the scraping of data from ijzcg.me. </p>",
     icon: "mdi-virus",
     image: "https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png",
     technologies: [
