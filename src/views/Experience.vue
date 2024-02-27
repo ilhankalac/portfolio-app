@@ -2,7 +2,7 @@
   <Section
     :class="'experience-section'"
     :header="'Experience'"
-    :customStyle="smAndDown ? 'min-height: 2250px; background: rgb(var(--v-theme-primary))' : 'min-height: 1450px; background: rgb(var(--v-theme-primary))'" 
+    :customStyle="smAndDown ? 'min-height: 1700px; background: rgb(var(--v-theme-primary))' : 'min-height: 1450px; background: rgb(var(--v-theme-primary))'" 
     :sectionId="'experience'"
   >
     <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
@@ -25,7 +25,7 @@
     </v-row>
 
     <span
-      class="text-h5 text-overline mr-2"
+      class="text-h5 text-overline mr-2 text-greyText"
       style="opacity: 0.5"
       :style="
         smAndDown ? 'font-size: 15px !important' : 'font-size: 16px !important'

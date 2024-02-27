@@ -4,7 +4,7 @@
       <footer class="footer-content">
         <div class="d-flex" :class="[{'flex-column': smAndDown, 'justify-space-between': !smAndDown}]">
           <div class="footer-section">
-            <div class="footer-heading text-overline text-with-underline text-grey-lighten-3">Useful Links</div>
+            <div class="footer-heading text-overline text-with-underline text-white">Useful Links</div>
             <div class="footer-links ga-2" :class="smAndDown ? 'd-flex flex-wrap' : 'flex-column'">
               <span v-for="link in navigationLinks" :key="link.sectionId">
                 <div 
@@ -19,13 +19,13 @@
             </div>
           </div>
           <div class="footer-section">
-            <div class="footer-heading text-with-underline text-overline text-grey-lighten-3">Other interests</div>
+            <div class="footer-heading text-with-underline text-overline text-white">Other interests</div>
             <div class="footer-links ga-2" :class="smAndDown ? 'd-flex' : 'flex-column'">
               <span v-for="link in otherInterestsLinks" :key="link">{{ link }}</span>
             </div>
           </div>
           <div class="footer-section">
-            <div class="footer-heading text-overline text-with-underline text-grey-lighten-3">Social Media</div>
+            <div class="footer-heading text-overline text-with-underline text-white">Social Media</div>
             <div class="footer-links ga-2" :class="smAndDown ? 'd-flex' : 'flex-column'">
               <span v-for="link in socialMediaLinks" :key="link">{{ link }}</span>
             </div>
@@ -101,7 +101,7 @@ const changeTheRoute = (sectionId: string = "") => {
 
         span {
           cursor: pointer;
-          color: grey;
+          color: rgb(var(--v-theme-greyText));
           font-size: smaller;
 
           &:hover {

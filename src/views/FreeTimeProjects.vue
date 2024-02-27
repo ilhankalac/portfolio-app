@@ -6,8 +6,8 @@
     :textColor="'white'"
     :colsNumber="12"
   >
-    <div v-for="(project, index) in projects" :key="index" class="mb-10">
-      <v-card outlined color="primary" elevation="0">
+    <div v-for="(project, index) in projects" :key="index">
+      <v-card outlined color="primary" elevation="0" class="mt-2">
         <v-card-title
           class="text-overline ma-0 pa-0"
           :class="{
@@ -25,6 +25,7 @@
           <span class="ml-2">{{ project.title }}</span>
         </v-card-title>
         <v-card-subtitle
+          class="font-weight-light text-greyText"
           :class="{
             'text-center mb-2': smAndDown,
             'text-left': !smAndDown,
@@ -51,7 +52,7 @@
           />
         </div>
         <v-card-actions
-          class="d-flex justify-space-between pa-4"
+          class="d-flex justify-space-between ma-0 pa-0 pt-2"
           :class="{
             'flex-column ga-3': smAndDown,
             'flex-row': !smAndDown,
@@ -60,7 +61,7 @@
         >
           <div class="text-white">
             <template v-for="tech in project.technologies" :key="tech.id">
-              <v-chip label link size="small" class="my-1 mr-1">
+              <v-chip label link size="small" class="my-1 mr-1 text-greyText">
                 <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
                 {{ tech.name }}
               </v-chip>
