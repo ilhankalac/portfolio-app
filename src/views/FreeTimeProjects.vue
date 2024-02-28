@@ -25,7 +25,7 @@
           <span class="ml-2">{{ project.title }}</span>
         </v-card-title>
         <v-card-subtitle
-          class="font-weight-light text-greyText"
+          class="font-weight-light text-greyText pa-0"
           :class="{
             'text-center mb-2': smAndDown,
             'text-left': !smAndDown,

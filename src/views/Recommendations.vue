@@ -33,7 +33,7 @@
               <div class="text-white">{{ recommendation.role }}</div>
             </div>
           </div>
-          <div class="d-flex ga-1 mt-3">
+          <div class="d-flex ga-1 mt-3 text-white">
             <v-btn
               flat
               variant="text"
