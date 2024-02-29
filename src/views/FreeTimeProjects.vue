@@ -48,7 +48,7 @@
             :src="project.image"
             alt="Project Image"
             class="fixed-size-image"
-            :style="smAndDown ? 'width: 400px' : 'width: 450px'"
+            :style="smAndDown ? 'width: 380px' : 'width: 450px'"
           />
         </div>
         <v-card-actions

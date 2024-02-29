@@ -67,7 +67,7 @@
           @click="openDialog(experience)"
         >
           <v-card 
-            class="pa-4 text-justify"
+            class="text-justify"
             color="primary"
             flat
           >
