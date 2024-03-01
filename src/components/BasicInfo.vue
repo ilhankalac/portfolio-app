@@ -12,7 +12,7 @@
     >
       <v-img
         alt="Avatar"
-        src="https://media.licdn.com/dms/image/C4D03AQG6CeTFvdRjSA/profile-displayphoto-shrink_800_800/0/1658758059106?e=1709164800&v=beta&t=q38Ub1eSc1oIGqRBj8eDGcfuxN0n9_7_JmgjPb1ox9I"
+        src="@/assets/profile_photo.jpg"
       ></v-img>
     </v-avatar>
     <div class="d-flex flex-column ga-2 ma-0 pa-0 text-greyText">

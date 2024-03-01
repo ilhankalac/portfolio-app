@@ -42,12 +42,13 @@
             'flex-row-reverse': index % 2 === 1
           }"
         >
-          <div class="font-weight-light text-greyText" v-html="project.description" />
+          <div class="font-weight-light text-greyText content-item" v-html="project.description" />
            
           <img
             :src="project.image"
             alt="Project Image"
-            class="fixed-size-image"
+            class="content-item"
+            style="box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);"
             :style="smAndDown ? 'width: 380px' : 'width: 450px'"
           />
         </div>
@@ -101,7 +102,7 @@ const projects = [
     description:
       "<p> I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic.<br /> <br /> To complement this, I developed a <a href='https://github.com/ilhankalac/covid-19-scraper' alt='Scraper' style='color: white;' target='_blank'>web scraper</a> using the Puppeteer library to fetch data from ijzcg.me since it doesn't have an API for this purpose, to achieve this I created a <a href='https://github.com/ilhankalac/covid-19-scraper/blob/main/.github/workflows/integrated.yml' alt='Scraper' style='color: white;' target='_blank'>YML script</a> that runs daily at a specific time to automate the scraping of data from ijzcg.me. </p>",
     icon: "mdi-virus",
-    image: "https://i.ibb.co/s6BzzcF/Screenshot-from-2024-02-24-19-32-56.png",
+    image: "https://i.ibb.co/dsTPST3/Screenshot-from-2024-03-01-21-31-07.png",
     technologies: [
       { id: 1, icon: "angular", name: "Angular" },
       { id: 2, icon: "firebase", name: "Firebase" },
@@ -120,10 +121,7 @@ const openLink = (link: string) => {
 </script>
 
 <style scoped>
-.fixed-size-image {
-  height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+.content-item {
+  flex: 1;
 }
 </style>
