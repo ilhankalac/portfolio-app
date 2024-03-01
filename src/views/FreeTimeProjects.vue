@@ -42,15 +42,16 @@
             'flex-row-reverse': index % 2 === 1
           }"
         >
-          <div class="font-weight-light text-greyText content-item" v-html="project.description" />
-           
-          <img
-            :src="project.image"
-            alt="Project Image"
-            class="content-item"
-            style="box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);"
-            :style="smAndDown ? 'width: 380px' : 'width: 450px'"
-          />
+          <div class="font-weight-light text-greyText" style="flex: 1;" v-html="project.description" />
+          
+          <div style="flex: 1;">
+            <img
+              :src="project.image"
+              alt="Project Image"
+              class="content-item"
+              style="box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5); border-radius: 5px; width: 100%; height: auto;"
+            />
+          </div>
         </div>
         <v-card-actions
           class="d-flex justify-space-between ma-0 pa-0 pt-2"
