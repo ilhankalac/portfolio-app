@@ -6,7 +6,7 @@
     :textColor="'white'"
     :colsNumber="12"
   >
-    <div v-for="(project, index) in projects" :key="index">
+    <div v-for="(project, index) in projects.reverse()" :key="index">
       <v-card outlined color="primary" elevation="0" class="mt-2">
         <v-card-title
           class="text-overline ma-0 pa-0"
@@ -21,7 +21,7 @@
               : 'font-size: 16px !important'
           "
         >
-          <v-icon left>{{ project.icon }}</v-icon>
+          <v-icon class="mb-1">{{ project.icon }}</v-icon>
           <span class="ml-2">{{ project.title }}</span>
         </v-card-title>
         <v-card-subtitle
@@ -49,7 +49,7 @@
               :src="project.image"
               alt="Project Image"
               class="content-item"
-              style="box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5); border-radius: 5px; width: 100%; height: auto;"
+              style="border-radius: 5px; width: 100%; height: auto;"
             />
           </div>
         </div>
@@ -80,7 +80,7 @@
             </v-btn>
           </div>
         </v-card-actions>
-      </v-card>
+      </v-card><br>
     </div>
   </Section>
 </template>
@@ -114,6 +114,23 @@ const projects = [
     live_demo: "https://covid-19-rozaje.web.app/",
     dateOfCreation: "January 2021.",
   },
+  {
+    title: 'Trash points for my hometown',
+    description: `<p> I've collaborated with  <a href='https://www.facebook.com/ocistimorozaje' alt='Scraper' style='color: white;' target='_blank'>local ecological volunteers</a> to develop an app where they can upload trash data and display it on a map for users to see online. </p> <br>
+      <p> I developed the frontend of the app using Vue 3, taking advantage of its reactivity and component-based structure. </p> <br>
+      <p>Firebase powers the backend of the app, providing features such as Firestore for database storage and Authentication for user management. </p>
+      <p>The interactive maps in the app are created using Leaflet, a lightweight JavaScript library known for its ease of use and extensive plugin support.</p>`,
+    icon: "mdi-trash-can",
+    image: "https://i.ibb.co/tZzdHZf/Screenshot-from-2024-03-02-18-59-29.png",
+    technologies: [
+      { id: 1, icon: "vuejs", name: "Vue.js" },
+      { id: 2, icon: "firebase", name: "Firebase" },
+      { id: 3, icon: "code-tags", name: "Leaflet" }
+    ],
+    source_code: "https://github.com/ilhankalac/rozaje-trash-points",
+    live_demo: "https://prod-rozaje-trash-points.web.app/",
+    dateOfCreation: "August 2021.",
+  }
 ];
 
 const openLink = (link: string) => {
