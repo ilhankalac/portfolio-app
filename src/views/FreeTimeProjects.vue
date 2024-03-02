@@ -58,7 +58,7 @@
           :class="{
             'flex-column ga-3': smAndDown,
             'flex-row': !smAndDown,
-            'flex-row-reverse': index % 2 === 1
+            'flex-row-reverse': index % 2 === 1 && !smAndDown
           }"
         >
           <div class="text-white">
