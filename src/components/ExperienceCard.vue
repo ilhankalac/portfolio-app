@@ -33,9 +33,10 @@
               size="10px"
               :key="experience.time"
               :fill-dot="true"
+              :hide-dot="true"
               dot-color="white"
             >
-              <div>
+              <div class="ml-2">
                 <div 
                   class="font-weight-normal d-flex justify-space-between"
                 >
