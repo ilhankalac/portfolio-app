@@ -18,6 +18,11 @@ const routes = [
     component: () => import('@/components/CreateRealtimeData.vue'),
     name: 'CreateRealtimeData',
   },
+  {
+    path: '/login',
+    component: () => import('@/views/Login.vue'),
+    name: 'Login',
+  }
 ]
 
 const router = createRouter({
