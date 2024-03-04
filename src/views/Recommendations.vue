@@ -35,16 +35,25 @@
           </div>
           <div class="d-flex ga-1 mt-3 text-white">
             <v-btn
+              v-if="recommendation.githubLink"
               flat
               variant="text"
               icon="mdi-github"
               @click="openLink(recommendation.githubLink)"
             />
             <v-btn
+              v-if="recommendation.linkedinLink"
               flat
               variant="text"
               icon="mdi-linkedin"
               @click="openLink(recommendation.linkedinLink)"
+            />
+            <v-btn
+              v-if="recommendation.instagramLink"
+              flat
+              variant="text"
+              icon="mdi-instagram"
+              @click="openLink(recommendation.instagramLink)"
             />
           </div>
         </div>
