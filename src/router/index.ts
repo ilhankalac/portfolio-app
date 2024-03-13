@@ -1,4 +1,5 @@
 // Composables
+import { firebaseAuth, _onAuthStateChanged } from '@/firebase'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -18,6 +19,17 @@ const routes = [
     component: () => import('@/components/CreateRealtimeData.vue'),
     name: 'CreateRealtimeData',
   },
+  {
+    path: '/login',
+    component: () => import('@/views/Login.vue'),
+    name: 'Login',
+  },
+  {
+    path: '/dashboard',
+    component: () => import('@/views/Dashboard.vue'),
+    name: 'Dashboard',
+    meta: { requiresAuth: true }
+  }
 ]
 
 const router = createRouter({
@@ -31,6 +43,30 @@ const router = createRouter({
       }
     } 
   },
+})
+
+const getCurrentUser = () => { 
+  return new Promise((resolve, reject) => {
+    const removeListener = _onAuthStateChanged(firebaseAuth, user => {
+      removeListener();
+      resolve(user);
+     }, reject);
+  })
+}
+
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!await getCurrentUser()) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

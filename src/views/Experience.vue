@@ -2,7 +2,7 @@
   <Section
     :class="'experience-section'"
     :header="'Experience'"
-    :customStyle="smAndDown ? 'min-height: 2250px; background: rgb(var(--v-theme-primary))' : 'min-height: 1700px; background: rgb(var(--v-theme-primary))'" 
+    :customStyle="smAndDown ? 'min-height: 1700px; background: rgb(var(--v-theme-primary))' : 'min-height: 1450px; background: rgb(var(--v-theme-primary))'" 
     :sectionId="'experience'"
   >
     <v-row v-if="!isDataLoaded" class="d-flex flex-column ga-3">
@@ -25,7 +25,7 @@
     </v-row>
 
     <span
-      class="text-h5 text-overline mr-2"
+      class="text-h5 text-overline mr-2 text-greyText"
       style="opacity: 0.5"
       :style="
         smAndDown ? 'font-size: 15px !important' : 'font-size: 16px !important'
@@ -67,27 +67,27 @@
           @click="openDialog(experience)"
         >
           <v-card 
-            class="pa-4 text-justify"
-            color="secondary"
+            class="text-justify"
+            color="primary"
             flat
           >
             <div class="d-flex justify-space-between align-center">
-              <div class="text-left font-weight-bold">
+              <div class="text-left font-weight-bold text-white">
                 {{ experience.title.toUpperCase() }}
               </div>
-              <span class="text-right font-weight-light" style="opacity: 0.5">
+              <span class="text-right font-weight-light text-greyText" style="opacity: 0.5">
                 {{ experience.position.toUpperCase() }}
               </span>
             </div>
-            <div class="d-flex justify-space-between mb-2" style="opacity: 0.5; font-size: 14px !important;">
+            <div class="d-flex justify-space-between mb-2 text-greyText" style="font-size: 14px !important;">
               <div class="font-weight-light">
                 {{ experience.date }}
-              </div>
+              </div> 
               <div>
                 <v-icon> mdi-map-marker </v-icon> {{ experience.location }}
               </div>
             </div>
-            <span class="font-weight-light" style="opacity: 0.9">
+            <span class="font-weight-light text-greyText">
               {{ experience.description }}
             </span>
   
@@ -175,14 +175,14 @@ onMounted(async () => {
   animation-range: entry 5% cover 20%;
 }
 
-@keyframes fade {
-  from {
-    opacity: 0
-  }
-  to {
-    opacity: 1
-  }
-}
+// @keyframes fade {
+//   from {
+//     opacity: 0
+//   }
+//   to {
+//     opacity: 1
+//   }
+// }
 :deep(.v-timeline-item) .v-timeline-item__body {
   padding: 5px !important;
 }

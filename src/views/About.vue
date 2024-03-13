@@ -4,7 +4,7 @@
     :class="'about-section'"
     :sectionId="'about'"
     header="About Me"
-    :customStyle="'background: rgb(var(--v-theme-secondary)); min-height: 33vh'"
+    :customStyle="'background: rgb(var(--v-theme-primary)); min-height: 33vh'"
     :textColor="'white'"
   > 
     <div class="font-weight-light text-justify">
@@ -15,7 +15,7 @@
           <BasicInfo /> <br>
         </div>
         <v-divider :thickness="2" vertical color="white"/>
-        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-secondary)));" class="text-white">
+        <v-sheet style="background: linear-gradient(rgb(var(--v-theme-primary)));" class="text-greyText">
 
           <p>
             I am a software developer who is passionate about creating user-friendly web experiences, skilled in Vue.js and TypeScript, focusing on building responsive and modern web applications. <br /> <br />
@@ -47,18 +47,18 @@ const { smAndDown } = useDisplay();
 </script>
 
 <style  scoped>
-.about-section {
+/* .about-section {
   animation: fade linear both;
   animation-timeline: view();
   animation-range: entry 5% cover 50%;
-}
+} */
 
-@keyframes fade {
+/* @keyframes fade {
   from {
     opacity: 0
   }
   to {
     opacity: 1
   }
-}
+} */
 </style>

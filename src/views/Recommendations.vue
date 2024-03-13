@@ -21,30 +21,39 @@
       v-for="recommendation in recommendations"
       class="text-justify font-weight-light text-white"
     >
-      <blockquote class="otro-blockquote font-weight-light mb-8 mt-4" :style="smAndDown ? 'padding:1.2em 30px 1.2em 38px;' : 'padding:1.2em 30px 1.2em 75px;'">
+      <blockquote class="otro-blockquote font-weight-light mb-8 mt-4" :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'">
         <div v-html="recommendation.textHtml"></div>
         <div class="d-flex justify-space-between align-center">
           <div class="pa-0 mt-5 d-flex align-center">
             <v-avatar size="60" color="white">
               <v-img :src="recommendation.avatarSrc" alt="avatar" />
             </v-avatar>
-            <div class="d-flex flex-column ml-3">
+            <div class="d-flex flex-column ml-3 text-white">
               <div>{{ recommendation.fullName }}</div>
-              <div style="opacity: 0.5">{{ recommendation.role }}</div>
+              <div class="text-white">{{ recommendation.role }}</div>
             </div>
           </div>
-          <div class="d-flex ga-1 mt-3">
+          <div class="d-flex ga-1 mt-3 text-white">
             <v-btn
+              v-if="recommendation.githubLink"
               flat
               variant="text"
               icon="mdi-github"
               @click="openLink(recommendation.githubLink)"
             />
             <v-btn
+              v-if="recommendation.linkedinLink"
               flat
               variant="text"
               icon="mdi-linkedin"
               @click="openLink(recommendation.linkedinLink)"
+            />
+            <v-btn
+              v-if="recommendation.instagramLink"
+              flat
+              variant="text"
+              icon="mdi-instagram"
+              @click="openLink(recommendation.instagramLink)"
             />
           </div>
         </div>
@@ -85,24 +94,24 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.recommendations-section {
-  animation: fade linear both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 50%;
-}
+// .recommendations-section {
+//   animation: fade linear both;
+//   animation-timeline: view();
+//   animation-range: entry 10% cover 50%;
+// }
 
-@keyframes fade {
-  from {
-    opacity: 0
-  }
-  to {
-    opacity: 1
-  }
-}
+// @keyframes fade {
+//   from {
+//     opacity: 0
+//   }
+//   to {
+//     opacity: 1
+//   }
+// }
 
 .otro-blockquote span{
   display:block;
-  color:white;
+  color: white;
   font-style: italic;
   font-weight: bold;
   margin-top:1em;
@@ -120,10 +129,10 @@ onMounted(async () => {
 }
 
 .otro-blockquote{
-  color: white;
-  border-left:4px solid white ;
+  color: rgb(var(--v-theme-greyText));
+  border-left: 4px solid rgb(var(--v-theme-greyText));
   line-height:1.6;
   position: relative;
-  background: rgb(var(--v-theme-secondary));
+  background: rgb(var(--v-theme-primary));
 }
 </style>

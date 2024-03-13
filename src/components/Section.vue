@@ -4,9 +4,9 @@
       :style="customStyle"
       fluid
     >
-      <div class="pb-5 text-center">
+      <div class="pb-5 pt-10 text-center">
         <p
-          :class="`text-center text-overline mb-1 text-grey-lighten-1`"
+          :class="`text-center text-overline mb-1 text-white`"
           :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
         >
           {{ header }}

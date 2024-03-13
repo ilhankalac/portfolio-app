@@ -2,13 +2,13 @@
   <v-progress-linear
     v-if="!isDataLoaded"
     indeterminate
-    color="secondary"
+    color="primary"
     style="z-index: 1100; position: absolute"
   />
 
   <nav
     class="nav-bar"
-    :style="isMenuClicked && smAndDown ? 'min-height: 42vh' : 'min-height: 6vh'"
+    :style="isMenuClicked && smAndDown ? 'min-height: 45vh' : 'min-height: 6vh'"
     :class="smAndDown ? 'flex-column' : 'd-flex justify-center align-center'"
   >
     <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
@@ -35,7 +35,7 @@
       class="d-flex"
       :class="smAndDown ? 'flex-column justify-center  slideOut' : 'justify-center'"
     > 
-      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-secondary));">
+      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-primary));">
         <v-list-item
           v-for="(item, i) in navButtons"
           item-title="name"
@@ -138,7 +138,7 @@ onMounted(() => {
 }
 .nav-bar {
   min-height: 6vh;
-  background-color: rgb(var(--v-theme-secondary));
+  background-color: rgb(var(--v-theme-primary));
   position: fixed;
   min-width: 100%;
   top: 0;
@@ -157,7 +157,7 @@ onMounted(() => {
     max-height: 1vh;
   }
   to {
-    max-height: 42vh;
+    max-height: 45vh;
   }
 }
 

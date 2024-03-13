@@ -1,6 +1,6 @@
 <template>
       <v-card 
-        color="secondary"
+        color="primary"
         flat
         style="overflow-y: auto !important;"
       >
@@ -19,7 +19,7 @@
         </div> -->
 
         <v-card-text class="ma-0 pa-0">
-          <div class="font-weight-light mt-2 mb-2">
+          <div class="font-weight-light mt-2 mb-2 text-greyText">
             Projects I worked on:
           </div>
 
@@ -33,21 +33,22 @@
               size="10px"
               :key="experience.time"
               :fill-dot="true"
+              :hide-dot="true"
               dot-color="white"
             >
-              <div>
+              <div class="ml-2">
                 <div 
                   class="font-weight-normal d-flex justify-space-between"
                 >
                   <div 
-                    class="d-flex ga-2 text-left flex-column"
+                    class="d-flex ga-2 text-left"
                   >
-                    <strong>{{ experience.name }}</strong>
+                    <strong>{{ experience.name }}</strong> <span class="text-greyText">{{ experience.startDate }} · {{ experience.endDate }}</span>
                     <span 
                       class="font-weight-light"
                       style="opacity: 0.5; font-size: 14px !important;" 
                     > 
-                    {{ experience.startDate }} · {{ experience.endDate }}
+                    
                     </span>
                   </div>
                   
@@ -58,7 +59,6 @@
                       v-if="experience.project_link"
                       flat
                       variant="text"
-                      :style="experience.project_link ? 'opacity: 0.8' : 'opacity: 0.3'"
                       @click="openLink(experience.project_link)"
                     >
                       <v-icon>mdi-code-tags</v-icon>
@@ -70,14 +70,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="font-weight-light my-3" style="opacity: 0.9">
+                <div class="font-weight-light my-3 text-greyText">
                   {{ experience.description }}
                 </div>
                 <div>
-                  <span class="text-subtitle-2">Technologies used:</span><br>
                   <div class="text-white ">
-                    <template v-for="tech in experience.technologies" :key="tech.id" color="secondary" class="">
-                      <v-chip label  link size="small" class="my-1 mr-1">
+                    <template v-for="tech in experience.technologies" :key="tech.id" class="">
+                      <v-chip label  link size="small" class="my-1 mr-1 text-greyText">
                         <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
                         {{ tech.name }}
                       </v-chip>
@@ -168,7 +167,7 @@ const skills = ref([
 
 .card-header {
   height: 50px;
-  background-color:  rgb(var(--v-theme-secondary)); 
+  background-color:  rgb(var(--v-theme-primary)); 
   position: sticky; 
   top: 0; 
   z-index: 1000;

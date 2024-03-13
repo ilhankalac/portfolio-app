@@ -15,5 +15,6 @@ export interface IColleagueInfo {
   textHtml: string
 	avatarSrc: string;
 	githubLink: string;
-	linkedinLink: string;
+  linkedinLink: string;
+  instagramLink: string;
 }

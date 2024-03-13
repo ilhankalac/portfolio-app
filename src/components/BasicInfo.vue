@@ -3,7 +3,7 @@
     class="d-flex align-center justify-space-between"
     :class="{ 'flex-column': !smAndDown }"
     flat
-    color="secondary"
+    color="primary"
   >
     <v-avatar
       :size="smAndDown ? '120' : '200'"
@@ -12,22 +12,22 @@
     >
       <v-img
         alt="Avatar"
-        src="https://media.licdn.com/dms/image/C4D03AQG6CeTFvdRjSA/profile-displayphoto-shrink_800_800/0/1658758059106?e=1709164800&v=beta&t=q38Ub1eSc1oIGqRBj8eDGcfuxN0n9_7_JmgjPb1ox9I"
+        src="@/assets/profile_photo.jpg"
       ></v-img>
     </v-avatar>
-    <div class="d-flex flex-column ga-2 ma-0 pa-0">
+    <div class="d-flex flex-column ga-2 ma-0 pa-0 text-greyText">
       <v-card-subtitle class="d-flex ga-3 font-weight-light">
         <v-icon> mdi-map-marker </v-icon> Montenegro
       </v-card-subtitle>
-      <v-card-subtitle d-subtitle class="d-flex ga-3 font-weight-light">
+      <v-card-subtitle class="d-flex ga-3 font-weight-light">
         <v-icon> mdi-email </v-icon>
         <a class="font-weight-light" href="mailto:ilhandeveloper@gmail.com">
           ilhandeveloper@gmail.com
         </a>
       </v-card-subtitle>
-      <v-card-subtitle class="d-flex ga-3 font-weight-light">
+      <v-card-subtitle class="d-flex ga-3 font-weight-light ">
         <v-icon> mdi-phone </v-icon>
-        <a href="tel:+38268186196" style="color: white; text-decoration: none">
+        <a href="tel:+38268186196">
           +382 68 186 196
         </a>
       </v-card-subtitle>
@@ -55,7 +55,7 @@ const { smAndDown } = useDisplay();
 
 <style scoped>
 a {
-  color: white;
+  color: rgb(var(--v-theme-greyText));;
   text-decoration: none;
 }
 </style>

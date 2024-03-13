@@ -14,7 +14,7 @@
         label="Your Email"
         color="white"
         variant="outlined"
-        bg-color="secondary"
+        bg-color="primary"
         @blur="validateEmail"
       /> <br>
 
@@ -23,7 +23,7 @@
         label="Your Message"
         color="white"
         variant="outlined"
-        bg-color="secondary"
+        bg-color="primary"
       />
   
       <v-btn

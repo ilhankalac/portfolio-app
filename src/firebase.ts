@@ -3,6 +3,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
@@ -17,5 +19,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseDatabase = getDatabase(firebaseApp);
+const firebaseAuth = getAuth(firebaseApp);
+const signIn = signInWithEmailAndPassword;
+const _onAuthStateChanged = onAuthStateChanged;
+const logOut = signOut;
 
-export { firebaseApp, firebaseDatabase };
+export { firebaseApp, firebaseDatabase, firebaseAuth, signIn, _onAuthStateChanged, logOut};
