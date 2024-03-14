@@ -47,7 +47,7 @@
 import router from "@/router";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
-import Section from "@/components/Section.vue";
+import Section from "@/components/landingPage/Section.vue";
 
 const navigationLinks = [
   { text: "Home", sectionId: "initial" },

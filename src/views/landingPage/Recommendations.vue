@@ -64,7 +64,7 @@
 <script lang="ts" setup>
 import { IColleagueInfo } from "@/types/other";
 import { useDisplay } from "vuetify";
-import Section from "@/components/Section.vue";
+import Section from "@/components/landingPage/Section.vue";
 import { onMounted, Ref, ref } from "vue";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";

@@ -109,8 +109,8 @@
 </template>
 
 <script lang="ts" setup>
-import ExperienceCard from "@/components/ExperienceCard.vue";
-import Section from "@/components/Section.vue";
+import ExperienceCard from "@/components/landingPage/ExperienceCard.vue";
+import Section from "@/components/landingPage/Section.vue";
 import { onMounted, ref } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();

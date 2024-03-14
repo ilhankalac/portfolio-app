@@ -41,8 +41,8 @@
 
 <script lang="ts" setup>
 import { useDisplay } from "vuetify";
-import Section from "@/components/Section.vue";
-import BasicInfo from "@/components/BasicInfo.vue";
+import Section from "@/components/landingPage/Section.vue";
+import BasicInfo from "@/components/landingPage/BasicInfo.vue";
 const { smAndDown } = useDisplay();
 </script>
 
