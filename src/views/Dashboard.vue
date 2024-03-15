@@ -1,7 +1,7 @@
 <template>
   <v-layout class="rounded rounded-md">
     <v-navigation-drawer
-      v-if="showNavigationDrawer"
+      v-model="showNavigationDrawer"
       color="secondary"
     >
       <v-list v-model:opened="openedGroups">
