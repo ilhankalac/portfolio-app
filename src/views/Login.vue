@@ -31,7 +31,7 @@ const login = async () => {
   console.log(email.value, password.value);
   try {
     await signIn(firebaseAuth, email.value, password.value).then(() => {
-      router.push('/');
+      router.push('/dashboard');
     });
   } catch (error) {
     console.error(error);
