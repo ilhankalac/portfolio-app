@@ -39,9 +39,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { firebaseAuth, logOut } from '@/firebase'
 import router from '@/router';
+import { useDisplay } from "vuetify";
 
 const sections = ref([
   {
@@ -75,6 +76,7 @@ const sections = ref([
   }
 ]);
 const openedGroups = ref(['Sections']);
+const { smAndDown } = useDisplay();
 const showNavigationDrawer = ref(true);
 
 const closeNavigationDrawer = () => {
@@ -85,6 +87,7 @@ let auth: any;
 
 onMounted(() => {
   auth = firebaseAuth;
+  smAndDown.value ? showNavigationDrawer.value = false : showNavigationDrawer.value = true;
 });
 
 const logout = async () => {
