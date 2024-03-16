@@ -25,9 +25,9 @@ const routes = [
     name: 'Login',
   },
   {
-    path: '/dashboard',
-    component: () => import('@/views/Dashboard.vue'),
-    name: 'Dashboard',
+    path: '/admin-panel',
+    component: () => import('@/views/AdminPanel.vue'),
+    name: 'AdminPanel',
     meta: { requiresAuth: true }
   }
 ]
