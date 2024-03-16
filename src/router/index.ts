@@ -26,9 +26,15 @@ const routes = [
   },
   {
     path: '/admin-panel',
-    component: () => import('@/views/AdminPanel.vue'),
+    component: () => import('@/layouts/AdminPanel.vue'),
     name: 'AdminPanel',
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: ':configure-about',
+        component: () => import('@/views/ConfigureAbout.vue'),
+      }
+    ]
   }
 ]
 

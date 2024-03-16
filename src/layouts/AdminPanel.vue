@@ -11,12 +11,11 @@
               v-bind="props"
               prepend-icon="mdi-account-circle"
               title="Portfolio Sections"
-              
             ></v-list-item>
           </template>
           <v-list-item
             v-for="item in sections"
-            @click=""
+            @click="openSection(item.path)"
           >
             <v-list-item-title> <v-icon class="mr-1"> mdi-{{ item.icon }} </v-icon> {{ item.name }}</v-list-item-title>
           </v-list-item>
@@ -26,15 +25,15 @@
 
     <v-app-bar color="secondary">
       <v-app-bar-nav-icon @click="closeNavigationDrawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application bar {{  }}</v-toolbar-title>
+      <v-toolbar-title style="cursor: pointer;" @click="router.push('/admin-panel')">Admin panel</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
-      Main Content
+    <v-main class="d-flex text-white">
+      <router-view />
     </v-main>
   </v-layout>
 </template>
@@ -47,7 +46,8 @@ import router from '@/router';
 const sections = ref([
   {
     name: 'Initial',
-    icon: 'ray-start-arrow'
+    icon: 'ray-start-arrow',
+    path: 'configure-about'
   },
   {
     name: 'About',
@@ -95,6 +95,10 @@ const logout = async () => {
   } catch (error) {
     console.error(error);
   }
+}
+
+const openSection = (path) => {
+  router.push('/admin-panel/' + path);
 }
 </script>
 
