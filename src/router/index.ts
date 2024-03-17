@@ -32,7 +32,7 @@ const routes = [
     children: [
       {
         path: ':configure-about',
-        component: () => import('@/views/ConfigureAbout.vue'),
+        component: () => import('@/views/Admin/ConfigureAbout.vue'),
       }
     ]
   }

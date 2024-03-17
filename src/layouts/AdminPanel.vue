@@ -46,13 +46,10 @@ import { useDisplay } from "vuetify";
 
 const sections = ref([
   {
-    name: 'Initial',
-    icon: 'ray-start-arrow',
-    path: 'configure-about'
-  },
-  {
     name: 'About',
-    icon: 'information'
+    icon: 'information',
+    path: 'configure-about'
+
   },
   {
     name: 'Experience',
