@@ -1,5 +1,29 @@
 <template>
-  <div>
-    <h3>Hi from about</h3>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-card  style="flex-grow: 1 !important;" color="secondary">
+          <v-card-title>
+            <span class="headline">About</span>
+          </v-card-title>
+          <v-card-text>
+            <v-textarea
+              label="Description"
+              v-model="description"
+            ></v-textarea>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="white"
+              variant="outlined"
+              @click="save"
+              block
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
