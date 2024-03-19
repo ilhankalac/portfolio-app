@@ -53,7 +53,8 @@ const sections = ref([
   },
   {
     name: 'Experience',
-    icon: 'list-box'
+    icon: 'list-box',
+    path: 'configure-experience'
   },
   {
     name: 'Free Time Projects',

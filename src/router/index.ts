@@ -33,6 +33,10 @@ const routes = [
       {
         path: ':configure-about',
         component: () => import('@/views/Admin/ConfigureAbout.vue'),
+      },
+      {
+        path: ':configure-experience',
+        component: () => import('@/views/Admin/ConfigureExperience.vue'),
       }
     ]
   }
