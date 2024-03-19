@@ -2,16 +2,14 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card style="flex-grow: 1 !important" color="secondary">
+        <v-card style="flex-grow: 1 !important" color="secondary" class="pa-4">
           <v-card-title>
-            <span class="headline">About</span>
+            <span>About</span>
           </v-card-title>
-            <QuillEditor v-model:content="description" contentType="html" theme="snow"></QuillEditor>
-          <v-card-actions>
-            <v-btn color="white" variant="outlined" @click="save" block>
-              Save
-            </v-btn>
-          </v-card-actions>
+          <QuillEditor v-model:content="description" contentType="html" theme="snow"></QuillEditor>
+          <v-btn color="white" class="mt-5" variant="outlined" @click="save" block>
+            Save
+          </v-btn>
         </v-card>
       </v-col>
     </v-row>
