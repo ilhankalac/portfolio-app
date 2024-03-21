@@ -40,7 +40,7 @@
     <v-dialog
       v-model="dialog"
       max-width="600"
-      height="600"
+      height="800"
     >
       <v-card color="primary">
         <v-card-title>
@@ -48,50 +48,51 @@
           <span v-else>Edit Experience</span>
         </v-card-title>
         <v-card-text>
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form>
             <v-text-field
               v-model="selectedExperience.title"
               label="Title"
               required
-            ></v-text-field>
-            <v-text-field
-              v-model="selectedExperience.company"
-              label="Company"
-              required
-            ></v-text-field>
+            />
             <v-text-field
               v-model="selectedExperience.location"
               label="Location"
               required
-            ></v-text-field>
+            />
+
             <v-text-field
-              v-model="selectedExperience.startDate"
-              label="Start Date"
+              v-model="selectedExperience.date"
+              label="Date"
               required
-            ></v-text-field>
-            <v-text-field
-              v-model="selectedExperience.endDate"
-              label="End Date"
-              required
-            ></v-text-field>
+            />
             <v-textarea
               v-model="selectedExperience.description"
               label="Description"
               required
-            ></v-textarea>
+            />
+            <v-text-field
+              v-model="selectedExperience.logoSrc"
+              label="Logo URL"
+              required
+            />
+            <v-text-field
+              v-model="selectedExperience.position"
+              label="Position"
+              required
+            />
           </v-form>
         </v-card-text>
         <v-card-actions class="d-flex justify-space-between mx-4">
           <v-btn
             variant="outlined"
-            @click="closeDialog"
+            @click="dialog = false"
           >
             Cancel
           </v-btn>
           <v-btn
             variant="outlined"
             width="200px"
-            @click="saveExperience"
+            @click="saveExperience(indexOfSelectedExperience)"
           >
             Save
           </v-btn>
@@ -102,47 +103,44 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { Ref, onMounted, ref } from 'vue';
 import { setVal, getVal } from '@/services/DataService'
 const experiences: any = ref([]);
 const dialog = ref(false);
-const selectedExperience = ref({
+const selectedExperience = ref<any>({
   title: "",
-  company: "",
   location: "",
-  startDate: "",
-  endDate: "",
   description: "",
+  date: "",
+  logoSrc: "",
+  position: "",
+  company_link: ""
 });
 
 const key = ref(['']);
+const indexOfSelectedExperience: Ref<string> = ref('0');
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
     if (fetchedData) {
       key.value = Object.keys(fetchedData);
-      console.log(key);
-      experiences.value = fetchedData[key.value[0]].reverse();
-      console.log(experiences.value);
+      experiences.value = fetchedData[key.value[0]];
     } else {
-      // Handle the case where the fetched data is null or undefined
       console.error("Error fetching data from Firebase.");
     }
   });
 };
 
 const openDialog = (experience = null) => {
-  console.log(experience);
   selectedExperience.value = experience;
+  indexOfSelectedExperience.value = experiences.value.indexOf(experience);
+  console.log(indexOfSelectedExperience.value);
+
   dialog.value = true;
 };
 
-const saveExperience = async () => {
-  if (selectedExperience.value) {
-    await setVal("working-experience", key.value, selectedExperience.value);
-  } else {
-    await setVal("working-experience", null, selectedExperience.value);
-  }
+const saveExperience = async (index: string) => {
+  await setVal("working-experience/" + key.value + '/' + indexOfSelectedExperience.value, selectedExperience.value);
   dialog.value = false;
   await getData();
 };
