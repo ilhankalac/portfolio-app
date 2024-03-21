@@ -21,13 +21,22 @@
               >
                 <div class="d-flex justify-space-between align-center py-2">
                   <v-list-item-title>{{ experience.title }}</v-list-item-title>
-                  <v-btn 
-                    icon 
-                    variant="text"
-                    @click="openDialog(experience)"
-                  >
-                    <v-icon>mdi-pencil</v-icon>
-                  </v-btn>
+                  <div>
+                    <v-btn 
+                      icon 
+                      variant="text"
+                      @click="openDialog(experience)"
+                    >
+                      <v-icon>mdi-domain</v-icon>
+                    </v-btn>
+                    <v-btn
+                      icon
+                      variant="text"
+                      @click="openDialog(experience, 'experience')"
+                    >
+                      <v-icon>mdi-briefcase</v-icon>
+                    </v-btn>
+                  </div>
                 </div>
                 <v-divider></v-divider>
               </v-list-item>
@@ -38,7 +47,7 @@
     </v-row>
 
     <v-dialog
-      v-model="dialog"
+      v-model="editCompanyDetailsDialog"
       max-width="600"
       height="800"
     >
@@ -85,7 +94,7 @@
         <v-card-actions class="d-flex justify-space-between mx-4">
           <v-btn
             variant="outlined"
-            @click="dialog = false"
+            @click="editCompanyDetailsDialog = false"
           >
             Cancel
           </v-btn>
@@ -99,6 +108,39 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      v-model="editExperiencesDialog"
+      max-width="600"
+      height="800"
+    >
+      <v-card color="primary">
+        <v-card-title>
+          <span>Edit Experience</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form>
+           
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="d-flex justify-space-between mx-4">
+          <v-btn
+            variant="outlined"
+            @click="editCompanyDetailsDialog = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            variant="outlined"
+            width="200px"
+            @click="saveExperience(indexOfSelectedExperience)"
+          >
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+
+    </v-dialog>
   </v-container>
 </template>
 
@@ -106,7 +148,8 @@
 import { Ref, onMounted, ref } from 'vue';
 import { setVal, getVal } from '@/services/DataService'
 const experiences: any = ref([]);
-const dialog = ref(false);
+const editCompanyDetailsDialog = ref(false);
+const editExperiencesDialog = ref(false);
 const selectedExperience = ref<any>({
   title: "",
   location: "",
@@ -131,17 +174,23 @@ const getData = async () => {
   });
 };
 
-const openDialog = (experience = null) => {
+const openDialog = (experience = null, from = null) => {
+
+  if(from === 'experience') {
+    selectedExperience.value = experience;
+    editExperiencesDialog.value = true;
+    return;
+  }
   selectedExperience.value = experience;
   indexOfSelectedExperience.value = experiences.value.indexOf(experience);
   console.log(indexOfSelectedExperience.value);
 
-  dialog.value = true;
+  editCompanyDetailsDialog.value = true;
 };
 
 const saveExperience = async (index: string) => {
   await setVal("working-experience/" + key.value + '/' + indexOfSelectedExperience.value, selectedExperience.value);
-  dialog.value = false;
+  editCompanyDetailsDialog.value = false;
   await getData();
 };
 
