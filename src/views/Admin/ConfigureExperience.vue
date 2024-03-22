@@ -120,7 +120,34 @@
         </v-card-title>
         <v-card-text>
           <v-form>
-           
+            <template v-for="(project, index) in selectedExperience.projects">
+              <p class="text-h6">{{ project.name }}</p>
+              <v-text-field
+                v-model="project.name"
+                label="Project Name"
+              />
+              <v-textarea
+                v-model="project.description"
+                label="Description"
+              />
+              <v-text-field
+                v-model="project.project_link"
+                label="Link"
+              />
+              <v-text-field
+                v-model="project.logoSrc"
+                label="Logo URL"
+              />
+              <v-text-field
+                v-model="project.startDate"
+                label="Start Date"
+              />
+              <v-text-field
+                v-model="project.endDate"
+                label="End Date"
+              />
+              <v-divider /> <br>
+            </template>
           </v-form>
         </v-card-text>
         <v-card-actions class="d-flex justify-space-between mx-4">
@@ -139,7 +166,6 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-
     </v-dialog>
   </v-container>
 </template>
@@ -162,6 +188,7 @@ const selectedExperience = ref<any>({
 
 const key = ref(['']);
 const indexOfSelectedExperience: Ref<string> = ref('0');
+const indexOfSelectedProject: Ref<string> = ref('0');
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
@@ -175,22 +202,22 @@ const getData = async () => {
 };
 
 const openDialog = (experience = null, from = null) => {
+  selectedExperience.value = experience;
+  indexOfSelectedExperience.value = experiences.value.indexOf(experience);
 
   if(from === 'experience') {
     selectedExperience.value = experience;
     editExperiencesDialog.value = true;
     return;
   }
-  selectedExperience.value = experience;
-  indexOfSelectedExperience.value = experiences.value.indexOf(experience);
-  console.log(indexOfSelectedExperience.value);
 
   editCompanyDetailsDialog.value = true;
 };
 
 const saveExperience = async (index: string) => {
-  await setVal("working-experience/" + key.value + '/' + indexOfSelectedExperience.value, selectedExperience.value);
+  await setVal(`working-experience/${key.value}/${indexOfSelectedExperience.value}`, selectedExperience.value);
   editCompanyDetailsDialog.value = false;
+  editExperiencesDialog.value = false;
   await getData();
 };
 
