@@ -1,6 +1,6 @@
 <template>
 	<div class="text-white d-flex justify-center align-center" style="min-height: 100vh;">
-    <div style="min-width: 500px;">
+    <div style="width: 500px;" class="ma-2">
       <v-text-field 
         v-model="email"
         label="Email"
