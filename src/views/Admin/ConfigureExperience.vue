@@ -201,7 +201,7 @@ const getData = async () => {
   });
 };
 
-const openDialog = (experience = null, from = null) => {
+const openDialog = (experience = null, from = '') => {
   selectedExperience.value = experience;
   indexOfSelectedExperience.value = experiences.value.indexOf(experience);
 

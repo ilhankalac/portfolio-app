@@ -98,7 +98,7 @@ const logout = async () => {
   }
 }
 
-const openSection = (path) => {
+const openSection = (path = '') => {
   router.push('/admin-panel/' + path);
 }
 </script>
