@@ -4,7 +4,7 @@
       <v-col>
         <v-card style="flex-grow: 1 !important" color="secondary" class="pb-4">
           <v-card-title class="d-flex justify-space-between">
-            <span>Experience</span>
+            <span>Configure experience </span>
             <v-btn
              icon
              variant="text"
@@ -54,7 +54,7 @@
       <v-card color="primary">
         <v-card-title>
           <span v-if="!selectedExperience">Add Experience</span>
-          <span v-else>Edit Experience</span>
+          <span v-else>Company configuration</span>
         </v-card-title>
         <v-card-text>
           <v-form>
@@ -204,7 +204,7 @@ const selectedExperience = ref<any>({
 const panel = ref<number[]>([0]);
 
 const key = ref(['']);
-const indexOfSelectedExperience: Ref<string> = ref('0');
+const indexOfSelectedExperience: Ref<string> = ref('');
 const indexOfSelectedProject: Ref<string> = ref('0');
 
 const getData = async () => {
@@ -219,8 +219,11 @@ const getData = async () => {
 };
 
 const openDialog = (experience = null, from = '') => {
-  selectedExperience.value = experience;
-  indexOfSelectedExperience.value = experiences.value.indexOf(experience);
+
+  if (!experience) {
+    selectedExperience.value = experience;
+    indexOfSelectedExperience.value = experiences.value.indexOf(experience);
+  }
 
   if(from === 'experience') {
     selectedExperience.value = experience;
@@ -233,7 +236,9 @@ const openDialog = (experience = null, from = '') => {
 };
 
 const saveExperience = async (index: string) => {
-  await setVal(`working-experience/${key.value}/${indexOfSelectedExperience.value}`, selectedExperience.value);
+  const finalIndex: any = indexOfSelectedExperience.value !== '' ? indexOfSelectedExperience.value : experiences.value.length;
+
+  await setVal(`working-experience/${key.value}/${finalIndex}`, selectedExperience.value);
   editCompanyDetailsDialog.value = false;
   editExperiencesDialog.value = false;
   await getData();
