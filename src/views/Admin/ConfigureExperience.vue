@@ -115,40 +115,56 @@
       height="800"
     >
       <v-card color="primary">
-        <v-card-title>
-          <span>Edit Experience</span>
+        <v-card-title class="d-flex justify-space-between">
+          <span>Experience</span>
+          <v-btn
+            icon
+            variant="text"
+            @click="openDialog"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
         </v-card-title>
         <v-card-text>
-          <v-form>
-            <template v-for="(project, index) in selectedExperience.projects">
-              <p class="text-h6">{{ project.name }}</p>
-              <v-text-field
-                v-model="project.name"
-                label="Project Name"
-              />
-              <v-textarea
-                v-model="project.description"
-                label="Description"
-              />
-              <v-text-field
-                v-model="project.project_link"
-                label="Link"
-              />
-              <v-text-field
-                v-model="project.logoSrc"
-                label="Logo URL"
-              />
-              <v-text-field
-                v-model="project.startDate"
-                label="Start Date"
-              />
-              <v-text-field
-                v-model="project.endDate"
-                label="End Date"
-              />
-              <v-divider /> <br>
-            </template>
-          </v-form>
+          <v-expansion-panels v-model="panel">
+            <v-expansion-panel
+              v-for="(project, index) in selectedExperience.projects"
+              :key="index"
+            >
+            <v-expansion-panel-title>
+              {{ project.name }}
+            </v-expansion-panel-title>
+            <v-expansion-panel-text>
+              <v-form>
+                  <v-text-field
+                    v-model="project.name"
+                    label="Project Name"
+                  />
+                  <v-textarea
+                    v-model="project.description"
+                    label="Description"
+                  />
+                  <v-text-field
+                    v-model="project.project_link"
+                    label="Link"
+                  />
+                  <v-text-field
+                    v-model="project.logoSrc"
+                    label="Logo URL"
+                  />
+                  <v-text-field
+                    v-model="project.startDate"
+                    label="Start Date"
+                  />
+                  <v-text-field
+                    v-model="project.endDate"
+                    label="End Date"
+                  />
+                  <v-divider /> <br>
+              </v-form>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+          </v-expansion-panels>
         </v-card-text>
         <v-card-actions class="d-flex justify-space-between mx-4">
           <v-btn
@@ -185,6 +201,7 @@ const selectedExperience = ref<any>({
   position: "",
   company_link: ""
 });
+const panel = ref<number[]>([0]);
 
 const key = ref(['']);
 const indexOfSelectedExperience: Ref<string> = ref('0');
@@ -208,6 +225,7 @@ const openDialog = (experience = null, from = '') => {
   if(from === 'experience') {
     selectedExperience.value = experience;
     editExperiencesDialog.value = true;
+    panel.value = [0];
     return;
   }
 
