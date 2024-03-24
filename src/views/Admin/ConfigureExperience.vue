@@ -120,7 +120,7 @@
           <v-btn
             icon
             variant="text"
-            @click="openDialog"
+            @click="addProject"
           >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
@@ -128,7 +128,7 @@
         <v-card-text>
           <v-expansion-panels v-model="panel">
             <v-expansion-panel
-              v-for="(project, index) in selectedExperience.projects"
+              v-for="(project, index) in selectedExperience.projects.reverse()"
               :key="index"
             >
             <v-expansion-panel-title>
@@ -242,6 +242,18 @@ const saveExperience = async (index: string) => {
   editCompanyDetailsDialog.value = false;
   editExperiencesDialog.value = false;
   await getData();
+};
+
+const addProject = () => {
+  selectedExperience.value.projects.push({
+    name: "",
+    description: "",
+    project_link: "",
+    logoSrc: "",
+    startDate: "",
+    endDate: ""
+  });
+  indexOfSelectedExperience.value = experiences.value.indexOf(selectedExperience.value);
 };
 
 onMounted(async () => {
