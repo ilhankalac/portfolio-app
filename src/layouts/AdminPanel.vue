@@ -2,7 +2,7 @@
   <v-layout class="rounded rounded-md">
     <v-navigation-drawer
       v-model="showNavigationDrawer"
-      color="secondary"
+      color="primary"
     >
       <v-list v-model:opened="openedGroups">
         <v-list-group :isOpen="true" value="Sections">
@@ -23,7 +23,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar color="secondary">
+    <v-app-bar color="primary">
       <v-app-bar-nav-icon @click="closeNavigationDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="cursor: pointer;" @click="router.push('/admin-panel')">Admin panel</v-toolbar-title>
       <v-spacer></v-spacer>
