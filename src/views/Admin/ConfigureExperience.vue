@@ -126,9 +126,9 @@
           </v-btn>
         </v-card-title>
         <v-card-text>
-          <v-expansion-panels v-model="panel">
+          <v-expansion-panels>
             <v-expansion-panel
-              v-for="(project, index) in selectedExperience.projects.reverse()"
+              v-for="(project, index) in selectedExperience.projects"
               :key="index"
             >
             <v-expansion-panel-title>
@@ -201,7 +201,6 @@ const selectedExperience = ref<any>({
   position: "",
   company_link: ""
 });
-const panel = ref<number[]>([0]);
 
 const key = ref(['']);
 const indexOfSelectedExperience: Ref<string> = ref('');
@@ -219,7 +218,6 @@ const getData = async () => {
 };
 
 const openDialog = (experience = null, from = '') => {
-
   if (!experience) {
     selectedExperience.value = experience;
     indexOfSelectedExperience.value = experiences.value.indexOf(experience);
@@ -228,7 +226,6 @@ const openDialog = (experience = null, from = '') => {
   if(from === 'experience') {
     selectedExperience.value = experience;
     editExperiencesDialog.value = true;
-    panel.value = [0];
     return;
   }
 
