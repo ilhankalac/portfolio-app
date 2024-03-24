@@ -5,16 +5,12 @@
         <v-card style="flex-grow: 1 !important" color="secondary" class="pb-4">
           <v-card-title class="d-flex justify-space-between">
             <span>Configure experience </span>
-            <v-btn
-             icon
-             variant="text"
-             @click="openDialog"
-            >
+            <v-btn icon variant="text" @click="openDialog">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </v-card-title>
           <div color="secondary">
-            <v-list-item-group >
+            <v-list-item-group>
               <v-list-item
                 v-for="experience in experiences"
                 :key="experience.id"
@@ -22,11 +18,7 @@
                 <div class="d-flex justify-space-between align-center py-2">
                   <v-list-item-title>{{ experience.title }}</v-list-item-title>
                   <div>
-                    <v-btn 
-                      icon 
-                      variant="text"
-                      @click="openDialog(experience)"
-                    >
+                    <v-btn icon variant="text" @click="openDialog(experience)">
                       <v-icon>mdi-domain</v-icon>
                     </v-btn>
                     <v-btn
@@ -46,11 +38,7 @@
       </v-col>
     </v-row>
 
-    <v-dialog
-      v-model="editCompanyDetailsDialog"
-      max-width="600"
-      height="800"
-    >
+    <v-dialog v-model="editCompanyDetailsDialog" max-width="600" height="800">
       <v-card color="primary">
         <v-card-title>
           <span v-if="!selectedExperience">Add Experience</span>
@@ -92,10 +80,7 @@
           </v-form>
         </v-card-text>
         <v-card-actions class="d-flex justify-space-between mx-4">
-          <v-btn
-            variant="outlined"
-            @click="editCompanyDetailsDialog = false"
-          >
+          <v-btn variant="outlined" @click="editCompanyDetailsDialog = false">
             Cancel
           </v-btn>
           <v-btn
@@ -109,19 +94,11 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog
-      v-model="editExperiencesDialog"
-      max-width="600"
-      height="800"
-    >
+    <v-dialog v-model="editExperiencesDialog" max-width="600" height="800">
       <v-card color="primary">
         <v-card-title class="d-flex justify-space-between">
           <span>Experience</span>
-          <v-btn
-            icon
-            variant="text"
-            @click="addProject"
-          >
+          <v-btn icon variant="text" @click="addProject">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-card-title>
@@ -131,46 +108,55 @@
               v-for="(project, index) in selectedExperience.projects"
               :key="index"
             >
-            <v-expansion-panel-title>
-              {{ project.name }}
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              <v-form>
-                  <v-text-field
-                    v-model="project.name"
-                    label="Project Name"
-                  />
+              <v-expansion-panel-title>
+                {{ project.name }}
+              </v-expansion-panel-title>
+              <v-expansion-panel-text>
+                <v-form>
+                  <v-text-field v-model="project.name" label="Project Name" />
                   <v-textarea
                     v-model="project.description"
                     label="Description"
                   />
-                  <v-text-field
-                    v-model="project.project_link"
-                    label="Link"
-                  />
-                  <v-text-field
-                    v-model="project.logoSrc"
-                    label="Logo URL"
-                  />
+                  <v-text-field v-model="project.project_link" label="Link" />
+                  <v-text-field v-model="project.logoSrc" label="Logo URL" />
                   <v-text-field
                     v-model="project.startDate"
                     label="Start Date"
                   />
-                  <v-text-field
-                    v-model="project.endDate"
-                    label="End Date"
-                  />
-                  <v-divider /> <br>
-              </v-form>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
+                  <v-text-field v-model="project.endDate" label="End Date" />
+                  Technologies
+                  <div
+                    v-for="(tech, index) in project.technologies"
+                    class="d-flex ga-2"
+                  >
+                    <v-text-field v-model="tech.name" label="Technology" />
+                    <v-text-field v-model="tech.icon" label="Icon" />
+                    <v-btn
+                      v-if="project.technologies.length - 1 === index"
+                      icon
+                      variant="text"
+                      @click="project.technologies.push({ name: '', icon: '' })"
+                    >
+                      <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                    <v-btn
+                      v-else
+                      icon
+                      variant="text"
+                      @click="project.technologies.splice(index, 1)"
+                    >
+                      <v-icon>mdi-minus</v-icon>
+                    </v-btn>
+                  </div>
+                  <v-divider /> <br />
+                </v-form>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
           </v-expansion-panels>
         </v-card-text>
         <v-card-actions class="d-flex justify-space-between mx-4">
-          <v-btn
-            variant="outlined"
-            @click="editCompanyDetailsDialog = false"
-          >
+          <v-btn variant="outlined" @click="editCompanyDetailsDialog = false">
             Cancel
           </v-btn>
           <v-btn
@@ -187,8 +173,8 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, onMounted, ref } from 'vue';
-import { setVal, getVal } from '@/services/DataService'
+import { Ref, onMounted, ref } from "vue";
+import { setVal, getVal } from "@/services/DataService";
 const experiences: any = ref([]);
 const editCompanyDetailsDialog = ref(false);
 const editExperiencesDialog = ref(false);
@@ -199,12 +185,11 @@ const selectedExperience = ref<any>({
   date: "",
   logoSrc: "",
   position: "",
-  company_link: ""
+  company_link: "",
 });
 
-const key = ref(['']);
-const indexOfSelectedExperience: Ref<string> = ref('');
-const indexOfSelectedProject: Ref<string> = ref('0');
+const key = ref([""]);
+const indexOfSelectedExperience: Ref<string> = ref("");
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
@@ -217,15 +202,16 @@ const getData = async () => {
   });
 };
 
-const openDialog = (experience = null, from = '') => {
+const openDialog = (experience = null, from = "") => {
   if (!experience) {
     selectedExperience.value = experience;
     indexOfSelectedExperience.value = experiences.value.indexOf(experience);
   }
 
-  if(from === 'experience') {
+  if (from === "experience") {
     selectedExperience.value = experience;
     editExperiencesDialog.value = true;
+    indexOfSelectedExperience.value = experiences.value.indexOf(experience);
     return;
   }
 
@@ -233,9 +219,15 @@ const openDialog = (experience = null, from = '') => {
 };
 
 const saveExperience = async (index: string) => {
-  const finalIndex: any = indexOfSelectedExperience.value !== '' ? indexOfSelectedExperience.value : experiences.value.length;
+  const finalIndex: any =
+    indexOfSelectedExperience.value !== ""
+      ? indexOfSelectedExperience.value
+      : experiences.value.length;
 
-  await setVal(`working-experience/${key.value}/${finalIndex}`, selectedExperience.value);
+  await setVal(
+    `working-experience/${key.value}/${finalIndex}`,
+    selectedExperience.value
+  );
   editCompanyDetailsDialog.value = false;
   editExperiencesDialog.value = false;
   await getData();
@@ -248,9 +240,11 @@ const addProject = () => {
     project_link: "",
     logoSrc: "",
     startDate: "",
-    endDate: ""
+    endDate: "",
   });
-  indexOfSelectedExperience.value = experiences.value.indexOf(selectedExperience.value);
+  indexOfSelectedExperience.value = experiences.value.indexOf(
+    selectedExperience.value
+  );
 };
 
 onMounted(async () => {
