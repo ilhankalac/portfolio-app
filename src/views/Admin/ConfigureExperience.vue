@@ -5,7 +5,7 @@
         <v-card style="flex-grow: 1 !important" color="secondary" class="pb-4">
           <v-card-title class="d-flex justify-space-between">
             <span>Configure experience </span>
-            <v-btn icon variant="text" @click="openDialog">
+            <v-btn icon variant="text" @click="openDialog(null)">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </v-card-title>
@@ -108,7 +108,7 @@
               v-for="(project, index) in selectedExperience.projects"
               :key="index"
             >
-              <v-expansion-panel-title>
+              <v-expansion-panel-title color="secondary">
                 {{ project.name }}
               </v-expansion-panel-title>
               <v-expansion-panel-text>
@@ -203,8 +203,29 @@ const getData = async () => {
 };
 
 const openDialog = (experience = null, from = "") => {
+  console.log(experience);
   if (!experience) {
-    indexOfSelectedExperience.value = experiences.value.indexOf(experience);
+    indexOfSelectedExperience.value = experiences.value.length;
+    selectedExperience.value = {
+      title: "",
+      location: "",
+      description: "",
+      date: "",
+      logoSrc: "",
+      position: "",
+      company_link: "",
+      projects: [
+        {
+          name: "",
+          description: "",
+          project_link: "",
+          logoSrc: "",
+          startDate: "",
+          endDate: "",
+          technologies: [{ name: "", icon: "" }],
+        },
+      ],
+    };
   }
 
   if (from === "experience") {
