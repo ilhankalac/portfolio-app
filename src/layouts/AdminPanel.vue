@@ -62,7 +62,8 @@ const sections = ref([
   },
   {
     name: 'Recommendations',
-    icon: 'account-group'
+    icon: 'account-group',
+    path: 'configure-recommendations'
   },
   {
     name: 'Skills',
