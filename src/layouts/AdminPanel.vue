@@ -32,7 +32,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main class="d-flex text-white">
+    <v-main class="text-white">
       <router-view />
     </v-main>
   </v-layout>
