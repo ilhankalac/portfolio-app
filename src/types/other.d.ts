@@ -9,12 +9,13 @@ export interface IExperience {
 }
 
 export interface IColleagueInfo {
-	id: number;
-	fullName: string;
-  role: string;
-  textHtml: string
-	avatarSrc: string;
-	githubLink: string;
-  linkedinLink: string;
-  instagramLink: string;
+	id?: number;
+	fullName?: string;
+  role?: string;
+  textHtml?: string
+	avatarSrc?: string;
+	githubLink?: string;
+  linkedinLink?: string;
+  instagramLink?: string;
+  showPublic?: boolean;
 }
