@@ -58,8 +58,8 @@ import { setVal } from "@/services/DataService";
 
 const props = defineProps<{
   selectedRecommendation: IColleagueInfo;
-  selectedRecommendationIndex: number;
-  origin: string;
+  selectedRecommendationIndex?: number;
+  origin?: string;
 }>();
 
 const emit = defineEmits(['close']);
