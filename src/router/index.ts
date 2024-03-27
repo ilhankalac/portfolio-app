@@ -25,6 +25,10 @@ const routes = [
     name: 'Login',
   },
   {
+    path: '/write-recommendation',
+    component: () => import('@/components/WriteRecommendation.vue'),
+  },
+  {
     path: '/admin-panel',
     component: () => import('@/layouts/AdminPanel.vue'),
     name: 'AdminPanel',
