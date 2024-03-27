@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: '/write-recommendation',
-    component: () => import('@/components/WriteRecommendation.vue'),
+    component: () => import('@/views/WriteRecommendation.vue'),
   },
   {
     path: '/admin-panel',

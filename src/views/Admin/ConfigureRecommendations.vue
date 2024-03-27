@@ -17,51 +17,12 @@
     </template>
   </div>
   <v-dialog v-model="editRecommendationDialog" max-width="800">
-    <v-card color="primary">
-      <v-card-title>
-        <h3>{{ selectedRecommendation?.fullName }}</h3>
-      </v-card-title>
-      <v-card-text>
-        <v-text-field 
-          v-model="selectedRecommendation.fullName"
-          label="Full Name"
-          required
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.role"
-          label="Role"
-          required
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.avatarSrc"
-          label="Avatar URL"
-          required
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.githubLink"
-          label="GitHub Link"
-          required
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.linkedinLink"
-          label="LinkedIn Link"
-          required
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.instagramLink"
-          label="Instagram link"
-          required
-        />
-        <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor>
-        <v-checkbox
-          v-model="selectedRecommendation.showPublic" 
-          label="Show Public"
-        />
-      </v-card-text>
-      <v-card-actions>
-        <v-btn block variant="outlined" @click="save">Save</v-btn>
-      </v-card-actions>
-    </v-card>
+    <EditRecommendation 
+      :selectedRecommendation="selectedRecommendation" 
+      :selectedRecommendationIndex="selectedRecommendationIndex"
+      :origin="'configure'"
+      @close="editRecommendationDialog = false"
+    />
   </v-dialog>
 </template>
 
@@ -69,11 +30,10 @@
 import { getVal, setVal } from "@/services/DataService";
 import { IColleagueInfo } from "@/types/other";
 import { onMounted, ref, Ref } from "vue";
-import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { useDisplay } from "vuetify";
+import EditRecommendation from "@/components/EditRecommendation.vue";
 
-const { smAndDown } = useDisplay();
 const recommendations: Ref<IColleagueInfo[]> = ref([]);
 const isDataLoaded = ref(false);
 const editRecommendationDialog = ref(false);
@@ -98,16 +58,10 @@ const getData = async () => {
     }
   });
 };
-
 const openDialog = (element: any) => {
   selectedRecommendation.value = element;
   selectedRecommendationIndex.value = recommendations.value.indexOf(element);
   editRecommendationDialog.value = true;
-};
-
-const save = async () => {
-  setVal('recommendations/' + selectedRecommendationIndex.value, selectedRecommendation.value);
-  editRecommendationDialog.value = false;
 };
 
 onMounted(async () => {
