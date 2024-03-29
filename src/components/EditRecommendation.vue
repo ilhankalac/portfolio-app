@@ -1,8 +1,11 @@
 <template>
-  <div class="text-white text-center">
+  <div class="text-white">
     <v-card color="primary" :max-height="origin === 'configure' ? 700 : null" style="overflow-y: auto">
       <v-card-title v-if="origin === 'configure'">
         <h3>{{ props.selectedRecommendation?.fullName }}</h3>
+      </v-card-title>
+      <v-card-title v-else class="font-weight-light">
+      <p class="text-subtitle">Write recommendation for Ilhan Kalač</p>
       </v-card-title>
       <v-card-text>
         <v-text-field 
@@ -15,8 +18,10 @@
           label="Role"
           required
         />
-        <p class="text-left mb-2"> This is where you can share why you'd recommend me as a frontend engineer. Your insights provide valuable perspective for potential collaborators and employers. Let's showcase my skills and professionalism together!</p>
-        <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor> <br>
+        <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor> 
+        <p style="opacity:0.6; font-size: smaller;" class="text-left mb-2"> 
+          This is where you can share why you'd recommend me as a frontend engineer. Your insights provide valuable perspective for potential collaborators and employers. Let's showcase my skills and professionalism together!
+        </p>
         <v-text-field 
           v-model="selectedRecommendation.avatarSrc"
           label="Avatar URL"
@@ -38,8 +43,10 @@
           required
         />
         <v-checkbox
+          v-if="origin === 'configure'"
           v-model="selectedRecommendation.showPublic" 
           label="Show Public"
+          class="ma-0 pa-0"
         />
       </v-card-text>
       <v-card-actions>
@@ -51,7 +58,6 @@
 
 <script lang="ts" setup>
 import { IColleagueInfo } from "@/types/other";
-import { ref } from "vue";
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { setVal } from "@/services/DataService";

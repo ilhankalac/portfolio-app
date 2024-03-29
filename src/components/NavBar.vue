@@ -87,6 +87,10 @@ const navButtons = [
 
 ];
 
+const props = defineProps<{
+  origin?: string;
+}>();
+
 const isDataLoaded = ref(false);
 onMounted(() => {
   setTimeout(() => {
@@ -95,6 +99,13 @@ onMounted(() => {
 });
 
 const changeTheRoute = (sectionId: string = "") => {
+  if(props.origin === 'configure') {
+    router.push('/').then(() => {
+      router.push({ hash: '#' + sectionId });
+    });
+    return;
+  }
+
   if (sectionId === 'initial') {
     router.push({ path: '/' });
     window.scrollTo({
