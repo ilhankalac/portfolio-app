@@ -1,22 +1,22 @@
 <template>
   <div class="text-white">
-    <v-card color="primary" :max-height="origin === 'configure' ? 700 : null" style="overflow-y: auto">
-      <v-card-title v-if="origin === 'configure'">
-        <h3>{{ props.selectedRecommendation?.fullName }}</h3>
+    <v-card color="primary" :max-height="origin === 'configure' ? 800 : null" style="overflow-y: auto">
+      <v-card-title style="background-color: rgb(var(--v-theme-secondary))" v-if="origin === 'configure'">
+        <p class="font-weight-light">Edit {{ props.selectedRecommendation?.fullName }}'s recommendation</p>
       </v-card-title>
       <v-card-title v-else class="font-weight-light">
       <p class="text-subtitle">Write recommendation for Ilhan Kalač</p>
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="mb-0 pb-0"><br>
         <v-text-field 
           v-model="props.selectedRecommendation.fullName"
           label="Full Name"
-          required
+          density="compact"
         />
         <v-text-field 
           v-model="selectedRecommendation.role"
           label="Role"
-          required
+          density="compact"
         />
         <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor> 
         <p style="opacity:0.6; font-size: smaller;" class="text-left mb-2"> 
@@ -24,29 +24,33 @@
         </p>
         <v-text-field 
           v-model="selectedRecommendation.avatarSrc"
-          label="Avatar URL"
-          required
+          label="Image URL of your Avatar"
+          prepend-inner-icon="mdi-link"
+          density="compact"
         />
         <v-text-field 
           v-model="selectedRecommendation.githubLink"
           label="GitHub Link"
-          required
+          prepend-inner-icon="mdi-github"
+          density="compact"
         />
         <v-text-field 
           v-model="selectedRecommendation.linkedinLink"
           label="LinkedIn Link"
-          required
+          prepend-inner-icon="mdi-linkedin"
+          density="compact"
         />
         <v-text-field 
           v-model="selectedRecommendation.instagramLink"
           label="Instagram link"
-          required
+          prepend-inner-icon="mdi-instagram"
+          density="compact"
         />
         <v-checkbox
           v-if="origin === 'configure'"
           v-model="selectedRecommendation.showPublic" 
           label="Show Public"
-          class="ma-0 pa-0"
+          density="compact"
         />
       </v-card-text>
       <v-card-actions>
