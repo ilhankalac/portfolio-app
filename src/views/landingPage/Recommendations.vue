@@ -59,6 +59,10 @@
         </div>
       </blockquote>
     </div>
+    <div class="text-greyText font-weight-light" style="font-size: smaller;">
+      <p>Feel free to share your recommendation if you've collaborated with me by clicking <strong class="font-weight-bold" style="text-decoration: underline; cursor: pointer; " @click="openWriteRecommendation">on this link</strong>.</p>
+      <p>Note: It will be displayed here after the admin approves it.</p>
+    </div>
   </Section>
 </template>
 <script lang="ts" setup>
@@ -68,6 +72,9 @@ import Section from "@/components/landingPage/Section.vue";
 import { onMounted, Ref, ref } from "vue";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const recommendations: Ref<IColleagueInfo[]> = ref([]);
 const isDataLoaded = ref(false);
@@ -86,6 +93,10 @@ const getData = async () => {
 
 const openLink = (link: string) => {
   window.open(link);
+};
+
+const openWriteRecommendation = () => {
+  router.push({ name: "WriteRecommendation" });
 };
 
 onMounted(async () => {
