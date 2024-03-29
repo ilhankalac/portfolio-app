@@ -1,6 +1,6 @@
 <template>
   <div class="text-white">
-    <v-card color="primary" :max-height="origin === 'configure' ? 800 : null" style="overflow-y: auto">
+    <v-card color="primary" max-height="800" style="overflow-y: auto">
       <v-card-title style="background-color: rgb(var(--v-theme-secondary))" v-if="origin === 'configure'">
         <p class="font-weight-light">Edit {{ props.selectedRecommendation?.fullName }}'s recommendation</p>
       </v-card-title>
