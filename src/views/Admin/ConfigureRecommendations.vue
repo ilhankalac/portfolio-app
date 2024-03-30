@@ -1,7 +1,7 @@
 <template>
   <div class="card-container ma-2">
-    <template v-for="(recommendation, index) in recommendations" :key="index">
-      <v-card class="card ma-2" color="secondary" @click="openDialog(recommendation)">
+    <template v-for="(recommendation, key) in recommendations" :key="index">
+      <v-card class="card ma-2" color="secondary" @click="openDialog(recommendation, key)">
         <v-card-title>
           <div class="d-flex justify-space-between align-center">
             <div>
@@ -58,11 +58,12 @@ const getData = async () => {
     }
   });
 };
-const openDialog = (element: any) => {
+const openDialog = (element: any, key:any) => {
   selectedRecommendation.value = element;
-  selectedRecommendationIndex.value = recommendations.value.indexOf(element);
+  selectedRecommendationIndex.value = key;
   editRecommendationDialog.value = true;
 };
+
 
 onMounted(async () => {
   await getData();

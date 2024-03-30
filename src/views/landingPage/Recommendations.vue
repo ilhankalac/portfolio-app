@@ -82,7 +82,13 @@ const isDataLoaded = ref(false);
 const getData = async () => {
   await getVal("recommendations").then((fetchedData) => {
     if (fetchedData) {
-      recommendations.value = fetchedData.filter((recommendation: IColleagueInfo) => recommendation.showPublic);
+      let result: any = [];
+      Object.keys(fetchedData).forEach((key, index) => {
+          if (fetchedData[key].showPublic) {
+            result.push(fetchedData[key]);
+          }
+      });  
+      recommendations.value = result; 
       isDataLoaded.value = true;
     } else {
       // Handle the case where the fetched data is null or undefined
