@@ -27,11 +27,10 @@
 </template>
 
 <script lang="ts" setup>
-import { getVal, setVal } from "@/services/DataService";
+import { getVal } from "@/services/DataService";
 import { IColleagueInfo } from "@/types/other";
 import { onMounted, ref, Ref } from "vue";
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import { useDisplay } from "vuetify";
 import EditRecommendation from "@/components/EditRecommendation.vue";
 
 const recommendations: Ref<IColleagueInfo[]> = ref([]);
@@ -58,12 +57,12 @@ const getData = async () => {
     }
   });
 };
+
 const openDialog = (element: any, key:any) => {
   selectedRecommendation.value = element;
   selectedRecommendationIndex.value = key;
   editRecommendationDialog.value = true;
 };
-
 
 onMounted(async () => {
   await getData();
@@ -77,7 +76,7 @@ onMounted(async () => {
 }
 .card {
   box-sizing: border-box;
-  flex: 1 0 300px;
+  flex: 1 0 200px;
   margin: 1rem;
   border: 1px solid #000;
   border-radius: 5px;
