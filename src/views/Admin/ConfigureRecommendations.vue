@@ -1,7 +1,12 @@
 <template>
   <div class="card-container ma-2">
-    <template v-for="(recommendation, key) in recommendations" :key="index">
-      <v-card class="card ma-2" color="secondary" @click="openDialog(recommendation, key)">
+    <template v-for="(recommendation, key, index) in recommendations" :key="index">
+      <v-card 
+        class="card ma-2" 
+        color="secondary" 
+        style="border: 1px solid #000;"
+        @click="openDialog(recommendation, key)"
+      >
         <v-card-title>
           <div class="d-flex justify-space-between align-center">
             <div>
@@ -14,6 +19,7 @@
           </div>
         </v-card-title>
       </v-card>
+      <div class="card ma-2" v-if="index === Object.keys(recommendations).length - 1 && Object.keys(recommendations).length % 2 === 1" />
     </template>
   </div>
   <v-dialog v-model="editRecommendationDialog" max-width="800">
@@ -75,10 +81,8 @@ onMounted(async () => {
   flex-wrap: wrap;
 }
 .card {
-  box-sizing: border-box;
-  flex: 1 0 200px;
+  flex: 1 0 46%;
   margin: 1rem;
-  border: 1px solid #000;
   border-radius: 5px;
 }
 </style>

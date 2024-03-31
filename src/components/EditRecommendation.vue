@@ -115,6 +115,8 @@ const save = async () => {
   }
   if(props.origin === 'write-recommendation') {
     pushVal('recommendations', props.selectedRecommendation);
+    form.value?.reset();
+    props.selectedRecommendation.textHtml = '';
     snackbar.value = true;
 
     setTimeout(() => {
