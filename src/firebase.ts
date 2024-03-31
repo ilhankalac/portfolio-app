@@ -1,6 +1,3 @@
-// firebase.ts
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
@@ -16,6 +13,7 @@ const firebaseConfig = {
 	measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENT_ID,
 	databaseURL: import.meta.env.VITE_APP_FIREBASE_DATABASE_URL,
 };
+
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseDatabase = getDatabase(firebaseApp);
