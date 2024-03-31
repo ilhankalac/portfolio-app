@@ -32,7 +32,7 @@
           </p>
           <v-text-field 
             v-model="selectedRecommendation.avatarSrc"
-            label="Image URL of your Avatar"
+            label="Profile Image URL"
             prepend-inner-icon="mdi-link"
             density="compact"
             required
@@ -40,19 +40,19 @@
           />
           <v-text-field 
             v-model="selectedRecommendation.githubLink"
-            label="GitHub Link"
+            label="GitHub URL"
             prepend-inner-icon="mdi-github"
             density="compact"
           />
           <v-text-field 
             v-model="selectedRecommendation.linkedinLink"
-            label="LinkedIn Link"
+            label="LinkedIn URL"
             prepend-inner-icon="mdi-linkedin"
             density="compact"
           />
           <v-text-field 
             v-model="selectedRecommendation.instagramLink"
-            label="Instagram link"
+            label="Instagram URL"
             prepend-inner-icon="mdi-instagram"
             density="compact"
           />
