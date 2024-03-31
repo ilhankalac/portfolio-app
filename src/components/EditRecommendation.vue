@@ -8,55 +8,76 @@
       <p class="text-subtitle">Write recommendation for Ilhan Kalač</p>
       </v-card-title>
       <v-card-text class="mb-0 pb-0"><br>
-        <v-text-field 
-          v-model="props.selectedRecommendation.fullName"
-          label="Full Name"
-          density="compact"
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.role"
-          label="Role"
-          density="compact"
-        />
-        <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor> 
-        <p style="opacity:0.6; font-size: smaller;" class="text-left mb-2"> 
-          This is where you can share why you'd recommend me as a frontend engineer. Your insights provide valuable perspective for potential collaborators and employers. Let's showcase my skills and professionalism together!
-        </p>
-        <v-text-field 
-          v-model="selectedRecommendation.avatarSrc"
-          label="Image URL of your Avatar"
-          prepend-inner-icon="mdi-link"
-          density="compact"
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.githubLink"
-          label="GitHub Link"
-          prepend-inner-icon="mdi-github"
-          density="compact"
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.linkedinLink"
-          label="LinkedIn Link"
-          prepend-inner-icon="mdi-linkedin"
-          density="compact"
-        />
-        <v-text-field 
-          v-model="selectedRecommendation.instagramLink"
-          label="Instagram link"
-          prepend-inner-icon="mdi-instagram"
-          density="compact"
-        />
-        <v-checkbox
-          v-if="origin === 'configure'"
-          v-model="selectedRecommendation.showPublic" 
-          label="Show Public"
-          density="compact"
-        />
+        <v-form
+          v-model="formValid"
+          ref="form"
+        >
+          <v-text-field 
+            v-model="props.selectedRecommendation.fullName"
+            label="Full Name"
+            density="compact"
+            required
+            :rules="[v => !!v || 'Full Name is required']"
+          />
+          <v-text-field 
+            v-model="selectedRecommendation.role"
+            label="Role (e.g. Frontend Engineer)"
+            density="compact"
+            required
+            :rules="[v => !!v || 'Role is required']"
+          />
+          <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor> 
+          <p style="opacity:0.6; font-size: smaller;" class="text-left mb-2"> 
+            This is where you can share why you'd recommend me as a frontend engineer. Your insights provide valuable perspective for potential collaborators and employers. Let's showcase my skills and professionalism together!
+          </p>
+          <v-text-field 
+            v-model="selectedRecommendation.avatarSrc"
+            label="Image URL of your Avatar"
+            prepend-inner-icon="mdi-link"
+            density="compact"
+            required
+            :rules="[v => !!v || 'Image URL is required']"
+          />
+          <v-text-field 
+            v-model="selectedRecommendation.githubLink"
+            label="GitHub Link"
+            prepend-inner-icon="mdi-github"
+            density="compact"
+          />
+          <v-text-field 
+            v-model="selectedRecommendation.linkedinLink"
+            label="LinkedIn Link"
+            prepend-inner-icon="mdi-linkedin"
+            density="compact"
+          />
+          <v-text-field 
+            v-model="selectedRecommendation.instagramLink"
+            label="Instagram link"
+            prepend-inner-icon="mdi-instagram"
+            density="compact"
+          />
+          <v-checkbox
+            v-if="origin === 'configure'"
+            v-model="selectedRecommendation.showPublic" 
+            label="Show Public"
+            density="compact"
+          />
+        </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn block variant="outlined" @click="save">Save</v-btn>
+        <v-btn block variant="outlined" @click="save">{{ origin === 'write-recommendation' ? 'Send' : 'Save' }}</v-btn>
       </v-card-actions>
     </v-card>
+    <v-snackbar
+      v-model="snackbar"
+      color="primary"
+      rounded="pill"
+      location="right top"
+      min-width="360"
+      min-height="60"
+    >
+      You have successfully sent the recommendation!
+    </v-snackbar>
   </div>
 </template>
 
@@ -66,6 +87,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { setVal, pushVal } from "@/services/DataService";
 import { useRouter } from "vue-router";
+import { ref } from 'vue';
 
 const props = defineProps<{
   selectedRecommendation: IColleagueInfo;
@@ -75,15 +97,29 @@ const props = defineProps<{
 
 const emit = defineEmits(['close']);
 const router = useRouter();
+const formValid = ref(true);
+const form = ref<HTMLFormElement | null>(null);
+const snackbar = ref(false);
 
 const save = async () => {
+
+  const { valid } = await form.value?.validate()
+
+  if (!valid) {
+    return;
+  }
+
   if (props.origin === 'configure') {
     setVal('recommendations/' + props.selectedRecommendationIndex, props.selectedRecommendation);
     emit("close");
   }
   if(props.origin === 'write-recommendation') {
     pushVal('recommendations', props.selectedRecommendation);
-    router.push('/');
+    snackbar.value = true;
+
+    setTimeout(() => {
+      router.push('/');
+    }, 1500);
   }
 };
 

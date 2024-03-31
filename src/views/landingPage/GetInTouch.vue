@@ -52,7 +52,6 @@
 
 <script lang="ts" setup>
 import Section from "@/components/landingPage/Section.vue";
-import { useDisplay } from "vuetify";
 import { ref } from "vue";
 import { pushVal } from "@/services/DataService"
 
