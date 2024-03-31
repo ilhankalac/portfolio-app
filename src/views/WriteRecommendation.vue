@@ -1,7 +1,7 @@
 <template>
   <NavBar :origin="'configure'"/><br><br>
   <v-container>
-    <v-row class="d-flex justify-center align-center"> 
+    <v-row style="height: 100vh;" class="d-flex justify-center align-center"> 
       <v-col
          :cols="smAndDown ? 12 : 6"
       >

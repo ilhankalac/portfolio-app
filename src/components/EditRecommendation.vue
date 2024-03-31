@@ -65,6 +65,7 @@ import { IColleagueInfo } from "@/types/other";
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { setVal, pushVal } from "@/services/DataService";
+import { useRouter } from "vue-router";
 
 const props = defineProps<{
   selectedRecommendation: IColleagueInfo;
@@ -73,6 +74,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(['close']);
+const router = useRouter();
 
 const save = async () => {
   if (props.origin === 'configure') {
@@ -81,7 +83,7 @@ const save = async () => {
   }
   if(props.origin === 'write-recommendation') {
     pushVal('recommendations', props.selectedRecommendation);
-    emit("close");
+    router.push('/');
   }
 };
 
