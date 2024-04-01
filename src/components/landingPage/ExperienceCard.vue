@@ -173,9 +173,19 @@ const skills = ref([
   z-index: 1000;
 }
 
-
-
 :deep(.v-timeline-item) .v-timeline-item__body {
   padding: 5px !important;
+}
+
+:deep(.v-timeline-divider__after ){
+  display: none;
+}
+
+:deep(.v-timeline-divider__before ){
+  display: none;
+}
+
+:deep(.v-timeline--vertical.v-timeline){
+  row-gap: 0px;
 }
 </style>

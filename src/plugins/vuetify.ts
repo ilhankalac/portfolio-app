@@ -21,7 +21,7 @@ export default createVuetify({
           // secondary: '#4D5480',
           secondary: '#233039',
           darkText: '#374355',
-          greyText: '#94A3B8'
+          greyText: '#A0B0C0'
         },
       },
     },
