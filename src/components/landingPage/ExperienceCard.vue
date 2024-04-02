@@ -56,15 +56,19 @@
                     class="d-flex"
                   >
                     <v-btn
-                      v-if="experience.project_link"
+                      v-if="experience.code_link"
                       flat
                       variant="text"
-                      @click="openLink(experience.project_link)"
+                      @click="openLink(experience.code_link)"
                     >
                       <v-icon>mdi-code-tags</v-icon>
                     </v-btn>
                     <div class="d-flex">
-                      <v-btn variant="text"> 
+                      <v-btn 
+                        v-if="experience.project_link"
+                        variant="text"
+                        @click="openLink(experience.project_link)"
+                      > 
                         <v-icon class="mr-1">mdi-open-in-new</v-icon> 
                       </v-btn>
                     </div>

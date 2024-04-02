@@ -18,7 +18,7 @@
                 <div class="d-flex justify-space-between align-center py-2">
                   <v-list-item-title>{{ experience.title }}</v-list-item-title>
                   <div>
-                    <v-btn icon variant="text" @click="openDialog(experience)">
+                    <v-btn icon variant="text" @click="openDialog(experience, 'company_details')">
                       <v-icon>mdi-domain</v-icon>
                     </v-btn>
                     <v-btn
@@ -203,7 +203,6 @@ const getData = async () => {
 };
 
 const openDialog = (experience = null, from = "") => {
-  console.log(experience);
   if (!experience) {
     indexOfSelectedExperience.value = experiences.value.length;
     selectedExperience.value = {
@@ -233,6 +232,9 @@ const openDialog = (experience = null, from = "") => {
     editExperiencesDialog.value = true;
     indexOfSelectedExperience.value = experiences.value.indexOf(experience);
     return;
+  }
+  if(from === 'company_details'){
+    selectedExperience.value = experience;
   }
 
   editCompanyDetailsDialog.value = true;
