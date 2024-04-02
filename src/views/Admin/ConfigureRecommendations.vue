@@ -81,7 +81,7 @@ onMounted(async () => {
   flex-wrap: wrap;
 }
 .card {
-  flex: 1 0 46%;
+  flex: 1 0 47%;
   margin: 1rem;
   border-radius: 5px;
 }
