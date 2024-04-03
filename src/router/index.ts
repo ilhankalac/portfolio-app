@@ -46,6 +46,10 @@ const routes = [
       {
         path: ':configure-recommendations',
         component: () => import('@/views/Admin/ConfigureRecommendations.vue'),
+      },
+      {
+        path: ':configure-skills',
+        component: () => import('@/views/Admin/ConfigureSkills.vue'),
       }
     ]
   }

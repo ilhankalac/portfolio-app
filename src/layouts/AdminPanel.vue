@@ -67,7 +67,8 @@ const sections = ref([
   },
   {
     name: 'Skills',
-    icon: 'hammer'
+    icon: 'hammer',
+    path: 'configure-skills'
   },
   {
     name: 'Get In Touch',
