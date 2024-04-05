@@ -13,7 +13,7 @@
         <div class="d-flex flex-wrap">
           <template v-for="(skill, key) in skills">
             <v-card 
-              class="ma-1 pa-2 pl-5" 
+              class="ma-1 pa-2" 
               color="secondary"
               style="border: 1px solid black; cursor: pointer;"
               @click="openDialog(skill, key)"
