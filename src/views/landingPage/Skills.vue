@@ -20,11 +20,12 @@
 <script lang="ts" setup>
 import Section from "@/components/landingPage/Section.vue";
 import { useDisplay } from "vuetify";
-import { onMounted, ref } from "vue";
+import { onMounted, Ref, ref } from "vue";
 import { getVal } from "@/services/DataService";
+import { ISkill } from "@/types/other";
 
 const { smAndDown } = useDisplay();
-const skills = ref([]);
+const skills: Ref<ISkill[]> = ref([]);
 
 onMounted(() => {
   getVal('skills').then((val) => {

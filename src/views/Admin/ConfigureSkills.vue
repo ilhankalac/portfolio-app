@@ -59,19 +59,20 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, Ref, ref } from 'vue';
 import { setVal, getVal, pushVal } from '@/services/DataService'
+import { ISkill } from '@/types/other'
 
-const skills: any = ref([]);
-const addEditSkillDialog = ref(false);
-const origin = ref('');
-
-const skill: any = ref({
+const skills: Ref<ISkill[]> = ref([]);
+const skill: Ref<ISkill> = ref<ISkill>({
+  key: -1,
   name: '',
   icon: '',
 });
+const addEditSkillDialog = ref(false);
+const origin = ref('');
 
-const openDialog = (selectedItem: any = { name: '', icon: '' }, key: any = '') => {
+const openDialog = (selectedItem: ISkill = { key: -1, name: '', icon: '' }, key: number = -1) => {
   selectedItem.name == '' ? origin.value = 'add' : origin.value = 'edit';
   selectedItem.key = key;
   addEditSkillDialog.value = true;
@@ -79,7 +80,7 @@ const openDialog = (selectedItem: any = { name: '', icon: '' }, key: any = '') =
 }
 
 
-const save = async (skillData: any) => {
+const save = async (skillData: ISkill) => {
   if (origin.value === 'add') {
     await pushVal('skills', skillData);
     skills.value.push(skillData);

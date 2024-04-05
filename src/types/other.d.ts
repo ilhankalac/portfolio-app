@@ -19,3 +19,9 @@ export interface IColleagueInfo {
   instagramLink?: string;
   showPublic?: boolean;
 }
+
+export interface ISkill {
+	name: string;
+	icon: string;
+	key: number;
+}
