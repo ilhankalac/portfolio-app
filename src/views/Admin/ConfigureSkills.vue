@@ -10,18 +10,20 @@
         >
           Add new skill +
         </v-card>
-        <template v-for="(skill, key) in skills">
-          <v-card 
-            class="ma-1 pa-2 pl-5" 
-            color="secondary"
-            style="border: 1px solid black; cursor: pointer;"
-            @click="openDialog(skill, key)"
-          >
-            <span class="font-weight-light">
-              <v-icon>mdi-{{ skill.icon }}</v-icon> {{ skill.name }}
-            </span>
-          </v-card>
-        </template>
+        <div class="d-flex flex-wrap">
+          <template v-for="(skill, key) in skills">
+            <v-card 
+              class="ma-1 pa-2 pl-5" 
+              color="secondary"
+              style="border: 1px solid black; cursor: pointer;"
+              @click="openDialog(skill, key)"
+            >
+              <span class="font-weight-light">
+                <v-icon>mdi-{{ skill.icon }}</v-icon> {{ skill.name }}
+              </span>
+            </v-card>
+          </template>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -64,7 +66,7 @@ const skills: any = ref([]);
 const addEditSkillDialog = ref(false);
 const origin = ref('');
 
-const skill = ref({
+const skill: any = ref({
   name: '',
   icon: '',
 });
@@ -80,7 +82,7 @@ const openDialog = (selectedItem: any = { name: '', icon: '' }, key: any = '') =
 const save = async (skillData: any) => {
   if (origin.value === 'add') {
     await pushVal('skills', skillData);
-    skills.value.unshift(skillData);
+    skills.value.push(skillData);
     addEditSkillDialog.value = false;
     return;
   }
@@ -99,7 +101,6 @@ const getSkills = () => {
       Object.keys(val).forEach((key) => {
         skills.value.push({ ...val[key], key });
       });
-      skills.value = skills.value.reverse()
     }
   });
 }
