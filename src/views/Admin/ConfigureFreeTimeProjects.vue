@@ -36,6 +36,7 @@
   <v-dialog 
     v-model="addEditProjectDialog"
     max-width="600"
+    height="90vh"
   >
     <v-card color="secondary">
       <v-card-title>
@@ -43,8 +44,28 @@
       </v-card-title>
       <v-card-text>
         <v-text-field
-          v-model="project.name"
-          label="project name"
+          v-model="project.title"
+          label="Project title"
+          required
+        />
+        <v-text-field
+          v-model="project.dateOfCreation"
+          label="Date of Creation"
+          required
+        />
+        <v-text-field
+          v-model="project.image"
+          label="Image link"
+          required
+        />
+        <v-text-field
+          v-model="project.live_demo"
+          label="Live demo"
+          required
+        />
+        <v-text-field
+          v-model="project.source_code"
+          label="Source code"
           required
         />
         <v-text-field
@@ -52,6 +73,10 @@
           label="Icon"
           required
         />
+        <div>
+          <QuillEditor v-model:content="project.description" contentType="html" theme="snow"></QuillEditor> <br>
+        </div>
+      
       </v-card-text>
       <v-btn 
         class="mx-6 mb-5" 
@@ -67,6 +92,8 @@
 <script setup lang="ts">
 import { onMounted, Ref, ref } from 'vue';
 import { setVal, getVal, pushVal } from '@/services/DataService'
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 const projects: any = ref([]);
 const project: any = ref({
@@ -87,7 +114,7 @@ const openDialog = (selectedItem: any = { key: -1, name: '', icon: '' }, key: nu
 
 const save = async (projectData: any) => {
   if (origin.value === 'add') {
-    await pushVal('projects', projectData);
+    await pushVal('free-time-projects', projectData);
     projects.value.push(projectData);
     addEditProjectDialog.value = false;
     return;
@@ -95,7 +122,7 @@ const save = async (projectData: any) => {
 
   if (projectData.key !== -1) {
     projects.value[projectData.key] = projectData;
-    await setVal('projects', projects.value);
+    await setVal('free-time-projects', projects.value);
     addEditProjectDialog.value = false;
     return;
   }
