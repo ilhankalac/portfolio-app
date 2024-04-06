@@ -3,24 +3,30 @@
     <v-row>
       <v-col>
         <v-card 
-          class="ma-1 pa-2 mb-3 pl-5" 
+          class="ma-1 pa-2 pl-3 d-flex align-center" 
           color="secondary"
           style="border: 1px solid black; cursor: pointer;"
           @click="openDialog()"
         >
-          Add new project +
+          <v-icon>mdi-plus</v-icon>  Add new project
         </v-card>
         <div class="d-flex flex-wrap">
-          <template v-for="(skill, key) in skills">
+          <template v-for="(project, key) in projects">
             <v-card 
-              class="ma-1 pa-2" 
+              class="ma-1 pa-5" 
               color="secondary"
-              style="border: 1px solid black; cursor: pointer;"
-              @click="openDialog(skill, key)"
+              style="border: 1px solid black; cursor: pointer; flex: 100%"
+              @click="openDialog(project, key)"
             >
-              <span class="font-weight-light">
-                <v-icon>mdi-{{ skill.icon }}</v-icon> {{ skill.name }}
-              </span>
+               <div>
+                  <div class="d-flex justify-space-between align-center">
+                    <div>
+                      <p class="font-weight-light">{{ project.title }}</p>
+                      <p class="text-subtitle-1 font-weight-light" style="opacity: 0.6;">{{ project.dateOfCreation }}</p>
+                    </div>
+                    <img :src="project.image" alt="avatar" style="border-radius: 5px; height: 100px; width: auto; object-fit: contain;" />
+                  </div>
+                </div>
             </v-card>
           </template>
         </div>
@@ -28,21 +34,21 @@
     </v-row>
   </v-container>
   <v-dialog 
-    v-model="addEditSkillDialog"
+    v-model="addEditProjectDialog"
     max-width="600"
   >
     <v-card color="secondary">
       <v-card-title>
-        Add new skill
+        Add new project
       </v-card-title>
       <v-card-text>
         <v-text-field
-          v-model="skill.name"
-          label="Skill name"
+          v-model="project.name"
+          label="project name"
           required
         />
         <v-text-field
-          v-model="skill.icon"
+          v-model="project.icon"
           label="Icon"
           required
         />
@@ -50,7 +56,7 @@
       <v-btn 
         class="mx-6 mb-5" 
         variant="outlined" 
-        @click="save(skill)"
+        @click="save(project)"
       >
         Save
       </v-btn>
@@ -61,52 +67,51 @@
 <script setup lang="ts">
 import { onMounted, Ref, ref } from 'vue';
 import { setVal, getVal, pushVal } from '@/services/DataService'
-import { ISkill } from '@/types/other'
 
-const skills: Ref<ISkill[]> = ref([]);
-const skill: Ref<ISkill> = ref<ISkill>({
+const projects: any = ref([]);
+const project: any = ref({
   key: -1,
   name: '',
   icon: '',
 });
-const addEditSkillDialog = ref(false);
+const addEditProjectDialog = ref(false);
 const origin = ref('');
 
-const openDialog = (selectedItem: ISkill = { key: -1, name: '', icon: '' }, key: number = -1) => {
+const openDialog = (selectedItem: any = { key: -1, name: '', icon: '' }, key: number = -1) => {
   selectedItem.name == '' ? origin.value = 'add' : origin.value = 'edit';
   selectedItem.key = key;
-  addEditSkillDialog.value = true;
-  skill.value = Object.assign({}, selectedItem);
+  addEditProjectDialog.value = true;
+  project.value = Object.assign({}, selectedItem);
 }
 
 
-const save = async (skillData: ISkill) => {
+const save = async (projectData: any) => {
   if (origin.value === 'add') {
-    await pushVal('skills', skillData);
-    skills.value.push(skillData);
-    addEditSkillDialog.value = false;
+    await pushVal('projects', projectData);
+    projects.value.push(projectData);
+    addEditProjectDialog.value = false;
     return;
   }
 
-  if (skillData.key !== -1) {
-    skills.value[skillData.key] = skillData;
-    await setVal('skills', skills.value);
-    addEditSkillDialog.value = false;
+  if (projectData.key !== -1) {
+    projects.value[projectData.key] = projectData;
+    await setVal('projects', projects.value);
+    addEditProjectDialog.value = false;
     return;
   }
 }
 
-const getSkills = () => {
-  getVal('skills').then((val) => {
+const getProjects = () => {
+  getVal('free-time-projects').then((val) => {
     if (val) {
       Object.keys(val).forEach((key) => {
-        skills.value.push({ ...val[key], key });
+        projects.value.push({ ...val[key], key });
       });
     }
   });
 }
 
 onMounted(() => {
-  getSkills();
+  getProjects();
 });
 </script>

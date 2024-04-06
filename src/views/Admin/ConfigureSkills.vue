@@ -3,12 +3,12 @@
     <v-row>
       <v-col>
         <v-card 
-          class="ma-1 pa-2 mb-3 pl-5" 
+          class="ma-1 pa-2 pl-3 d-flex align-center" 
           color="secondary"
           style="border: 1px solid black; cursor: pointer;"
           @click="openDialog()"
         >
-          Add new skill +
+          <v-icon>mdi-plus</v-icon>  Add new skill
         </v-card>
         <div class="d-flex flex-wrap">
           <template v-for="(skill, key) in skills">
