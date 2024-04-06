@@ -58,7 +58,8 @@ const sections = ref([
   },
   {
     name: 'Free Time Projects',
-    icon: 'chart-ppf'
+    icon: 'chart-ppf',
+    path: 'configure-free-time-projects'
   },
   {
     name: 'Recommendations',

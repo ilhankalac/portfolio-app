@@ -50,7 +50,11 @@ const routes = [
       {
         path: ':configure-skills',
         component: () => import('@/views/Admin/ConfigureSkills.vue'),
-      }
+      },
+      {
+        path: ':configure-free-time-projects',
+        component: () => import('@/views/Admin/ConfigureFreeTimeProjects.vue'),
+      },
     ]
   }
 ]
