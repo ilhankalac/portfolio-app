@@ -34,5 +34,6 @@ export interface IFreeProject {
   dateOfCreation: string;
   icon: string;
   image: string;
-  live_demo: string
+  live_demo: string;
+  technologies?: any
 }

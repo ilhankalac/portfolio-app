@@ -1,0 +1,33 @@
+[debug] [2024-04-06T14:33:37.794Z] ----------------------------------------------------------------------
+[debug] [2024-04-06T14:33:37.796Z] Command:       /home/vizija/.nvm/versions/node/v19.9.0/bin/node /home/vizija/.nvm/versions/node/v19.9.0/bin/firebase deploy
+[debug] [2024-04-06T14:33:37.796Z] CLI Version:   13.5.1
+[debug] [2024-04-06T14:33:37.796Z] Platform:      linux
+[debug] [2024-04-06T14:33:37.797Z] Node Version:  v19.9.0
+[debug] [2024-04-06T14:33:37.797Z] Time:          Sat Apr 06 2024 16:33:37 GMT+0200 (Central European Summer Time)
+[debug] [2024-04-06T14:33:37.797Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-06T14:33:37.877Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-06T14:33:37.878Z] > authorizing via signed-in user (ilhandeveloper@gmail.com)
+[debug] [2024-04-06T14:33:37.878Z] [iam] checking project portfolio-app-2b6e1 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2024-04-06T14:33:37.880Z] > refreshing access token with scopes: []
+[debug] [2024-04-06T14:33:37.881Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-04-06T14:33:37.881Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-06T14:33:38.080Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-04-06T14:33:38.080Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-06T14:33:38.085Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-app-2b6e1:testIamPermissions [none]
+[debug] [2024-04-06T14:33:38.085Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-app-2b6e1:testIamPermissions x-goog-quota-user=projects/portfolio-app-2b6e1
+[debug] [2024-04-06T14:33:38.085Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-app-2b6e1:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2024-04-06T14:33:38.981Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-app-2b6e1:testIamPermissions 200
+[debug] [2024-04-06T14:33:38.981Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-app-2b6e1:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2024-04-06T14:33:38.982Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-app-2b6e1 [none]
+[debug] [2024-04-06T14:33:39.331Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-app-2b6e1 200
+[debug] [2024-04-06T14:33:39.331Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-app-2b6e1 {"projectId":"portfolio-app-2b6e1","projectNumber":"940597432988","displayName":"portfolio-app","name":"projects/portfolio-app-2b6e1","resources":{"hostingSite":"portfolio-app-2b6e1","realtimeDatabaseInstance":"portfolio-app-2b6e1-default-rtdb"},"state":"ACTIVE","etag":"1_77230bf7-cc12-466a-8697-a615ddf5e59a"}
+[debug] [2024-04-06T14:33:39.332Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-app-2b6e1 [none]
+[debug] [2024-04-06T14:33:39.562Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-app-2b6e1 200
+[debug] [2024-04-06T14:33:39.562Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-app-2b6e1 {"projectId":"portfolio-app-2b6e1","projectNumber":"940597432988","displayName":"portfolio-app","name":"projects/portfolio-app-2b6e1","resources":{"hostingSite":"portfolio-app-2b6e1","realtimeDatabaseInstance":"portfolio-app-2b6e1-default-rtdb"},"state":"ACTIVE","etag":"1_77230bf7-cc12-466a-8697-a615ddf5e59a"}
+[info] 
+[info] === Deploying to 'portfolio-app-2b6e1'...
+[info] 
+[info] i  deploying database, hosting 
+[info] i  database: checking rules syntax... 
+[debug] [2024-04-06T14:33:39.572Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/portfolio-app-2b6e1/locations/-/instances/portfolio-app-2b6e1-default-rtdb [none]
