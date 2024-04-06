@@ -1,6 +1,5 @@
 <template>
-  <div class="text-white">
-    <v-card color="primary" max-height="800" style="overflow-y: auto">
+    <v-card color="primary">
       <v-card-title style="background-color: rgb(var(--v-theme-secondary))" v-if="origin === 'configure'">
         <p class="font-weight-light">Edit {{ props.selectedRecommendation?.fullName }}'s recommendation</p>
       </v-card-title>
@@ -64,7 +63,7 @@
           />
         </v-form>
       </v-card-text>
-      <v-card-actions>
+      <v-card-actions class="mb-3">
         <v-btn block variant="outlined" @click="save">{{ origin === 'write-recommendation' ? 'Send' : 'Save' }}</v-btn>
       </v-card-actions>
     </v-card>
@@ -78,7 +77,6 @@
     >
       You have successfully sent the recommendation!
     </v-snackbar>
-  </div>
 </template>
 
 <script lang="ts" setup>

@@ -73,6 +73,30 @@
           label="Icon"
           required
         />
+        Technologies
+        <div
+          v-for="(tech, index) in project.technologies"
+          class="d-flex ga-2"
+        >
+          <v-text-field v-model="tech.name" label="Technology" />
+          <v-text-field v-model="tech.icon" label="Icon" />
+          <v-btn
+            v-if="project.technologies.length - 1 === index"
+            icon
+            variant="text"
+            @click="project.technologies.push({ name: '', icon: '' })"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+          <v-btn
+            v-if="project.technologies.length > 1"
+            icon
+            variant="text"
+            @click="project.technologies.splice(index, 1)"
+          >
+            <v-icon>mdi-minus</v-icon>
+          </v-btn>
+        </div>
         <div>
           <QuillEditor v-model:content="project.description" contentType="html" theme="snow"></QuillEditor> <br>
         </div>
@@ -119,7 +143,8 @@ const openDialog = (
     live_demo: '',
     source_code: '',
     icon: '',
-    description: ''
+    description: '',
+    technologies: [{ name: '', icon: '' }],
   },
   key: number = -1
 ) => {
