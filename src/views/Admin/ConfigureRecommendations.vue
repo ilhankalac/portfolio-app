@@ -22,7 +22,7 @@
       <div class="card ma-2" v-if="index === Object.keys(recommendations).length - 1 && Object.keys(recommendations).length % 2 === 1" />
     </template>
   </div>
-  <v-dialog v-model="editRecommendationDialog" max-width="800">
+  <v-dialog v-model="editRecommendationDialog" max-width="800" height="90vh">
     <EditRecommendation 
       :selectedRecommendation="selectedRecommendation" 
       :selectedRecommendationIndex="selectedRecommendationIndex"

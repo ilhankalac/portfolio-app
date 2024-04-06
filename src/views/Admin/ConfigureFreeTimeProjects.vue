@@ -94,25 +94,48 @@ import { onMounted, Ref, ref } from 'vue';
 import { setVal, getVal, pushVal } from '@/services/DataService'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import { IFreeProject } from '@/types/other';
 
-const projects: any = ref([]);
-const project: any = ref({
+const projects: Ref<IFreeProject[]> = ref([]);
+const project: Ref<IFreeProject> = ref({
   key: -1,
-  name: '',
+  title: '',
+  dateOfCreation: '',
+  image: '',
+  live_demo: '',
+  source_code: '',
   icon: '',
+  description: '',
 });
 const addEditProjectDialog = ref(false);
 const origin = ref('');
 
-const openDialog = (selectedItem: any = { key: -1, name: '', icon: '' }, key: number = -1) => {
-  selectedItem.name == '' ? origin.value = 'add' : origin.value = 'edit';
+const openDialog = (
+  selectedItem: IFreeProject = {
+    key: -1,
+    title: '',
+    dateOfCreation: '',
+    image: '',
+    live_demo: '',
+    source_code: '',
+    icon: '',
+    description: ''
+  },
+  key: number = -1
+) => {
+  if (selectedItem.title === '') {
+    origin.value = 'add';
+  } else {
+    origin.value = 'edit';
+  }
+  
   selectedItem.key = key;
   addEditProjectDialog.value = true;
-  project.value = Object.assign({}, selectedItem);
-}
+  project.value = { ...selectedItem };
+};
 
 
-const save = async (projectData: any) => {
+const save = async (projectData: IFreeProject) => {
   if (origin.value === 'add') {
     await pushVal('free-time-projects', projectData);
     projects.value.push(projectData);
