@@ -73,7 +73,8 @@ const sections = ref([
   },
   {
     name: 'Get In Touch',
-    icon: 'card-account-mail'
+    icon: 'card-account-mail',
+    path: 'configure-get-in-touch'
   }
 ]);
 const openedGroups = ref(['Sections']);

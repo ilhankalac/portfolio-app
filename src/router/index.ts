@@ -55,6 +55,10 @@ const routes = [
         path: ':configure-free-time-projects',
         component: () => import('@/views/Admin/ConfigureFreeTimeProjects.vue'),
       },
+      {
+        path: ':configure-get-in-touch',
+        component: () => import('@/views/Admin/ConfigureGetInTouch.vue'),
+      }
     ]
   }
 ]

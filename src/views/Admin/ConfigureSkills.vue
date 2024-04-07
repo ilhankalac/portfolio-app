@@ -79,7 +79,6 @@ const openDialog = (selectedItem: ISkill = { key: -1, name: '', icon: '' }, key:
   skill.value = Object.assign({}, selectedItem);
 }
 
-
 const save = async (skillData: ISkill) => {
   if (origin.value === 'add') {
     await pushVal('skills', skillData);
