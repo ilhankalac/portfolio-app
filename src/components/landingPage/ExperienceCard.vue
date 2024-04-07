@@ -2,7 +2,6 @@
       <v-card 
         color="primary"
         flat
-        style="overflow-y: auto !important;"
       >
         <!-- <div 
           class="card-header d-flex justify-space-between align-center pl-5 mb-2"
@@ -18,28 +17,22 @@
           </div>
         </div> -->
 
-        <v-card-text class="ma-0 pa-0">
-          <div class="font-weight-light mt-2 mb-2 text-greyText">
+          <div class="font-weight-light mt-5 mb-2 text-white text-center">
             Projects I worked on:
           </div>
-
           <v-timeline 
             align="start"
-            density="compact" 
-            line-color="darkText"
+            line-color="secondary"
+            line-thickness="1"
           >
             <v-timeline-item
               v-for="experience in props.selectedItem.projects"
-              size="10px"
+              size="15px"
               :key="experience.time"
               :fill-dot="true"
-              :hide-dot="true"
               dot-color="white"
             >
-              <div class="ml-2">
-                <div 
-                  class="font-weight-normal d-flex justify-space-between"
-                >
+                <div class="font-weight-normal d-flex justify-space-between pt-4">
                   <div 
                     class="d-flex ga-2 text-left"
                   >
@@ -74,9 +67,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="font-weight-light my-3 text-greyText">
-                  {{ experience.description }}
-                </div>
+                <div v-html="experience.description" class="font-weight-light my-3 pl-4 text-greyText" />
                 <div>
                   <div class="text-white ">
                     <template v-for="tech in experience.technologies" :key="tech.id" class="">
@@ -87,11 +78,10 @@
                     </template>
                   </div>
                 </div>
-              </div>
             </v-timeline-item>
           </v-timeline>
-        </v-card-text>
-      </v-card>
+      </v-card><br>
+      <v-divider></v-divider>
 </template>
 
 <script lang="ts" setup>
@@ -181,11 +171,9 @@ const skills = ref([
   padding: 5px !important;
 }
 
-:deep(.v-timeline-divider__after ){
-  display: none;
-}
 
-:deep(.v-timeline-divider__before ){
+
+:deep(.v-timeline-item__opposite){
   display: none;
 }
 

@@ -62,11 +62,7 @@
               label="Date"
               required
             />
-            <v-textarea
-              v-model="selectedExperience.description"
-              label="Description"
-              required
-            />
+            <QuillEditor v-model:content="selectedExperience.description" contentType="html" theme="snow"></QuillEditor> 
             <v-text-field
               v-model="selectedExperience.logoSrc"
               label="Logo URL"
@@ -114,10 +110,7 @@
               <v-expansion-panel-text>
                 <v-form>
                   <v-text-field v-model="project.name" label="Project Name" />
-                  <v-textarea
-                    v-model="project.description"
-                    label="Description"
-                  />
+                  <QuillEditor v-model:content="project.description" contentType="html" theme="snow"></QuillEditor> 
                   <v-text-field v-model="project.project_link" label="Link" />
                   <v-text-field v-model="project.logoSrc" label="Logo URL" />
                   <v-text-field
@@ -175,6 +168,9 @@
 <script setup lang="ts">
 import { Ref, onMounted, ref } from "vue";
 import { setVal, getVal } from "@/services/DataService";
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 const experiences: any = ref([]);
 const editCompanyDetailsDialog = ref(false);
 const editExperiencesDialog = ref(false);

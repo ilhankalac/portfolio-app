@@ -35,6 +35,7 @@
       <strong>{{ calculateYearsWithDecimal() }}</strong>
     </span>
     <v-timeline 
+      align="start"
       side="end" 
       line-color="secondary" 
       class="mt-10"
