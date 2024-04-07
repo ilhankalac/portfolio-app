@@ -37,27 +37,27 @@ const routes = [
     children: [
       {
         path: ':configure-about',
-        component: () => import('@/views/Admin/ConfigureAbout.vue'),
+        component: () => import('@/views/Admin/portfolio/ConfigureAbout.vue'),
       },
       {
         path: ':configure-experience',
-        component: () => import('@/views/Admin/ConfigureExperience.vue'),
+        component: () => import('@/views/Admin/portfolio/ConfigureExperience.vue'),
       },
       {
         path: ':configure-recommendations',
-        component: () => import('@/views/Admin/ConfigureRecommendations.vue'),
+        component: () => import('@/views/Admin/portfolio/ConfigureRecommendations.vue'),
       },
       {
         path: ':configure-skills',
-        component: () => import('@/views/Admin/ConfigureSkills.vue'),
+        component: () => import('@/views/Admin/portfolio/ConfigureSkills.vue'),
       },
       {
         path: ':configure-free-time-projects',
-        component: () => import('@/views/Admin/ConfigureFreeTimeProjects.vue'),
+        component: () => import('@/views/Admin/portfolio/ConfigureFreeTimeProjects.vue'),
       },
       {
         path: ':configure-get-in-touch',
-        component: () => import('@/views/Admin/ConfigureGetInTouch.vue'),
+        component: () => import('@/views/Admin/portfolio/ConfigureGetInTouch.vue'),
       }
     ]
   }
