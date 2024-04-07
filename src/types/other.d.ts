@@ -37,3 +37,9 @@ export interface IFreeProject {
   live_demo: string;
   technologies?: any
 }
+
+export interface IContact {
+  email: string;
+  message: string;
+  timeStamp: string;
+}

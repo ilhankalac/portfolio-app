@@ -28,10 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { Ref, onMounted, ref } from 'vue';
 import { getVal } from '@/services/DataService'
+import { IContact } from '@/types/other';
 
-const contacts: any = ref([]);
+const contacts: Ref<IContact[]> = ref([]);
 
 const getSentEmails = () => {
   getVal('contacted').then((val) => {
