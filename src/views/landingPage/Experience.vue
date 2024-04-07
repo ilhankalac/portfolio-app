@@ -63,7 +63,7 @@
           </v-tooltip>
         </template>
         <div
-          class="timeline-item rounded"
+          class="ml-2 pt-"
           :class="smAndDown ? 'text-left' : 'text-justify'"
           @click="openDialog(experience)"
         >
@@ -185,6 +185,6 @@ onMounted(async () => {
 //   }
 // }
 :deep(.v-timeline-item) .v-timeline-item__body {
-  padding: 5px !important;
+  padding-left: 0px !important;
 }
 </style>

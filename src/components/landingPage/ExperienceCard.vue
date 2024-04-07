@@ -1,87 +1,76 @@
 <template>
-      <v-card 
-        color="primary"
-        flat
+  <v-card 
+    color="primary"
+    flat
+  >
+    <div class="font-weight-light mt-5 mb-2 text-white text-center">
+      Projects I worked on in {{ props.selectedItem.title }}
+    </div>
+    <v-timeline 
+      align="start"
+      line-color="secondary"
+      line-thickness="1"
+    >
+      <v-timeline-item
+        v-for="experience in props.selectedItem.projects"
+        size="15px"
+        dot-color="white"
+        :key="experience.time"
+        :fill-dot="true"
+        :hide-dot="smAndDown"
       >
-        <!-- <div 
-          class="card-header d-flex justify-space-between align-center pl-5 mb-2"
-        >
-          <span>{{ props.selectedItem.position }}</span>
-          <div class="d-flex justify-end">
-            <v-btn
-              flat
-              color="secondary"
-              icon="mdi-close"
-              @click="close"
-            />
-          </div>
-        </div> -->
-
-          <div class="font-weight-light mt-5 mb-2 text-white text-center">
-            Projects I worked on:
-          </div>
-          <v-timeline 
-            align="start"
-            line-color="secondary"
-            line-thickness="1"
-          >
-            <v-timeline-item
-              v-for="experience in props.selectedItem.projects"
-              size="15px"
-              :key="experience.time"
-              :fill-dot="true"
-              dot-color="white"
+          <div class="font-weight-normal d-flex justify-space-between mb-1">
+            <div 
+              class="d-flex flex-column"
             >
-                <div class="font-weight-normal d-flex justify-space-between pt-4">
-                  <div 
-                    class="d-flex ga-2 text-left"
-                  >
-                    <strong>{{ experience.name }}</strong> <span class="text-greyText">{{ experience.startDate }} · {{ experience.endDate }}</span>
-                    <span 
-                      class="font-weight-light"
-                      style="opacity: 0.5; font-size: 14px !important;" 
-                    > 
-                    
-                    </span>
-                  </div>
-                  
-                  <div 
-                    class="d-flex"
-                  >
-                    <v-btn
-                      v-if="experience.code_link"
-                      flat
-                      variant="text"
-                      @click="openLink(experience.code_link)"
-                    >
-                      <v-icon>mdi-code-tags</v-icon>
-                    </v-btn>
-                    <div class="d-flex">
-                      <v-btn 
-                        v-if="experience.project_link"
-                        variant="text"
-                        @click="openLink(experience.project_link)"
-                      > 
-                        <v-icon class="mr-1">mdi-open-in-new</v-icon> 
-                      </v-btn>
-                    </div>
-                  </div>
-                </div>
-                <div v-html="experience.description" class="font-weight-light my-3 pl-4 text-greyText" />
-                <div>
-                  <div class="text-white ">
-                    <template v-for="tech in experience.technologies" :key="tech.id" class="">
-                      <v-chip label  link size="small" class="my-1 mr-1 text-greyText">
-                        <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
-                        {{ tech.name }}
-                      </v-chip>
-                    </template>
-                  </div>
-                </div>
-            </v-timeline-item>
-          </v-timeline>
-      </v-card><br>
-      <v-divider></v-divider>
+              <strong>{{ experience.name }}</strong>
+              <span 
+                class="font-weight-light  text-greyText"
+                style="font-size: 14px !important; margin-top:2px;" 
+              > 
+                {{ experience.startDate }} - {{ experience.endDate }}
+              </span>
+            </div>
+            
+            <div 
+              class="d-flex"
+            >
+              <v-btn
+                v-if="experience.code_link"
+                flat
+                variant="text"
+                @click="openLink(experience.code_link)"
+              >
+                <v-icon>mdi-code-tags</v-icon>
+              </v-btn>
+              <div class="d-flex">
+                <v-btn 
+                  v-if="experience.project_link"
+                  variant="text"
+                  @click="openLink(experience.project_link)"
+                > 
+                  <v-icon class="mr-1">mdi-open-in-new</v-icon> 
+                </v-btn>
+              </div>
+            </div>
+          </div>
+          <div 
+            v-html="experience.description" 
+            class="font-weight-light text-greyText mb-2"
+            style="font-size: 14px !important; margin-top:2px;"
+          />
+          <div class="text-white">
+            <template v-for="tech in experience.technologies" :key="tech.id" class="">
+              <v-chip label  link size="small" class="my-1 mr-1 text-greyText">
+                <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
+                {{ tech.name }}
+              </v-chip>
+            </template>
+          </div>
+      </v-timeline-item>
+    </v-timeline>
+    <v-divider v-if="smAndDown"/>
+  </v-card><br>
 </template>
 
 <script lang="ts" setup>
@@ -167,17 +156,34 @@ const skills = ref([
   z-index: 1000;
 }
 
-:deep(.v-timeline-item) .v-timeline-item__body {
-  padding: 5px !important;
-}
-
-
-
 :deep(.v-timeline-item__opposite){
   display: none;
 }
 
 :deep(.v-timeline--vertical.v-timeline){
   row-gap: 0px;
+}
+
+:deep(.v-timeline-item) .v-timeline-item__body {
+  padding:0px 0px 0px 10px !important;
+  margin-left: 20px !important;
+}
+
+@media screen and (max-width: 700px) {
+  :deep(.v-timeline-divider__after ){
+    display: none;
+  }
+
+  :deep(.v-timeline-divider__before ){
+    display: none;
+  }
+
+  :deep(.v-timeline--vertical.v-timeline){
+    row-gap: 0px;
+  }
+  :deep(.v-timeline-item) .v-timeline-item__body {
+    padding:10px !important;
+    margin-left: 0px !important;
+  }
 }
 </style>
