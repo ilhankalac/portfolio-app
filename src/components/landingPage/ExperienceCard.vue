@@ -19,7 +19,7 @@
         :fill-dot="true"
         :hide-dot="smAndDown"
       >
-          <div class="font-weight-normal d-flex justify-space-between mb-1">
+          <div class="font-weight-normal d-flex justify-space-between mb-1 pt-2">
             <div 
               class="d-flex flex-column"
             >
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div 
-            v-html="experience.description" 
+            v-html="addLeftMarginToHtml(experience.description)" 
             class="font-weight-light text-greyText mb-2"
             style="font-size: 14px !important; margin-top:2px;"
           />
@@ -125,6 +125,10 @@ const skills = ref([
     icon: "vuetify",
   },
 ]);
+
+const addLeftMarginToHtml = (content: string) => {
+  return content.replace(/ql-indent/g, 'ml-4 ql-indent');
+};
 </script>
 
 <style lang="scss" scoped>
