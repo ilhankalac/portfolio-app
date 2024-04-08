@@ -82,7 +82,7 @@
           <v-btn
             variant="outlined"
             width="200px"
-            @click="saveExperience('company')"
+            @click="saveExperience"
           >
             Save
           </v-btn>
@@ -199,7 +199,7 @@ const getData = async () => {
   });
 };
 
-const clearSelectedCompany = () => {
+const openDialogForAdd = () => {
   selectedCompanyKey.value = '';
   indexOfSelectedExperience.value = experiences.value.length;
   selectedExperience.value = {
@@ -222,12 +222,9 @@ const clearSelectedCompany = () => {
       },
     ],
   };
-};
-
-const openDialogForAdd = () => {
-  clearSelectedCompany();
   editCompanyDetailsDialog.value = true;
-};
+}
+
 const openDialogForCompanyEdit = (experience:any = null, key: any) => {
   selectedExperience.value = experience;
   selectedCompanyKey.value = key;
@@ -241,26 +238,12 @@ const openDialogForExperienceEdit = (experience = null, from = "", key: any) => 
   indexOfSelectedExperience.value = experiences.value.indexOf(experience);
 };
 
-const saveExperience = async (origin = '') => {
-  const finalIndex: any = selectedCompanyKey.value !== '' ? selectedCompanyKey.value : experiences.value.length;
-  const data = origin === "company" ? {
-    ...selectedExperience.value,
-    projects: [
-      {
-        name: "",
-        description: "",
-        project_link: "",
-        logoSrc: "",
-        startDate: "",
-        endDate: "",
-        technologies: [{ name: "", icon: "" }],
-      },
-    ]
-  } : selectedExperience.value;
+const saveExperience = async () => {
 
+  const finalIndex: any = selectedCompanyKey.value !== '' ? selectedCompanyKey.value : experiences.value.length;
   await setVal(
     `working-experience/${key.value}/${finalIndex}`,
-    data
+    selectedExperience.value
   );
   editCompanyDetailsDialog.value = false;
   editExperiencesDialog.value = false;
