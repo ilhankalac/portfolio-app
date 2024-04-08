@@ -41,6 +41,7 @@
                 variant="text"
                 @click="openLink(experience.code_link)"
               >
+                Code
                 <v-icon>mdi-code-tags</v-icon>
               </v-btn>
               <div class="d-flex">
@@ -49,6 +50,7 @@
                   variant="text"
                   @click="openLink(experience.project_link)"
                 > 
+                  Live
                   <v-icon class="mr-1">mdi-open-in-new</v-icon> 
                 </v-btn>
               </div>
@@ -170,7 +172,17 @@ const addLeftMarginToHtml = (content: string) => {
 
 :deep(.v-timeline-item) .v-timeline-item__body {
   padding:0px 0px 0px 10px !important;
-  margin-left: 20px !important;
+
+  // Add margin left to v-timeline-teim
+  // margin-left: 5px !important;
+}
+
+
+
+
+// Add or remove line divider in timeline
+:deep(.v-timeline-divider ){
+  display: none;
 }
 
 @media screen and (max-width: 700px) {
