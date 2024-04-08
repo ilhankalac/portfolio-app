@@ -65,7 +65,6 @@
         <div
           class="ml-2 pt-"
           :class="smAndDown ? 'text-left' : 'text-justify'"
-          @click="openDialog(experience)"
         >
           <v-card 
             class="text-justify"
@@ -88,10 +87,7 @@
                 <v-icon> mdi-map-marker </v-icon> {{ experience.location }}
               </div>
             </div>
-            <span class="font-weight-light text-greyText">
-              {{ experience.description }}
-            </span>
-  
+            <span v-html="experience.description" class="font-weight-light text-greyText" />
             <ExperienceCard
               :selected-item="experience"
               @close="jobDialog = false"
@@ -101,12 +97,6 @@
       </v-timeline-item>
     </v-timeline>
   </Section>
-  <!-- <v-dialog v-model="jobDialog" max-width="700">
-    <ExperienceCard
-      :selected-item="selectedExperience"
-      @close="jobDialog = false"
-    />
-  </v-dialog> -->
 </template>
 
 <script lang="ts" setup>
@@ -121,11 +111,6 @@ const experiences: any = ref([]);
 const jobDialog = ref(false);
 const selectedExperience = ref<any | null>(null);
 const isDataLoaded = ref(false);
-
-const openDialog = (experience: any) => {
-  jobDialog.value = true;
-  selectedExperience.value = experience;
-};
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
