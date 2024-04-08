@@ -5,7 +5,7 @@
         <v-card style="flex-grow: 1 !important" color="secondary" class="pb-4">
           <v-card-title class="d-flex justify-space-between">
             <span>Configure experience </span>
-            <v-btn icon variant="text" @click="openDialog(null)">
+            <v-btn icon variant="text" @click="openDialogForAdd()">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </v-card-title>
@@ -18,13 +18,13 @@
                 <div class="d-flex justify-space-between align-center py-2">
                   <v-list-item-title>{{ experience.title }}</v-list-item-title>
                   <div>
-                    <v-btn icon variant="text" @click="openDialog(experience, 'company_details', key)">
+                    <v-btn icon variant="text" @click="openDialogForCompanyEdit(experience, key)">
                       <v-icon>mdi-domain</v-icon>
                     </v-btn>
                     <v-btn
                       icon
                       variant="text"
-                      @click="openDialog(experience, 'experience')"
+                      @click="openDialogForExperienceEdit(experience, 'experience', key)"
                     >
                       <v-icon>mdi-briefcase</v-icon>
                     </v-btn>
@@ -199,43 +199,46 @@ const getData = async () => {
   });
 };
 
-const openDialog = (experience = null, from = "", key: string = '') => {
-  selectedCompanyKey.value = key;
-  if (!experience) {
-    indexOfSelectedExperience.value = experiences.value.length;
-    selectedExperience.value = {
-      title: "",
-      location: "",
-      description: "",
-      date: "",
-      logoSrc: "",
-      position: "",
-      company_link: "",
-      projects: [
-        {
-          name: "",
-          description: "",
-          project_link: "",
-          logoSrc: "",
-          startDate: "",
-          endDate: "",
-          technologies: [{ name: "", icon: "" }],
-        },
-      ],
-    };
-  }
+const clearSelectedCompany = () => {
+  selectedCompanyKey.value = '';
+  indexOfSelectedExperience.value = experiences.value.length;
+  selectedExperience.value = {
+    title: "",
+    location: "",
+    description: "",
+    date: "",
+    logoSrc: "",
+    position: "",
+    company_link: "",
+    projects: [
+      {
+        name: "",
+        description: "",
+        project_link: "",
+        logoSrc: "",
+        startDate: "",
+        endDate: "",
+        technologies: [{ name: "", icon: "" }],
+      },
+    ],
+  };
+};
 
-  if (from === "experience") {
-    selectedExperience.value = experience;
-    editExperiencesDialog.value = true;
-    indexOfSelectedExperience.value = experiences.value.indexOf(experience);
-    return;
-  }
-  if(from === 'company_details'){
-    selectedExperience.value = experience;
-  }
-
+const openDialogForAdd = () => {
+  clearSelectedCompany();
   editCompanyDetailsDialog.value = true;
+};
+const openDialogForCompanyEdit = (experience:any = null, key: any) => {
+  selectedExperience.value = experience;
+  selectedCompanyKey.value = key;
+  editCompanyDetailsDialog.value = true;
+}
+
+const openDialogForExperienceEdit = (experience = null, from = "", key: any) => {
+  selectedCompanyKey.value = key;
+  selectedExperience.value = experience;
+  editExperiencesDialog.value = true;
+  indexOfSelectedExperience.value = experiences.value.indexOf(experience);
 };
 
 const saveExperience = async (origin = '') => {
