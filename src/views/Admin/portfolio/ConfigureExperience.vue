@@ -12,13 +12,13 @@
           <div color="secondary">
             <v-list-item-group>
               <v-list-item
-                v-for="experience in experiences"
+                v-for="(experience, key) in experiences"
                 :key="experience.id"
               >
                 <div class="d-flex justify-space-between align-center py-2">
                   <v-list-item-title>{{ experience.title }}</v-list-item-title>
                   <div>
-                    <v-btn icon variant="text" @click="openDialog(experience, 'company_details')">
+                    <v-btn icon variant="text" @click="openDialog(experience, 'company_details', key)">
                       <v-icon>mdi-domain</v-icon>
                     </v-btn>
                     <v-btn
@@ -186,6 +186,7 @@ const selectedExperience = ref<any>({
 
 const key = ref([""]);
 const indexOfSelectedExperience: Ref<string> = ref("");
+const selectedCompanyKey = ref("");
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
@@ -198,7 +199,8 @@ const getData = async () => {
   });
 };
 
-const openDialog = (experience = null, from = "") => {
+const openDialog = (experience = null, from = "", key: string = '') => {
+  selectedCompanyKey.value = key;
   if (!experience) {
     indexOfSelectedExperience.value = experiences.value.length;
     selectedExperience.value = {
@@ -237,11 +239,7 @@ const openDialog = (experience = null, from = "") => {
 };
 
 const saveExperience = async (origin = '') => {
-  const finalIndex: any =
-    indexOfSelectedExperience.value !== ""
-      ? indexOfSelectedExperience.value
-      : experiences.value.length;
-
+  const finalIndex: any = selectedCompanyKey.value !== '' ? selectedCompanyKey.value : experiences.value.length;
   const data = origin === "company" ? {
     ...selectedExperience.value,
     projects: [
@@ -256,6 +254,7 @@ const saveExperience = async (origin = '') => {
       },
     ]
   } : selectedExperience.value;
+
   await setVal(
     `working-experience/${key.value}/${finalIndex}`,
     data
