@@ -29,7 +29,9 @@ const isReady = ref(false);
 onMounted(() => {
   document.onreadystatechange = () => { 
     if (document.readyState == "complete") { 
-      isReady.value = true;
+      setTimeout(() => {
+        isReady.value = true;
+      }, 1000);
     } 
   }
 })
