@@ -1,8 +1,38 @@
 <template>
-	<router-view />
+    <div v-if="!isReady">
+      <v-row>
+        <v-col style="height: 100vh;" class="d-flex flex-column align-center justify-center">
+          <div class="text-center">
+            <span class="text-white">
+              Loading your experience...
+            </span><br>
+            <v-skeleton-loader
+              color="secondary"
+              class="mx-auto border mb-10"
+              type="heading"
+              :min-width="smAndDown ? '100px' : '700px'"
+            />
+          </div>
+        </v-col>
+      </v-row>
+    </div>
+	  <router-view v-else />
 </template>
 
 <script lang="ts" setup>
+import { onMounted, ref } from 'vue';
+import { useDisplay } from 'vuetify';
+
+const { smAndDown } = useDisplay();
+const isReady = ref(false);
+
+onMounted(() => {
+  document.onreadystatechange = () => { 
+    if (document.readyState == "complete") { 
+      isReady.value = true;
+    } 
+  }
+})
 </script>
 
 <style>
