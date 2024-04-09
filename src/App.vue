@@ -8,9 +8,9 @@
             </span><br>
             <v-skeleton-loader
               color="secondary"
-              class="mx-auto border mb-10"
+              class="mx-auto border"
               type="heading"
-              :min-width="smAndDown ? '100px' : '700px'"
+              :min-width="smAndDown ? '400px' : '700px'"
             />
           </div>
         </v-col>
