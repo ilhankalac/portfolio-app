@@ -62,10 +62,7 @@
             </template>
           </v-tooltip>
         </template>
-        <div
-          class="ml-2 pt-"
-          :class="smAndDown ? 'text-left' : 'text-justify'"
-        >
+        <div :class="smAndDown ? 'text-left' : 'text-justify'">
           <v-card 
             class="text-justify"
             color="primary"
@@ -169,7 +166,16 @@ onMounted(async () => {
 //     opacity: 1
 //   }
 // }
-:deep(.v-timeline-item) .v-timeline-item__body {
-  padding-left: 0px !important;
+
+@media screen and (max-width: 699px) {
+  :deep(.v-timeline-item) .v-timeline-item__body {
+    padding-left: 0px !important;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  :deep(.v-timeline-item) .v-timeline-item__body {
+    padding-left: 15px !important;
+  }
 }
 </style>
