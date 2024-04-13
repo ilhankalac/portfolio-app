@@ -68,7 +68,7 @@
                 {{ tech.name }}
               </v-chip>
             </template>
-          </div>
+          </div> <br v-if="props.selectedItem.projects.length > 1">
       </v-timeline-item>
     </v-timeline>
     <v-divider v-if="smAndDown"/>
