@@ -66,48 +66,48 @@
   </Section>
 </template>
 <script lang="ts" setup>
-import { IColleagueInfo } from "@/types/other";
-import { useDisplay } from "vuetify";
-import Section from "@/components/landingPage/Section.vue";
-import { onMounted, Ref, ref } from "vue";
-const { smAndDown } = useDisplay();
-import { getVal } from "@/services/DataService";
-import { useRouter } from "vue-router";
+import { IColleagueInfo } from "@/types/other"
+import { useDisplay } from "vuetify"
+import Section from "@/components/landingPage/Section.vue"
+import { onMounted, Ref, ref } from "vue"
+const { smAndDown } = useDisplay()
+import { getVal } from "@/services/DataService"
+import { useRouter } from "vue-router"
 
-const router = useRouter();
+const router = useRouter()
 
-const recommendations: Ref<IColleagueInfo[]> = ref([]);
-const isDataLoaded = ref(false);
+const recommendations: Ref<IColleagueInfo[]> = ref([])
+const isDataLoaded = ref(false)
 
 const getData = async () => {
   await getVal("recommendations").then((fetchedData) => {
     if (fetchedData) {
-      let result: any = [];
+      let result: any = []
       Object.keys(fetchedData).forEach((key, index) => {
           if (fetchedData[key].showPublic) {
-            result.push(fetchedData[key]);
+            result.push(fetchedData[key])
           }
-      });  
-      recommendations.value = result; 
-      isDataLoaded.value = true;
+      })  
+      recommendations.value = result 
+      isDataLoaded.value = true
     } else {
       // Handle the case where the fetched data is null or undefined
-      console.error("Error fetching data from Firebase.");
+      console.error("Error fetching data from Firebase.")
     }
-  });
-};
+  })
+}
 
 const openLink = (link: string) => {
-  window.open(link);
-};
+  window.open(link)
+}
 
 const openWriteRecommendation = () => {
-  router.push({ name: "WriteRecommendation" });
-};
+  router.push({ name: "WriteRecommendation" })
+}
 
 onMounted(async () => {
-  await getData();
-});
+  await getData()
+})
 </script>
 
 <style lang="scss" scoped>

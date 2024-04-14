@@ -51,50 +51,50 @@
 </template>
 
 <script lang="ts" setup>
-import Section from "@/components/landingPage/Section.vue";
-import { ref } from "vue";
+import Section from "@/components/landingPage/Section.vue"
+import { ref } from "vue"
 import { pushVal } from "@/services/DataService"
 
-const email = ref("");
-const message = ref("");
-const snackbar = ref(false);
-const text = ref("Your message has been sent!");
-const errorMessage = ref("");
-const emailInput = ref<HTMLInputElement | null>(null);
+const email = ref("")
+const message = ref("")
+const snackbar = ref(false)
+const text = ref("Your message has been sent!")
+const errorMessage = ref("")
+const emailInput = ref<HTMLInputElement | null>(null)
 
 const validateEmail = () => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return errorMessage.value = !emailRegex.test(email.value) ? "Please enter a valid email" : "";
-};
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return errorMessage.value = !emailRegex.test(email.value) ? "Please enter a valid email" : ""
+}
 
 const timeStamp = () => {
-  const currentDate = new Date();
-  const day = currentDate.getDate().toString().padStart(2, '0'); 
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-  const year = currentDate.getFullYear();
-  const hours = currentDate.getHours().toString().padStart(2, '0'); 
-  const minutes = currentDate.getMinutes().toString().padStart(2, '0'); 
-  const timestamp = `${day}.${month}.${year}. ${hours}:${minutes}`;
-  return timestamp;
+  const currentDate = new Date()
+  const day = currentDate.getDate().toString().padStart(2, '0') 
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
+  const year = currentDate.getFullYear()
+  const hours = currentDate.getHours().toString().padStart(2, '0') 
+  const minutes = currentDate.getMinutes().toString().padStart(2, '0') 
+  const timestamp = `${day}.${month}.${year}. ${hours}:${minutes}`
+  return timestamp
 }
 
 const sendEmail = () => {
 
   if (!!validateEmail()) {
-    emailInput.value?.focus();
-    return;
+    emailInput.value?.focus()
+    return
   }
 
   const dataObj = {
     email: email.value,
     message: message.value,
     timeStamp: timeStamp()
-  };
+  }
 
-  pushVal("contacted", dataObj);
-  snackbar.value = true;
+  pushVal("contacted", dataObj)
+  snackbar.value = true
 
-  email.value = "";
-  message.value = "";
-};
+  email.value = ""
+  message.value = ""
+}
 </script>

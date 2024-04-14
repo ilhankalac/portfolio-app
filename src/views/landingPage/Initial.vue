@@ -84,24 +84,24 @@
 </template>
 
 <script lang="ts" setup>
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
 
 const openLink = (link: string) => {
-  window.open(link);
-};
+  window.open(link)
+}
 
 const scrollToNextSection = () => {
-  const section2 = document.getElementById("about");
+  const section2 = document.getElementById("about")
 
   if (section2) {
     // Scroll to the top of Section 2
     window.scrollTo({
       top: section2.offsetTop - window.innerHeight * 0.08,
       behavior: "smooth", // Use smooth scrolling for a smoother transition
-    });
+    })
   }
-};
+}
 </script>
 
 <style scoped lang="scss">

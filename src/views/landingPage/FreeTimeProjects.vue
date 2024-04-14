@@ -86,28 +86,28 @@
 </template>
 
 <script lang="ts" setup>
-import Section from "@/components/landingPage/Section.vue";
-import { getVal } from "@/services/DataService";
-import { IFreeProject } from "@/types/other";
-import { Ref, onMounted, ref } from "vue";
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
+import Section from "@/components/landingPage/Section.vue"
+import { getVal } from "@/services/DataService"
+import { IFreeProject } from "@/types/other"
+import { Ref, onMounted, ref } from "vue"
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
 
-const projects: Ref<IFreeProject[]> = ref([]);
+const projects: Ref<IFreeProject[]> = ref([])
 
 const openLink = (link: string) => {
-  window.open(link, "_blank");
-};
+  window.open(link, "_blank")
+}
 
 onMounted(() => {
     getVal('free-time-projects').then((val) => {
     if (val) {
       Object.keys(val).forEach((key) => {
-        projects.value.push({ ...val[key], key });
-      });
+        projects.value.push({ ...val[key], key })
+      })
     }
-  });
-});
+  })
+})
 </script>
 
 <style scoped>
