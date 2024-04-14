@@ -44,10 +44,10 @@
 </template>
 
 <script lang="ts" setup>
-import router from "@/router";
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
-import Section from "@/components/landingPage/Section.vue";
+import router from "@/router"
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
+import Section from "@/components/landingPage/Section.vue"
 
 const navigationLinks = [
   { text: "Home", sectionId: "initial" },
@@ -56,20 +56,20 @@ const navigationLinks = [
   { text: "Recommendations", sectionId: "recommendations" },
   { text: "Explore", sectionId: "explore" },
 ]
-const otherInterestsLinks = ["Blog", "Projects", "Resume"];
-const socialMediaLinks = ["LinkedIn", "GitHub", "Twitter"];
+const otherInterestsLinks = ["Blog", "Projects", "Resume"]
+const socialMediaLinks = ["LinkedIn", "GitHub", "Twitter"]
 
 const changeTheRoute = (sectionId: string = "") => {
   if (sectionId === 'initial') {
-    router.push({ path: '/' });
+    router.push({ path: '/' })
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    });
-    return;
+    })
+    return
   }
-  router.push({ hash: '#' + sectionId });
-};
+  router.push({ hash: '#' + sectionId })
+}
 </script>
 
 <style scoped lang="scss">

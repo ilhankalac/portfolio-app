@@ -41,13 +41,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue'
 import { firebaseAuth, logOut } from '@/firebase'
-import router from '@/router';
-import { useRoute } from 'vue-router';
-import { useDisplay } from "vuetify";
+import router from '@/router'
+import { useRoute } from 'vue-router'
+import { useDisplay } from "vuetify"
 
-const route = useRoute();
+const route = useRoute()
 const sections = ref([
   {
     name: 'About',
@@ -80,40 +80,40 @@ const sections = ref([
     icon: 'card-account-mail',
     path: 'configure-get-in-touch'
   }
-]);
-const openedGroups = ref(['Sections']);
-const { smAndDown } = useDisplay();
-const showNavigationDrawer = ref(true);
+])
+const openedGroups = ref(['Sections'])
+const { smAndDown } = useDisplay()
+const showNavigationDrawer = ref(true)
 
 const closeNavigationDrawer = () => {
-  showNavigationDrawer.value = !showNavigationDrawer.value;
+  showNavigationDrawer.value = !showNavigationDrawer.value
 }
 
-let auth: any;
+let auth: any
 
 onMounted(() => {
-  auth = firebaseAuth;
-  smAndDown.value ? showNavigationDrawer.value = false : showNavigationDrawer.value = true;
-});
+  auth = firebaseAuth
+  smAndDown.value ? showNavigationDrawer.value = false : showNavigationDrawer.value = true
+})
 
 const logout = async () => {
   try {
     await logOut(auth).then(() => {
-      router.push('/login');
-    });
+      router.push('/login')
+    })
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
 const openSection = (path = '') => {
-  router.push('/admin-panel/' + path);
+  router.push('/admin-panel/' + path)
 }
 
 const getCurrentRouteName = computed(() => {
-  const routePath = route.path.split('/');
-  return sections.value.find(section => section.path === routePath[2])?.name;
-});
+  const routePath = route.path.split('/')
+  return sections.value.find(section => section.path === routePath[2])?.name
+})
 </script>
 
 <style scoped>

@@ -65,17 +65,17 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from "vue";
-import { useDisplay } from "vuetify";
-import { useRouter } from "vue-router";
-import { useRoute } from "vue-router";
+import { onMounted, Ref, ref } from "vue"
+import { useDisplay } from "vuetify"
+import { useRouter } from "vue-router"
+import { useRoute } from "vue-router"
 
-const { smAndDown } = useDisplay();
-const clickedButton: Ref<string> = ref("");
-const router = useRouter();
-const isMenuClicked = ref(false);
-const currentSection: any = ref("initial");
-const route = useRoute();
+const { smAndDown } = useDisplay()
+const clickedButton: Ref<string> = ref("")
+const router = useRouter()
+const isMenuClicked = ref(false)
+const currentSection: any = ref("initial")
+const route = useRoute()
 
 const navButtons = [
   { id: "0", name: "Home", sectionId: "#initial" },
@@ -85,58 +85,58 @@ const navButtons = [
   { id: "4", name: "Recommendations", sectionId: "recommendations" },
   { id: "5", name: "Explore", sectionId: "explore" },
 
-];
+]
 
 const props = defineProps<{
-  origin?: string;
-}>();
+  origin?: string
+}>()
 
-const isDataLoaded = ref(false);
+const isDataLoaded = ref(false)
 onMounted(() => {
   setTimeout(() => {
-    isDataLoaded.value = true;
-  }, 1000);
-});
+    isDataLoaded.value = true
+  }, 1000)
+})
 
 const changeTheRoute = (sectionId: string = "") => {
   if(props.origin === 'configure') {
     router.push('/').then(() => {
-      router.push({ hash: '#' + sectionId });
-    });
-    return;
+      router.push({ hash: '#' + sectionId })
+    })
+    return
   }
 
   if (sectionId === 'initial') {
-    router.push({ path: '/' });
+    router.push({ path: '/' })
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    });
-    return;
+    })
+    return
   }
-  router.push({ hash: '#' + sectionId });
-};
+  router.push({ hash: '#' + sectionId })
+}
 
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const sectionId = entry.target.getAttribute('id');
-        const url = sectionId === '#initial' ? '/' : `/#${sectionId}`;
+        const sectionId = entry.target.getAttribute('id')
+        const url = sectionId === '#initial' ? '/' : `/#${sectionId}`
         if (sectionId && sectionId !== 'shadow-host-companion') {
-          window.history.pushState({}, '', url);
-          currentSection.value = sectionId;
+          window.history.pushState({}, '', url)
+          currentSection.value = sectionId
         }
       }
-    });
+    })
   }, {
     threshold: 0.25
-  });
+  })
 
   document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section);
-  });
-});
+    observer.observe(section)
+  })
+})
 </script>
 
 <style scoped lang="scss">

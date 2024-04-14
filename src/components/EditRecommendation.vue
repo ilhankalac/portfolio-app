@@ -80,48 +80,48 @@
 </template>
 
 <script lang="ts" setup>
-import { IColleagueInfo } from "@/types/other";
+import { IColleagueInfo } from "@/types/other"
 import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import { setVal, pushVal } from "@/services/DataService";
-import { useRouter } from "vue-router";
-import { ref } from 'vue';
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { setVal, pushVal } from "@/services/DataService"
+import { useRouter } from "vue-router"
+import { ref } from 'vue'
 
 const props = defineProps<{
-  selectedRecommendation: IColleagueInfo;
-  selectedRecommendationIndex?: number;
-  origin?: string;
-}>();
+  selectedRecommendation: IColleagueInfo
+  selectedRecommendationIndex?: number
+  origin?: string
+}>()
 
-const emit = defineEmits(['close']);
-const router = useRouter();
-const formValid = ref(true);
-const form = ref<HTMLFormElement | null>(null);
-const snackbar = ref(false);
+const emit = defineEmits(['close'])
+const router = useRouter()
+const formValid = ref(true)
+const form = ref<HTMLFormElement | null>(null)
+const snackbar = ref(false)
 
 const save = async () => {
 
   const { valid } = await form.value?.validate()
 
   if (!valid) {
-    return;
+    return
   }
 
   if (props.origin === 'configure') {
-    setVal('recommendations/' + props.selectedRecommendationIndex, props.selectedRecommendation);
-    emit("close");
+    setVal('recommendations/' + props.selectedRecommendationIndex, props.selectedRecommendation)
+    emit("close")
   }
   if(props.origin === 'write-recommendation') {
-    pushVal('recommendations', props.selectedRecommendation);
-    form.value?.reset();
-    props.selectedRecommendation.textHtml = '';
-    snackbar.value = true;
+    pushVal('recommendations', props.selectedRecommendation)
+    form.value?.reset()
+    props.selectedRecommendation.textHtml = ''
+    snackbar.value = true
 
     setTimeout(() => {
-      router.push('/');
-    }, 1500);
+      router.push('/')
+    }, 1500)
   }
-};
+}
 
 </script>
 

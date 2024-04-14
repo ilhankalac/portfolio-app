@@ -68,7 +68,7 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
-      const element = document.getElementById(to.hash.slice(1));
+      const element = document.getElementById(to.hash.slice(1))
       if (element) {
         return { el: element, behavior: 'smooth', top: 60, left: 0 }
       }
@@ -79,9 +79,9 @@ const router = createRouter({
 const getCurrentUser = () => { 
   return new Promise((resolve, reject) => {
     const removeListener = _onAuthStateChanged(firebaseAuth, user => {
-      removeListener();
-      resolve(user);
-     }, reject);
+      removeListener()
+      resolve(user)
+     }, reject)
   })
 }
 

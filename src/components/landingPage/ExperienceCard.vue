@@ -76,23 +76,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
+import { ref } from "vue"
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
 
 interface IExperienceProps {
-  selectedItem: any;
+  selectedItem: any
 }
 
-const props = defineProps<IExperienceProps>();
+const props = defineProps<IExperienceProps>()
 const emit = defineEmits(['close'])
 
 const close = () => {
-  emit("close");
-};
+  emit("close")
+}
 
 const openLink = (link: string) => {
-  window.open(link);
+  window.open(link)
 }
 
 const skills = ref([
@@ -126,11 +126,11 @@ const skills = ref([
     name: "Vuetify",
     icon: "vuetify",
   },
-]);
+])
 
 const addLeftMarginToHtml = (content: string) => {
-  return content.replace(/ql-indent/g, 'ml-4 ql-indent');
-};
+  return content.replace(/ql-indent/g, 'ml-4 ql-indent')
+}
 </script>
 
 <style lang="scss" scoped>

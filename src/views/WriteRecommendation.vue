@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from "@/components/NavBar.vue";
-import EditRecommendation from "@/components/EditRecommendation.vue";
-import { IColleagueInfo } from "@/types/other";
-import { ref } from 'vue';
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
+import NavBar from "@/components/NavBar.vue"
+import EditRecommendation from "@/components/EditRecommendation.vue"
+import { IColleagueInfo } from "@/types/other"
+import { ref } from 'vue'
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
 
 const selectedRecommendation = ref<IColleagueInfo>({
   fullName: "",
@@ -29,7 +29,7 @@ const selectedRecommendation = ref<IColleagueInfo>({
   textHtml: "",
   githubLink: "",
   linkedinLink: "",
-});
+})
 </script>
 
 <style scoped lang="scss">

@@ -49,13 +49,13 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
 </script>
 
 <style scoped>
 a {
-  color: rgb(var(--v-theme-greyText));;
+  color: rgb(var(--v-theme-greyText));
   text-decoration: none;
 }
 </style>

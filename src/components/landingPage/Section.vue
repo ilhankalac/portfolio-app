@@ -29,15 +29,15 @@
 
 <script lang="ts" setup>
 interface ISection {
-  sectionId?: string;
-  customStyle?: string;
-  header?: string;
-  textColor?: string;
+  sectionId?: string
+  customStyle?: string
+  header?: string
+  textColor?: string
 }
-import { computed } from "vue";
-import { useDisplay } from "vuetify";
-const { smAndDown, name } = useDisplay();
-const props = defineProps<ISection>();
+import { computed } from "vue"
+import { useDisplay } from "vuetify"
+const { smAndDown, name } = useDisplay()
+const props = defineProps<ISection>()
 
 const colsNumber = computed(() => {
   switch (name.value) {

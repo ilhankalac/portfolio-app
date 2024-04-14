@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { initializeApp } from "firebase/app"
+import { getDatabase } from "firebase/database"
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
 
 // Firebase configuration
 const firebaseConfig = {
@@ -12,14 +12,14 @@ const firebaseConfig = {
 	appId: import.meta.env.VITE_APP_FIREBASE_APP_ID,
 	measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENT_ID,
 	databaseURL: import.meta.env.VITE_APP_FIREBASE_DATABASE_URL,
-};
+}
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const firebaseDatabase = getDatabase(firebaseApp);
-const firebaseAuth = getAuth(firebaseApp);
-const signIn = signInWithEmailAndPassword;
-const _onAuthStateChanged = onAuthStateChanged;
-const logOut = signOut;
+const firebaseApp = initializeApp(firebaseConfig)
+const firebaseDatabase = getDatabase(firebaseApp)
+const firebaseAuth = getAuth(firebaseApp)
+const signIn = signInWithEmailAndPassword
+const _onAuthStateChanged = onAuthStateChanged
+const logOut = signOut
 
-export { firebaseApp, firebaseDatabase, firebaseAuth, signIn, _onAuthStateChanged, logOut};
+export { firebaseApp, firebaseDatabase, firebaseAuth, signIn, _onAuthStateChanged, logOut}

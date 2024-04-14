@@ -18,23 +18,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { firebaseAuth, signIn } from '@/firebase';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { firebaseAuth, signIn } from '@/firebase'
 
 
-const router = useRouter();
-const email = ref('');
-const password = ref('');
+const router = useRouter()
+const email = ref('')
+const password = ref('')
 
 const login = async () => {
-  console.log(email.value, password.value);
+  console.log(email.value, password.value)
   try {
     await signIn(firebaseAuth, email.value, password.value).then(() => {
-      router.push('/admin-panel');
-    });
+      router.push('/admin-panel')
+    })
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
