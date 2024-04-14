@@ -33,15 +33,15 @@
 </template>
 
 <script lang="ts" setup>
-import { getVal } from "@/services/DataService";
-import { IColleagueInfo } from "@/types/other";
-import { onMounted, ref, Ref } from "vue";
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import EditRecommendation from "@/components/EditRecommendation.vue";
+import { getVal } from "@/services/DataService"
+import { IColleagueInfo } from "@/types/other"
+import { onMounted, ref, Ref } from "vue"
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import EditRecommendation from "@/components/EditRecommendation.vue"
 
-const recommendations: Ref<IColleagueInfo[]> = ref([]);
-const isDataLoaded = ref(false);
-const editRecommendationDialog = ref(false);
+const recommendations: Ref<IColleagueInfo[]> = ref([])
+const isDataLoaded = ref(false)
+const editRecommendationDialog = ref(false)
 const selectedRecommendation = ref<IColleagueInfo>({
   fullName: "",
   role: "",
@@ -49,30 +49,30 @@ const selectedRecommendation = ref<IColleagueInfo>({
   textHtml: "",
   githubLink: "",
   linkedinLink: "",
-});
-const selectedRecommendationIndex = ref(0);
+})
+const selectedRecommendationIndex = ref(0)
 
 const getData = async () => {
   await getVal("recommendations").then((fetchedData) => {
     if (fetchedData) {
-      recommendations.value = fetchedData;
-      isDataLoaded.value = true;
+      recommendations.value = fetchedData
+      isDataLoaded.value = true
     } else {
       // Handle the case where the fetched data is null or undefined
-      console.error("Error fetching data from Firebase.");
+      console.error("Error fetching data from Firebase.")
     }
-  });
-};
+  })
+}
 
 const openDialog = (element: any, key:any) => {
-  selectedRecommendation.value = element;
-  selectedRecommendationIndex.value = key;
-  editRecommendationDialog.value = true;
-};
+  selectedRecommendation.value = element
+  selectedRecommendationIndex.value = key
+  editRecommendationDialog.value = true
+}
 
 onMounted(async () => {
-  await getData();
-});
+  await getData()
+})
 </script>
 
 <style scoped>

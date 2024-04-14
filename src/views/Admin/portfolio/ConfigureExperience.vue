@@ -166,14 +166,14 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, onMounted, ref } from "vue";
-import { setVal, getVal } from "@/services/DataService";
+import { Ref, onMounted, ref } from "vue"
+import { setVal, getVal } from "@/services/DataService"
 import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
-const experiences: any = ref([]);
-const editCompanyDetailsDialog = ref(false);
-const editExperiencesDialog = ref(false);
+const experiences: any = ref([])
+const editCompanyDetailsDialog = ref(false)
+const editExperiencesDialog = ref(false)
 const selectedExperience = ref<any>({
   title: "",
   location: "",
@@ -182,26 +182,26 @@ const selectedExperience = ref<any>({
   logoSrc: "",
   position: "",
   company_link: "",
-});
+})
 
-const key = ref([""]);
-const indexOfSelectedExperience: Ref<string> = ref("");
-const selectedCompanyKey = ref("");
+const key = ref([""])
+const indexOfSelectedExperience: Ref<string> = ref("")
+const selectedCompanyKey = ref("")
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
     if (fetchedData) {
-      key.value = Object.keys(fetchedData);
-      experiences.value = fetchedData[key.value[0]];
+      key.value = Object.keys(fetchedData)
+      experiences.value = fetchedData[key.value[0]]
     } else {
-      console.error("Error fetching data from Firebase.");
+      console.error("Error fetching data from Firebase.")
     }
-  });
-};
+  })
+}
 
 const openDialogForAdd = () => {
-  selectedCompanyKey.value = '';
-  indexOfSelectedExperience.value = experiences.value.length;
+  selectedCompanyKey.value = ''
+  indexOfSelectedExperience.value = experiences.value.length
   selectedExperience.value = {
     title: "",
     location: "",
@@ -221,34 +221,34 @@ const openDialogForAdd = () => {
         technologies: [{ name: "", icon: "" }],
       },
     ],
-  };
-  editCompanyDetailsDialog.value = true;
+  }
+  editCompanyDetailsDialog.value = true
 }
 
 const openDialogForCompanyEdit = (experience:any = null, key: any) => {
-  selectedExperience.value = experience;
-  selectedCompanyKey.value = key;
-  editCompanyDetailsDialog.value = true;
+  selectedExperience.value = experience
+  selectedCompanyKey.value = key
+  editCompanyDetailsDialog.value = true
 }
 
 const openDialogForExperienceEdit = (experience = null, from = "", key: any) => {
-  selectedCompanyKey.value = key;
-  selectedExperience.value = experience;
-  editExperiencesDialog.value = true;
-  indexOfSelectedExperience.value = experiences.value.indexOf(experience);
-};
+  selectedCompanyKey.value = key
+  selectedExperience.value = experience
+  editExperiencesDialog.value = true
+  indexOfSelectedExperience.value = experiences.value.indexOf(experience)
+}
 
 const saveExperience = async () => {
 
-  const finalIndex: any = selectedCompanyKey.value !== '' ? selectedCompanyKey.value : experiences.value.length;
+  const finalIndex: any = selectedCompanyKey.value !== '' ? selectedCompanyKey.value : experiences.value.length
   await setVal(
     `working-experience/${key.value}/${finalIndex}`,
     selectedExperience.value
-  );
-  editCompanyDetailsDialog.value = false;
-  editExperiencesDialog.value = false;
-  await getData();
-};
+  )
+  editCompanyDetailsDialog.value = false
+  editExperiencesDialog.value = false
+  await getData()
+}
 
 const addProject = () => {
   selectedExperience.value.projects.push({
@@ -258,13 +258,13 @@ const addProject = () => {
     logoSrc: "",
     startDate: "",
     endDate: "",
-  });
+  })
   indexOfSelectedExperience.value = experiences.value.indexOf(
     selectedExperience.value
-  );
-};
+  )
+}
 
 onMounted(async () => {
-  await getData();
-});
+  await getData()
+})
 </script>

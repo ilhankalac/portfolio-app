@@ -28,23 +28,23 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, onMounted, ref } from 'vue';
+import { Ref, onMounted, ref } from 'vue'
 import { getVal } from '@/services/DataService'
-import { IContact } from '@/types/other';
+import { IContact } from '@/types/other'
 
-const contacts: Ref<IContact[]> = ref([]);
+const contacts: Ref<IContact[]> = ref([])
 
 const getSentEmails = () => {
   getVal('contacted').then((val) => {
     if (val) {
       Object.keys(val).forEach((key) => {
-        contacts.value.push({ ...val[key], key });
-      });
+        contacts.value.push({ ...val[key], key })
+      })
     }
-  });
+  })
 }
 
 onMounted(() => {
-  getSentEmails();
-});
+  getSentEmails()
+})
 </script>

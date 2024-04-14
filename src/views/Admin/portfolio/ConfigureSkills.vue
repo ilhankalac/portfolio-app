@@ -59,39 +59,39 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, Ref, ref } from 'vue';
+import { onMounted, Ref, ref } from 'vue'
 import { setVal, getVal, pushVal } from '@/services/DataService'
 import { ISkill } from '@/types/other'
 
-const skills: Ref<ISkill[]> = ref([]);
+const skills: Ref<ISkill[]> = ref([])
 const skill: Ref<ISkill> = ref<ISkill>({
   key: -1,
   name: '',
   icon: '',
-});
-const addEditSkillDialog = ref(false);
-const origin = ref('');
+})
+const addEditSkillDialog = ref(false)
+const origin = ref('')
 
 const openDialog = (selectedItem: ISkill = { key: -1, name: '', icon: '' }, key: number = -1) => {
-  selectedItem.name == '' ? origin.value = 'add' : origin.value = 'edit';
-  selectedItem.key = key;
-  addEditSkillDialog.value = true;
-  skill.value = Object.assign({}, selectedItem);
+  selectedItem.name == '' ? origin.value = 'add' : origin.value = 'edit'
+  selectedItem.key = key
+  addEditSkillDialog.value = true
+  skill.value = Object.assign({}, selectedItem)
 }
 
 const save = async (skillData: ISkill) => {
   if (origin.value === 'add') {
-    await pushVal('skills', skillData);
-    skills.value.push(skillData);
-    addEditSkillDialog.value = false;
-    return;
+    await pushVal('skills', skillData)
+    skills.value.push(skillData)
+    addEditSkillDialog.value = false
+    return
   }
 
   if (skillData.key !== -1) {
-    skills.value[skillData.key] = skillData;
-    await setVal('skills', skills.value);
-    addEditSkillDialog.value = false;
-    return;
+    skills.value[skillData.key] = skillData
+    await setVal('skills', skills.value)
+    addEditSkillDialog.value = false
+    return
   }
 }
 
@@ -99,13 +99,13 @@ const getSkills = () => {
   getVal('skills').then((val) => {
     if (val) {
       Object.keys(val).forEach((key) => {
-        skills.value.push({ ...val[key], key });
-      });
+        skills.value.push({ ...val[key], key })
+      })
     }
-  });
+  })
 }
 
 onMounted(() => {
-  getSkills();
-});
+  getSkills()
+})
 </script>

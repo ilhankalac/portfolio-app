@@ -17,21 +17,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { setVal, getVal } from '@/services/DataService'
-const description = ref('');
+const description = ref('')
 
 const save = () => {
-  setVal('about', description.value);
+  setVal('about', description.value)
 }
 
 onMounted(() => {
   getVal('about').then((val) => {
     if (val) {
-      description.value = val;
+      description.value = val
     }
-  });
-});
+  })
+})
 </script>

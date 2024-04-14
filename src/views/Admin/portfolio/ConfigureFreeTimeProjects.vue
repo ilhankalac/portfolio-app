@@ -114,13 +114,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, Ref, ref } from 'vue';
+import { onMounted, Ref, ref } from 'vue'
 import { setVal, getVal, pushVal } from '@/services/DataService'
 import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import { IFreeProject } from '@/types/other';
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { IFreeProject } from '@/types/other'
 
-const projects: Ref<IFreeProject[]> = ref([]);
+const projects: Ref<IFreeProject[]> = ref([])
 const project: Ref<IFreeProject> = ref({
   key: -1,
   title: '',
@@ -130,9 +130,9 @@ const project: Ref<IFreeProject> = ref({
   source_code: '',
   icon: '',
   description: '',
-});
-const addEditProjectDialog = ref(false);
-const origin = ref('');
+})
+const addEditProjectDialog = ref(false)
+const origin = ref('')
 
 const openDialog = (
   selectedItem: IFreeProject = {
@@ -149,30 +149,30 @@ const openDialog = (
   key: number = -1
 ) => {
   if (selectedItem.title === '') {
-    origin.value = 'add';
+    origin.value = 'add'
   } else {
-    origin.value = 'edit';
+    origin.value = 'edit'
   }
   
-  selectedItem.key = key;
-  addEditProjectDialog.value = true;
-  project.value = { ...selectedItem };
-};
+  selectedItem.key = key
+  addEditProjectDialog.value = true
+  project.value = { ...selectedItem }
+}
 
 
 const save = async (projectData: IFreeProject) => {
   if (origin.value === 'add') {
-    await pushVal('free-time-projects', projectData);
-    projects.value.push(projectData);
-    addEditProjectDialog.value = false;
-    return;
+    await pushVal('free-time-projects', projectData)
+    projects.value.push(projectData)
+    addEditProjectDialog.value = false
+    return
   }
 
   if (projectData.key !== -1) {
-    projects.value[projectData.key] = projectData;
-    await setVal('free-time-projects', projects.value);
-    addEditProjectDialog.value = false;
-    return;
+    projects.value[projectData.key] = projectData
+    await setVal('free-time-projects', projects.value)
+    addEditProjectDialog.value = false
+    return
   }
 }
 
@@ -180,13 +180,13 @@ const getProjects = () => {
   getVal('free-time-projects').then((val) => {
     if (val) {
       Object.keys(val).forEach((key) => {
-        projects.value.push({ ...val[key], key });
-      });
+        projects.value.push({ ...val[key], key })
+      })
     }
-  });
+  })
 }
 
 onMounted(() => {
-  getProjects();
-});
+  getProjects()
+})
 </script>

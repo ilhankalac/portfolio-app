@@ -97,49 +97,49 @@
 </template>
 
 <script lang="ts" setup>
-import ExperienceCard from "@/components/landingPage/ExperienceCard.vue";
-import Section from "@/components/landingPage/Section.vue";
-import { onMounted, ref } from "vue";
-import { useDisplay } from "vuetify";
-const { smAndDown } = useDisplay();
-import { getVal } from "@/services/DataService";
+import ExperienceCard from "@/components/landingPage/ExperienceCard.vue"
+import Section from "@/components/landingPage/Section.vue"
+import { onMounted, ref } from "vue"
+import { useDisplay } from "vuetify"
+const { smAndDown } = useDisplay()
+import { getVal } from "@/services/DataService"
 
-const experiences: any = ref([]);
-const jobDialog = ref(false);
-const selectedExperience = ref<any | null>(null);
-const isDataLoaded = ref(false);
+const experiences: any = ref([])
+const jobDialog = ref(false)
+const selectedExperience = ref<any | null>(null)
+const isDataLoaded = ref(false)
 
 const getData = async () => {
   await getVal("working-experience").then((fetchedData) => {
     if (fetchedData) {
-      isDataLoaded.value = true;
-      const key = Object.keys(fetchedData);
-      experiences.value = fetchedData[key[0]].reverse();
+      isDataLoaded.value = true
+      const key = Object.keys(fetchedData)
+      experiences.value = fetchedData[key[0]].reverse()
     } else {
       // Handle the case where the fetched data is null or undefined
-      console.error("Error fetching data from Firebase.");
+      console.error("Error fetching data from Firebase.")
     }
-  });
-};
+  })
+}
 
 const openCompanyLink = (link: string) => {
-  window.open(link);
-};
+  window.open(link)
+}
 
 const calculateYearsWithDecimal = (startDate: Date = new Date("2019-10-01")): string => {
-  const currentDate: Date = new Date();
+  const currentDate: Date = new Date()
   const monthsDiff: number =
     (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
     currentDate.getMonth() -
-    startDate.getMonth();
+    startDate.getMonth()
 
-  const yearsWithDecimal: number = monthsDiff / 12;
-  return yearsWithDecimal.toFixed(2);
-};
+  const yearsWithDecimal: number = monthsDiff / 12
+  return yearsWithDecimal.toFixed(2)
+}
 
 onMounted(async () => {
-  await getData();
-});
+  await getData()
+})
 </script>
 
 <style lang="scss" scoped>
