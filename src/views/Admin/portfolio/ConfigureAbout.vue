@@ -6,7 +6,14 @@
           <v-card-title>
             <span>About</span>
           </v-card-title>
-          <QuillEditor v-model:content="description" contentType="html" theme="snow"></QuillEditor>
+          <HtmlEditor
+            v-if="description"
+            ref="editor"
+            class="mt-8"
+            fullscreen-icon="fas fa-up-right-and-down-left-from-center"
+            :editor-content="description"
+             @update:editor-content="onEditorUpdate"
+          />
           <v-btn color="white" class="mt-5" variant="outlined" @click="save" block>
             Save
           </v-btn>
@@ -18,13 +25,16 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { setVal, getVal } from '@/services/DataService'
+import HtmlEditor from '@/components/HtmlEditor.vue'
 const description = ref('')
 
 const save = () => {
   setVal('about', description.value)
+}
+
+const onEditorUpdate = (content: any) => {
+  description.value = content
 }
 
 onMounted(() => {
