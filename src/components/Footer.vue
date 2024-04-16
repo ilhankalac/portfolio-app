@@ -27,7 +27,10 @@
           <div class="footer-section">
             <div class="footer-heading text-overline text-with-underline text-white">Social Media</div>
             <div class="footer-links ga-2" :class="smAndDown ? 'd-flex' : 'flex-column'">
-              <span v-for="link in socialMediaLinks" :key="link">{{ link }}</span>
+
+              <span v-for="link in socialMediaLinks" :key="link.url">
+                <div @click="openLink(link.url)" target="blank"> {{ link.text }}</div>
+              </span>
             </div>
           </div>
         </div>
@@ -53,11 +56,25 @@ const navigationLinks = [
   { text: "Home", sectionId: "initial" },
   { text: "About", sectionId: "about" },
   { text: "Experience", sectionId: "experience" },
+  { text: "Free time projects", sectionId: "freetime-projects" },
   { text: "Recommendations", sectionId: "recommendations" },
   { text: "Explore", sectionId: "explore" },
 ]
 const otherInterestsLinks = ["Blog", "Projects", "Resume"]
-const socialMediaLinks = ["LinkedIn", "GitHub", "Twitter"]
+const socialMediaLinks = [
+  {
+    text: "LinkedIn",
+    url: "https://www.linkedin.com/in/ilhankalac/"
+  },
+  {
+    text: "GitHub",
+    url: "https://github.com/ilhankalac" 
+  },
+  {
+    text: "Twitter",
+    url: "https://twitter.com/privatizova"
+  }
+]
 
 const changeTheRoute = (sectionId: string = "") => {
   if (sectionId === 'initial') {
@@ -69,6 +86,10 @@ const changeTheRoute = (sectionId: string = "") => {
     return
   }
   router.push({ hash: '#' + sectionId })
+}
+
+const openLink = (link: string) => {
+  window.open(link, '_blank')
 }
 </script>
 
