@@ -14,12 +14,27 @@
             ></v-list-item>
           </template>
           <v-list-item
-            v-for="item in sections"
+            v-for="item in portfolioSections"
             @click="openSection(item.path)"
           >
             <v-list-item-title> <v-icon class="mr-1"> mdi-{{ item.icon }} </v-icon> {{ item.name }}</v-list-item-title>
           </v-list-item>
         </v-list-group> 
+        <v-list-group>
+          <template v-slot:activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              prepend-icon="mdi-palette"
+              title="Creative Tools"
+            ></v-list-item>
+          </template>
+          <v-list-item
+            v-for="item in creativeTools"
+            @click="openSection(item.path)"
+          >
+            <v-list-item-title> <v-icon class="mr-1"> mdi-{{ item.icon }} </v-icon> {{ item.name }}</v-list-item-title>
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 
@@ -48,7 +63,7 @@ import { useRoute } from 'vue-router'
 import { useDisplay } from "vuetify"
 
 const route = useRoute()
-const sections = ref([
+const portfolioSections = ref([
   {
     name: 'About',
     icon: 'information',
@@ -81,6 +96,13 @@ const sections = ref([
     path: 'configure-get-in-touch'
   }
 ])
+const creativeTools = ref([
+  {
+    name: 'Write Blog',
+    icon: 'file-document-edit',
+    path: 'write-blog'
+  },
+])
 const openedGroups = ref(['Sections'])
 const { smAndDown } = useDisplay()
 const showNavigationDrawer = ref(true)
@@ -112,7 +134,7 @@ const openSection = (path = '') => {
 
 const getCurrentRouteName = computed(() => {
   const routePath = route.path.split('/')
-  return sections.value.find(section => section.path === routePath[2])?.name
+  return portfolioSections.value.find(section => section.path === routePath[2])?.name
 })
 </script>
 

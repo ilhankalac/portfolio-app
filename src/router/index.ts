@@ -58,6 +58,10 @@ const routes = [
       {
         path: ':configure-get-in-touch',
         component: () => import('@/views/Admin/portfolio/ConfigureGetInTouch.vue'),
+      },
+      {
+        path: ':write-blog',
+        component: () => import('@/views/Admin/creative_tools/WriteBlog.vue'),
       }
     ]
   }
