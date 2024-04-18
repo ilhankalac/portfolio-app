@@ -6,9 +6,36 @@
           <v-card-title>
             <span>About</span>
           </v-card-title>
-          <QuillEditor v-model:content="description" contentType="html" theme="snow"></QuillEditor>
+          <v-text-field
+            v-model="blog.title"
+            label="Title"
+            variant="outlined"
+          />
+          <v-text-field
+            v-model="blog.date"
+            label="Date"
+            variant="outlined"
+          />
+
+          <v-text-field
+            v-model="blog.image"
+            label="Image"
+            variant="outlined"
+          />
+          <v-text-field
+            v-model="blog.author"
+            label="Author"
+            variant="outlined"
+          />
+
+          <QuillEditor 
+            v-model:content="blog.html" 
+            contentType="html" 
+            theme="snow"
+
+          />
           <v-btn color="white" class="mt-5" variant="outlined" @click="save" block>
-            Save
+            Publish
           </v-btn>
         </v-card>
       </v-col>
@@ -37,9 +64,15 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { pushVal, getVal } from '@/services/DataService'
 const description = ref('')
 const blogs = ref([]);
+const blog = ref({
+  title: '',
+  date: '',
+  image: '',
+  author: ''
+})
 
 const save = () => {
-  pushVal('blog/posts', { html: description.value })
+  pushVal('blog/posts', blog.value)
   getBlogs()
 }
 
