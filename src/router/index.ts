@@ -1,5 +1,6 @@
 // Composables
 import { firebaseAuth, _onAuthStateChanged } from '@/firebase'
+import path from 'path'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -62,6 +63,16 @@ const routes = [
       {
         path: ':write-blog',
         component: () => import('@/views/Admin/creative_tools/WriteBlog.vue'),
+      }
+    ]
+  },
+  {
+    path: '/blogs',
+    component: () => import('@/layouts/BlogLayout.vue'),
+    children: [
+      {
+        path: ':list',
+        component: () => import('@/views/blogs/BlogList.vue'),
       }
     ]
   }
