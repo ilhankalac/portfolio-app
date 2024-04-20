@@ -71,8 +71,13 @@ const routes = [
     component: () => import('@/layouts/BlogLayout.vue'),
     children: [
       {
-        path: ':list',
+        path: 'list',
         component: () => import('@/views/blogs/BlogList.vue'),
+      },
+      {
+        path: ':id',
+        name: 'BlogPage',
+        component: () => import('@/views/blogs/BlogPage.vue'),
       }
     ]
   }

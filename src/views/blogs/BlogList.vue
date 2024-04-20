@@ -1,9 +1,10 @@
 <template>
   <v-card
-    v-for="blog in blogs"
+    v-for="(blog, key) in blogs"
     style="flex-grow: 1 !important"
     color="secondary"
     class="pa-4"
+    @click="openBlog(blog, key)"
   >
     <v-card-title>
       <span class="font-weight-light text-h6">{{ blog.title }}</span>
@@ -14,6 +15,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { getVal } from "@/services/DataService";
+import router from "@/router";
 
 const blogs = ref([]);
 const getBlogs = () => {
@@ -22,6 +24,13 @@ const getBlogs = () => {
       blogs.value = val;
     }
   });
+};
+
+const openBlog = (blog, key) => {
+  console.log(blog, key);
+
+
+  router.push({ name: "BlogPage", params: { id: key } });
 };
 
 onMounted(() => {
