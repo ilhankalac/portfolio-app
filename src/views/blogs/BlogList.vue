@@ -17,7 +17,7 @@ import { onMounted, ref } from "vue";
 import { getVal } from "@/services/DataService";
 import router from "@/router";
 
-const blogs = ref([]);
+const blogs: any = ref([]);
 const getBlogs = () => {
   getVal("blog/posts").then((val) => {
     if (val) {
@@ -26,15 +26,8 @@ const getBlogs = () => {
   });
 };
 
-const openBlog = (blog, key) => {
-  console.log(blog, key);
-
-  
-  
+const openBlog = (blog: any, key: number) => {
   const keyAndTitle = blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase() + "/key=" + key;
-
-  console.log(keyAndTitle)
-  
   router.push({ name: "BlogPage", params: { id: keyAndTitle } });
 };
 

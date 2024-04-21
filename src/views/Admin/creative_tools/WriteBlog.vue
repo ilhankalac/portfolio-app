@@ -55,7 +55,8 @@ const blog = ref({
   date: '',
   image: '',
   author: '',
-  key: ''
+  key: '',
+  html: ''
 })
 
 const save = () => {
