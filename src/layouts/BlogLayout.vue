@@ -19,12 +19,27 @@
             <router-view />
           </v-col>
           <v-col :cols="smAndDown ? 0 : 4" class="d-flex flex-column align-center text-white">
-            <div 
-              class="font-weight-light"
-              :class="smAndDown ? 'text-h6' : 'text-h5'"
-            >
-              Posljednje objave
-            </div>
+            <v-card color="primary">
+              <v-tabs
+                v-model="tab"
+                bg-color="primary"
+              >
+                <v-tab value="one">Posljednje objave</v-tab>
+                <v-tab value="two">Najčitanije</v-tab>
+              </v-tabs>
+
+              <v-card-text>
+                <v-window v-model="tab">
+                  <v-window-item value="one">
+                    <BlogList />
+                  </v-window-item>
+
+                  <v-window-item value="two">
+                    Two
+                  </v-window-item>
+                </v-window>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -34,6 +49,9 @@
 
 <script setup lang="ts">
 import NavBar from '@/components/NavBar.vue'
+import BlogList from '@/views/blogs/BlogList.vue'
 import { useDisplay } from "vuetify"
 const { smAndDown } = useDisplay()
+import { ref } from 'vue'
+const tab = ref('one')
 </script>
