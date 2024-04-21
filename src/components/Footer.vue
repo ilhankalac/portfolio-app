@@ -20,8 +20,11 @@
           </div>
           <div class="footer-section">
             <div class="footer-heading text-with-underline text-overline text-white">Other interests</div>
-            <div class="footer-links ga-2" :class="smAndDown ? 'd-flex' : 'flex-column'">
-              <span v-for="link in otherInterestsLinks" :key="link">{{ link }}</span>
+            <div 
+              class="footer-links ga-2" 
+              :class="smAndDown ? 'd-flex' : 'flex-column'"
+            >
+              <span v-for="link in otherInterestsLinks" @click="openOtherInterestsLink(link.url)">{{ link.text }}</span>
             </div>
           </div>
           <div class="footer-section">
@@ -60,7 +63,22 @@ const navigationLinks = [
   { text: "Recommendations", sectionId: "recommendations" },
   { text: "Explore", sectionId: "explore" },
 ]
-const otherInterestsLinks = ["Blog", "Projects", "Resume"]
+// const otherInterestsLinks = ["Blog", "Projects", "Resume"]
+
+const otherInterestsLinks = [
+  {
+    text: "Blog",
+    url: "blogs/list"
+  },
+  {
+    text: "Projects",
+    url: "https://ilhankalac.com/projects"
+  },
+  {
+    text: "Resume",
+    url: "https://ilhankalac.com/resume"
+  }
+]
 const socialMediaLinks = [
   {
     text: "LinkedIn",
@@ -91,6 +109,11 @@ const changeTheRoute = (sectionId: string = "") => {
 const openLink = (link: string) => {
   window.open(link, '_blank')
 }
+
+const openOtherInterestsLink = (path: string) => {
+  router.push({ path })
+}
+
 </script>
 
 <style scoped lang="scss">

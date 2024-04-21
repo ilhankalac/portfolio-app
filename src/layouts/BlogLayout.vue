@@ -14,6 +14,14 @@
       <v-container>
         <v-row>
           <v-col cols="2" class="d-flex flex-column align-center text-white">
+            
+            <v-btn
+              v-if="$route.fullPath !== '/blogs/list'" 
+              variant="text" 
+              @click="router.push('/blogs/list')"
+            >
+              <v-icon class="mr-4">mdi-arrow-left</v-icon> Return to blog list
+            </v-btn>
           </v-col>
           <v-col :cols="smAndDown ? 12 : 6">
             <router-view />
@@ -48,10 +56,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import BlogList from '@/views/blogs/BlogList.vue'
 import { useDisplay } from "vuetify"
+import { useRouter } from "vue-router"
 const { smAndDown } = useDisplay()
-import { ref } from 'vue'
+
+const router = useRouter()
 const tab = ref('one')
 </script>

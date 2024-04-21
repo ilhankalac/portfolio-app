@@ -1,6 +1,5 @@
 // Composables
 import { firebaseAuth, _onAuthStateChanged } from '@/firebase'
-import path from 'path'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
