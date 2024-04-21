@@ -40,20 +40,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col>
-        <v-card 
-          v-for="blog in blogs"
-          style="flex-grow: 1 !important" color="secondary" class="pa-4">
-          <v-card-title>
-            <span>Blog</span>
-            <div>
-              <div v-html="blog.html"></div>
-            </div>
-          </v-card-title>
-        </v-card>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
@@ -68,10 +54,12 @@ const blog = ref({
   title: '',
   date: '',
   image: '',
-  author: ''
+  author: '',
+  key: ''
 })
 
 const save = () => {
+  blog.value.key = blog.value.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase();
   pushVal('blog/posts', blog.value)
   getBlogs()
 }

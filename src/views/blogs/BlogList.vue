@@ -29,8 +29,13 @@ const getBlogs = () => {
 const openBlog = (blog, key) => {
   console.log(blog, key);
 
+  
+  
+  const keyAndTitle = blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase() + "/key=" + key;
 
-  router.push({ name: "BlogPage", params: { id: key } });
+  console.log(keyAndTitle)
+  
+  router.push({ name: "BlogPage", params: { id: keyAndTitle } });
 };
 
 onMounted(() => {
