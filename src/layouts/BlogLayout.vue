@@ -11,9 +11,9 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-container>
-        <v-row>
-          <v-col cols="2" class="d-flex flex-column align-center text-white">
+      <v-container style="max-width: none;" class="ma-0 pa-0">
+        <v-row class="d-flex flex-row">
+          <v-col :cols="smAndDown ? 0 : 2" class="d-flex flex-column align-center text-white">
             
             <v-btn
               v-if="$route.fullPath !== '/blogs/list'" 
@@ -26,11 +26,11 @@
           <v-col :cols="smAndDown ? 12 : 6">
             <router-view />
           </v-col>
-          <v-col :cols="smAndDown ? 0 : 4" class="d-flex flex-column align-center text-white">
-            <v-card color="primary">
+          <v-col :cols="smAndDown? 12 : 4" class="d-flex flex-column align-center text-white">
+            <v-card color="secondary">
               <v-tabs
                 v-model="tab"
-                bg-color="primary"
+                bg-color="secondary"
               >
                 <v-tab value="one">Posljednje objave</v-tab>
                 <v-tab value="two">Najčitanije</v-tab>

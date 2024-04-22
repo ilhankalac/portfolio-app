@@ -1,15 +1,16 @@
 <template>
-  <v-card
-    v-for="(blog, key) in blogs"
-    style="flex-grow: 1 !important"
-    color="secondary"
-    class="pa-4"
-    @click="openBlog(blog, key)"
-  >
-    <v-card-title>
-      <span class="font-weight-light text-h6">{{ blog.title }}</span>
-    </v-card-title>
-  </v-card>
+  <template v-for="(blog, key) in blogs">
+    <v-card
+      style="flex-grow: 1 !important; cursor: pointer;"
+      color="primary"
+      class="pa-4 ma-1"
+      @click="openBlog(blog, key)"
+    >
+      <div>
+        <span class="font-weight-light text-white">{{ blog.title }}</span>
+      </div>
+    </v-card>
+  </template>
 </template>
 
 <script setup lang="ts">
@@ -27,7 +28,10 @@ const getBlogs = () => {
 };
 
 const openBlog = (blog: any, key: number) => {
-  const keyAndTitle = blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase() + "/key=" + key;
+  const keyAndTitle =
+    blog.title.replace(/\s+/g, "-").replace(/-+/g, "-").toLowerCase() +
+    "/key=" +
+    key;
   router.push({ name: "BlogPage", params: { id: keyAndTitle } });
 };
 
