@@ -27,7 +27,7 @@
             <router-view />
           </v-col>
           <v-col :cols="smAndDown? 12 : 4" class="d-flex flex-column align-center text-white">
-            <v-card color="secondary">
+            <v-card color="secondary" class="pa-4">
               <v-tabs
                 v-model="tab"
                 bg-color="secondary"
@@ -35,11 +35,24 @@
                 <v-tab value="one">Posljednje objave</v-tab>
                 <v-tab value="two">Najčitanije</v-tab>
               </v-tabs>
-
               <v-card-text>
                 <v-window v-model="tab">
                   <v-window-item value="one">
-                    <BlogList />
+                    <v-timeline side="end">
+                      <v-timeline-item
+                        v-for="(blog, key) in blogs"
+                        size="smaller"
+                        dot-color="white"
+                        style="cursor: pointer;"
+                        class="font-weight-light card-item"
+                        @click="openBlog(blog, key)"
+                      >
+                        <div class="d-flex flex-column">
+                          <span  style="opacity: 0.6">{{ blog.date }}</span>
+                          {{ blog.title }}
+                        </div>
+                      </v-timeline-item>
+                    </v-timeline>
                   </v-window-item>
 
                   <v-window-item value="two">
@@ -56,13 +69,46 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import NavBar from '@/components/NavBar.vue'
 import BlogList from '@/views/blogs/BlogList.vue'
 import { useDisplay } from "vuetify"
 import { useRouter } from "vue-router"
+import { getVal } from '@/services/DataService'
 const { smAndDown } = useDisplay()
 
 const router = useRouter()
 const tab = ref('one')
+
+const blogs: any = ref([]);
+const getBlogs = () => {
+  getVal("blog/posts").then((val) => {
+    if (val) {
+      blogs.value = val;
+    }
+  });
+};
+
+const openBlog = (blog: any, key: number) => {
+  const keyAndTitle =
+    blog.title.replace(/\s+/g, "-").replace(/-+/g, "-").toLowerCase() +
+    "/key=" +
+    key;
+  router.push({ name: "BlogPage", params: { id: keyAndTitle } });
+};
+
+onMounted(() => {
+  getBlogs();
+});
 </script>
+
+<style scoped>
+:deep(.v-timeline-item__body):hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+:deep(.v-card--variant-elevated){
+  box-shadow: 0px 2px 1px -1px rgba(255, 255, 255, 0.2), 0px 1px 1px 0px rgba(255, 255, 255, 0.14), 0px 1px 3px 0px rgba(255, 255, 255, 0.12);
+}
+
+</style>

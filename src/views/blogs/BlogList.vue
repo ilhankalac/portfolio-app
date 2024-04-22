@@ -3,7 +3,7 @@
     <v-card
       style="flex-grow: 1 !important; cursor: pointer;"
       color="primary"
-      class="pa-4 ma-1"
+      class="pa-4 ma-2"
       @click="openBlog(blog, key)"
     >
       <div>
