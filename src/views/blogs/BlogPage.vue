@@ -19,7 +19,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <div v-else>
+    <div v-else class="px-4">
       <div class="font-weight-light" :class="smAndDown ? 'text-h6' : 'text-h5'">
         {{ blog.title }}
       </div>
@@ -28,7 +28,7 @@
         <span style="opacity: 0.6">objavljeno</span> {{ blog.date }}
       </div>
       <v-divider class="mb-10" />
-      <div class="text-greyText text-justify" v-html="blog.html"></div>
+      <div class="test text-greyText text-justify" v-html="blog.html"></div>
     </div>
   </div>
 </template>
@@ -65,3 +65,12 @@ onMounted(() => {
 });
 watch(() => router.currentRoute.value.params.id, getBlog);
 </script>
+
+<style scoped>
+::v-deep .test img {
+  width: 100% !important;
+  height: 100%;
+  object-fit: cover;
+  margin: 10px 0;
+}
+</style>
