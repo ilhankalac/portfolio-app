@@ -32,8 +32,8 @@
                 v-model="tab"
                 bg-color="secondary"
               >
-                <v-tab value="one">Posljednje objave</v-tab>
-                <v-tab value="two">Najčitanije</v-tab>
+                <v-tab value="one">Latest</v-tab>
+                <v-tab value="two">The most viewed</v-tab>
               </v-tabs>
               <v-card-text>
                 <v-window v-model="tab">
