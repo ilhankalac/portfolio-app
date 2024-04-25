@@ -28,14 +28,13 @@
         <span style="opacity: 0.6">objavljeno</span> {{ blog.date }}
       </div>
       <v-divider class="mb-10" />
-      <div class="test text-greyText text-justify" v-html="blog.html"></div>
+      <div class="htmlImage text-greyText text-justify" v-html="blog.html"></div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { getVal } from "@/services/DataService";
-import { is } from "@babel/types";
 import { ref, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
@@ -67,7 +66,7 @@ watch(() => router.currentRoute.value.params.id, getBlog);
 </script>
 
 <style scoped>
-::v-deep .test img {
+::v-deep .htmlImage img {
   width: 100% !important;
   height: 100%;
   object-fit: cover;
