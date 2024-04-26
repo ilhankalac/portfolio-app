@@ -122,6 +122,10 @@ const socialMediaLinks = [
     text: "Twitter",
     url: "https://twitter.com/privatizova",
   },
+  {
+    text: 'Instagram',
+    url: 'https://www.instagram.com/vizija/',
+  }
 ];
 
 const changeTheRoute = (sectionId: string = "") => {
