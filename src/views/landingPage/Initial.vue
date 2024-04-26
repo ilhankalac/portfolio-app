@@ -78,6 +78,13 @@
           icon="mdi-linkedin"
           @click="openLink('https://www.linkedin.com/in/ilhankalac/')"
         />
+        <v-btn
+          variant="text"
+          icon="mdi-file"
+          @click="openLink('ilhan-kalac-resume.pdf')"
+        >
+          CV
+        </v-btn>
       </div>
     </div>
   </div>
