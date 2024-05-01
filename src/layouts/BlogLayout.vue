@@ -44,19 +44,17 @@
                         size="smaller"
                         dot-color="white"
                         style="cursor: pointer;"
-                        class="font-weight-light card-item"
+                        class="font-weight-light"
                         @click="openBlog(blog, key)"
                       >
                         <div class="d-flex flex-column">
-                          <span  style="opacity: 0.6">{{ blog.date }}</span>
-                          {{ blog.title }}
+                          <span style="opacity: 0.6">{{ blog.date }}</span>
+                          <span class="card-item">
+                            {{ blog.title }}
+                          </span>
                         </div>
                       </v-timeline-item>
                     </v-timeline>
-                  </v-window-item>
-
-                  <v-window-item value="two">
-                    Two
                   </v-window-item>
                 </v-window>
               </v-card-text>
@@ -103,7 +101,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-:deep(.v-timeline-item__body):hover {
+.card-item:hover {
   text-decoration: underline;
   cursor: pointer;
 }

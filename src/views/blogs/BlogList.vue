@@ -1,9 +1,12 @@
 <template>
+  <div class="font-weight-light text-white" :class="smAndDown ? 'text-h6' : 'text-h5'">
+    Blog list
+  </div>
   <template v-for="(blog, key) in blogs">
     <v-card
       style="flex-grow: 1 !important; cursor: pointer;"
       color="primary"
-      class="pa-4 ma-2"
+      class="pa-4 my-2"
       @click="openBlog(blog, key)"
     >
       <div>
@@ -17,6 +20,9 @@
 import { onMounted, ref } from "vue";
 import { getVal } from "@/services/DataService";
 import router from "@/router";
+import { useDisplay } from "vuetify";
+
+const { smAndDown } = useDisplay();
 
 const blogs: any = ref([]);
 const getBlogs = () => {
