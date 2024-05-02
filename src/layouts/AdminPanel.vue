@@ -102,6 +102,11 @@ const creativeTools = ref([
     icon: 'file-document-edit',
     path: 'write-blog'
   },
+  {
+    name: 'Write Quote',
+    icon: 'format-quote-close',
+    path: 'write-quote'
+  }
 ])
 const openedGroups = ref(['Sections'])
 const { smAndDown } = useDisplay()

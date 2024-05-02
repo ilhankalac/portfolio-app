@@ -76,7 +76,7 @@ const routes = [
       {
         path: '/favorite-quotes',
         name: 'Quotes',
-        component: () => import('@/components/FavoriteQuotes.vue'),
+        component: () => import('@/views/Other/FavoriteQuotes.vue'),
       },
       {
         path: ':id',
