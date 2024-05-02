@@ -36,32 +36,36 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       {
-        path: ':configure-about',
+        path: 'configure-about',
         component: () => import('@/views/Admin/portfolio/ConfigureAbout.vue'),
       },
       {
-        path: ':configure-experience',
+        path: 'configure-experience',
         component: () => import('@/views/Admin/portfolio/ConfigureExperience.vue'),
       },
       {
-        path: ':configure-recommendations',
+        path: 'configure-recommendations',
         component: () => import('@/views/Admin/portfolio/ConfigureRecommendations.vue'),
       },
       {
-        path: ':configure-skills',
+        path: 'configure-skills',
         component: () => import('@/views/Admin/portfolio/ConfigureSkills.vue'),
       },
       {
-        path: ':configure-free-time-projects',
+        path: 'configure-free-time-projects',
         component: () => import('@/views/Admin/portfolio/ConfigureFreeTimeProjects.vue'),
       },
       {
-        path: ':configure-get-in-touch',
+        path: 'configure-get-in-touch',
         component: () => import('@/views/Admin/portfolio/ConfigureGetInTouch.vue'),
       },
       {
-        path: ':write-blog',
+        path: 'write-blog',
         component: () => import('@/views/Admin/creative_tools/WriteBlog.vue'),
+      },
+      {
+        path: 'write-quote',
+        component: () => import('@/views/Admin/creative_tools/WriteQuote.vue'),
       }
     ]
   },

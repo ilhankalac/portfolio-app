@@ -7,7 +7,7 @@
       I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection.
     </div>
     <div
-      v-for="recommendation in recommendations"
+      v-for="quote in quotes"
       class="text-justify font-weight-light text-white"
     >
       <blockquote
@@ -16,25 +16,24 @@
           smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'
         "
       >
-        <div v-html="recommendation.textHtml"></div>
+        <div v-html="quote.text"></div>
         <div class="d-flex justify-space-between align-center">
           <div class="pa-0 mt-5 d-flex align-center">
-            <v-avatar size="60" color="white">
-              <v-img :src="recommendation.avatarSrc" alt="avatar" />
+            <v-avatar size="30" color="white">
+              <v-img :src="quote.imageSrc" alt="avatar" />
             </v-avatar>
             <div class="d-flex flex-column ml-3 text-white">
-              <div>{{ recommendation.fullName }}</div>
-              <div class="text-white">{{ recommendation.role }}</div>
+              <div class="text-white">{{ quote.author }}</div>
             </div>
           </div>
           <div class="d-flex ga-1 mt-3 text-white">
-            <v-btn
+            <!-- <v-btn
               v-if="recommendation.githubLink"
               flat
               variant="text"
               icon="mdi-github"
               @click="openLink(recommendation.githubLink)"
-            />
+            /> -->
           </div>
         </div>
       </blockquote>
@@ -51,21 +50,18 @@ const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
 import { useRouter } from "vue-router";
 
-const router = useRouter();
 
-const recommendations: Ref<IColleagueInfo[]> = ref([]);
+const quotes: Ref<any> = ref([]);
 const isDataLoaded = ref(false);
 
 const getData = async () => {
-  await getVal("recommendations").then((fetchedData) => {
+  await getVal("blog/favorite-quotes").then((fetchedData) => {
     if (fetchedData) {
       let result: any = [];
       Object.keys(fetchedData).forEach((key, index) => {
-        if (fetchedData[key].showPublic) {
-          result.push(fetchedData[key]);
-        }
+        result.push(fetchedData[key]);
       });
-      recommendations.value = result;
+      quotes.value = result;
       isDataLoaded.value = true;
     } else {
       // Handle the case where the fetched data is null or undefined
@@ -78,9 +74,6 @@ const openLink = (link: string) => {
   window.open(link);
 };
 
-const openWriteRecommendation = () => {
-  router.push({ name: "WriteRecommendation" });
-};
 
 onMounted(async () => {
   await getData();
