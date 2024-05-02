@@ -74,12 +74,18 @@ const routes = [
         component: () => import('@/views/blogs/BlogList.vue'),
       },
       {
+        path: '/favorite-quotes',
+        name: 'Quotes',
+        component: () => import('@/components/FavoriteQuotes.vue'),
+      },
+      {
         path: ':id',
         name: 'BlogPage',
         component: () => import('@/views/blogs/BlogPage.vue'),
       }
     ]
-  }
+  },
+
 ]
 
 const router = createRouter({

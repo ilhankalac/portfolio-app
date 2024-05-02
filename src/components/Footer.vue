@@ -108,6 +108,10 @@ const otherInterestsLinks = [
     text: "Resume",
     url: "ilhan-kalac-resume.pdf",
   },
+  {
+    text: 'Favorite Quotes',
+    url: 'favorite-quotes',
+  }
 ];
 const socialMediaLinks = [
   {

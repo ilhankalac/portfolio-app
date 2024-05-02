@@ -14,9 +14,8 @@
       <v-container style="max-width: none;" class="ma-0 pa-0">
         <v-row class="d-flex flex-row">
           <v-col :cols="smAndDown ? 0 : 2" class="d-flex flex-column align-center text-white">
-            
             <v-btn
-              v-if="$route.fullPath !== '/blogs/list'" 
+              v-if="$route.fullPath !== '/blogs/list' && $route.fullPath !== '/favorite-quotes'" 
               variant="text" 
               @click="router.push('/blogs/list')"
             >
@@ -27,7 +26,8 @@
             <router-view />
           </v-col>
           <v-col :cols="smAndDown? 12 : 4" class="d-flex flex-column align-center text-white">
-            <v-card color="secondary" class="pa-4">
+            <v-card color="secondary" class="pa-4 mx-2">
+              <v-card-title class="font-weight-light">Blogs timeline</v-card-title>
               <v-tabs
                 v-model="tab"
                 bg-color="secondary"
