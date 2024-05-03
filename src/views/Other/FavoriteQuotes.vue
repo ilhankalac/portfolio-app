@@ -22,25 +22,15 @@
             <v-avatar size="30" color="white">
               <v-img :src="quote.imageSrc" alt="avatar" />
             </v-avatar>
-            <div class="d-flex flex-column ml-3 text-white">
-              <div class="text-white">{{ quote.author }}</div>
+            <div class="d-flex flex-column ml-3" style="font-size: smaller;">
+              <div class="text-white" style="opacity: 0.6">{{ quote.author }}</div>
             </div>
-          </div>
-          <div class="d-flex ga-1 mt-3 text-white">
-            <!-- <v-btn
-              v-if="recommendation.githubLink"
-              flat
-              variant="text"
-              icon="mdi-github"
-              @click="openLink(recommendation.githubLink)"
-            /> -->
           </div>
         </div>
       </blockquote>
     </div>
   </div>
 </template>
-
 <script lang="ts" setup>
 import { IColleagueInfo } from "@/types/other";
 import { useDisplay } from "vuetify";
