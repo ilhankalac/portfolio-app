@@ -16,14 +16,14 @@
           smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'
         "
       >
-        <div v-html="quote.text"></div>
+        <div  style="font-style: italic" v-html="quote.text"></div>
         <div class="d-flex justify-space-between align-center">
           <div class="pa-0 mt-5 d-flex align-center">
-            <v-avatar size="30" color="white">
+            <!-- <v-avatar size="30" color="white">
               <v-img :src="quote.imageSrc" alt="avatar" />
-            </v-avatar>
-            <div class="d-flex flex-column ml-3" style="font-size: smaller;">
-              <div class="text-white" style="opacity: 0.6">{{ quote.author }}</div>
+            </v-avatar> -->
+            <div class="d-flex flex-column">
+              <div class="font-weight-regular"> ― &nbsp;{{ quote.author ? quote.author : 'Uknown author' }}</div>
             </div>
           </div>
         </div>
