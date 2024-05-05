@@ -6,6 +6,17 @@
     <div class="font-weight-light text-white" style="opacity: 0.6">
       I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection.
     </div>
+    <v-text-field 
+      v-model="search"
+      label="Search"
+      variant="outlined"
+      hide-details
+      color="white"
+      bg-color="primary"
+      class="mt-4"
+      block
+      @keydown="searchQuotes"
+    />
     <div
       v-for="quote in quotes"
       class="text-justify font-weight-light text-white"
@@ -35,14 +46,20 @@
 import { IColleagueInfo } from "@/types/other";
 import { useDisplay } from "vuetify";
 import Section from "@/components/landingPage/Section.vue";
-import { onMounted, Ref, ref } from "vue";
+import { onMounted, Ref, ref, watch } from "vue";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
 import { useRouter } from "vue-router";
 
 
 const quotes: Ref<any> = ref([]);
+const tempQuotes: Ref<any> = ref([]);
 const isDataLoaded = ref(false);
+const search = ref("");
+
+watch(search, () => {
+  searchQuotes();
+});
 
 const getData = async () => {
   await getVal("blog/favorite-quotes").then((fetchedData) => {
@@ -52,6 +69,7 @@ const getData = async () => {
         result.push(fetchedData[key]);
       });
       quotes.value = result;
+      tempQuotes.value = result;
       isDataLoaded.value = true;
     } else {
       // Handle the case where the fetched data is null or undefined
@@ -64,6 +82,15 @@ const openLink = (link: string) => {
   window.open(link);
 };
 
+const searchQuotes = () => {
+  let searchValue = search.value.toLowerCase();
+  let result = tempQuotes.value.filter((quote: any) => {
+    return (
+      quote?.text?.toLowerCase().includes(searchValue) || quote?.author?.toLowerCase().includes(searchValue)
+    );
+  });
+  quotes.value = result;
+}
 
 onMounted(async () => {
   await getData();
