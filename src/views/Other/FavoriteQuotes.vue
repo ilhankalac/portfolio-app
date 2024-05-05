@@ -27,6 +27,17 @@
         </div>
       </template>
     </v-autocomplete>
+    <v-container fluid>
+      <v-row v-if="!isDataLoaded">
+        <v-col class="d-flex flex-column ga-3">
+          <v-skeleton-loader
+            v-for="index in 5"
+            color="primary"
+            type="article"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
     <div
       v-for="quote in quotes"
       class="text-justify font-weight-light text-white"
@@ -94,6 +105,7 @@ const handleSearchInput = (input: any) => {
 
 const handleEnter = (event: any) => {
   search.value = event.target.value;
+  event.target.blur()
 }
 
 const searchQuotes = (searchCriteria: any) => {
