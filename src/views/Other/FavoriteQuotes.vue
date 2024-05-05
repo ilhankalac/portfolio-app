@@ -6,8 +6,9 @@
     <div class="font-weight-light text-white" style="opacity: 0.6">
       I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection.
     </div>
-    <v-text-field 
+    <v-autocomplete 
       v-model="search"
+      :items="authors"
       label="Search"
       variant="outlined"
       hide-details
@@ -15,8 +16,17 @@
       bg-color="primary"
       class="mt-4"
       block
-      @keydown="searchQuotes"
-    />
+      clearable
+      @input="handleSearchInput"
+      @keydown.enter="handleEnter"
+      @update:modelValue="searchQuotes(search)"
+    >
+      <template #no-data>
+        <div class="pl-2">
+          No authors found. Please try another search criteria.
+        </div>
+      </template>
+    </v-autocomplete>
     <div
       v-for="quote in quotes"
       class="text-justify font-weight-light text-white"
@@ -49,17 +59,12 @@ import Section from "@/components/landingPage/Section.vue";
 import { onMounted, Ref, ref, watch } from "vue";
 const { smAndDown } = useDisplay();
 import { getVal } from "@/services/DataService";
-import { useRouter } from "vue-router";
-
 
 const quotes: Ref<any> = ref([]);
 const tempQuotes: Ref<any> = ref([]);
 const isDataLoaded = ref(false);
-const search = ref("");
-
-watch(search, () => {
-  searchQuotes();
-});
+const authors = ref([])
+const search = ref(null);
 
 const getData = async () => {
   await getVal("blog/favorite-quotes").then((fetchedData) => {
@@ -70,6 +75,7 @@ const getData = async () => {
       });
       quotes.value = result;
       tempQuotes.value = result;
+      authors.value = extractAuthors();
       isDataLoaded.value = true;
     } else {
       // Handle the case where the fetched data is null or undefined
@@ -80,17 +86,38 @@ const getData = async () => {
 
 const openLink = (link: string) => {
   window.open(link);
+}
+
+const handleSearchInput = (input: any) => {
+  searchQuotes(input.target.value.toLowerCase());
 };
 
-const searchQuotes = () => {
-  let searchValue = search.value.toLowerCase();
+const handleEnter = (event: any) => {
+  search.value = event.target.value;
+}
+
+const searchQuotes = (searchCriteria: any) => {
+  searchCriteria = searchCriteria ? searchCriteria.toLowerCase() : '';
   let result = tempQuotes.value.filter((quote: any) => {
     return (
-      quote?.text?.toLowerCase().includes(searchValue) || quote?.author?.toLowerCase().includes(searchValue)
+      quote?.text?.toLowerCase().includes(searchCriteria) || quote?.author?.toLowerCase().includes(searchCriteria)
     );
   });
   quotes.value = result;
 }
+
+const extractAuthors = () => {
+  let authors = quotes.value.map((quote: any) => {
+    return quote.author;
+  });
+  authors = authors.filter((author: any) => {
+    return author !== undefined;
+  });
+  authors = authors.filter((author: any, index: any) => {
+    return authors.indexOf(author) === index;
+  });
+  return authors;
+};
 
 onMounted(async () => {
   await getData();
@@ -125,4 +152,5 @@ onMounted(async () => {
   position: relative;
   background: rgb(var(--v-theme-primary));
 }
+
 </style>
