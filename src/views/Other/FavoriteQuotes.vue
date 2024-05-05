@@ -4,12 +4,12 @@
       The list of my favorite quotes
     </div>
     <div class="font-weight-light text-white" style="opacity: 0.6">
-      I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection.
+      I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection. Currently there are <strong> {{ quotes.length }}</strong> quotes in the collection.
     </div>
     <v-autocomplete 
       v-model="search"
       :items="authors"
-      label="Search"
+      label="Search by reference, author or keyword"
       variant="outlined"
       hide-details
       color="white"
@@ -133,6 +133,7 @@ const extractAuthors = () => {
 
 onMounted(async () => {
   await getData();
+  window.scrollTo(0, 0);
 });
 </script>
 
