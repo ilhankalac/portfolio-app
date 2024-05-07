@@ -38,8 +38,8 @@
         </v-col>
       </v-row>
     </v-container>
-    <div class="font-weight-light text-white" style="opacity: 0.6">Currently there are <strong> {{ quotes.length }}</strong> quotes in the collection.</div>
-    <div style="max-height: 80vh; overflow-y: auto;">
+    <div class="font-weight-light text-white mb-2" style="opacity: 0.6">Currently there are <strong> {{ quotes.length }}</strong> quotes in the collection.</div>
+    <div style="max-height: 80vh; overflow-y: auto;" class="pr-2">
       <div
         v-for="(quote, key) in quotes"
         :key="quote.id"
