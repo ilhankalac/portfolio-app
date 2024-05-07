@@ -1,13 +1,10 @@
 <template>
-  <div 
-    style="max-height: 80vh; overflow-y: auto;"
-    class="px-2"
-  >
+  <div class="px-2">
     <div class="font-weight-light text-white" :class="smAndDown ? 'text-h6' : 'text-h5'">
       The list of my favorite quotes
     </div>
     <div class="font-weight-light text-white" style="opacity: 0.6">
-      I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection. Currently there are <strong> {{ quotes.length }}</strong> quotes in the collection.
+      I maintain a collection of my favorite quotes, arranged by the emotional impact they evoke upon reflection. 
     </div>
     <v-autocomplete 
       v-model="search"
@@ -41,31 +38,34 @@
         </v-col>
       </v-row>
     </v-container>
-    <div
-      v-for="(quote, key) in quotes"
-      :key="quote.id"
-      class="text-justify font-weight-light text-white"
-      :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
-      @click="origin === 'admin-panel' ? emitEditQuote(quote, key) : null"
-    >
-      <blockquote
-        class="otro-blockquote font-weight-light mb-8 mt-4"
-        :style="
-          smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'
-        "
+    <div class="font-weight-light text-white" style="opacity: 0.6">Currently there are <strong> {{ quotes.length }}</strong> quotes in the collection.</div>
+    <div style="max-height: 80vh; overflow-y: auto;">
+      <div
+        v-for="(quote, key) in quotes"
+        :key="quote.id"
+        class="text-justify font-weight-light text-white"
+        :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
+        @click="origin === 'admin-panel' ? emitEditQuote(quote, key) : null"
       >
-        <div  style="font-style: italic" v-html="quote.text"></div>
-        <div class="d-flex justify-space-between align-center">
-          <div class="pa-0 mt-5 d-flex align-center">
-            <!-- <v-avatar size="30" color="white">
-              <v-img :src="quote.imageSrc" alt="avatar" />
-            </v-avatar> -->
-            <div class="d-flex flex-column">
-              <div class="font-weight-regular"> ― &nbsp;{{ quote.author ? quote.author : 'Uknown author' }}</div>
+        <blockquote
+          class="otro-blockquote font-weight-light mb-8 mt-4"
+          :style="
+            smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'
+          "
+        >
+          <div  style="font-style: italic" v-html="quote.text"></div>
+          <div class="d-flex justify-space-between align-center">
+            <div class="pa-0 mt-5 d-flex align-center">
+              <!-- <v-avatar size="30" color="white">
+                <v-img :src="quote.imageSrc" alt="avatar" />
+              </v-avatar> -->
+              <div class="d-flex flex-column">
+                <div class="font-weight-regular"> ― &nbsp;{{ quote.author ? quote.author : 'Uknown author' }}</div>
+              </div>
             </div>
           </div>
-        </div>
-      </blockquote>
+        </blockquote>
+      </div>
     </div>
   </div>
 </template>
