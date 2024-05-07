@@ -1,5 +1,8 @@
 <template>
-  <div class="px-2">
+  <div 
+    style="max-height: 80vh; overflow-y: auto;"
+    class="px-2"
+  >
     <div class="font-weight-light text-white" :class="smAndDown ? 'text-h6' : 'text-h5'">
       The list of my favorite quotes
     </div>
@@ -39,8 +42,11 @@
       </v-row>
     </v-container>
     <div
-      v-for="quote in quotes"
+      v-for="(quote, key) in quotes"
+      :key="quote.id"
       class="text-justify font-weight-light text-white"
+      :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
+      @click="origin === 'admin-panel' ? emitEditQuote(quote, key) : null"
     >
       <blockquote
         class="otro-blockquote font-weight-light mb-8 mt-4"
@@ -77,6 +83,12 @@ const isDataLoaded = ref(false);
 const authors = ref([])
 const search = ref(null);
 
+const props = defineProps<{
+  origin: string;
+}>();
+
+const emit = defineEmits(["edit-quote"]);
+
 const getData = async () => {
   await getVal("blog/favorite-quotes").then((fetchedData) => {
     if (fetchedData) {
@@ -93,6 +105,10 @@ const getData = async () => {
       console.error("Error fetching data from Firebase.");
     }
   });
+};
+
+const emitEditQuote = (quote: any, key: any) => {
+  emit("edit-quote", { ...quote, key});
 };
 
 const openLink = (link: string) => {
@@ -164,6 +180,26 @@ onMounted(async () => {
   line-height:1.6;
   position: relative;
   background: rgb(var(--v-theme-primary));
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(var(--v-theme-secondary)); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--v-theme-greyText)); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 </style>
