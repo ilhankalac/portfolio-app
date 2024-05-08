@@ -71,9 +71,9 @@
 </template>
 <script lang="ts" setup>
 import { useDisplay } from "vuetify";
-import { onMounted, Ref, ref, watch } from "vue";
+import { onMounted, Ref, ref } from "vue";
 const { smAndDown } = useDisplay();
-import { getVal, getValLive } from "@/services/DataService";
+import { getValLive } from "@/services/DataService";
 
 const quotes: Ref<any> = ref([]);
 const tempQuotes: Ref<any> = ref([]);
