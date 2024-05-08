@@ -70,12 +70,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { IColleagueInfo } from "@/types/other";
 import { useDisplay } from "vuetify";
-import Section from "@/components/landingPage/Section.vue";
 import { onMounted, Ref, ref, watch } from "vue";
 const { smAndDown } = useDisplay();
-import { getVal } from "@/services/DataService";
+import { getVal, getValLive } from "@/services/DataService";
 
 const quotes: Ref<any> = ref([]);
 const tempQuotes: Ref<any> = ref([]);
@@ -85,26 +83,28 @@ const search = ref(null);
 
 const props = defineProps<{
   origin: string;
+  changedQuote: any;
 }>();
 
 const emit = defineEmits(["edit-quote"]);
 
-const getData = async () => {
-  await getVal("blog/favorite-quotes").then((fetchedData) => {
+const getData = () => {
+  const path = "blog/favorite-quotes";
+  const unsubscribe = getValLive(path, (fetchedData) => {
     if (fetchedData) {
       let result: any = [];
       Object.keys(fetchedData).forEach((key, index) => {
-        result.push({ ...fetchedData[key], key });
+        result.unshift({ ...fetchedData[key], key });
       });
       quotes.value = result;
       tempQuotes.value = result;
       authors.value = extractAuthors();
       isDataLoaded.value = true;
     } else {
-      // Handle the case where the fetched data is null or undefined
       console.error("Error fetching data from Firebase.");
     }
   });
+  return unsubscribe;
 };
 
 const emitEditQuote = (quote: any) => {
@@ -149,7 +149,6 @@ onMounted(async () => {
 });
 </script>
 
-
 <style lang="scss" scoped>
 .otro-blockquote span{
   display:block;
@@ -177,7 +176,6 @@ onMounted(async () => {
   position: relative;
   background: rgb(var(--v-theme-primary));
 }
-
 
 ::-webkit-scrollbar {
   width: 10px;

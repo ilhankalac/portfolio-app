@@ -3,8 +3,13 @@
     <v-row>
       <v-col>
         <v-card style="flex-grow: 1 !important" color="secondary" class="pa-4">
-          <v-card-title>
+          <v-card-title class="d-flex justify-space-between">
           	<span>Write Favorite Quote</span>
+            <v-btn 
+              variant="icon"
+              icon="mdi-plus"
+              @click="resetQuoteObject"
+            />
           </v-card-title>
           <v-text-field
             v-model="quote.author"
@@ -19,7 +24,8 @@
 					/>
 
           <QuillEditor 
-            v-model:content="quote.text" 
+            v-model:content="quote.text"
+            :key="quote.key"
             contentType="html" 
             theme="snow"
           />
@@ -29,8 +35,9 @@
         </v-card>
       </v-col>
       <v-col>
-        <FavoriteQuotes 
+        <FavoriteQuotes
           :origin="'admin-panel'" 
+          :changedQuote="quote"
           @editQuote="showSelectedQuoteForEdit"
         />
       </v-col>
@@ -63,5 +70,14 @@ const showSelectedQuoteForEdit = async (val: any) => {
   await getVal("blog/favorite-quotes/" + val.key).then((selectedQuote) => { 
     quote.value = {...selectedQuote, key: val.key}
   });
+}
+
+const resetQuoteObject = () => {
+  quote.value = {
+    key: '',
+    author: '',
+    text: '',
+    imageSrc: ''
+  }
 }
 </script>

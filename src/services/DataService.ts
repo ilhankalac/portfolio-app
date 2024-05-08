@@ -14,10 +14,23 @@ const getVal = (path: string): Promise<any> => {
       const data = snapshot.val()
       resolve(data)
     }, {
-      onlyOnce: true // Ensure the callback is executed only once
+      onlyOnce: true 
     })
   })
 }
+
+const getValLive = (path: string, callback: (data: any) => void) => {
+  const nodePath = ref(firebaseDatabase, path);
+
+  // Listen for changes in the database
+  const unsubscribe = onValue(nodePath, (snapshot) => {
+    const data = snapshot.val();
+    callback(data);
+  });
+
+  // Return the unsubscribe function to stop listening when needed
+  return unsubscribe;
+};
 
 const pushVal = (path: string, data: any) => {
   const dataListRef = ref(firebaseDatabase, path)
@@ -27,4 +40,4 @@ const pushVal = (path: string, data: any) => {
   })
 }
 
-export { setVal, getVal, pushVal }
+export { setVal, getVal, pushVal, getValLive }
