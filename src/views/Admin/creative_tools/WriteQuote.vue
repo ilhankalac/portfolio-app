@@ -31,7 +31,7 @@
       <v-col>
         <FavoriteQuotes 
           :origin="'admin-panel'" 
-          @editQuote="editQuote"
+          @editQuote="showSelectedQuoteForEdit"
         />
       </v-col>
     </v-row>
@@ -42,20 +42,26 @@
 import { ref } from 'vue'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import { pushVal } from '@/services/DataService'
+import { getVal, pushVal, setVal } from '@/services/DataService'
 import FavoriteQuotes from '@/views/Other/FavoriteQuotes.vue'
 const quote = ref({
+  key: '',
 	author: '',
 	text: '',
 	imageSrc: ''
 })
 
 const save = () => {
-  pushVal('blog/favorite-quotes', quote.value)
+  if(quote.value.key === '') {
+    pushVal('blog/favorite-quotes', quote.value)
+  } else {
+    setVal('blog/favorite-quotes/' + quote.value.key, quote.value)
+  }
 }
 
-const editQuote = (quote: any) => {
-  console.log(quote);
-  
+const showSelectedQuoteForEdit = async (val: any) => {
+  await getVal("blog/favorite-quotes/" + val.key).then((selectedQuote) => { 
+    quote.value = {...selectedQuote, key: val.key}
+  });
 }
 </script>

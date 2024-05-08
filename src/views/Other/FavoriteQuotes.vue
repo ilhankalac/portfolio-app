@@ -45,7 +45,7 @@
         :key="quote.id"
         class="text-justify font-weight-light text-white"
         :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
-        @click="origin === 'admin-panel' ? emitEditQuote(quote, key) : null"
+        @click="origin === 'admin-panel' ? emitEditQuote(quote) : null"
       >
         <blockquote
           class="otro-blockquote font-weight-light mb-8 mt-4"
@@ -94,7 +94,7 @@ const getData = async () => {
     if (fetchedData) {
       let result: any = [];
       Object.keys(fetchedData).forEach((key, index) => {
-        result.push(fetchedData[key]);
+        result.push({ ...fetchedData[key], key });
       });
       quotes.value = result;
       tempQuotes.value = result;
@@ -107,13 +107,9 @@ const getData = async () => {
   });
 };
 
-const emitEditQuote = (quote: any, key: any) => {
-  emit("edit-quote", { ...quote, key});
+const emitEditQuote = (quote: any) => {
+  emit("edit-quote", quote);
 };
-
-const openLink = (link: string) => {
-  window.open(link);
-}
 
 const handleSearchInput = (input: any) => {
   searchQuotes(input.target.value.toLowerCase());
