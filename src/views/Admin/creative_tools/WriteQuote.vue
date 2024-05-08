@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div style="position: absolute; right: 0;" class="mr-6">
-      <v-btn variant="icon" @click="resetQuoteObject">
+      <v-btn variant="outlined" @click="resetQuoteObject">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </div>
