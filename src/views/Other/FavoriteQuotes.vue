@@ -54,10 +54,7 @@
         :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
         @click="origin === 'admin-panel' ? emitEditQuote(quote) : null"
       >
-        <SelectedQuote 
-          :selected-quote="quote"
-          @click="selectQuote(quote)" 
-        />
+        <SelectedQuote :selected-quote="quote"/>
       </div>
     </div>
   </div>
@@ -73,6 +70,9 @@ import { onMounted, Ref, ref } from "vue";
 const { smAndDown } = useDisplay();
 import { getValLive } from "@/services/DataService";
 import SelectedQuote from "./SelectedQuote.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const quotes: Ref<any> = ref([]);
 const tempQuotes: Ref<any> = ref([]);
@@ -80,13 +80,14 @@ const isDataLoaded = ref(false);
 const authors = ref([]);
 const search = ref(null);
 const quoteSelectedDialog = ref(false);
+
 const selectedQuote = ref({
   text: "",
   author: "",
 });
 
 const props = defineProps<{
-  origin: string;
+  origin?: string;
 }>();
 
 const emit = defineEmits(["edit-quote"]);
@@ -103,6 +104,14 @@ const getData = () => {
       tempQuotes.value = result;
       authors.value = extractAuthors();
       isDataLoaded.value = true;
+
+      // Show quote on dialog if the route has a key
+      if (router.currentRoute.value.params.id) {
+        const quoteByKey = findQuoteByKey(router.currentRoute.value.params.id);
+        if (quoteByKey.length > 0) {
+          showQuoteOnDialog(quoteByKey[0]);
+        }
+      }
     } else {
       console.error("Error fetching data from Firebase.");
     }
@@ -147,11 +156,16 @@ const extractAuthors = () => {
   return authors;
 };
 
-const selectQuote = (quote: any) => {
+const showQuoteOnDialog = (quote: any) => {
   if (props.origin === 'admin-panel') return;
-  
   quoteSelectedDialog.value = true;
   selectedQuote.value = quote;
+};
+
+const findQuoteByKey = (key: any) => {
+  return quotes.value.filter((quote: any) => {
+    return quote.key === key;
+  });
 };
 
 onMounted(async () => {

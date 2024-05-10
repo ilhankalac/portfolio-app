@@ -44,8 +44,8 @@
         min-width="360"
         min-height="60"
       >
-          {{ text }}
-        </v-snackbar>
+        {{ text }}
+      </v-snackbar>
     </div>
   </Section>
 </template>

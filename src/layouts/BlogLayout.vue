@@ -17,7 +17,7 @@
               variant="text" 
               @click="router.push('/blogs/list')"
             >
-              <v-icon class="mr-4">mdi-arrow-left</v-icon> Return to blog list
+              <v-icon class="mr-4">mdi-arrow-left</v-icon> Go to blog list
             </v-btn>
           </v-col>
           <v-col :cols="smAndDown ? 12 : 6">

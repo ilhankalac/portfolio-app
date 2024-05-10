@@ -4,30 +4,52 @@
     :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'"
   >
     <div style="font-style: italic" v-html="selectedQuote.text"></div>
-    <div class="d-flex justify-space-between align-center">
-      <div class="pa-0 mt-5 d-flex align-center">
-        <!-- <v-avatar size="30" color="white">
-                <v-img :src="quote.imageSrc" alt="avatar" />
-              </v-avatar> -->
-        <div class="d-flex flex-column">
-          <div class="font-weight-regular">
-            ― &nbsp;{{
-              selectedQuote.author ? selectedQuote.author : "Uknown author"
-            }}
-          </div>
-        </div>
-      </div>
+    <div
+      class="d-flex font-weight-regular align-center pa-0 mt-5 justify-space-between align-center"
+    >
+      <span>
+        ― &nbsp;{{
+          selectedQuote.author ? selectedQuote.author : "Uknown author"
+        }}
+      </span>
+      <v-btn variant="plain" @click="createLink(selectedQuote)" class="ml-2">
+        <v-icon size="small">mdi-content-copy</v-icon>
+      </v-btn>
     </div>
   </blockquote>
+  <v-snackbar
+    v-model="snackbar"
+    color="secondary"
+    rounded="pill"
+    location="bottom"
+    min-width="360"
+    min-height="60"
+  >
+    <v-icon>mdi-information-outline</v-icon> Link for sharing the quote has been copied to clipboard. 
+  </v-snackbar>
 </template>
 <script lang="ts" setup>
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
-import { onMounted, Ref, ref } from "vue";
 const { smAndDown } = useDisplay();
 const props = defineProps<{
-  origin: string;
-  selectedQuote: any;
+  origin?: string;
+  selectedQuote?: any;
 }>();
+const snackbar = ref(false)
+
+const createLink = (quote: any) => {
+  const link = window.location.href.split("/")[0] + "//" + window.location.href.split("/")[2] + "/favorite-quotes/" + quote.key;
+  navigator.clipboard.writeText(link)
+    .then(() => {
+      snackbar.value = true;
+    })
+    .catch((error) => {
+      console.error("Failed to copy link to clipboard:", error);
+    });
+
+  return link;
+};
 </script>
 
 <style scoped>
@@ -56,5 +78,4 @@ const props = defineProps<{
   position: relative;
   background: rgb(var(--v-theme-primary));
 }
-
 </style>
