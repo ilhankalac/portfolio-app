@@ -61,6 +61,7 @@
   <v-dialog v-model="quoteSelectedDialog" max-width="700">
     <SelectedQuote 
       :selected-quote="selectedQuote"
+      :origin="'quote-dialog'"
     />
   </v-dialog>
 </template>
