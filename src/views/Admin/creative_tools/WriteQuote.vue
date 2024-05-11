@@ -6,7 +6,7 @@
       </v-btn>
     </div>
     <v-row>
-      <v-dialog v-model="configureQuote" max-width="700">
+      <v-dialog v-model="configureQuoteDialog" max-width="700">
         <v-card style="flex-grow: 1 !important" color="secondary" class="pa-4">
           <v-card-title class="d-flex justify-space-between">
             <span>Write Favorite Quote</span>
@@ -42,7 +42,6 @@
       <v-col>
         <FavoriteQuotes
           :origin="'admin-panel'"
-          :changedQuote="quote"
           @editQuote="showSelectedQuoteForEdit"
         />
       </v-col>
@@ -51,19 +50,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { Ref, ref } from "vue";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { getVal, pushVal, setVal } from "@/services/DataService";
 import FavoriteQuotes from "@/views/Other/FavoriteQuotes.vue";
-const quote = ref({
-  key: "",
-  author: "",
-  text: "",
-  imageSrc: "",
+import { IQuote } from "@/types/other";
+
+const quote: Ref<IQuote> = ref({
+  key: '',
+  author: '',
+  text: '',
 });
 
-const configureQuote = ref(false);
+const configureQuoteDialog: Ref<boolean> = ref(false);
 
 const save = () => {
   if (quote.value.key === "") {
@@ -71,23 +71,22 @@ const save = () => {
   } else {
     setVal("blog/favorite-quotes/" + quote.value.key, quote.value);
   }
-  configureQuote.value = false;
+  configureQuoteDialog.value = false;
 };
 
 const showSelectedQuoteForEdit = async (val: any) => {
   await getVal("blog/favorite-quotes/" + val.key).then((selectedQuote) => {
     quote.value = { ...selectedQuote, key: val.key };
-    configureQuote.value = true;
+    configureQuoteDialog.value = true;
   });
 };
 
 const resetQuoteObject = () => {
-  configureQuote.value = true;
+  configureQuoteDialog.value = true;
   quote.value = {
-    key: "",
-    author: "",
-    text: "",
-    imageSrc: "",
+    key: '',
+    author: '',
+    text: '',
   };
 };
 </script>

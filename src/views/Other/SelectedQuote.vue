@@ -4,13 +4,13 @@
     :class="origin === 'quote-dialog' && smAndDown ? 'py-10' : ''"
     :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'"
   >
-    <div style="font-style: italic" v-html="selectedQuote.text" />
+    <div style="font-style: italic" v-html="selectedQuote?.text" />
     <div
       class="d-flex font-weight-regular align-center pa-0 mt-5 justify-space-between align-center"
     >
       <span>
         ― &nbsp;{{
-          selectedQuote.author ? selectedQuote.author : "Uknown author"
+          selectedQuote?.author ? selectedQuote.author : "Uknown author"
         }}
       </span>
       <v-btn variant="plain" @click="createLink(selectedQuote)" class="ml-2">
@@ -30,16 +30,18 @@
   </v-snackbar>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { IQuote } from "@/types/other";
+import { Ref, ref } from "vue";
 import { useDisplay } from "vuetify";
 const { smAndDown } = useDisplay();
+
 const props = defineProps<{
   origin?: string;
-  selectedQuote?: any;
+  selectedQuote?: IQuote;
 }>();
-const snackbar = ref(false)
+const snackbar: Ref<boolean> = ref(false)
 
-const createLink = (quote: any) => {
+const createLink = (quote: IQuote = {key: '', author: '', text: ''}) => {
   const link = window.location.href.split("/")[0] + "//" + window.location.href.split("/")[2] + "/favorite-quotes/" + quote.key;
   navigator.clipboard.writeText(link)
     .then(() => {

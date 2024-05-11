@@ -46,7 +46,7 @@
           @click="changeTheRoute(item.sectionId)"
         >
           <template v-slot:prepend>
-            <v-list-item-icon>
+            <v-list-item>
               <v-icon
                 v-if="smAndDown"
                 class="text-center"
@@ -56,7 +56,7 @@
               <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-grey-lighten-1 font-weight-bold' : 'text-grey'">
                 {{ item.name }}
               </span>
-            </v-list-item-icon>
+            </v-list-item>
           </template>
         </v-list-item>
       </v-list>

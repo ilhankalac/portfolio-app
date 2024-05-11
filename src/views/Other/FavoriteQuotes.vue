@@ -49,10 +49,10 @@
     <div style="max-height: 80vh; overflow-y: auto" class="pr-2">
       <div
         v-for="(quote, key) in quotes"
-        :key="quote.id"
+        :key="key"
         class="text-justify font-weight-light text-white"
         :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
-        @click="origin === 'admin-panel' ? emitEditQuote(quote) : null"
+        @click="emitEditQuote(quote)"
       >
         <SelectedQuote :selected-quote="quote"/>
       </div>
