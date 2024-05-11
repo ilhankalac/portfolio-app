@@ -5,10 +5,8 @@
     :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'"
   >
     <div style="font-style: italic" v-html="selectedQuote?.text" />
-    <div
-      class="d-flex font-weight-regular align-center pa-0 mt-5 justify-space-between align-center"
-    >
-      <span>
+    <div class="d-flex align-center justify-space-between align-center pa-0 mt-5 font-weight-regular">
+      <span class="font-weight-regular">
         ― &nbsp;{{
           selectedQuote?.author ? selectedQuote.author : "Uknown author"
         }}
