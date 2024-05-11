@@ -80,7 +80,7 @@ const routes = [
       {
         path: '/favorite-quotes/:id?',
         name: 'Quotes',
-        component: () => import('@/views/Other/FavoriteQuotes.vue'),
+        component: () => import('@/views/blogs/quotes/FavoriteQuotes.vue'),
       },
       {
         path: ':id',

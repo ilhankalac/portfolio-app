@@ -69,7 +69,7 @@
 import { useDisplay } from "vuetify";
 import { onMounted, Ref, ref } from "vue";
 import { getValLive } from "@/services/DataService";
-import SelectedQuote from "./SelectedQuote.vue";
+import SelectedQuote from '../quotes/SelectedQuote.vue'
 import { useRouter } from "vue-router";
 import { IQuote } from "@/types/other";
 

@@ -54,7 +54,7 @@ import { Ref, ref } from "vue";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { getVal, pushVal, setVal } from "@/services/DataService";
-import FavoriteQuotes from "@/views/Other/FavoriteQuotes.vue";
+import FavoriteQuotes from "@/views/blogs/quotes/FavoriteQuotes.vue";
 import { IQuote } from "@/types/other";
 
 const quote: Ref<IQuote> = ref({
