@@ -17,11 +17,11 @@
             variant="outlined"
           />
 
-          <v-text-field
+          <!-- <v-text-field
             v-model="quote.imageSrc"
             label="Image Source"
             variant="outlined"
-          />
+          /> -->
 
           <QuillEditor
             v-model:content="quote.text"
