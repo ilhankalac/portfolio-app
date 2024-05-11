@@ -43,3 +43,9 @@ export interface IContact {
   message: string
   timeStamp: string
 }
+
+export interface IQuote {
+  key: string
+  text: string
+  author: string
+}

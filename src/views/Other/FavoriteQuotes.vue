@@ -68,23 +68,24 @@
 <script lang="ts" setup>
 import { useDisplay } from "vuetify";
 import { onMounted, Ref, ref } from "vue";
-const { smAndDown } = useDisplay();
 import { getValLive } from "@/services/DataService";
 import SelectedQuote from "./SelectedQuote.vue";
 import { useRouter } from "vue-router";
+import { IQuote } from "@/types/other";
 
 const router = useRouter();
+const { smAndDown } = useDisplay();
 
-const quotes: Ref<any> = ref([]);
-const tempQuotes: Ref<any> = ref([]);
+const quotes: Ref<IQuote[]> = ref([]);
+const tempQuotes: Ref<IQuote[]> = ref([]);
 const isDataLoaded = ref(false);
-const authors = ref([]);
-const search = ref(null);
-const quoteSelectedDialog = ref(false);
-
-const selectedQuote = ref({
-  text: "",
-  author: "",
+const authors: Ref<string[]> = ref([]);
+const search: Ref<string> = ref('');
+const quoteSelectedDialog: Ref<boolean> = ref(false);
+const selectedQuote: Ref<IQuote> = ref({
+  text: '',
+  author: '',
+  key: '',
 });
 
 const props = defineProps<{
@@ -108,7 +109,7 @@ const getData = () => {
 
       // Show quote on dialog if the route has a key
       if (router.currentRoute.value.params.id) {
-        const quoteByKey = findQuoteByKey(router.currentRoute.value.params.id);
+        const quoteByKey = findQuoteByKey(router.currentRoute.value.params.id.toString());
         if (quoteByKey.length > 0) {
           showQuoteOnDialog(quoteByKey[0]);
         }
@@ -120,7 +121,7 @@ const getData = () => {
   return unsubscribe;
 };
 
-const emitEditQuote = (quote: any) => {
+const emitEditQuote = (quote: IQuote) => {
   emit("edit-quote", quote);
 };
 
@@ -135,7 +136,7 @@ const handleEnter = (event: any) => {
 
 const searchQuotes = (searchCriteria: any) => {
   searchCriteria = searchCriteria ? searchCriteria.toLowerCase() : "";
-  let result = tempQuotes.value.filter((quote: any) => {
+  let result: IQuote[] = tempQuotes.value.filter((quote: IQuote) => {
     return (
       quote?.text?.toLowerCase().includes(searchCriteria) ||
       quote?.author?.toLowerCase().includes(searchCriteria)
@@ -145,13 +146,13 @@ const searchQuotes = (searchCriteria: any) => {
 };
 
 const extractAuthors = () => {
-  let authors = quotes.value.map((quote: any) => {
+  let authors = quotes.value.map((quote: IQuote) => {
     return quote.author;
   });
-  authors = authors.filter((author: any) => {
+  authors = authors.filter((author: string) => {
     return author !== undefined;
   });
-  authors = authors.filter((author: any, index: any) => {
+  authors = authors.filter((author: string, index: number) => {
     return authors.indexOf(author) === index;
   });
   return authors;
@@ -163,8 +164,8 @@ const showQuoteOnDialog = (quote: any) => {
   selectedQuote.value = quote;
 };
 
-const findQuoteByKey = (key: any) => {
-  return quotes.value.filter((quote: any) => {
+const findQuoteByKey = (key: string): IQuote[] => {
+  return quotes.value.filter((quote: IQuote) => {
     return quote.key === key;
   });
 };
