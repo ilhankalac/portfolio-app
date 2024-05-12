@@ -10,11 +10,6 @@ const routes = [
     hash: '#initial'
   },
   {
-    path: '/interests',
-    component: () => import('@/views/Interests.vue'),
-    name: 'Interests',
-  },
-  {
     path: '/create-realtime-data',
     component: () => import('@/components/CreateRealtimeData.vue'),
     name: 'CreateRealtimeData',
