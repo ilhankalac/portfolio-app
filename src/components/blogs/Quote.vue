@@ -1,10 +1,10 @@
 <template>
   <blockquote
     class="otro-blockquote font-weight-light mb-8 mt-4"
-    :class="origin === 'quote-dialog' && smAndDown ? 'py-10' : ''"
+    :class="origin === 'quote-dialog' && smAndDown ? 'py-10 pr-10' : ''"
     :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'"
   >
-    <div style="font-style: italic" v-html="selectedQuote?.text" />
+    <div style="font-style: italic" class="text-justify" v-html="selectedQuote?.text" />
     <div class="d-flex align-center justify-space-between align-center pa-0 mt-5 font-weight-regular">
       <span class="font-weight-regular">
         ― &nbsp;{{
