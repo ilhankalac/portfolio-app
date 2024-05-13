@@ -69,6 +69,7 @@ import { onMounted, Ref, ref } from "vue"
 import { useDisplay } from "vuetify"
 import { useRouter } from "vue-router"
 import { useRoute } from "vue-router"
+import { is } from "@babel/types";
 
 const { smAndDown } = useDisplay()
 const clickedButton: Ref<string> = ref("")
@@ -99,6 +100,7 @@ onMounted(() => {
 })
 
 const changeTheRoute = (sectionId: string = "") => {
+  isMenuClicked.value = false
   if(props.origin === 'configure') {
     router.push('/').then(() => {
       router.push({ hash: '#' + sectionId })

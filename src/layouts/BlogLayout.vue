@@ -1,9 +1,7 @@
 <template>
   <v-layout class="rounded rounded-md">
-    <v-app-bar>
-      <NavBar :origin="'configure'"/>
-    </v-app-bar>
     <v-main class="">
+      <NavBar :origin="'configure'"/>
       <v-container style="max-width: none;" class="ma-0 pa-0">
         <v-row>
           <img style="width: 100%; height: 200px; object-fit: cover;" src="https://scontent.ftgd4-1.fna.fbcdn.net/v/t1.6435-9/124073549_2908129239406314_7933467529022298255_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dB0hm5hfFjkAb6IywO-&_nc_ht=scontent.ftgd4-1.fna&oh=00_AfCvmguktvmHraDvn16Rhm0FrN1j4iv1D3LMnkww0HrbNA&oe=664A3C2D" alt="">
