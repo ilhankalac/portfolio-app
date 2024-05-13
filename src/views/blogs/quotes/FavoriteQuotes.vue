@@ -46,7 +46,7 @@
       Currently there are <strong> {{ quotes.length }}</strong> quotes in the
       collection.
     </div>
-    <div style="max-height: 80vh; overflow-y: auto" class="pr-2">
+    <v-card color="primary" elevation="10" style="max-height: 80vh; overflow-y: auto;" class="pa-2 djesi">
       <div
         v-for="(quote, key) in quotes"
         :key="key"
@@ -56,7 +56,7 @@
       >
         <Quote :selected-quote="quote"/>
       </div>
-    </div>
+    </v-card>
   </div>
   <v-dialog v-model="quoteSelectedDialog" max-width="700">
     <Quote 
@@ -177,6 +177,11 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+
+:deep(.v-card--variant-elevated){
+  box-shadow: 0px 2px 1px -1px rgba(255, 255, 255, 0.2), 0px 1px 1px 0px rgba(255, 255, 255, 0.14), 0px 1px 3px 0px rgba(255, 255, 255, 0.12) !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -192,4 +197,5 @@ onMounted(async () => {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
 </style>
