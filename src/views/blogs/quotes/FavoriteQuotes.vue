@@ -54,7 +54,20 @@
         :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
         @click="emitEditQuote(quote)"
       >
-        <Quote :selected-quote="quote"/>
+        <div class="d-flex align-center justify-space-between">
+          <div>
+            <Quote :selected-quote="quote"/>
+          </div>
+          <v-btn
+            v-if="origin === 'admin-panel'"
+            @click="deleteQuote(quote)"
+            color="error"
+            class="ml-2"
+            variant="plain"
+          >
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+        </div>
       </div>
     </v-card>
   </div>
@@ -68,7 +81,7 @@
 <script lang="ts" setup>
 import { useDisplay } from "vuetify"
 import { onMounted, Ref, ref } from "vue"
-import { getValLive } from "@/services/DataService"
+import { deleteVal, getValLive } from "@/services/DataService"
 import Quote from '@/components/blogs/Quote.vue'
 import { useRouter } from "vue-router"
 import { IQuote } from "@/types/other"
@@ -170,6 +183,17 @@ const findQuoteByKey = (key: string): IQuote[] => {
   })
 }
 
+const deleteQuote = (quote: IQuote = { key: '', author: '', text: '' }) => {
+  if (confirm("Are you sure you want to delete this quote?")) {
+    deleteVal(`blog/favorite-quotes/${quote.key}`)
+      .then(() => {
+        console.log('Quote deleted successfully');
+      })
+      .catch((error) => {
+        console.error('Error deleting quote:', error);
+      });
+  }
+};
 onMounted(async () => {
   await getData()
   window.scrollTo(0, 0)

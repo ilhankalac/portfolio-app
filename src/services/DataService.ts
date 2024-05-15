@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, onValue, push } from "firebase/database"
+import { getDatabase, ref, set, onValue, push, remove } from "firebase/database"
 
 const firebaseDatabase = getDatabase()
 
@@ -40,4 +40,14 @@ const pushVal = (path: string, data: any) => {
   })
 }
 
-export { setVal, getVal, pushVal, getValLive }
+const deleteVal = (path: string): Promise<void> => {
+  console.log(path);
+  return new Promise((resolve, reject) => {
+    const nodePath = ref(firebaseDatabase, path)
+    remove(nodePath)
+      .then(() => resolve())
+      .catch((error) => reject(error))
+  })
+}
+
+export { setVal, getVal, pushVal, getValLive, deleteVal }
