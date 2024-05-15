@@ -51,22 +51,34 @@
         v-for="(quote, key) in quotes"
         :key="key"
         class="text-justify font-weight-light text-white"
-        :style="origin === 'admin-panel' ? 'cursor: pointer' : ''"
-        @click="emitEditQuote(quote)"
       >
-        <div class="d-flex align-center justify-space-between">
+        <div 
+          class="d-flex align-center justify-space-between"
+          :class="smAndDown ? 'flex-column' : 'flex-row'"
+        >
           <div>
             <Quote :selected-quote="quote"/>
           </div>
-          <v-btn
-            v-if="origin === 'admin-panel'"
-            @click="deleteQuote(quote)"
-            color="error"
-            class="ml-2"
-            variant="plain"
-          >
-            <v-icon>mdi-delete</v-icon>
-          </v-btn>
+          <div>
+            <v-btn
+              v-if="origin === 'admin-panel'"
+              @click="deleteQuote(quote)"
+              color="error"
+              class="ml-2"
+              variant="plain"
+            >
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+            <v-btn
+              v-if="origin === 'admin-panel'"
+              @click="emitEditQuote(quote)"
+              color="white"
+              class="ml-2"
+              variant="plain"
+            >
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+          </div>
         </div>
       </div>
     </v-card>
