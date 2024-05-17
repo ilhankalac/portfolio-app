@@ -3,13 +3,27 @@
     <v-main class="">
       <NavBar :origin="'configure'"/>
       <v-container style="max-width: none;" class="ma-0 pa-0">
+        <div style="height: 6vh;"/>
         <v-row>
-          <img style="width: 100%; height: 200px; object-fit: cover;" src="https://scontent.ftgd4-1.fna.fbcdn.net/v/t1.6435-9/124073549_2908129239406314_7933467529022298255_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dB0hm5hfFjkAb6IywO-&_nc_ht=scontent.ftgd4-1.fna&oh=00_AfCvmguktvmHraDvn16Rhm0FrN1j4iv1D3LMnkww0HrbNA&oe=664A3C2D" alt="">
+          <img style="width: 100%; height: 300px; object-fit: cover;" src="https://scontent.ftgd4-1.fna.fbcdn.net/v/t1.6435-9/124073549_2908129239406314_7933467529022298255_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dB0hm5hfFjkAb6IywO-&_nc_ht=scontent.ftgd4-1.fna&oh=00_AfCvmguktvmHraDvn16Rhm0FrN1j4iv1D3LMnkww0HrbNA&oe=664A3C2D" alt="">
+        </v-row>
+        <v-row style="background-color: rgba(var(--v-theme-secondary));">
+          <v-col :cols="smAndDown ? 0 : 3" />
+          <v-col class="ma-0 pa-0">
+            <v-tabs
+              v-model="tab"
+              bg-color="secondary"
+            >
+              <v-tab value="one" @click="openRoute('/blogs/list')">Blogs list</v-tab>
+              <v-tab value="two" @click="openRoute('/favorite-quotes')">Favorite Quotes</v-tab>
+            </v-tabs>
+          </v-col>
+          <v-col></v-col>
         </v-row>
       </v-container>
       <v-container style="max-width: none;" class="ma-0 pa-0">
         <v-row class="d-flex flex-row">
-          <v-col :cols="smAndDown ? 0 : 2" class="d-flex flex-column align-center text-white">
+          <v-col :cols="smAndDown ? 0 : 3" class="d-flex flex-column align-center text-white">
             <v-btn
               v-if="$route.fullPath !== '/blogs/list' && $route.fullPath !== '/favorite-quotes'" 
               variant="text" 
@@ -22,39 +36,6 @@
             <router-view />
           </v-col>
           <v-col :cols="smAndDown? 12 : 4" class="d-flex flex-column align-center text-white">
-            <v-card color="secondary" class="pa-4 mx-2">
-              <v-card-title class="font-weight-light">Blogs timeline</v-card-title>
-              <v-tabs
-                v-model="tab"
-                bg-color="secondary"
-              >
-                <v-tab value="one">Latest</v-tab>
-                <v-tab value="two">The most viewed</v-tab>
-              </v-tabs>
-              <v-card-text>
-                <v-window v-model="tab">
-                  <v-window-item value="one">
-                    <v-timeline side="end">
-                      <v-timeline-item
-                        v-for="(blog, key) in blogs"
-                        size="smaller"
-                        dot-color="white"
-                        style="cursor: pointer;"
-                        class="font-weight-light"
-                        @click="openBlog(blog, key)"
-                      >
-                        <div class="d-flex flex-column">
-                          <span style="opacity: 0.6">{{ blog.date }}</span>
-                          <span class="card-item">
-                            {{ blog.title }}
-                          </span>
-                        </div>
-                      </v-timeline-item>
-                    </v-timeline>
-                  </v-window-item>
-                </v-window>
-              </v-card-text>
-            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -90,6 +71,10 @@ const openBlog = (blog: any, key: number) => {
     key;
   router.push({ name: "BlogPage", params: { id: keyAndTitle } });
 };
+
+const openRoute = (path: string) => {
+  router.push(path)
+}
 
 onMounted(() => {
   getBlogs();
