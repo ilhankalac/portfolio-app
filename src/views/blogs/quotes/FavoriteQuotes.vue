@@ -10,6 +10,10 @@
       I maintain a collection of my favorite quotes, arranged by the emotional
       impact they evoke upon reflection.
     </div>
+    <div class="font-weight-light text-white mb-2" style="opacity: 0.6">
+      Currently there are <strong> {{ quotes.length }}</strong> quotes in the
+      collection.
+    </div>
     <v-autocomplete
       v-model="search"
       :items="authors"
@@ -42,10 +46,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <div class="font-weight-light text-white mb-2" style="opacity: 0.6">
-      Currently there are <strong> {{ quotes.length }}</strong> quotes in the
-      collection.
-    </div>
     <v-card color="primary" elevation="10" style="max-height: 80vh; overflow-y: auto;" class="pa-2 djesi">
       <div
         v-for="(quote, key) in quotes"
@@ -53,8 +53,8 @@
         class="text-justify font-weight-light text-white"
       >
         <div 
-          class="d-flex align-center justify-space-between"
-          :class="smAndDown ? 'flex-column' : 'flex-row'"
+          class="d-flex justify-space-between"
+          :class="smAndDown ? 'flex-column' : 'flex-row align-center'"
         >
           <div>
             <Quote :selected-quote="quote"/>
