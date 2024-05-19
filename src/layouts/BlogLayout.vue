@@ -14,7 +14,7 @@
               v-model="tab"
               bg-color="secondary"
             >
-              <v-tab value="one" @click="openRoute('/blogs/list')">Blogs list</v-tab>
+              <v-tab value="one" @click="openRoute('/blogs/list')">Blogs</v-tab>
               <v-tab value="two" @click="openRoute('/favorite-quotes')">Favorite Quotes</v-tab>
             </v-tabs>
           </v-col>
