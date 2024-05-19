@@ -5,7 +5,7 @@
       <v-container style="max-width: none;" class="ma-0 pa-0">
         <div style="height: 6vh;"/>
         <v-row>
-          <img style="width: 100%; height: 300px; object-fit: cover;" src="https://scontent.ftgd4-1.fna.fbcdn.net/v/t1.6435-9/124073549_2908129239406314_7933467529022298255_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dB0hm5hfFjkAb6IywO-&_nc_ht=scontent.ftgd4-1.fna&oh=00_AfCvmguktvmHraDvn16Rhm0FrN1j4iv1D3LMnkww0HrbNA&oe=664A3C2D" alt="">
+          <img style="width: 100%; height: 300px; object-fit: cover;" src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="">
         </v-row>
         <v-row style="background-color: rgba(var(--v-theme-secondary));">
           <v-col :cols="smAndDown ? 0 : 3" />
