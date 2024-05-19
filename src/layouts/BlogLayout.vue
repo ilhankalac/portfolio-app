@@ -78,6 +78,11 @@ const openRoute = (path: string) => {
 
 onMounted(() => {
   getBlogs();
+  if (router.currentRoute.value.path === '/blogs/list') {
+    tab.value = 'one'
+  } else if (router.currentRoute.value.path === '/favorite-quotes') {
+    tab.value = 'two'
+  }
 });
 </script>
 
