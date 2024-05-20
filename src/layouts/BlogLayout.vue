@@ -24,13 +24,13 @@
       <v-container style="max-width: none;" class="ma-0 pa-0">
         <v-row class="d-flex flex-row">
           <v-col :cols="smAndDown ? 0 : 3" class="d-flex flex-column align-center text-white">
-            <v-btn
+            <!-- <v-btn
               v-if="$route.fullPath !== '/blogs/list' && $route.fullPath !== '/favorite-quotes'" 
               variant="text" 
               @click="router.push('/blogs/list')"
             >
               <v-icon class="mr-4">mdi-arrow-left</v-icon> Go to blog list
-            </v-btn>
+            </v-btn> -->
           </v-col>
           <v-col :cols="smAndDown ? 12 : 6">
             <router-view />
