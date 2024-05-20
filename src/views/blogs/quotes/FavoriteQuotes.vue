@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2">
+  <div>
     <div
       class="font-weight-light text-white"
       :class="smAndDown ? 'text-h6' : 'text-h5'"
@@ -46,7 +46,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-card color="primary" elevation="10" style="max-height: 80vh; overflow-y: auto;" class="pa-2 djesi">
+    <v-card color="primary" elevation="10" style="max-height: 80vh; overflow-y: auto;" class="pa-2">
       <div
         v-for="(quote, key) in quotes"
         :key="key"
