@@ -81,6 +81,11 @@ const routes = [
         path: ':id',
         name: 'BlogPage',
         component: () => import('@/views/blogs/BlogPage.vue'),
+      },
+      {
+        path: '/list-of-seen-films',
+        name: 'ListOfSeenFilms',
+        component: () => import('@/views/blogs/films/ListOfSeenFilms.vue')
       }
     ]
   },

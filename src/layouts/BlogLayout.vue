@@ -16,6 +16,7 @@
             >
               <v-tab value="one" @click="openRoute('/blogs/list')">Blogs</v-tab>
               <v-tab value="two" @click="openRoute('/favorite-quotes')">Favorite Quotes</v-tab>
+              <v-tab value="three" @click="openRoute('/list-of-seen-films')">List of films</v-tab>
             </v-tabs>
           </v-col>
           <v-col></v-col>
@@ -82,6 +83,8 @@ onMounted(() => {
     tab.value = 'one'
   } else if (router.currentRoute.value.path === '/favorite-quotes') {
     tab.value = 'two'
+  } else if (router.currentRoute.value.path === '/list-of-seen-films') {
+    tab.value = 'three'
   }
 });
 </script>
