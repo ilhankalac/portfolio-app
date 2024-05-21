@@ -8,7 +8,7 @@
           <img style="width: 100%; height: 300px; object-fit: cover;" src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="">
         </v-row>
         <v-row style="background-color: rgba(var(--v-theme-secondary));">
-          <v-col :cols="smAndDown ? 0 : 3" />
+          <v-col v-if="!smAndDown" cols="3" />
           <v-col class="ma-0 pa-0">
             <v-tabs
               v-model="tab"
