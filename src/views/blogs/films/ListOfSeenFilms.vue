@@ -18,7 +18,7 @@
       <v-card
         color="primary"
         class="pa-4 d-flex flex-column justify-space-between"
-        :style="`min-height: 200px; background-image: url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
+        :style="`min-height: 200px; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
       >
         <div 
           class="text-white mt-auto d-flex flex-column"
