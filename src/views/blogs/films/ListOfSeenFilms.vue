@@ -17,20 +17,33 @@
     <v-col class="pa-0 my-2" cols="12" v-for="(film, key) in films" :key="key">
       <v-card
         color="primary"
-        class="pa-4 d-flex justify-space-between flex-column"
-        style="min-height: 100px;"
+        class="pa-4 d-flex flex-column justify-space-between"
+        :style="`min-height: 200px; background-image: url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
       >
-        <div>
-          <span class="text-white text-h6">{{ film?.film?.title }}</span> 
-        </div>
-        <div class="text-greyText d-flex justify-space-between" style="font-size: smaller;">
-          <span>
-            {{ (films.length - key) + '. ' +  film?.film.genres[0] }}
+        <div 
+          class="text-white mt-auto d-flex flex-column"
+          style="text-shadow: 1px 1px rgb(var(--v-theme-primary)); text-align:start;"
+        >
+          <span class="font-weight-bold" style="font-size: 0.9rem;">
+            #{{ films.length - key }}
           </span>
-          <span>
-            {{ film?.film?.year }}
+          <span class="text-h5 font-weight-bold">
+            {{ film?.film?.title ? film.film.title.toUpperCase() : '' }} 
           </span>
-        </div>
+          <div>
+            <template v-for="(director, key) in film.film.directors">
+              <span style="font-size: 0.8rem" class="font-weight-regular">
+                {{ director.name ? director.name.toUpperCase() : '' }}{{ key < film.film.directors.length - 1 ? ', ' : '' }}
+              </span>
+            </template>&nbsp;
+            <template v-for="(country, key) in film.film.historic_countries">
+              <span style="font-size: 0.8rem" class="font-weight-light">
+                {{ country ? country.toUpperCase() : '' }}{{ key < film.film.historic_countries.length - 1 ? ', ' : '' }}
+              </span>
+            </template>
+            <span class="font-weight-light" style="font-size: 0.8rem">&nbsp;{{ film?.film?.year }}</span>
+          </div>
+        </div> 
       </v-card>
     </v-col>
   </v-row>
