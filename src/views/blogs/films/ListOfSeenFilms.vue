@@ -59,7 +59,7 @@
     </v-col>
   </v-row>
   <div class="text-center mt-5">
-    <v-progress-circular v-model="isBottomReached" indeterminate color="white" />
+    <v-progress-circular :value="isBottomReached" indeterminate color="white" />
   </div>
   <div style="height: 100px;"></div>
   <div ref="bottomElement" />
