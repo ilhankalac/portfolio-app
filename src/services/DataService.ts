@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, onValue, push, remove } from "firebase/database"
+import { getDatabase, ref, set, onValue, push, remove, query, limitToFirst, get, orderByKey, startAfter } from "firebase/database"
 
 const firebaseDatabase = getDatabase()
 
@@ -6,18 +6,32 @@ const setVal = (path: string, data: any) => {
   set(ref(firebaseDatabase, path), data)
 }
 
-const getVal = (path: string): Promise<any> => {
+const getVal = (path: string, limit?: number, startAfterValue?: any): Promise<any> => {
   return new Promise((resolve, reject) => {
-    const nodePath = ref(firebaseDatabase, path)
+    const nodePath = ref(firebaseDatabase, path);
+    let firebaseQuery;
 
-    onValue(nodePath, (snapshot) => {
-      const data = snapshot.val()
-      resolve(data)
-    }, {
-      onlyOnce: true 
-    })
-  })
-}
+    if (limit !== undefined) {
+      if (startAfterValue !== undefined) {
+        firebaseQuery = query(nodePath, orderByKey(), startAfter(startAfterValue), limitToFirst(limit));
+      } else {
+        firebaseQuery = query(nodePath, orderByKey(), limitToFirst(limit));
+      }
+    } else {
+      firebaseQuery = nodePath; 
+    }
+
+    get(firebaseQuery).then((snapshot) => {
+      if (snapshot.exists()) {
+        resolve(snapshot.val());
+      } else {
+        resolve(null); 
+      }
+    }).catch((error) => {
+      reject(error); 
+    });
+  });
+};
 
 const getValLive = (path: string, callback: (data: any) => void) => {
   const nodePath = ref(firebaseDatabase, path);
