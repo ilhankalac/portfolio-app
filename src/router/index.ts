@@ -61,6 +61,10 @@ const routes = [
       {
         path: 'write-quote',
         component: () => import('@/views/Admin/creative_tools/WriteQuote.vue'),
+      },
+      {
+        path: 'configure-films',
+        component: () => import('@/views/Admin/creative_tools/ConfigureFilms.vue'),
       }
     ]
   },

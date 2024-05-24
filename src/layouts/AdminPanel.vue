@@ -106,6 +106,11 @@ const creativeTools = ref([
     name: 'Write Quote',
     icon: 'format-quote-close',
     path: 'write-quote'
+  },
+  {
+    name: 'Configure Films',
+    icon: 'filmstrip',
+    path: 'configure-films'
   }
 ])
 const openedGroups = ref(['Sections'])
