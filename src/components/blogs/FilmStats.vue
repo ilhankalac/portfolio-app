@@ -12,7 +12,7 @@
         Basic Stats
       </div>
       <div class="d-flex justify-space-between text-overline">
-        <span style="opacity: 0.6" class="font-weight-light"> <v-icon>mdi-film</v-icon> Total film seen  </span> <span>{{ filmStatsData?.totalFilms }}</span>
+        <span style="opacity: 0.6" class="font-weight-light"> <v-icon>mdi-film</v-icon> Total films seen  </span> <span>{{ filmStatsData?.totalFilms }}</span>
       </div> 
       <v-divider />
       <div class="d-flex justify-space-between text-overline mt-4">

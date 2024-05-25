@@ -33,7 +33,7 @@
     <v-col class="pa-0 my-2" cols="12" v-for="(film, key) in films" :key="key" style="box-shadow: 0 0 0 0.1px white; border-radius: 5px;">
       <div
         color="primary"
-        class="pa-4 d-flex flex-column justify-space-between"
+        class="pa-2 d-flex flex-column justify-space-between"
         style="border-top-right-radius: 5px; border-top-left-radius: 5px;"
         :style="`min-height: 200px; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
       >
@@ -76,7 +76,7 @@
       </div>
       <div 
         style="background: rgb(var(--v-theme-secondary)); font-size: small; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" 
-        class="text-white pa-3 font-weight-light text-justify d-flex flex-column"
+        class="text-white pa-2 font-weight-light text-justify d-flex flex-column"
       >
         <span>{{ film?.film?.short_synopsis }}</span>
         <span class="font-weight-light" style="font-size: 0.7rem; opacity: 0.6;">
