@@ -50,7 +50,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   filmStatsData: any
-  isStatsDataLoaded: Boolean
+  isStatsDataLoaded: boolean
 }>()
 const emit = defineEmits(['close'])
 </script>

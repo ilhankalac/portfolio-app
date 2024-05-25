@@ -113,9 +113,9 @@ import FilmStats from "@/components/blogs/FilmStats.vue";
 
 const { smAndDown } = useDisplay();
 
-const isDataLoaded: Ref<Boolean> = ref(false);
+const isDataLoaded: Ref<boolean> = ref(false);
 const films: any = ref([]);
-const isStatsDialogOpen: Ref<Boolean> = ref(false)
+const isStatsDialogOpen: Ref<boolean> = ref(false)
 
 const getFilms = () => {
   getVal("ratings", 10).then((val) => {
@@ -149,7 +149,7 @@ const observer = new IntersectionObserver(
 );
 
 const filmStatsData: any = ref({});
-const isStatsDataLoaded: Ref<Boolean> = ref(false);
+const isStatsDataLoaded: Ref<boolean> = ref(false);
 const getFilmsStats = () => {
   getVal("filmStats").then((val) => {
     if (val) {
