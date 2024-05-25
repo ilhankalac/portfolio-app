@@ -1,12 +1,26 @@
 <template>
-  <div
-    class="font-weight-light text-white"
-    :class="smAndDown ? 'text-h6' : 'text-h5'"
-  >
-    List of seen films
-  </div>
-  <div class="font-weight-light text-white" style="opacity: 0.6">
-    Collection of films I have seen since 2016.
+  <div class="d-flex justify-space-between">
+    <div>
+      <div
+        class="font-weight-light text-white"
+        :class="smAndDown ? 'text-h6' : 'text-h5'"
+      >
+        List of seen films
+      </div>
+      <div class="font-weight-light text-white" style="opacity: 0.6">
+        Collection of films I have seen since 2016.
+      </div>
+    </div>
+    <div>
+      <v-btn
+        @click="openStatsDialog"
+        class="ml-auto"
+        color="white"
+        style="border-color: white"
+        icon="mdi-chart-bar"
+        variant="outlined"
+      />
+    </div>
   </div>
   <v-container v-if="!isDataLoaded" fluid>
     <v-row>
@@ -75,6 +89,15 @@
       </div>
     </v-col>
   </v-row>
+
+  <!-- Dialog -->
+  <v-dialog v-model="isStatsDialogOpen" max-width="700">
+    <FilmStats 
+      :filmStatsData="filmStatsData"
+      :isStatsDataLoaded="isStatsDataLoaded"
+      @close="isStatsDialogOpen = false"
+    />
+  </v-dialog>
   <div class="text-center mt-5">
     <v-progress-circular :value="isBottomReached" indeterminate color="white" />
   </div>
@@ -86,11 +109,13 @@
 import { Ref, onBeforeUnmount, onMounted, ref } from "vue";
 import { getVal } from "@/services/DataService";
 import { useDisplay } from "vuetify";
+import FilmStats from "@/components/blogs/FilmStats.vue";
 
 const { smAndDown } = useDisplay();
 
 const isDataLoaded: Ref<Boolean> = ref(false);
 const films: any = ref([]);
+const isStatsDialogOpen: Ref<Boolean> = ref(false)
 
 const getFilms = () => {
   getVal("ratings", 10).then((val) => {
@@ -123,6 +148,27 @@ const observer = new IntersectionObserver(
   },
 );
 
+const filmStatsData: any = ref({});
+const isStatsDataLoaded: Ref<Boolean> = ref(false);
+const getFilmsStats = () => {
+  getVal("filmStats").then((val) => {
+    if (val) {
+      filmStatsData.value = val;
+
+      // sort director stats by count
+      filmStatsData.value.directorStats = filmStatsData.value.directorStats.sort(
+        (a: any, b: any) => b.count - a.count
+      );
+      isStatsDataLoaded.value = true;
+    }
+  });
+};
+
+const openStatsDialog = () => {
+  getFilmsStats();
+  isStatsDialogOpen.value = true;
+};
+
 onMounted(() => {
   getFilms();
   if (bottomElement.value) {
@@ -136,3 +182,22 @@ onBeforeUnmount(() => {
   }
 });
 </script>
+
+<style scoped>
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--v-theme-secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--v-theme-greyText));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+</style>
