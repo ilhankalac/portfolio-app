@@ -65,15 +65,12 @@
             >&nbsp;
             <template v-for="(country, key) in film.film.historic_countries">
               <span style="font-size: 0.8rem" class="font-weight-light">
-                {{ country ? country.toUpperCase() : ""
-                }}{{
-                  key < film.film.historic_countries.length - 1 ? ", " : ""
-                }}
+                {{ country ? country.toUpperCase() : "" }}
+                {{key < film.film.historic_countries.length - 1 ? ", " : ""}}
               </span>
             </template>
             <span class="font-weight-light" style="font-size: 0.8rem"
-              >&nbsp;{{ film?.film?.year }}</span
-            >
+              >&nbsp;{{ film?.film?.year }}</span>
           </div>
         </div>
       </div>

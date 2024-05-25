@@ -178,7 +178,7 @@ const generateStats = (): void => {
   const totalFilms = calculateTotalFilms(films);
   const averageFilmYear = calculateAverageFilmYear(films);
   const averageRating = calculateAverageRating(films);
-  const longestFilm = findTopLongestFilms(films, 10);
+  const longestFilm = findTopLongestFilms(films, 20);
 
   setVal("filmStats", {
     directorStats,
@@ -188,6 +188,7 @@ const generateStats = (): void => {
     averageRating,
     longestFilm,
   });
+  console.log('Stats generated');
 };
 
 onMounted(() => {

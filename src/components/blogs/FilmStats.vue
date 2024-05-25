@@ -8,10 +8,10 @@
       </v-row>
     </v-container>
     <template v-else>
-      <div class="font-weight-light text-white text-h6">
-        Basic stats
+      <div class="font-weight-light text-white">
+        Basic Stats
       </div>
-      <div class="d-flex justify-space-between mt-4 text-overline">
+      <div class="d-flex justify-space-between text-overline">
         <span style="opacity: 0.6" class="font-weight-light"> <v-icon>mdi-film</v-icon> Total film seen  </span> <span>{{ filmStatsData?.totalFilms }}</span>
       </div> 
       <v-divider />
@@ -29,8 +29,8 @@
       <v-divider />
   
       <div>
-        <div class="font-weight-light text-white text-h6 mt-4">
-          Count of seen films by directors
+        <div class="font-weight-light text-white mt-4">
+          Count Of Seen Films By Directors
         </div>
         <div style="max-height: 200px; overflow-y: auto" class="pr-2">
           <template v-for="(director, index) in filmStatsData?.directorStats">
@@ -40,6 +40,20 @@
           </template>
         </div>
       </div>
+      <v-divider />
+      <div>
+        <div class="font-weight-light text-white mt-4">
+          Top 20 Longest Films I've Seen 
+        </div>
+        <div style="max-height: 200px; overflow-y: auto" class="pr-2">
+          <template v-for="(longFilm, index) in filmStatsData?.longestFilm">
+            <div class="d-flex justify-space-between text-overline">
+              <span style="opacity: 0.6" class="font-weight-light">{{ `${index + 1}. ${longFilm.film?.title}` }} </span> <span class="d-flex align-center"> <v-icon>mdi-clock</v-icon>{{ longFilm?.film?.duration }}</span>
+            </div> 
+          </template>
+        </div>
+      </div>
+      <v-divider />
     </template>
     <v-card-actions class="pa-0 mt-2">
       <v-btn variant="outlined" block @click="emit('close')">Close</v-btn>
