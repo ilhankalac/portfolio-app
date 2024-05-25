@@ -5,7 +5,7 @@
       <v-container style="max-width: none;" class="ma-0 pa-0">
         <div style="height: 6vh;"/>
         <v-row>
-          <img style="width: 100%; height: 300px; object-fit: cover;" src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="">
+          <img style="width: 100%; height: 200px; object-fit: cover;" src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="">
         </v-row>
         <v-row style="background-color: rgba(var(--v-theme-secondary));">
           <v-col v-if="!smAndDown" cols="3" />
