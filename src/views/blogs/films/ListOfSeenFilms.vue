@@ -23,6 +23,12 @@
         style="border-top-right-radius: 5px; border-top-left-radius: 5px;"
         :style="`min-height: 200px; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
       >
+        <div>
+          <template v-for="index in 5">
+            <v-icon v-if="index <= film.overall" color="yellow" class="mr-1">mdi-star</v-icon>
+            <v-icon v-else color="white" class="mr-1">mdi-star-outline</v-icon>
+          </template>
+        </div>
         <div
           class="text-white mt-auto d-flex flex-column"
           style="
