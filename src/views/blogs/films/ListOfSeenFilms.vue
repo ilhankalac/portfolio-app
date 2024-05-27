@@ -12,14 +12,18 @@
       </div>
     </div>
     <div>
-      <v-btn
-        @click="openStatsDialog"
-        class="ml-auto"
-        color="white"
-        style="border-color: white"
-        icon="mdi-chart-bar"
-        variant="outlined"
-      />
+      <div class="d-flex flex-column">
+        <v-btn
+          @click="openStatsDialog"
+          class="ml-auto"
+          color="white"
+          style="border-color: white"
+          icon="mdi-chart-bar"
+          size="small"
+          variant="outlined"
+        />
+        <span class="text-white text-center font-weight-light" style="font-size: small">Stats</span>   
+      </div>
     </div>
   </div>
   <v-container v-if="!isDataLoaded" fluid>
