@@ -51,7 +51,7 @@
           "
         >
           <span class="font-weight-bold" style="font-size: 0.9rem">
-            #{{ 1148 - key }}
+            #{{ filmStatsData?.totalFilms - key }}
           </span>
           <span class="text-h5 font-weight-bold">
             {{ film?.film?.title ? film.film.title.toUpperCase() : "" }}
@@ -88,7 +88,7 @@
   </v-row>
 
   <!-- Dialog -->
-  <v-dialog v-model="isStatsDialogOpen" max-width="700">
+  <v-dialog v-model="isStatsDialogOpen" max-width="800">
     <FilmStats 
       :filmStatsData="filmStatsData"
       :isStatsDataLoaded="isStatsDataLoaded"

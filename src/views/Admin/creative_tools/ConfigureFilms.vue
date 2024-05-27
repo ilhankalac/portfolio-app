@@ -132,7 +132,7 @@ const calculateTotalWatchTime = (films: FilmData): string => {
     return acc;
   }, 0);
 
-  return `${(totalMinutes / 60).toFixed(2)} hours`;
+  return `${(totalMinutes / 60).toFixed(2)}`;
 };
 
 const calculateTotalFilms = (films: FilmData): number => {
