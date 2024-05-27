@@ -172,6 +172,7 @@ const openStatsDialog = () => {
 
 onMounted(() => {
   getFilms();
+  window.scrollTo(0, 0);
   if (bottomElement.value) {
     observer.observe(bottomElement.value);
   }
