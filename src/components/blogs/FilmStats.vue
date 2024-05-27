@@ -16,10 +16,11 @@
         class="stats-container"
         :class="smAndDown ? 'flex-column align-center' : ''"
       >
+       
         <div class="stat-item">
-          <span class="stat-value">{{ filmStatsData?.totalFilms }}</span>
+          <span class="stat-value" :style="smAndDown ? 'font-size: 17px !important' : ''">{{ filmStatsData?.totalFilms }}</span>
           <span class="stat-label text-overline"
-            ><v-icon>mdi-film</v-icon> Total</span
+            ><v-icon>mdi-movie-open-outline</v-icon> Total</span
           >
         </div>
         <v-divider v-if="!smAndDown" vertical />
@@ -27,9 +28,9 @@
           <v-divider />
         </div>
         <div class="stat-item">
-          <span class="stat-value">{{ filmStatsData?.totalWatchTime }}</span>
+          <span class="stat-value" :style="smAndDown ? 'font-size: 17px !important' : ''">{{ filmStatsData?.totalWatchTime }}</span>
           <span class="stat-label text-overline"
-            ><v-icon>mdi-clock</v-icon> Hours</span
+            ><v-icon>mdi-clock-time-eight-outline</v-icon> Hours</span
           >
         </div>
         <v-divider v-if="!smAndDown" vertical />
@@ -37,9 +38,9 @@
           <v-divider />
         </div>
         <div class="stat-item">
-          <span class="stat-value">{{ filmStatsData?.averageFilmYear }}</span>
+          <span class="stat-value" :style="smAndDown ? 'font-size: 17px !important' : ''">{{ filmStatsData?.averageFilmYear }}</span>
           <span class="stat-label text-overline"
-            ><v-icon>mdi-calendar</v-icon> Average year</span
+            ><v-icon>mdi-calendar-badge</v-icon> Average year</span
           >
         </div>
         <v-divider v-if="!smAndDown" vertical />
@@ -47,9 +48,9 @@
           <v-divider />
         </div>
         <div class="stat-item">
-          <span class="stat-value">{{ filmStatsData?.averageRating }}</span>
+          <span class="stat-value" :style="smAndDown ? 'font-size: 17px !important' : ''">{{ filmStatsData?.averageRating }}</span>
           <span class="stat-label text-overline"
-            ><v-icon>mdi-star</v-icon> Average rating</span
+            ><v-icon>mdi-star-outline</v-icon> Average rating</span
           >
         </div>
       </div>
@@ -60,8 +61,8 @@
         </div>
         <div style="max-height: 200px; overflow-y: auto" class="pr-2">
           <template v-for="(director, index) in filmStatsData?.directorStats">
-            <div class="d-flex justify-space-between text-greyText">
-              <span style="opacity: 0.6" class="font-weight-light"
+            <div class="d-flex justify-space-between text-greyText" style="font-size: smaller">
+              <span class="font-weight-light"
                 >{{ `${index + 1}. ${director?.name}` }}
               </span>
               <span class="text-white">{{ director?.count }}</span>
@@ -76,7 +77,7 @@
         </div>
         <div style="max-height: 200px; overflow-y: auto" class="pr-2">
           <template v-for="(longFilm, index) in filmStatsData?.longestFilm">
-            <div class="d-flex justify-space-between">
+            <div class="d-flex justify-space-between" style="font-size: smaller">
               <span class="font-weight-light text-greyText"
                 >{{ `${index + 1}. ${longFilm.film?.title}` }}
               </span>
@@ -116,6 +117,7 @@ const emit = defineEmits(["close"]);
   text-align: center;
   font-weight: lighter;
   width: 200px;
+  padding-top: 5px
 }
 
 .stat-value {
