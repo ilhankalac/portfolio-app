@@ -38,6 +38,7 @@
     color="white"
     bg-color="primary"
     clearable
+    @click:clear="getFilms"
     @keyup="debouncedGetFilmsBySearchTerm"
   />
   <v-container v-if="!isDataLoaded" fluid>
