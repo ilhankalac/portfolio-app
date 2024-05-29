@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, onValue, push, remove, query, limitToFirst, get, orderByKey, startAfter } from "firebase/database"
+import { getDatabase, ref, set, onValue, push, remove, query, limitToFirst, get, orderByKey, startAfter, orderByChild, equalTo } from "firebase/database"
 
 const firebaseDatabase = getDatabase()
 
@@ -64,4 +64,35 @@ const deleteVal = (path: string): Promise<void> => {
   })
 }
 
-export { setVal, getVal, pushVal, getValLive, deleteVal }
+const getValWithSearchTerm = (path: string, searchTerm: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const nodePath = ref(firebaseDatabase, path);
+
+    get(nodePath).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const searchWords = searchTerm.toLowerCase().split(' ');
+
+        const filteredData = Object.keys(data).filter(key => {
+          const item = data[key];
+          return Object.values(item).some(value => {
+            const valueString = value ? value.toString().toLowerCase() : '';
+            return searchWords.every(word => valueString.includes(word));
+          });
+        }).reduce((result, key) => {
+          result[key] = data[key];
+          return result;
+        }, {});
+
+        resolve(filteredData);
+      } else {
+        resolve(null);
+      }
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+};
+
+
+export { setVal, getVal, pushVal, getValLive, deleteVal, getValWithSearchTerm }
