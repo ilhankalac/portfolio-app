@@ -124,18 +124,26 @@
 
 <script setup lang="ts">
 import { Ref, onBeforeUnmount, onMounted, ref } from "vue";
-import { getVal, getValWithSearchTerm } from "@/services/DataService";
 import { useDisplay } from "vuetify";
-import FilmStats from "@/components/blogs/FilmStats.vue";
 import { debounce } from "lodash";
+import { getVal, getValWithSearchTerm } from "@/services/DataService";
+import FilmStats from "@/components/blogs/FilmStats.vue";
 
+// Display properties
 const { smAndDown } = useDisplay();
 
+// Reactive state variables
 const isDataLoaded: Ref<boolean> = ref(false);
 const films: any = ref([]);
 const isStatsDialogOpen: Ref<boolean> = ref(false);
 const searchTerm: Ref<string> = ref("");
+const bottomElement = ref(null);
+const isBottomReached: Ref<boolean> = ref(false);
 
+const filmStatsData: any = ref({});
+const isStatsDataLoaded: Ref<boolean> = ref(false);
+
+// Fetch functions
 const getFilms = () => {
   getVal("listOfSeenfilms", 10).then((val) => {
     if (val) {
@@ -144,39 +152,14 @@ const getFilms = () => {
     }
   });
 };
-const bottomElement = ref(null);
-const isBottomReached = ref(false);
-const onBottomReached = () => {
-  if (searchTerm.value !== "") return;
 
-  isBottomReached.value = true;
-  getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
-    if (val) {
-      const newFilms = Object.values(val);
-      films.value = films.value.concat(newFilms);
-      isBottomReached.value = false;
-    }
-  });
-};
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      onBottomReached();
-    }
-  });
-});
-
-const filmStatsData: any = ref({});
-const isStatsDataLoaded: Ref<boolean> = ref(false);
 const getFilmsStats = () => {
   getVal("filmStats").then((val) => {
     if (val) {
       filmStatsData.value = val;
-
-      filmStatsData.value.directorStats =
-        filmStatsData.value.directorStats.sort(
-          (a: any, b: any) => b.count - a.count
-        );
+      filmStatsData.value.directorStats = filmStatsData.value.directorStats.sort(
+        (a: any, b: any) => b.count - a.count
+      );
       isStatsDataLoaded.value = true;
     }
   });
@@ -197,6 +180,29 @@ const getFilmsBySearchTerm = () => {
 
 const debouncedGetFilmsBySearchTerm = debounce(getFilmsBySearchTerm, 500);
 
+// Scroll and load more functionality
+const onBottomReached = () => {
+  if (searchTerm.value !== "") return;
+
+  isBottomReached.value = true;
+  getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
+    if (val) {
+      const newFilms = Object.values(val);
+      films.value = films.value.concat(newFilms);
+      isBottomReached.value = false;
+    }
+  });
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      onBottomReached();
+    }
+  });
+});
+
+// Dialog open function
 const openStatsDialog = () => {
   getFilmsStats();
   isStatsDialogOpen.value = true;
@@ -216,6 +222,7 @@ onBeforeUnmount(() => {
   }
 });
 </script>
+
 
 <style scoped>
 ::-webkit-scrollbar {
