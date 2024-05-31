@@ -79,7 +79,7 @@ const getValWithSearchTerm = (path: string, searchTerm: string): Promise<any> =>
             const valueString = value ? value.toString().toLowerCase() : '';
             return searchWords.every(word => valueString.includes(word));
           });
-        }).reduce((result, key) => {
+        }).reduce((result: any, key) => {
           result[key] = data[key];
           return result;
         }, {});

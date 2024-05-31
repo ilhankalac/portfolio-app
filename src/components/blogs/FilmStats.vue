@@ -82,7 +82,7 @@
                 >{{ `${index + 1}. ${longFilm.film?.title}` }}
               </span>
               <span class="d-flex align-center">
-                <v-icon>mdi-clock</v-icon>{{ longFilm?.film?.duration }}</span
+                <v-icon class="mr-1">mdi-clock-time-four-outline</v-icon> {{ longFilm?.film?.duration }}</span
               >
             </div>
           </template>
