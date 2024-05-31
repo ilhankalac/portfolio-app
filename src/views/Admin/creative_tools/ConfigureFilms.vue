@@ -195,6 +195,7 @@ const extractFilmData = (): any => {
       short_synopsis: film?.film?.short_synopsis ? film.film.short_synopsis : '',
       historic_countries: film?.film?.historic_countries ? film.film.historic_countries : [],
       overall: film?.overall ? film.overall : '3',
+      created_at: film?.created_at ? film.created_at : new Date().toISOString(),
     };
   });
   setVal("listOfSeenfilms", result)

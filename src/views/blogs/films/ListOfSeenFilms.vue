@@ -21,9 +21,7 @@
           size="small"
           variant="outlined"
         />
-        <span class="text-white text-center font-weight-light small-font"
-          >Stats</span
-        >
+        <span class="text-white text-center font-weight-light small-font">Stats</span>
       </div>
     </div>
   </div>
@@ -37,82 +35,79 @@
     @click:clear="getFilms"
     @keyup="debouncedGetFilmsBySearchTerm"
   />
-  <v-container v-if="!isDataLoaded" fluid>
-    <v-row>
-      <v-col class="d-flex flex-column ga-3">
-        <v-skeleton-loader v-for="index in 5" color="primary" type="article" />
+  <div v-if="!isDataLoaded">
+    <v-skeleton-loader 
+      v-for="index in 5" 
+      class="my-2" 
+      color="primary" 
+      type="article" 
+    />
+  </div>
+  <v-container class="ma-0 pa-0" fluid>
+    <v-row class="d-flex justify-center">
+      <v-col
+        v-for="(film, key) in films"
+        class="pa-0 my-2 film-col"
+        cols="12"
+        :key="key"
+      >
+        <div
+          class="pa-2 d-flex flex-column justify-space-between film-header"
+          color="primary"
+          :style="`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.still_url});`"
+        >
+          <div class="d-flex justify-space-between align-center">
+            <div>
+              <template v-for="index in 5">
+                <v-icon 
+                  v-if="index <= film.overall" 
+                  class="mr-1"
+                  color="yellow" 
+                >
+                  mdi-star
+                </v-icon>
+                <v-icon v-else class="mr-1" color="white">
+                  mdi-star-outline
+                </v-icon>
+              </template>
+            </div>
+            <div class="text-white font-weight-light small-font text-shadow-primary">
+              <v-icon>mdi-clock-time-four-outline</v-icon> {{ film?.duration }}
+            </div>
+          </div>
+          <div class="text-white mt-auto d-flex flex-column text-shadow-primary text-start">
+            <span class="font-weight-bold small-rem">
+              #{{ filmStatsData?.totalFilms - key }}
+            </span>
+            <span class="text-h5 font-weight-bold">
+              {{ film?.title ? film.title.toUpperCase() : '' }}</span>
+            <div>
+              <template v-for="(director, key) in film.directors">
+                <span class="font-weight-regular small-rem">
+                  {{ director ? director.toUpperCase() : ''}} {{ key < film.directors.length - 1 ? ', ' : '' }}
+                </span> 
+              </template>
+                &nbsp;
+              <template v-for="(country, key) in film.historic_countries">
+                <span class="font-weight-light small-rem">
+                  {{ country ? country.toUpperCase() : '' }}{{ key < film.historic_countries.length - 1 ? ', ' : '' }}
+                </span>
+              </template>
+              <span class="font-weight-light small-rem">
+                &nbsp;{{ film?.year }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="film-footer text-white pa-2 font-weight-light text-justify d-flex flex-column">
+          <span>{{ film?.short_synopsis }}</span>
+          <span class="font-weight-light smallest-font opacity-60">
+            {{ new Date(film?.created_at).toLocaleDateString("en-GB") }}
+          </span>
+        </div>
       </v-col>
     </v-row>
   </v-container>
-  <v-row class="d-flex justify-center">
-    <v-col
-      class="pa-0 my-2 film-col"
-      cols="12"
-      v-for="(film, key) in films"
-      :key="key"
-    >
-      <div
-        color="primary"
-        class="pa-2 d-flex flex-column justify-space-between film-header"
-        :style="`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.still_url});`"
-      >
-        <div class="d-flex justify-space-between align-center">
-          <div>
-            <template v-for="index in 5">
-              <v-icon v-if="index <= film.overall" color="yellow" class="mr-1"
-                >mdi-star</v-icon
-              >
-              <v-icon v-else color="white" class="mr-1"
-                >mdi-star-outline</v-icon
-              >
-            </template>
-          </div>
-          <div
-            class="text-white font-weight-light small-font text-shadow-primary"
-          >
-            <v-icon>mdi-clock-time-four-outline</v-icon> {{ film?.duration }}
-          </div>
-        </div>
-        <div
-          class="text-white mt-auto d-flex flex-column text-shadow-primary text-start"
-        >
-          <span class="font-weight-bold small-rem"
-            >#{{ filmStatsData?.totalFilms - key }}</span
-          >
-          <span class="text-h5 font-weight-bold">{{
-            film?.title ? film.title.toUpperCase() : ""
-          }}</span>
-          <div>
-            <template v-for="(director, key) in film.directors">
-              <span class="font-weight-regular small-rem">
-                {{ director ? director.toUpperCase() : ""
-                }}{{ key < film.directors.length - 1 ? ", " : "" }}
-              </span> </template
-            >&nbsp;
-            <template v-for="(country, key) in film.historic_countries">
-              <span class="font-weight-light small-rem">
-                {{ country ? country.toUpperCase() : ""
-                }}{{ key < film.historic_countries.length - 1 ? ", " : "" }}
-              </span>
-            </template>
-            <span class="font-weight-light small-rem"
-              >&nbsp;{{ film?.year }}</span
-            >
-          </div>
-        </div>
-      </div>
-      <div
-        class="film-footer text-white pa-2 font-weight-light text-justify d-flex flex-column"
-      >
-        <span>{{ film?.short_synopsis }}</span>
-        <span class="font-weight-light smallest-font opacity-60">
-          {{ new Date(film?.created_at).toLocaleDateString("en-GB") }}
-        </span>
-      </div>
-    </v-col>
-  </v-row>
-
-  <!-- Dialog -->
   <v-dialog v-model="isStatsDialogOpen" max-width="800">
     <FilmStats
       :filmStatsData="filmStatsData"
@@ -163,7 +158,6 @@ const onBottomReached = () => {
     }
   });
 };
-// Initialize Intersection Observer
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
