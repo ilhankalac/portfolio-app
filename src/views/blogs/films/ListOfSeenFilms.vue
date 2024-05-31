@@ -7,27 +7,23 @@
       >
         List of seen films
       </div>
-      <div class="font-weight-light text-white" style="opacity: 0.6">
+      <div class="font-weight-light text-white opacity-60">
         Collection of films I have seen since 2016.
       </div>
     </div>
-
     <div>
       <div class="d-flex flex-column">
         <v-btn
           @click="openStatsDialog"
-          class="ml-auto"
+          class="ml-auto white-border"
           color="white"
-          style="border-color: white"
           icon="mdi-chart-bar"
           size="small"
           variant="outlined"
         />
-        <span
-          class="text-white text-center font-weight-light"
-          style="font-size: small"
-          >Stats
-        </span>
+        <span class="text-white text-center font-weight-light small-font"
+          >Stats</span
+        >
       </div>
     </div>
   </div>
@@ -50,70 +46,66 @@
   </v-container>
   <v-row class="d-flex justify-center">
     <v-col
-      class="pa-0 my-2"
+      class="pa-0 my-2 film-col"
       cols="12"
       v-for="(film, key) in films"
       :key="key"
-      style="box-shadow: 0 0 0 0.1px white; border-radius: 5px"
     >
       <div
         color="primary"
-        class="pa-2 d-flex flex-column justify-space-between"
-        style="border-top-right-radius: 5px; border-top-left-radius: 5px"
-        :style="`min-height: 200px; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
+        class="pa-2 d-flex flex-column justify-space-between film-header"
+        :style="`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.still_url});`"
       >
-        <div>
-          <template v-for="index in 5">
-            <v-icon v-if="index <= film.overall" color="yellow" class="mr-1"
-              >mdi-star</v-icon
-            >
-            <v-icon v-else color="white" class="mr-1">mdi-star-outline</v-icon>
-          </template>
+        <div class="d-flex justify-space-between align-center">
+          <div>
+            <template v-for="index in 5">
+              <v-icon v-if="index <= film.overall" color="yellow" class="mr-1"
+                >mdi-star</v-icon
+              >
+              <v-icon v-else color="white" class="mr-1"
+                >mdi-star-outline</v-icon
+              >
+            </template>
+          </div>
+          <div
+            class="text-white font-weight-light small-font text-shadow-primary"
+          >
+            <v-icon>mdi-clock-time-four-outline</v-icon> {{ film?.duration }}
+          </div>
         </div>
         <div
-          class="text-white mt-auto d-flex flex-column"
-          style="
-            text-shadow: 1px 1px rgb(var(--v-theme-primary));
-            text-align: start;
-          "
+          class="text-white mt-auto d-flex flex-column text-shadow-primary text-start"
         >
-          <span class="font-weight-bold" style="font-size: 0.9rem">
-            #{{ filmStatsData?.totalFilms - key }}
-          </span>
-          <span class="text-h5 font-weight-bold">
-            {{ film?.film?.title ? film.film.title.toUpperCase() : "" }}
-          </span>
+          <span class="font-weight-bold small-rem"
+            >#{{ filmStatsData?.totalFilms - key }}</span
+          >
+          <span class="text-h5 font-weight-bold">{{
+            film?.title ? film.title.toUpperCase() : ""
+          }}</span>
           <div>
-            <template v-for="(director, key) in film.film.directors">
-              <span style="font-size: 0.8rem" class="font-weight-regular">
-                {{ director.name ? director.name.toUpperCase() : ""
-                }}{{ key < film.film.directors.length - 1 ? ", " : "" }}
+            <template v-for="(director, key) in film.directors">
+              <span class="font-weight-regular small-rem">
+                {{ director ? director.toUpperCase() : ""
+                }}{{ key < film.directors.length - 1 ? ", " : "" }}
               </span> </template
             >&nbsp;
-            <template v-for="(country, key) in film.film.historic_countries">
-              <span style="font-size: 0.8rem" class="font-weight-light">
-                {{ country ? country.toUpperCase() : "" }}
-                {{ key < film.film.historic_countries.length - 1 ? ", " : "" }}
+            <template v-for="(country, key) in film.historic_countries">
+              <span class="font-weight-light small-rem">
+                {{ country ? country.toUpperCase() : ""
+                }}{{ key < film.historic_countries.length - 1 ? ", " : "" }}
               </span>
             </template>
-            <span class="font-weight-light" style="font-size: 0.8rem"
-              >&nbsp;{{ film?.film?.year }}</span
+            <span class="font-weight-light small-rem"
+              >&nbsp;{{ film?.year }}</span
             >
           </div>
         </div>
       </div>
       <div
-        style="
-          background: rgb(var(--v-theme-secondary));
-          font-size: small;
-          border-bottom-left-radius: 5px;
-          border-bottom-right-radius: 5px;
-        "
-        class="text-white pa-2 font-weight-light text-justify d-flex flex-column"
+        class="film-footer text-white pa-2 font-weight-light text-justify d-flex flex-column"
       >
-        <span>{{ film?.film?.short_synopsis }}</span>
-        <span class="font-weight-light" style="font-size: 0.7rem; opacity: 0.6">
-          <!-- format created_at for dd.mm.yyyy  -->
+        <span>{{ film?.short_synopsis }}</span>
+        <span class="font-weight-light smallest-font opacity-60">
           {{ new Date(film?.created_at).toLocaleDateString("en-GB") }}
         </span>
       </div>
@@ -131,7 +123,7 @@
   <div class="text-center mt-5">
     <v-progress-circular :value="isBottomReached" indeterminate color="white" />
   </div>
-  <div style="height: 100px"></div>
+  <div class="bottom-spacer"></div>
   <div ref="bottomElement" />
 </template>
 
@@ -150,7 +142,7 @@ const isStatsDialogOpen: Ref<boolean> = ref(false);
 const searchTerm: Ref<string> = ref("");
 
 const getFilms = () => {
-  getVal("ratings", 10).then((val) => {
+  getVal("listOfSeenfilms", 10).then((val) => {
     if (val) {
       isDataLoaded.value = true;
       films.value = val;
@@ -163,7 +155,7 @@ const onBottomReached = () => {
   if (searchTerm.value !== "") return;
 
   isBottomReached.value = true;
-  getVal("ratings", 10, films.value.length.toString()).then((val) => {
+  getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
     if (val) {
       const newFilms = Object.values(val);
       films.value = films.value.concat(newFilms);
@@ -198,7 +190,7 @@ const getFilmsStats = () => {
 
 const getFilmsBySearchTerm = () => {
   if (searchTerm.value && searchTerm.value.length > 3) {
-    getValWithSearchTerm("ratings", searchTerm.value).then((val) => {
+    getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
       if (val) {
         isDataLoaded.value = true;
         films.value = val;
@@ -246,5 +238,53 @@ onBeforeUnmount(() => {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.opacity-60 {
+  opacity: 0.6;
+}
+
+.white-border {
+  border-color: white;
+}
+
+.small-font {
+  font-size: small;
+}
+
+.small-rem {
+  font-size: 0.9rem;
+}
+
+.text-shadow-primary {
+  text-shadow: 1px 1px rgb(var(--v-theme-primary));
+}
+
+.film-col {
+  box-shadow: 0 0 0 0.1px white;
+  border-radius: 5px;
+}
+
+.film-header {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.film-footer {
+  background: rgb(var(--v-theme-secondary));
+  font-size: small;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.smallest-font {
+  font-size: 0.7rem;
+}
+
+.bottom-spacer {
+  height: 100px;
 }
 </style>

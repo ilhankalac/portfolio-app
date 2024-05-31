@@ -6,9 +6,20 @@
       </v-btn>
     </div>
     <div>
-      <v-btn @click="generateStats"> Generate stats </v-btn>
+      <v-btn 
+        @click="generateStats"
+        variant="outlined"
+      > Generate stats 
+    </v-btn>
+
+    <v-btn
+    variant="outlined"
+      @click="extractFilmData()"
+    >
+      Export films data
+    </v-btn>
     </div>
-    <v-row>
+    <v-row class="mt-6">
       <v-col v-if="!isDataLoaded" class="d-flex flex-column ga-3">
         <v-skeleton-loader v-for="index in 5" color="primary" type="article" />
       </v-col>
@@ -172,6 +183,23 @@ const findTopLongestFilms = (films: FilmData, top: number): Film[] => {
     .slice(0, top);
 };
 
+const extractFilmData = (): any => {
+  const result = films.value.map((film: any) => {
+    return {
+      title: film?.film?.title ? film.film.title : '',
+      directors: film?.film?.directors ? film.film.directors.map((director: any) => director.name) : [],
+      year: film?.film?.year ? film.film.year : '1995',
+      duration: film?.film?.duration ? film.film.duration : '120',
+      rating: film?.overall ? film.overall : '',
+      still_url: film?.film?.still_url ? film.film.still_url : '',
+      short_synopsis: film?.film?.short_synopsis ? film.film.short_synopsis : '',
+      historic_countries: film?.film?.historic_countries ? film.film.historic_countries : [],
+      overall: film?.overall ? film.overall : '3',
+    };
+  });
+  setVal("listOfSeenfilms", result)
+};
+
 const generateStats = (): void => {
   const directorStats = calculateDirectorStats(films);
   const totalWatchTime = calculateTotalWatchTime(films);
@@ -188,7 +216,6 @@ const generateStats = (): void => {
     averageRating,
     longestFilm,
   });
-  console.log('Stats generated');
 };
 
 onMounted(() => {
