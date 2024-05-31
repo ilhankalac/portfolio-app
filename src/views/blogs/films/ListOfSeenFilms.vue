@@ -28,7 +28,7 @@
   <v-text-field
     v-model="searchTerm"
     variant="outlined"
-    label="Search film by title..."
+    label="Search criteria..."
     color="white"
     bg-color="primary"
     clearable
@@ -48,7 +48,7 @@
       There are no films with the title "{{ searchTerm }}". 
     </div>
      <div v-if="isSearchInvoked && films.length > 0" class="text-white text-left font-weight-light opacity-60">
-      There are {{ films.length }} films with the search term "{{ searchTerm }}". 
+      There are <strong style="text-decoration: underline;">{{ films.length }}</strong> films with the search term "{{ searchTerm }}". 
     </div>
     <v-row class="d-flex justify-center">
       <v-col
@@ -82,8 +82,11 @@
             </div>
           </div>
           <div class="text-white mt-auto d-flex flex-column text-shadow-primary text-start">
-            <span class="font-weight-bold small-rem">
-              #{{ filmStatsData?.totalFilms - key }}
+            <span
+              v-if="!isSearchInvoked" 
+              class="font-weight-bold small-rem"
+            >
+              {{ `#${filmStatsData.totalFilms - key}` }}
             </span>
             <span class="text-h5 font-weight-bold">
               {{ film?.title ? film.title.toUpperCase() : '' }}</span>
@@ -221,6 +224,7 @@ const openStatsDialog = () => {
 
 onMounted(() => {
   getFilms();
+  getFilmsStats();
   window.scrollTo(0, 0);
   if (bottomElement.value) {
     observer.observe(bottomElement.value);
