@@ -44,6 +44,12 @@
     />
   </div>
   <v-container class="ma-0 pa-0" fluid>
+    <div v-if="isSearchInvoked && films.length === 0" class="text-white text-left font-weight-light opacity-60">
+      There are no films with the title "{{ searchTerm }}". 
+    </div>
+     <div v-if="isSearchInvoked && films.length > 0" class="text-white text-left font-weight-light opacity-60">
+      There are {{ films.length }} films with the search term "{{ searchTerm }}". 
+    </div>
     <v-row class="d-flex justify-center">
       <v-col
         v-for="(film, key) in films"
@@ -115,8 +121,8 @@
       @close="isStatsDialogOpen = false"
     />
   </v-dialog>
-  <div class="text-center mt-5">
-    <v-progress-circular :value="isBottomReached" indeterminate color="white" />
+  <div  class="text-center mt-5">
+    <v-progress-circular v-if="!isSearchInvoked" :value="isBottomReached" indeterminate color="white" />
   </div>
   <div class="bottom-spacer"></div>
   <div ref="bottomElement" />
@@ -142,9 +148,11 @@ const isBottomReached: Ref<boolean> = ref(false);
 
 const filmStatsData: any = ref({});
 const isStatsDataLoaded: Ref<boolean> = ref(false);
+const isSearchInvoked: Ref<boolean> = ref(false);
 
 // Fetch functions
 const getFilms = () => {
+  isSearchInvoked.value = false;
   getVal("listOfSeenfilms", 10).then((val) => {
     if (val) {
       isDataLoaded.value = true;
@@ -167,10 +175,13 @@ const getFilmsStats = () => {
 
 const getFilmsBySearchTerm = () => {
   if (searchTerm.value && searchTerm.value.length > 3) {
+    isSearchInvoked.value = true;
+    isDataLoaded.value = false;
     getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
       if (val) {
         isDataLoaded.value = true;
-        films.value = val;
+        Object.values(val).length > 0 ? films.value = Object.values(val) : films.value = []; 
+        isDataLoaded.value = true;  
       }
     });
   } else {
@@ -182,7 +193,7 @@ const debouncedGetFilmsBySearchTerm = debounce(getFilmsBySearchTerm, 500);
 
 // Scroll and load more functionality
 const onBottomReached = () => {
-  if (searchTerm.value !== "") return;
+  if (searchTerm.value) return;
 
   isBottomReached.value = true;
   getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
