@@ -183,6 +183,35 @@ const findTopLongestFilms = (films: FilmData, top: number): Film[] => {
     .slice(0, top);
 };
 
+const orderyByCountries = (films: FilmData): any => {
+  const result = films.value.reduce(
+    (acc: Record<string, number>, film: any) => {
+      if (film.film.historic_countries) {
+        film.film.historic_countries.forEach((country: any) => {
+          if (acc[country]) {
+            acc[country] += 1;
+          } else {
+            acc[country] = 1;
+          }
+        });
+      }
+      return acc;
+    },
+    {}
+  );
+
+  // sort by count
+
+  return Object.keys(result)
+    .sort((a, b) => result[b] - result[a])
+    .map((key) => {
+      return {
+        name: key,
+        count: result[key],
+      };
+    });
+};
+
 const extractFilmData = (): any => {
   const result = films.value.map((film: any) => {
     return {
@@ -208,6 +237,7 @@ const generateStats = (): void => {
   const averageFilmYear = calculateAverageFilmYear(films);
   const averageRating = calculateAverageRating(films);
   const longestFilm = findTopLongestFilms(films, 20);
+  const countries = orderyByCountries(films);
 
   setVal("filmStats", {
     directorStats,
@@ -216,6 +246,7 @@ const generateStats = (): void => {
     averageFilmYear,
     averageRating,
     longestFilm,
+    countries
   });
 };
 

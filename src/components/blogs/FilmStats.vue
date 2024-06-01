@@ -55,9 +55,9 @@
         </div>
       </div>
       <v-divider />
-      <div>
+      <div class="mb-8">
         <div class="text-white mt-4 text-overline">
-          Count Of Seen Films By Directors
+          Count of watched films ordered by directors
         </div>
         <div style="max-height: 200px; overflow-y: auto" class="pr-2">
           <template v-for="(director, index) in filmStatsData?.directorStats">
@@ -65,7 +65,28 @@
               <span class="font-weight-light"
                 >{{ `${index + 1}. ${director?.name}` }}
               </span>
-              <span class="text-white">{{ director?.count }}</span>
+              <div class="text-white">
+                <v-icon class="mr-1">mdi-eye-outline</v-icon>
+                <span>{{ director?.count }}</span>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+      <v-divider />
+      <div class="mb-8">
+        <div class="text-white mt-4 text-overline">
+          Count of watched films ordered by countries
+        </div>
+        <div style="max-height: 200px; overflow-y: auto" class="pr-2">
+          <template v-for="(country, index) in filmStatsData?.countries">
+            <div class="d-flex justify-space-between" style="font-size: smaller">
+              <span class="font-weight-light text-greyText"
+                >{{ `${index + 1}. ${country?.name}` }}
+              </span>
+              <span class="d-flex align-center">
+                <v-icon class="mr-1">mdi-eye-outline</v-icon> {{ country?.count }}</span
+              >
             </div>
           </template>
         </div>
@@ -73,7 +94,7 @@
       <v-divider />
       <div>
         <div class="text-white mt-4 text-overline">
-          Top 20 Longest Films I've Seen
+          Top 20 Longest Films I've Watched
         </div>
         <div style="max-height: 200px; overflow-y: auto" class="pr-2">
           <template v-for="(longFilm, index) in filmStatsData?.longestFilm">
@@ -88,7 +109,7 @@
           </template>
         </div>
       </div>
-      <v-divider />
+     
     </template>
     <v-card-actions class="pa-0 mt-2">
       <v-btn variant="outlined" block @click="emit('close')">Close</v-btn>
