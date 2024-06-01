@@ -33,7 +33,7 @@
     bg-color="primary"
     clearable
     @click:clear="getFilms"
-    @keyup="debouncedGetFilmsBySearchTerm"
+    @keyup.enter="debouncedGetFilmsBySearchTerm"
   />
   <div v-if="!isDataLoaded">
     <v-skeleton-loader 
@@ -177,7 +177,7 @@ const getFilmsStats = () => {
 };
 
 const getFilmsBySearchTerm = () => {
-  if (searchTerm.value && searchTerm.value.length > 3) {
+  if (searchTerm.value && searchTerm.value.length > 1) {
     isSearchInvoked.value = true;
     isDataLoaded.value = false;
     getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
