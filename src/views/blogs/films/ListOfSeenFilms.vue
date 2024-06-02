@@ -25,16 +25,28 @@
       </div>
     </div>
   </div>
-  <v-text-field
-    v-model="searchTerm"
-    variant="outlined"
-    label="Search criteria..."
-    color="white"
-    bg-color="primary"
-    clearable
-    @click:clear="getFilms"
-    @keyup.enter="debouncedGetFilmsBySearchTerm"
-  />
+  <div class="d-flex text-white ga-2">
+    <v-text-field
+      v-model="searchTerm"
+      variant="outlined"
+      density="comfortable"
+      label="Search criteria..."
+      color="white"
+      bg-color="primary"
+      clearable
+      @click:clear="getFilms"
+      @keyup.enter="debouncedGetFilmsBySearchTerm"
+    />
+    <v-date-input
+      v-model="model"
+      label="Select range"
+      max-width="368"
+      multiple="range"
+      density="comfortable"
+      variant="outlined"
+      @update:modelValue="getFilmsByDateRange"
+    />
+  </div>
   <div v-if="!isDataLoaded">
     <v-skeleton-loader 
       v-for="index in 5" 
@@ -137,7 +149,7 @@ import { useDisplay } from "vuetify";
 import { debounce } from "lodash";
 import { getVal, getValWithSearchTerm } from "@/services/DataService";
 import FilmStats from "@/components/blogs/FilmStats.vue";
-
+import { VDateInput } from 'vuetify/labs/VDateInput'
 // Display properties
 const { smAndDown } = useDisplay();
 
@@ -152,6 +164,7 @@ const isBottomReached: Ref<boolean> = ref(false);
 const filmStatsData: any = ref({});
 const isStatsDataLoaded: Ref<boolean> = ref(false);
 const isSearchInvoked: Ref<boolean> = ref(false);
+const model = ref<string[]>([]);
 
 // Fetch functions
 const getFilms = () => {
@@ -182,7 +195,6 @@ const getFilmsBySearchTerm = () => {
     isDataLoaded.value = false;
     getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
       if (val) {
-        isDataLoaded.value = true;
         Object.values(val).length > 0 ? films.value = Object.values(val) : films.value = []; 
         isDataLoaded.value = true;  
       }
@@ -193,6 +205,24 @@ const getFilmsBySearchTerm = () => {
 };
 
 const debouncedGetFilmsBySearchTerm = debounce(getFilmsBySearchTerm, 500);
+
+const getFilmsByDateRange = () => {
+  const firstDate = new Date(model.value[0])
+  const lastDate = new Date(model.value[model.value.length - 1])
+  isSearchInvoked.value = true;
+  isDataLoaded.value = false;
+
+  getVal("listOfSeenfilms").then((val) => {
+    if (val) {
+      films.value = val;
+      films.value = films.value.filter((film: any) => {
+        const filmDate = new Date(film.created_at)
+        return filmDate >= firstDate && filmDate <= lastDate
+      })
+      isDataLoaded.value = true;
+    }
+  });
+};
 
 // Scroll and load more functionality
 const onBottomReached = () => {
@@ -302,5 +332,9 @@ onBeforeUnmount(() => {
 
 .bottom-spacer {
   height: 100px;
+}
+
+:deep(.v-input__prepend) {
+  display:none !important;
 }
 </style>
