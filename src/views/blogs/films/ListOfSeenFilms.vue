@@ -44,7 +44,9 @@
       multiple="range"
       density="comfortable"
       variant="outlined"
+      clearable
       @update:modelValue="getFilmsByDateRange"
+      @click:clear="getFilms"
     />
   </div>
   <div v-if="!isDataLoaded">
@@ -60,7 +62,7 @@
       There are no films with the title "{{ searchTerm }}". 
     </div>
      <div v-if="isSearchInvoked && films.length > 0" class="text-white text-left font-weight-light opacity-60">
-      There are <strong style="text-decoration: underline;">{{ films.length }}</strong> films with the search term "{{ searchTerm }}". 
+      There are <strong style="text-decoration: underline;">{{ films.length }}</strong> {{ model.length > 0 ? 'films found within the selected date range.' : `films found by search ${searchTerm}.` }} 
     </div>
     <v-row class="d-flex justify-center">
       <v-col
@@ -191,6 +193,7 @@ const getFilmsStats = () => {
 
 const getFilmsBySearchTerm = () => {
   if (searchTerm.value && searchTerm.value.length > 1) {
+    model.value = []
     isSearchInvoked.value = true;
     isDataLoaded.value = false;
     getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
@@ -207,6 +210,7 @@ const getFilmsBySearchTerm = () => {
 const debouncedGetFilmsBySearchTerm = debounce(getFilmsBySearchTerm, 500);
 
 const getFilmsByDateRange = () => {
+  searchTerm.value = ''
   const firstDate = new Date(model.value[0])
   const lastDate = new Date(model.value[model.value.length - 1])
   isSearchInvoked.value = true;
@@ -226,7 +230,7 @@ const getFilmsByDateRange = () => {
 
 // Scroll and load more functionality
 const onBottomReached = () => {
-  if (searchTerm.value) return;
+  if (searchTerm.value || isSearchInvoked.value) return;
 
   isBottomReached.value = true;
   getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
