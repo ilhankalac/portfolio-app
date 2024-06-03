@@ -40,7 +40,6 @@
     <v-date-input
       v-model="model"
       label="Select range"
-      max-width="368"
       multiple="range"
       density="comfortable"
       variant="outlined"
@@ -58,21 +57,21 @@
     />
   </div>
   <v-container class="ma-0 pa-0" fluid>
-    <div v-if="isSearchInvoked && films.length === 0" class="text-white text-left font-weight-light opacity-60">
+    <div v-if="isSearchInvoked && films.length === 0" class="text-white text-left font-weight-light">
       There are no films with the title "{{ searchTerm }}". 
     </div>
-     <div v-if="isSearchInvoked && films.length > 0" class="text-white text-left font-weight-light opacity-60">
+     <div v-if="isSearchInvoked && films.length > 0" class="text-white text-left font-weight-light">
       There are <strong style="text-decoration: underline;">{{ films.length }}</strong> {{ model.length > 0 ? 'films found within the selected date range.' : `films found by search ${searchTerm}.` }} 
     </div>
-    <v-row class="d-flex justify-center">
+    <v-row>
       <v-col
         v-for="(film, key) in films"
-        class="pa-0 my-2 film-col"
-        cols="12"
+        class="pa-1"
+        :cols="smAndDown ? 12 : 6"
         :key="key"
       >
         <div
-          class="pa-2 d-flex flex-column justify-space-between film-header"
+          class="pa-2 d-flex flex-column justify-space-between film-header film-col"
           color="primary"
           :style="`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.still_url});`"
         >
@@ -122,7 +121,10 @@
             </div>
           </div>
         </div>
-        <div class="film-footer text-white pa-2 font-weight-light text-justify d-flex flex-column">
+        <div 
+          style="min-height: 120px; max-height: 120px;"  
+          class="film-footer text-white pa-2 font-weight-light text-justify d-flex flex-column justify-space-between"
+        >
           <span>{{ film?.short_synopsis }}</span>
           <span class="font-weight-light smallest-font opacity-60">
             {{ new Date(film?.created_at).toLocaleDateString("en-GB") }}
