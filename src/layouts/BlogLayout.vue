@@ -1,43 +1,49 @@
 <template>
   <v-layout class="rounded rounded-md">
-    <v-main class="">
-      <NavBar :origin="'configure'"/>
-      <v-container style="max-width: none;" class="ma-0 pa-0">
-        <div style="height: 6vh;"/>
+    <v-main>
+      <NavBar :origin="'configure'" />
+      <v-container class="ma-0 pa-0" style="max-width: none;">
+        <div style="height: 6vh;" />
         <v-row>
-          <img style="width: 100%; height: 200px; object-fit: cover;" src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="">
+          <img src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="" style="width: 100%; height: 200px; object-fit: cover;" />
         </v-row>
-        <v-row style="background-color: rgba(var(--v-theme-secondary));">
+        <v-row class="bg-secondary">
           <v-col v-if="!smAndDown" cols="3" />
-          <v-col class="ma-0 pa-0">
-            <v-tabs
-              v-model="tab"
-              bg-color="secondary"
-            >
-              <v-tab value="one" @click="openRoute('/blogs/list')">Blogs</v-tab>
-              <v-tab value="two" @click="openRoute('/favorite-quotes')">Favorite Quotes</v-tab>
-              <v-tab value="three" @click="openRoute('/list-of-seen-films')">List of films</v-tab>
+          <v-col :cols="smAndDown ? 12 : 6" class="ma-0 pa-0">
+            <v-tabs v-if="!smAndDown" v-model="tab" bg-color="secondary">
+              <v-tab value="one" @click="openRoute('/blogs/list')"><v-icon>mdi-post</v-icon> Blogs</v-tab>
+              <v-tab value="two" @click="openRoute('/favorite-quotes')"><v-icon>mdi-format-quote-close</v-icon> Favorite Quotes</v-tab>
+              <v-tab value="three" @click="openRoute('/list-of-seen-films')"><v-icon>mdi-filmstrip</v-icon> List of films</v-tab>
             </v-tabs>
+            <div v-else class="pa-4">
+              <v-menu>
+                <template v-slot:activator="{ props }">
+                  <div v-bind="props" class="d-flex justify-space-between text-white align-center">
+                    <div color="secondary">
+                      <v-icon>{{ tabIcon }}</v-icon> {{ tabLabel }} 
+                    </div>
+                    <v-icon>{{ `mdi-menu-${props['aria-expanded'] === 'true' ? 'up' : 'down'}` }}</v-icon>
+                  </div>
+                </template>
+                <v-list>
+                  <v-list-item v-for="(item, index) in tabs" :key="index" :class="tab === item.tab ? 'font-weight-bold' : 'text-grey'">
+                    <v-list-item-title @click="openRoute(item.path)">
+                      <v-icon class="mr-4">{{ item.icon }}</v-icon> {{ item.name }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
           </v-col>
-          <v-col></v-col>
         </v-row>
       </v-container>
-      <v-container style="max-width: none;" class="ma-0 pa-0">
+      <v-container class="ma-0 pa-0" style="max-width: none;">
         <v-row class="d-flex flex-row">
-          <v-col :cols="smAndDown ? 0 : 3" class="d-flex flex-column align-center text-white">
-            <!-- <v-btn
-              v-if="$route.fullPath !== '/blogs/list' && $route.fullPath !== '/favorite-quotes'" 
-              variant="text" 
-              @click="router.push('/blogs/list')"
-            >
-              <v-icon class="mr-4">mdi-arrow-left</v-icon> Go to blog list
-            </v-btn> -->
-          </v-col>
+          <v-col :cols="smAndDown ? 0 : 3" class="d-flex flex-column align-center text-white"></v-col>
           <v-col :cols="smAndDown ? 12 : 6">
             <router-view />
           </v-col>
-          <v-col :cols="smAndDown? 12 : 4" class="d-flex flex-column align-center text-white">
-          </v-col>
+          <v-col :cols="smAndDown ? 12 : 4" class="d-flex flex-column align-center text-white"></v-col>
         </v-row>
       </v-container>
     </v-main>
@@ -45,47 +51,33 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import NavBar from '@/components/NavBar.vue'
-import BlogList from '@/views/blogs/BlogList.vue'
-import { useDisplay } from "vuetify"
-import { useRouter } from "vue-router"
-import { getVal } from '@/services/DataService'
-const { smAndDown } = useDisplay()
+import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useDisplay } from 'vuetify';
+import { getVal } from '@/services/DataService';
+import NavBar from '@/components/NavBar.vue';
 
-const router = useRouter()
-const tab = ref('one')
+const { smAndDown } = useDisplay();
+const router = useRouter();
+const tab = ref('one');
 
-const blogs: any = ref([]);
-const getBlogs = () => {
-  getVal("blog/posts").then((val) => {
-    if (val) {
-      blogs.value = val;
-    }
-  });
-};
+const tabs = [
+  { name: 'Blogs', path: '/blogs/list', icon: 'mdi-post', tab: 'one' },
+  { name: 'Favorite Quotes', path: '/favorite-quotes', icon: 'mdi-format-quote-close', tab: 'two' },
+  { name: 'List of films', path: '/list-of-seen-films', icon: 'mdi-filmstrip', tab: 'three' },
+];
 
-const openBlog = (blog: any, key: number) => {
-  const keyAndTitle =
-    blog.title.replace(/\s+/g, "-").replace(/-+/g, "-").toLowerCase() +
-    "/key=" +
-    key;
-  router.push({ name: "BlogPage", params: { id: keyAndTitle } });
-};
+const tabIcon = computed(() => tabs.find(t => t.tab === tab.value)?.icon);
+const tabLabel = computed(() => tabs.find(t => t.tab === tab.value)?.name);
 
 const openRoute = (path: string) => {
-  router.push(path)
-}
+  tab.value = tabs.find(t => t.path === path)?.tab || 'one';
+  router.push(path);
+};
 
 onMounted(() => {
-  getBlogs();
-  if (router.currentRoute.value.path === '/blogs/list') {
-    tab.value = 'one'
-  } else if (router.currentRoute.value.path === '/favorite-quotes') {
-    tab.value = 'two'
-  } else if (router.currentRoute.value.path === '/list-of-seen-films') {
-    tab.value = 'three'
-  }
+  const path = router.currentRoute.value.path;
+  tab.value = tabs.find(t => t.path === path)?.tab || 'one';
 });
 </script>
 
@@ -94,12 +86,10 @@ onMounted(() => {
   text-decoration: underline;
   cursor: pointer;
 }
-:deep(.v-card--variant-elevated){
+:deep(.v-card--variant-elevated) {
   box-shadow: 0px 2px 1px -1px rgba(255, 255, 255, 0.2), 0px 1px 1px 0px rgba(255, 255, 255, 0.14), 0px 1px 3px 0px rgba(255, 255, 255, 0.12);
 }
-
-:deep(.v-row){
+:deep(.v-row) {
   margin: 0 !important;
 }
-
 </style>
