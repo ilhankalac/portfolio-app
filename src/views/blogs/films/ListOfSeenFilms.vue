@@ -58,7 +58,8 @@
     <v-row>
       <v-col
         v-for="(film, key) in films"
-        class="pa-1"
+        class="pa-0 pb-3"
+        :class="key % 2 !== 0 && !smAndDown && films.length > 1 ? 'pl-3' : ''"
         :cols="smAndDown ? 12 : 6"
         :key="key"
       >

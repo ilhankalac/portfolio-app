@@ -19,7 +19,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <div v-else class="px-2">
+    <div v-else>
       <div class="font-weight-light" :class="smAndDown ? 'text-h6' : 'text-h5'">
         {{ blog.title }}
       </div>

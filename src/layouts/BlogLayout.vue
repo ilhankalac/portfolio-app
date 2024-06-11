@@ -11,9 +11,9 @@
           <v-col v-if="!smAndDown" cols="3" />
           <v-col :cols="smAndDown ? 12 : 6" class="ma-0 pa-0">
             <v-tabs v-if="!smAndDown" v-model="tab" bg-color="secondary">
-              <v-tab value="one" @click="openRoute('/blogs/list')"><v-icon>mdi-post</v-icon> Blogs</v-tab>
-              <v-tab value="two" @click="openRoute('/favorite-quotes')"><v-icon>mdi-format-quote-close</v-icon> Favorite Quotes</v-tab>
+              <v-tab value="one" @click="openRoute('/blogs/list')"><v-icon>mdi-post</v-icon>Blog</v-tab>
               <v-tab value="three" @click="openRoute('/list-of-seen-films')"><v-icon>mdi-filmstrip</v-icon> Films</v-tab>
+              <v-tab value="two" @click="openRoute('/favorite-quotes')"><v-icon>mdi-format-quote-close</v-icon> Favorite Quotes</v-tab>
             </v-tabs>
             <div v-else class="pa-4">
               <v-menu>
