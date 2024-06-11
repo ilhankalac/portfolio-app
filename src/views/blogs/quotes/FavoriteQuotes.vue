@@ -4,7 +4,7 @@
       I maintain a collection of my favorite quotes, arranged by the emotional
       impact they evoke upon reflection.
     </div>
-    <div class="font-weight-light text-white mb-2" style="opacity: 0.6">
+    <div class="font-weight-light text-white mb-2 text-right">
       Currently there are <strong> {{ quotes.length }}</strong> quotes in the
       collection.
     </div>

@@ -5,17 +5,14 @@
   <v-container v-if="!isDataLoaded" fluid>
     <v-row>
       <v-col class="d-flex flex-column ga-3">
-        <v-skeleton-loader
-          v-for="index in 5"
-          color="primary"
-          type="article"
-        />
+        <v-skeleton-loader v-for="index in 5" color="primary" type="article" />
       </v-col>
     </v-row>
   </v-container>
   <v-row>
-    <v-col 
-      v-for="(blog, key) in blogs" :key="key"
+    <v-col
+      v-for="(blog, key) in blogs"
+      :key="key"
       class="pa-0 mt-4"
       :class="key % 2 !== 0 && !smAndDown && blogs.length > 1 ? 'ml-4' : ''"
       :cols="smAndDown ? 12 : 5"
@@ -24,25 +21,48 @@
         color="secondary"
         class="d-flex justify-space-between flex-column"
         elevation="2"
-        style="min-height: 100px;"
+        style="min-height: 100px"
         @click="openBlog(blog, key)"
       >
         <div
           class="d-flex justify-space-between align-center blog-header"
-          style="position: relative; background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url(https://www.kurir.rs/data/images/2022/03/04/16/2932445_screenshot-53_ls.jpg);"
+          style="
+            position: relative;
+            background-image: linear-gradient(
+                rgba(0, 0, 0, 0),
+                rgba(0, 0, 0, 0)
+              ),
+              url(https://www.kurir.rs/data/images/2022/03/04/16/2932445_screenshot-53_ls.jpg);
+          "
         >
-          <v-sheet color="white" class="px-2 text-overline font-weight-bold" style="position: absolute; bottom: 5px; right: 5px;">
+          <v-sheet
+            color="white"
+            class="px-2 text-overline font-weight-bold"
+            style="
+              position: absolute;
+              bottom: 5px;
+              right: 5px;
+              border-radius: 4px;
+            "
+          >
             Satire
           </v-sheet>
         </div>
         <div class="pa-4">
-          <span class="text-white font-weight-light" style="font-size: 1.2rem;">{{ blog.title }}</span> 
+          <span
+            class="text-white font-weight-light"
+            style="font-size: 1.2rem"
+            >{{ blog.title }}</span
+          >
         </div>
-        <div class="text-greyText d-flex justify-space-between px-4 pb-4" style="font-size: smaller;">
+        <div
+          class="text-greyText d-flex justify-space-between px-4 pb-4"
+          style="font-size: smaller"
+        >
           <span>
             by <strong>{{ blog.author }} </strong>
           </span>
-          <span style="opacity: 0.6;">
+          <span style="opacity: 0.6">
             {{ blog.date }}
           </span>
         </div>
