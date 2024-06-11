@@ -1,15 +1,7 @@
 <template>
   <div class="d-flex justify-space-between">
-    <div>
-      <div
-        class="font-weight-light text-white"
-        :class="smAndDown ? 'text-h6' : 'text-h5'"
-      >
-        List of seen films
-      </div>
-      <div class="font-weight-light text-white opacity-60">
-        Collection of films I have seen since 2016.
-      </div>
+    <div class="font-weight-light text-white opacity-60">
+      Collection of films I have seen since 2016.
     </div>
     <div>
       <div class="d-flex flex-column">

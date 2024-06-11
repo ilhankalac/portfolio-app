@@ -1,6 +1,6 @@
 <template>
-  <div class="font-weight-light text-white" :class="smAndDown ? 'text-h6' : 'text-h5'">
-    Blog list
+  <div class="font-weight-light text-white opacity-60">
+    Collection of my thoughts and knowledge shared with the world.
   </div>
   <v-container v-if="!isDataLoaded" fluid>
     <v-row>
@@ -13,22 +13,36 @@
       </v-col>
     </v-row>
   </v-container>
-  <v-row class="d-flex justify-center">
-    <v-col class="pa-0 my-2" cols="12" v-for="(blog, key) in blogs" :key="key">
+  <v-row>
+    <v-col 
+      v-for="(blog, key) in blogs" :key="key"
+      class="pa-0 mt-4"
+      :class="key % 2 !== 0 && !smAndDown && blogs.length > 1 ? 'ml-4' : ''"
+      :cols="smAndDown ? 12 : 5"
+    >
       <v-card
-        color="primary"
-        class="pa-4 d-flex justify-space-between flex-column"
+        color="secondary"
+        class="d-flex justify-space-between flex-column"
+        elevation="2"
         style="min-height: 100px;"
         @click="openBlog(blog, key)"
       >
-        <div>
-          <span class="text-white text-h6">{{ blog.title }}</span> 
+        <div
+          class="d-flex justify-space-between align-center blog-header"
+          style="position: relative; background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url(https://www.kurir.rs/data/images/2022/03/04/16/2932445_screenshot-53_ls.jpg);"
+        >
+          <v-sheet color="white" class="px-2 text-overline font-weight-bold" style="position: absolute; bottom: 5px; right: 5px;">
+            Satire
+          </v-sheet>
         </div>
-        <div class="text-greyText d-flex justify-space-between" style="font-size: smaller;">
+        <div class="pa-4">
+          <span class="text-white font-weight-light" style="font-size: 1.2rem;">{{ blog.title }}</span> 
+        </div>
+        <div class="text-greyText d-flex justify-space-between px-4 pb-4" style="font-size: smaller;">
           <span>
-            {{ blog.author }}
+            by <strong>{{ blog.author }} </strong>
           </span>
-          <span>
+          <span style="opacity: 0.6;">
             {{ blog.date }}
           </span>
         </div>
@@ -68,3 +82,13 @@ onMounted(() => {
   getBlogs();
 });
 </script>
+
+<style scoped lang="scss">
+.blog-header {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+</style>

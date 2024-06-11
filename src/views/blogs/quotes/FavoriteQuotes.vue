@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div
-      class="font-weight-light text-white"
-      :class="smAndDown ? 'text-h6' : 'text-h5'"
-    >
-      The list of my favorite quotes
-    </div>
     <div class="font-weight-light text-white" style="opacity: 0.6">
       I maintain a collection of my favorite quotes, arranged by the emotional
       impact they evoke upon reflection.

@@ -13,7 +13,7 @@
             <v-tabs v-if="!smAndDown" v-model="tab" bg-color="secondary">
               <v-tab value="one" @click="openRoute('/blogs/list')"><v-icon>mdi-post</v-icon> Blogs</v-tab>
               <v-tab value="two" @click="openRoute('/favorite-quotes')"><v-icon>mdi-format-quote-close</v-icon> Favorite Quotes</v-tab>
-              <v-tab value="three" @click="openRoute('/list-of-seen-films')"><v-icon>mdi-filmstrip</v-icon> List of films</v-tab>
+              <v-tab value="three" @click="openRoute('/list-of-seen-films')"><v-icon>mdi-filmstrip</v-icon> Films</v-tab>
             </v-tabs>
             <div v-else class="pa-4">
               <v-menu>
@@ -64,7 +64,7 @@ const tab = ref('one');
 const tabs = [
   { name: 'Blogs', path: '/blogs/list', icon: 'mdi-post', tab: 'one' },
   { name: 'Favorite Quotes', path: '/favorite-quotes', icon: 'mdi-format-quote-close', tab: 'two' },
-  { name: 'List of films', path: '/list-of-seen-films', icon: 'mdi-filmstrip', tab: 'three' },
+  { name: 'Films', path: '/list-of-seen-films', icon: 'mdi-filmstrip', tab: 'three' },
 ];
 
 const tabIcon = computed(() => tabs.find(t => t.tab === tab.value)?.icon);
