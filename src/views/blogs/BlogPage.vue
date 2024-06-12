@@ -24,11 +24,11 @@
         {{ blog.title }}
       </div>
       <div class="font-weight-light font-italic mt-1">
-        <span style="opacity: 0.6">Piše</span> {{ blog.author }}
+        <span style="opacity: 0.6">Piše</span> {{ blog.author }}, 
         <span style="opacity: 0.6">objavljeno</span> {{ blog.date }}
       </div>
-      <v-divider class="mb-10" />
-      <div class="htmlImage text-greyText text-justify" v-html="blog.html"></div>
+      <v-divider class="mb-6" />
+      <div class="htmlImage font-weight-light text-greyText text-justify" v-html="blog.html"></div>
     </div>
   </div>
 </template>
