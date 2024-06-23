@@ -1,6 +1,7 @@
 <template>
   <blockquote
     class="otro-blockquote font-weight-light mb-8 mt-4"
+    style="overflow-y: auto; max-height: 80vh;"
     :class="origin === 'quote-dialog' && smAndDown ? 'py-10 pr-10' : ''"
     :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'"
   >
