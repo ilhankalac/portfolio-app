@@ -49,3 +49,26 @@ export interface IQuote {
   text: string
   author: string
 }
+
+export interface IFilm {
+  still_url: string;
+  overall: number;
+  duration: string;
+  title: string;
+  directors: string[];
+  historic_countries: string[];
+  year: number;
+  short_synopsis: string;
+  created_at: string;
+}
+
+export interface IDirectorStats {
+  name: string;
+  count: number;
+}
+
+export interface IFilmStatsData {
+  totalFilms: number;
+  directorStats: DirectorStats[];
+  [key: string]: any; 
+}

@@ -147,18 +147,19 @@ import { debounce } from "lodash";
 import { getVal, getValWithSearchTerm } from "@/services/DataService";
 import FilmStats from "@/components/blogs/FilmStats.vue";
 import { VDateInput } from 'vuetify/labs/VDateInput'
+import { IFilm, IFilmStatsData, IDirectorStats } from "@/types/other";
 // Display properties
 const { smAndDown } = useDisplay();
 
 // Reactive state variables
 const isDataLoaded: Ref<boolean> = ref(false);
-const films: any = ref([]);
+const films: Ref<IFilm[]> = ref([]);  // Use the Film interface here
 const isStatsDialogOpen: Ref<boolean> = ref(false);
 const searchTerm: Ref<string> = ref("");
 const bottomElement = ref(null);
 const isBottomReached: Ref<boolean> = ref(false);
 
-const filmStatsData: any = ref({});
+const filmStatsData: Ref<IFilmStatsData> = ref({ totalFilms: 0, directorStats: [] });
 const isStatsDataLoaded: Ref<boolean> = ref(false);
 const isSearchInvoked: Ref<boolean> = ref(false);
 const model = ref<string[]>([]);
@@ -177,9 +178,9 @@ const getFilms = () => {
 const getFilmsStats = () => {
   getVal("filmStats").then((val) => {
     if (val) {
-      filmStatsData.value = val;
+      filmStatsData.value = val as IFilmStatsData;
       filmStatsData.value.directorStats = filmStatsData.value.directorStats.sort(
-        (a: any, b: any) => b.count - a.count
+        (a: IDirectorStats, b: IDirectorStats) => b.count - a.count
       );
       isStatsDataLoaded.value = true;
     }
@@ -193,8 +194,8 @@ const getFilmsBySearchTerm = () => {
     isDataLoaded.value = false;
     getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
       if (val) {
-        Object.values(val).length > 0 ? films.value = Object.values(val) : films.value = []; 
-        isDataLoaded.value = true;  
+        films.value = Object.values(val) as IFilm[];
+        isDataLoaded.value = true;
       }
     });
   } else {
@@ -214,10 +215,10 @@ const getFilmsByDateRange = () => {
   getVal("listOfSeenfilms").then((val) => {
     if (val) {
       films.value = val;
-      films.value = films.value.filter((film: any) => {
+      films.value = films.value.filter((film: IFilm) => {
         const filmDate = new Date(film.created_at)
         return filmDate >= firstDate && filmDate <= lastDate
-      })
+      });
       isDataLoaded.value = true;
     }
   });
@@ -230,7 +231,7 @@ const onBottomReached = () => {
   isBottomReached.value = true;
   getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
     if (val) {
-      const newFilms = Object.values(val);
+      const newFilms = Object.values(val) as IFilm[];
       films.value = films.value.concat(newFilms);
       isBottomReached.value = false;
     }
