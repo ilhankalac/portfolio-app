@@ -76,7 +76,8 @@ const openRoute = (path: string) => {
 };
 
 onMounted(() => {
-  const path = router.currentRoute.value.path;
+  const path = '/' + router.currentRoute.value.path.split('/')[1];
+  console.log(path);
   tab.value = tabs.find(t => t.path === path)?.tab || 'one';
 });
 </script>

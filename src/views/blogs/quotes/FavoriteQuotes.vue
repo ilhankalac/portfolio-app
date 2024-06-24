@@ -77,7 +77,7 @@
       </div>
     </v-card>
   </div>
-  <v-dialog v-model="quoteSelectedDialog" max-width="700" height="500">
+  <v-dialog v-model="quoteSelectedDialog" max-width="700" max-height="500">
     <Quote 
       :selected-quote="selectedQuote"
       :origin="'quote-dialog'"
