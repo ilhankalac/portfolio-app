@@ -69,7 +69,6 @@ import { onMounted, Ref, ref } from "vue"
 import { useDisplay } from "vuetify"
 import { useRouter } from "vue-router"
 import { useRoute } from "vue-router"
-import { is } from "@babel/types";
 
 const { smAndDown } = useDisplay()
 const clickedButton: Ref<string> = ref("")

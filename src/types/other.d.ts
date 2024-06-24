@@ -69,6 +69,6 @@ export interface IDirectorStats {
 
 export interface IFilmStatsData {
   totalFilms: number;
-  directorStats: DirectorStats[];
+  directorStats: IDirectorStats[];
   [key: string]: any; 
 }
