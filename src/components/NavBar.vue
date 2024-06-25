@@ -1,11 +1,4 @@
 <template>
-  <v-progress-linear
-    v-if="!isDataLoaded"
-    indeterminate
-    color="primary"
-    style="z-index: 1100; position: absolute"
-  />
-
   <nav
     class="nav-bar"
     :style="isMenuClicked && smAndDown ? 'min-height: 48vh' : 'min-height: 6vh'"
@@ -91,12 +84,6 @@ const props = defineProps<{
   origin?: string
 }>()
 
-const isDataLoaded = ref(false)
-onMounted(() => {
-  setTimeout(() => {
-    isDataLoaded.value = true
-  }, 1000)
-})
 
 const changeTheRoute = (sectionId: string = "") => {
   isMenuClicked.value = false
