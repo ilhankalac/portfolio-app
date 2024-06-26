@@ -28,7 +28,7 @@
         <span style="opacity: 0.6">objavljeno</span> {{ blog.date }}
       </div>
       <v-divider class="mb-6" />
-      <div class="htmlImage font-weight-light text-greyText text-justify" v-html="blog.html"></div>
+      <div class="htmlImage font-weight-light text-greyText" v-html="blog.html"></div>
     </div>
   </div>
 </template>
@@ -66,7 +66,7 @@ watch(() => router.currentRoute.value.params.id, getBlog);
 </script>
 
 <style scoped>
-::v-deep .htmlImage img {
+:deep(.htmlImage img) {
   width: 100% !important;
   height: 100%;
   object-fit: cover;
