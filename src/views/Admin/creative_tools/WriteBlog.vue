@@ -13,26 +13,18 @@
           </v-card-title>
           <v-text-field v-model="blog.title" label="Title" variant="outlined" />
           <v-text-field v-model="blog.date" label="Date" variant="outlined" />
-
           <v-text-field v-model="blog.image" label="Image" variant="outlined" />
-          <v-text-field
-            v-model="blog.author"
-            label="Author"
-            variant="outlined"
+          <v-text-field v-model="blog.author" label="Author" variant="outlined" />
+          
+          <HtmlEditor
+            :editor-content="blog.html"
+            fullscreen-icon="mdi-fullscreen"
+            :error="false"
+            @update:editor-content="onEditorUpdate"
+            @fullscreen="fullscreen = true"
           />
 
-          <QuillEditor
-            v-model:content="blog.html"
-            contentType="html"
-            theme="snow"
-          />
-          <v-btn
-            color="white"
-            class="mt-5"
-            variant="outlined"
-            @click="save"
-            block
-          >
+          <v-btn color="white" class="mt-5" variant="outlined" @click="save" block>
             Publish
           </v-btn>
         </v-card>
@@ -51,7 +43,7 @@
               class="pa-4"
               elevation="2"
               style="cursor: pointer"
-              @click="blog = item; selectedKey = key"
+              @click="setSelectedBlog(item)"
             >
               <div class="d-flex justify-space-between text-white">
                 <v-list-item-content>
@@ -59,11 +51,7 @@
                   <v-list-item-subtitle>{{ item?.date }}</v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn
-                    variant="outlined"
-                    color="red"
-                    @click="deleteBlog(key)"
-                  >
+                  <v-btn variant="outlined" color="red" @click.stop="deleteBlog(key)">
                     <v-icon>mdi-delete</v-icon>
                   </v-btn>
                 </v-list-item-action>
@@ -77,13 +65,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { QuillEditor } from '@vueup/vue-quill';
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import { Ref, onMounted, ref } from 'vue';
 import { pushVal, getVal, deleteVal, setVal } from '@/services/DataService';
-const description = ref('');
-const blogs: any = ref([]);
-const blog = ref({
+import HtmlEditor from '@/components/HtmlEditor.vue';
+
+const blogs: Ref<any[]> = ref([]);
+const blog: Ref<any> = ref({
   title: '',
   date: '',
   image: '',
@@ -92,33 +79,35 @@ const blog = ref({
   html: '',
 });
 
-const selectedKey: any = ref('');
+const fullscreen: Ref<boolean> = ref(false);
+const selectedKey: Ref<string> = ref('');
+
 const save = () => {
   if (selectedKey.value !== '') {
     setVal('blog/posts/' + selectedKey.value, blog.value);
     getBlogs();
     return;
   }
+
   selectedKey.value = '';
-  
   blog.value.key = blog.value.title
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .toLowerCase();
+
   pushVal('blog/posts', blog.value);
   getBlogs();
 };
 
-const getBlogs = () => {
-  getVal('blog/posts').then((val) => {
-    if (val) {
-      blogs.value = val;
-    }
-  });
+const getBlogs = async () => {
+  const val = await getVal('blog/posts');
+  if (val) {
+    blogs.value = val;
+  }
 };
 
-const deleteBlog = (key: number) => {
-  deleteVal('blog/posts/' + key);
+const deleteBlog = async (key: number) => {
+  await deleteVal('blog/posts/' + key);
   getBlogs();
 };
 
@@ -131,9 +120,19 @@ const resetBlog = () => {
     author: '',
     key: '',
     html: '',
-  }
-  var element = document.getElementsByClassName("ql-editor");
-  element[0].innerHTML = "";
+  };
+};
+
+const setSelectedBlog = (item: any) => {
+  selectedKey.value = item.key;
+  blog.value = {
+    ...item,
+    html: item.html,
+  };
+};
+
+function onEditorUpdate(html: string) {
+  blog.value.html = html;
 }
 
 onMounted(() => {

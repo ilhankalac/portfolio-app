@@ -55,7 +55,6 @@ const pushVal = (path: string, data: any) => {
 }
 
 const deleteVal = (path: string): Promise<void> => {
-  console.log(path);
   return new Promise((resolve, reject) => {
     const nodePath = ref(firebaseDatabase, path)
     remove(nodePath)
