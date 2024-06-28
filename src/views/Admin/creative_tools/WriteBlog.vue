@@ -96,10 +96,10 @@ const selectedKey: any = ref('');
 const save = () => {
   if (selectedKey.value !== '') {
     setVal('blog/posts/' + selectedKey.value, blog.value);
-    selectedKey.value = '';
     getBlogs();
     return;
   }
+  selectedKey.value = '';
   
   blog.value.key = blog.value.title
     .replace(/\s+/g, '-')
