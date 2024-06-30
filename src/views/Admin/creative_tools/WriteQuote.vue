@@ -1,10 +1,12 @@
 <template>
   <v-container>
-    <div style="position: absolute; right: 0;" class="mr-6">
-      <v-btn variant="outlined" @click="resetQuoteObject">
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
-    </div>
+    <v-row>
+      <v-col class="d-flex justify-end">
+        <v-btn variant="outlined" @click="resetQuoteObject">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-row>
       <v-dialog v-model="configureQuoteDialog" max-width="700">
         <v-card style="flex-grow: 1 !important" color="secondary" class="pa-4">
@@ -17,17 +19,14 @@
             variant="outlined"
           />
 
-          <!-- <v-text-field
-            v-model="quote.imageSrc"
-            label="Image Source"
-            variant="outlined"
-          /> -->
-
-          <QuillEditor
-            v-model:content="quote.text"
-            contentType="html"
-            theme="snow"
+          <HtmlEditor
+            :editor-content="quote.text"
+            fullscreen-icon="mdi-fullscreen"
+            :error="false"
+            @update:editor-content="onEditorUpdate"
+            @fullscreen="fullscreen = true"
           />
+
           <v-btn
             color="white"
             class="mt-5"
@@ -50,43 +49,57 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref } from "vue";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import { getVal, pushVal, setVal } from "@/services/DataService";
-import FavoriteQuotes from "@/views/blogs/quotes/FavoriteQuotes.vue";
-import { IQuote } from "@/types/other";
+import { Ref, nextTick, ref, watch } from 'vue'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { pushVal, setVal } from '@/services/DataService'
+import FavoriteQuotes from '@/views/blogs/quotes/FavoriteQuotes.vue'
+import { IQuote } from '@/types/other'
+import HtmlEditor from '@/components/HtmlEditor.vue'
 
 const quote: Ref<IQuote> = ref({
   key: '',
   author: '',
   text: '',
-});
+})
 
-const configureQuoteDialog: Ref<boolean> = ref(false);
+const configureQuoteDialog: Ref<boolean> = ref(false)
+const fullscreen: Ref<boolean> = ref(false)
 
 const save = () => {
-  if (quote.value.key === "") {
-    pushVal("blog/favorite-quotes", quote.value);
+  if (quote.value.key === '') {
+    pushVal('blog/favorite-quotes', quote.value)
   } else {
-    setVal("blog/favorite-quotes/" + quote.value.key, quote.value);
+    setVal('blog/favorite-quotes/' + quote.value.key, quote.value)
   }
-  configureQuoteDialog.value = false;
-};
+  configureQuoteDialog.value = false
+}
 
 const showSelectedQuoteForEdit = async (val: any) => {
-  await getVal("blog/favorite-quotes/" + val.key).then((selectedQuote) => {
-    quote.value = { ...selectedQuote, key: val.key };
-    configureQuoteDialog.value = true;
-  });
-};
+  configureQuoteDialog.value = true
+  await nextTick()
+  quote.value = { ...val, key: val.key, text: val.text }
+}
+
+function onEditorUpdate(html: string) {
+  quote.value.text = html
+}
 
 const resetQuoteObject = () => {
-  configureQuoteDialog.value = true;
+  configureQuoteDialog.value = true
   quote.value = {
     key: '',
     author: '',
     text: '',
-  };
-};
+  }
+}
+
+watch(configureQuoteDialog, (val) => {
+  if (!val) {
+    quote.value = {
+      key: '',
+      author: '',
+      text: '',
+    }
+  }
+})
 </script>
