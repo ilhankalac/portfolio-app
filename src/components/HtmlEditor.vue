@@ -2,10 +2,7 @@
 <template>
   <div v-if="editor">
     <div class="d-flex justify-space-between align-center html-editor">
-      <div
-        class="d-flex justify-space-between flex-wrap"
-        :style="{ width: smAndDown ? '100%' : '' }"
-      >
+      <div>
         <v-btn
           class="menu-button first"
           height="50"
@@ -81,6 +78,7 @@
         </v-btn>
 
         <v-btn
+          class="menu-button text-black"
           height="50"
           width="43"
           flat
