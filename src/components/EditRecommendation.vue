@@ -25,7 +25,15 @@
             required
             :rules="[v => !!v || 'Role is required']"
           />
-          <QuillEditor v-model:content="selectedRecommendation.textHtml" contentType="html" theme="snow"></QuillEditor> 
+          
+          <HtmlEditor
+            :editor-content="selectedRecommendation.textHtml"
+            fullscreen-icon="mdi-fullscreen"
+            :error="false"
+            @update:editor-content="onEditorUpdate"
+            @fullscreen="fullscreen = true"
+          />
+
           <p style="opacity:0.6; font-size: smaller;" class="text-left mb-2"> 
             This is where you can share why you'd recommend me as a frontend engineer. Your insights provide valuable perspective for potential collaborators and employers. Let's showcase my skills and professionalism together!
           </p>
@@ -81,11 +89,11 @@
 
 <script lang="ts" setup>
 import { IColleagueInfo } from "@/types/other"
-import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { setVal, pushVal } from "@/services/DataService"
 import { useRouter } from "vue-router"
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
+import HtmlEditor from "./HtmlEditor.vue"
 
 const props = defineProps<{
   selectedRecommendation: IColleagueInfo
@@ -98,6 +106,7 @@ const router = useRouter()
 const formValid = ref(true)
 const form = ref<HTMLFormElement | null>(null)
 const snackbar = ref(false)
+const fullscreen: Ref<boolean> = ref(false)
 
 const save = async () => {
 
@@ -123,6 +132,9 @@ const save = async () => {
   }
 }
 
+function onEditorUpdate(html: string) {
+  props.selectedRecommendation.textHtml = html
+}
 </script>
 
 <style scoped lang="scss">

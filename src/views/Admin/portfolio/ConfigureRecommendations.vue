@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { getVal } from "@/services/DataService"
 import { IColleagueInfo } from "@/types/other"
-import { onMounted, ref, Ref } from "vue"
+import { nextTick, onMounted, ref, Ref } from "vue"
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import EditRecommendation from "@/components/EditRecommendation.vue"
 
@@ -64,10 +64,11 @@ const getData = async () => {
   })
 }
 
-const openDialog = (element: any, key:any) => {
-  selectedRecommendation.value = element
-  selectedRecommendationIndex.value = key
+const openDialog = async (element: any, key:any) => {
   editRecommendationDialog.value = true
+  await nextTick()
+  selectedRecommendationIndex.value = key
+  selectedRecommendation.value = element
 }
 
 onMounted(async () => {
