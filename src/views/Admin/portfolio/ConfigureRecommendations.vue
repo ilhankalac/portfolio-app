@@ -13,9 +13,20 @@
               <p class="font-weight-light">{{ recommendation.fullName }}</p>
               <p class="text-subtitle-1 font-weight-light">{{ recommendation.role }}</p>
             </div>
-            <v-avatar size="50" color="white">
-              <v-img :src="recommendation.avatarSrc" alt="avatar" />
-            </v-avatar>
+            <div>
+              <v-avatar size="50" color="white">
+                <v-img :src="recommendation.avatarSrc" alt="avatar" />
+              </v-avatar>
+              <v-b></v-b>
+              <v-btn
+                color="error"
+                class="ml-2"
+                variant="plain"
+                @click.stop="deleteRecommendation(recommendation, key)"
+            >
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+            </div>
           </div>
         </v-card-title>
       </v-card>
@@ -33,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getVal } from "@/services/DataService"
+import { deleteVal, getVal } from "@/services/DataService"
 import { IColleagueInfo } from "@/types/other"
 import { nextTick, onMounted, ref, Ref } from "vue"
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
@@ -69,6 +80,20 @@ const openDialog = async (element: any, key:any) => {
   await nextTick()
   selectedRecommendationIndex.value = key
   selectedRecommendation.value = element
+}
+
+const deleteRecommendation = (recommendation: IColleagueInfo, key: string | number) => {
+  if (confirm("Are you sure you want to delete this recommendation?")) {
+    deleteVal(`recommendations/${key}`)
+      .then(() => {
+        recommendations.value = Array.isArray(recommendations.value) ? recommendations.value : Object.values(recommendations.value);
+        recommendations.value = recommendations.value.filter((element) => element !== recommendation);
+        console.log('Recommendation deleted successfully');
+      })
+      .catch((error) => {
+        console.error('Error deleting recommendation:', error);
+      });
+  }
 }
 
 onMounted(async () => {
