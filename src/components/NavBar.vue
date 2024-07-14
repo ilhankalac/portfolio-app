@@ -58,25 +58,25 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from "vue"
-import { useDisplay } from "vuetify"
-import { useRouter } from "vue-router"
-import { useRoute } from "vue-router"
+import { onMounted, Ref, ref } from 'vue'
+import { useDisplay } from 'vuetify'
+import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const { smAndDown } = useDisplay()
-const clickedButton: Ref<string> = ref("")
+const clickedButton: Ref<string> = ref('')
 const router = useRouter()
 const isMenuClicked = ref(false)
-const currentSection: any = ref("initial")
+const currentSection: any = ref('initial')
 const route = useRoute()
 
 const navButtons = [
-  { id: "0", name: "Home", sectionId: "#initial" },
-  { id: "1", name: "About", sectionId: "about" },
-  { id: "2", name: "Experience", sectionId: "experience" },
-  { id: "3", name: "Projects", sectionId: "freetime-projects" },
-  { id: "4", name: "Recommendations", sectionId: "recommendations" },
-  { id: "5", name: "Explore", sectionId: "explore" },
+  { id: '0', name: 'Home', sectionId: '#initial' },
+  { id: '1', name: 'About', sectionId: 'about' },
+  { id: '2', name: 'Experience', sectionId: 'experience' },
+  { id: '3', name: 'Projects', sectionId: 'freetime-projects' },
+  { id: '4', name: 'Recommendations', sectionId: 'recommendations' },
+  { id: '5', name: 'Explore', sectionId: 'explore' },
 
 ]
 
@@ -85,7 +85,7 @@ const props = defineProps<{
 }>()
 
 
-const changeTheRoute = (sectionId: string = "") => {
+const changeTheRoute = (sectionId: string = '') => {
   isMenuClicked.value = false
   if(props.origin === 'configure') {
     router.push('/').then(() => {
@@ -98,7 +98,7 @@ const changeTheRoute = (sectionId: string = "") => {
     router.push({ path: '/' })
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     })
     return
   }
@@ -106,20 +106,28 @@ const changeTheRoute = (sectionId: string = "") => {
 }
 
 onMounted(() => {
+  const sectionId = route.hash.slice(1)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const sectionId = entry.target.getAttribute('id')
-        const url = sectionId === '#initial' ? '/' : `/#${sectionId}`
-        if (sectionId && sectionId !== 'shadow-host-companion') {
+        const targetSectionId = entry.target.getAttribute('id')
+        const url = targetSectionId === '#initial' ? '/' : `/#${targetSectionId}`
+        if (targetSectionId && targetSectionId !== 'shadow-host-companion') {
           window.history.pushState({}, '', url)
-          currentSection.value = sectionId
+          currentSection.value = targetSectionId
         }
       }
     })
   }, {
     threshold: 0.25
   })
+
+  if (sectionId) {
+    const targetElement = document.getElementById(sectionId)
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   document.querySelectorAll('section').forEach((section) => {
     observer.observe(section)
