@@ -64,7 +64,6 @@ import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router'
 
 const { smAndDown } = useDisplay()
-const clickedButton: Ref<string> = ref('')
 const router = useRouter()
 const isMenuClicked = ref(false)
 const currentSection: any = ref('initial')
