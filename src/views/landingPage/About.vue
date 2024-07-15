@@ -24,16 +24,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useDisplay } from "vuetify"
-import Section from "@/components/landingPage/Section.vue"
-import BasicInfo from "@/components/landingPage/BasicInfo.vue"
-import { getVal } from "@/services/DataService"
-import { onMounted, ref } from "vue"
+import { useDisplay } from 'vuetify'
+import Section from '@/components/landingPage/Section.vue'
+import BasicInfo from '@/components/landingPage/BasicInfo.vue'
+import { getVal } from '@/services/DataService'
+import { onMounted, Ref, ref } from 'vue'
 const { smAndDown } = useDisplay()
 
-const aboutDescription = ref("")
+const aboutDescription: Ref<string> = ref('')
 onMounted(() => {
-  getVal("about").then((val) => {
+  getVal('about').then((val) => {
     if (val) {
       aboutDescription.value = val
     }
