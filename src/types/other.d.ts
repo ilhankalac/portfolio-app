@@ -1,11 +1,13 @@
 export interface IExperience {
-  id: number
+  id: number | string
   title?: string
   date?: string
   description?: string
   logoSrc?: string
   projects: any
   position?: string
+  location?: string
+  company_link?: string
 }
 
 export interface IColleagueInfo {

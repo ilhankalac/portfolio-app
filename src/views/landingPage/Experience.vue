@@ -70,10 +70,10 @@
           >
             <div class="d-flex justify-space-between align-center">
               <div class="text-left font-weight-bold text-white">
-                {{ experience.title.toUpperCase() }}
+                {{ experience.title!.toUpperCase() }}
               </div>
               <span class="text-right font-weight-light text-greyText" style="opacity: 0.5">
-                {{ experience.position.toUpperCase() }}
+                {{ experience.position!.toUpperCase() }}
               </span>
             </div>
             <div class="d-flex justify-space-between mb-2 text-greyText" style="font-size: 14px !important;">
@@ -97,36 +97,36 @@
 </template>
 
 <script lang="ts" setup>
-import ExperienceCard from "@/components/landingPage/ExperienceCard.vue"
-import Section from "@/components/landingPage/Section.vue"
-import { onMounted, ref } from "vue"
-import { useDisplay } from "vuetify"
+import ExperienceCard from '@/components/landingPage/ExperienceCard.vue'
+import Section from '@/components/landingPage/Section.vue'
+import { onMounted, Ref, ref } from 'vue'
+import { useDisplay } from 'vuetify'
 const { smAndDown } = useDisplay()
-import { getVal } from "@/services/DataService"
+import { getVal } from '@/services/DataService'
+import { IExperience } from '@/types/other';
 
-const experiences: any = ref([])
+const experiences: Ref<IExperience[]> = ref([])
 const jobDialog = ref(false)
-const selectedExperience = ref<any | null>(null)
-const isDataLoaded = ref(false)
+const isDataLoaded: Ref<boolean> = ref(false)
 
 const getData = async () => {
-  await getVal("working-experience").then((fetchedData) => {
+  await getVal('working-experience').then((fetchedData) => {
     if (fetchedData) {
       isDataLoaded.value = true
       const key = Object.keys(fetchedData)
       experiences.value = fetchedData[key[0]].reverse()
     } else {
       // Handle the case where the fetched data is null or undefined
-      console.error("Error fetching data from Firebase.")
+      console.error('Error fetching data from Firebase.')
     }
   })
 }
 
-const openCompanyLink = (link: string) => {
+const openCompanyLink = (link: string = '') => {
   window.open(link)
 }
 
-const calculateYearsWithDecimal = (startDate: Date = new Date("2019-10-01")): string => {
+const calculateYearsWithDecimal = (startDate: Date = new Date('2019-10-01')): string => {
   const currentDate: Date = new Date()
   const monthsDiff: number =
     (currentDate.getFullYear() - startDate.getFullYear()) * 12 +

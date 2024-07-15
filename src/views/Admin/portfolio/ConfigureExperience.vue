@@ -24,7 +24,7 @@
                     <v-btn
                       icon
                       variant="text"
-                      @click="openDialogForExperienceEdit(experience, 'experience', key)"
+                      @click="openDialogForExperienceEdit(experience, key)"
                     >
                       <v-icon>mdi-briefcase</v-icon>
                     </v-btn>
@@ -47,29 +47,29 @@
         <v-card-text>
           <v-form>
             <v-text-field
-              v-model="selectedExperience.title"
+              v-model="selectedExperience!.title"
               label="Title"
               required
             />
             <v-text-field
-              v-model="selectedExperience.location"
+              v-model="selectedExperience!.location"
               label="Location"
               required
             />
 
             <v-text-field
-              v-model="selectedExperience.date"
+              v-model="selectedExperience!.date"
               label="Date"
               required
             />
-            <QuillEditor v-model:content="selectedExperience.description" contentType="html" theme="snow"></QuillEditor> 
+            <QuillEditor v-model:content="selectedExperience!.description" contentType="html" theme="snow"></QuillEditor> 
             <v-text-field
-              v-model="selectedExperience.logoSrc"
+              v-model="selectedExperience!.logoSrc"
               label="Logo URL"
               required
             />
             <v-text-field
-              v-model="selectedExperience.position"
+              v-model="selectedExperience!.position"
               label="Position"
               required
             />
@@ -101,7 +101,7 @@
         <v-card-text>
           <v-expansion-panels>
             <v-expansion-panel
-              v-for="(project, index) in selectedExperience.projects"
+              v-for="(project, index) in selectedExperience!.projects"
               :key="index"
             >
               <v-expansion-panel-title color="secondary">
@@ -166,35 +166,48 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, onMounted, ref } from "vue"
-import { setVal, getVal } from "@/services/DataService"
+import { Ref, onMounted, ref } from 'vue'
+import { setVal, getVal } from '@/services/DataService'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { IExperience } from '@/types/other';
 
-const experiences: any = ref([])
+const experiences: Ref<IExperience[]> = ref([])
 const editCompanyDetailsDialog = ref(false)
 const editExperiencesDialog = ref(false)
-const selectedExperience = ref<any>({
-  title: "",
-  location: "",
-  description: "",
-  date: "",
-  logoSrc: "",
-  position: "",
-  company_link: "",
+const key: Ref<string[]> = ref([''])
+const indexOfSelectedExperience: Ref<string | number> = ref('')
+const selectedCompanyKey: Ref<string | number> = ref('')
+const selectedExperience: Ref<IExperience | null> = ref({
+  id: '',
+  title: '',
+  location: '',
+  description: '',
+  date: '',
+  logoSrc: '',
+  position: '',
+  company_link: '',
+  projects: [
+    {
+      name: '',
+      description: '',
+      project_link: '',
+      logoSrc: '',
+      startDate: '',
+      endDate: '',
+      technologies: [{ name: '', icon: '' }],
+    },
+  ],
+
 })
 
-const key = ref([""])
-const indexOfSelectedExperience: Ref<string> = ref("")
-const selectedCompanyKey = ref("")
-
 const getData = async () => {
-  await getVal("working-experience").then((fetchedData) => {
+  await getVal('working-experience').then((fetchedData) => {
     if (fetchedData) {
       key.value = Object.keys(fetchedData)
       experiences.value = fetchedData[key.value[0]]
     } else {
-      console.error("Error fetching data from Firebase.")
+      console.error('Error fetching data from Firebase.')
     }
   })
 }
@@ -203,22 +216,23 @@ const openDialogForAdd = () => {
   selectedCompanyKey.value = ''
   indexOfSelectedExperience.value = experiences.value.length
   selectedExperience.value = {
-    title: "",
-    location: "",
-    description: "",
-    date: "",
-    logoSrc: "",
-    position: "",
-    company_link: "",
+    id: '',
+    title: '',
+    location: '',
+    description: '',
+    date: '',
+    logoSrc: '',
+    position: '',
+    company_link: '',
     projects: [
       {
-        name: "",
-        description: "",
-        project_link: "",
-        logoSrc: "",
-        startDate: "",
-        endDate: "",
-        technologies: [{ name: "", icon: "" }],
+        name: '',
+        description: '',
+        project_link: '',
+        logoSrc: '',
+        startDate: '',
+        endDate: '',
+        technologies: [{ name: '', icon: '' }],
       },
     ],
   }
@@ -231,11 +245,11 @@ const openDialogForCompanyEdit = (experience:any = null, key: any) => {
   editCompanyDetailsDialog.value = true
 }
 
-const openDialogForExperienceEdit = (experience = null, from = "", key: any) => {
+const openDialogForExperienceEdit = (experience: IExperience, key: any) => {
   selectedCompanyKey.value = key
   selectedExperience.value = experience
   editExperiencesDialog.value = true
-  indexOfSelectedExperience.value = experiences.value.indexOf(experience)
+  indexOfSelectedExperience.value = experiences.value.indexOf(experience!)
 }
 
 const saveExperience = async () => {
@@ -251,16 +265,16 @@ const saveExperience = async () => {
 }
 
 const addProject = () => {
-  selectedExperience.value.projects.push({
-    name: "",
-    description: "",
-    project_link: "",
-    logoSrc: "",
-    startDate: "",
-    endDate: "",
+  selectedExperience.value!.projects.push({
+    name: '',
+    description: '',
+    project_link: '',
+    logoSrc: '',
+    startDate: '',
+    endDate: '',
   })
   indexOfSelectedExperience.value = experiences.value.indexOf(
-    selectedExperience.value
+    selectedExperience.value!
   )
 }
 
