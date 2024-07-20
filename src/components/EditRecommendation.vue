@@ -88,12 +88,12 @@
 </template>
 
 <script lang="ts" setup>
-import { IColleagueInfo } from "@/types/other"
+import { IColleagueInfo } from '@/types/other'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import { setVal, pushVal } from "@/services/DataService"
-import { useRouter } from "vue-router"
+import { setVal, pushVal } from '@/services/DataService'
+import { useRouter } from 'vue-router'
 import { Ref, ref } from 'vue'
-import HtmlEditor from "./HtmlEditor.vue"
+import HtmlEditor from './HtmlEditor.vue'
 
 const props = defineProps<{
   selectedRecommendation: IColleagueInfo
@@ -118,7 +118,7 @@ const save = async () => {
 
   if (props.origin === 'configure') {
     setVal('recommendations/' + props.selectedRecommendationIndex, props.selectedRecommendation)
-    emit("close")
+    emit('close')
   }
   if(props.origin === 'write-recommendation') {
     pushVal('recommendations', props.selectedRecommendation)
@@ -136,7 +136,3 @@ function onEditorUpdate(html: string) {
   props.selectedRecommendation.textHtml = html
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>
