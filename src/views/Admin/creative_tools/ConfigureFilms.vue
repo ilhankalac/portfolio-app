@@ -13,7 +13,7 @@
     </v-btn>
 
     <v-btn
-    variant="outlined"
+      variant="outlined"
       @click="extractFilmData()"
     >
       Export films data
@@ -49,13 +49,13 @@
               {{ film?.film?.title ? film.film.title.toUpperCase() : "" }}
             </span>
             <div>
-              <template v-for="(director, key) in film.film.directors">
+              <template v-for="(director, key) in film?.film?.directors">
                 <span style="font-size: 0.8rem" class="font-weight-regular">
                   {{ director.name ? director.name.toUpperCase() : ""
                   }}{{ key < film.film.directors.length - 1 ? ", " : "" }}
                 </span> </template
               >&nbsp;
-              <template v-for="(country, key) in film.film.historic_countries">
+              <template v-for="(country, key) in film?.film?.historic_countries">
                 <span style="font-size: 0.8rem" class="font-weight-light">
                   {{ country ? country.toUpperCase() : ""
                   }}{{
@@ -76,8 +76,7 @@
 
 <script setup lang="ts">
 import { Ref, onMounted, ref } from "vue";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import { getVal, pushVal, setVal } from "@/services/DataService";
+import { getVal, setVal } from "@/services/DataService";
 
 const isDataLoaded: Ref<Boolean> = ref(false);
 const films: any = ref([]);
