@@ -19,8 +19,8 @@
         </v-col>
       </v-row>
     </v-container>
-    <div v-else>
-      <div class="font-weight-light" :class="smAndDown ? 'text-h6' : 'text-h5'">
+    <v-container v-else>
+      <div :class="smAndDown ? 'text-h6' : 'text-h5'">
         {{ blog.title }}
       </div>
       <div class="font-weight-light font-italic mt-1">
@@ -28,8 +28,8 @@
         <span style="opacity: 0.6">objavljeno</span> {{ blog.date }}
       </div>
       <v-divider class="mb-6" />
-      <div class="htmlImage font-weight-light text-greyText" v-html="blog.html"></div>
-    </div>
+      <div class="text-white" style="opacity: 0.9; word-wrap: break-word;" v-html="blog.html"></div>
+    </v-container>
   </div>
 </template>
 
