@@ -297,11 +297,11 @@ onMounted(async () => {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--v-theme-secondary));
+  background: rgb(var(--v-theme-greyText));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--v-theme-greyText));
+  background: rgb(var(--v-theme-primary));
 }
 
 ::-webkit-scrollbar-thumb:hover {
