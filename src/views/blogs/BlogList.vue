@@ -26,13 +26,13 @@
       >
         <div
           class="d-flex justify-space-between align-center blog-header"
-          style="
-            position: relative;
+          :style="
+            `position: relative;
             background-image: linear-gradient(
                 rgba(0, 0, 0, 0),
                 rgba(0, 0, 0, 0)
               ),
-              url(https://www.kurir.rs/data/images/2022/03/04/16/2932445_screenshot-53_ls.jpg);
+              url(${blog.image});`
           "
         >
           <v-sheet
