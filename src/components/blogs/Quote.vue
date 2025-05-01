@@ -1,7 +1,6 @@
 <template>
   <blockquote
-    class="otro-blockquote font-weight-light mb-8 mt-4"
-    style="overflow-y: auto; max-height: 80vh;"
+    class="otro-blockquote mb-8 mt-4"
     :class="origin === 'quote-dialog' && smAndDown ? 'py-10 pr-10' : ''"
     :style="smAndDown ? 'padding-left: 3em' : 'padding:1.2em 30px 1.2em 75px;'"
   >
@@ -57,7 +56,6 @@ const createLink = (quote: IQuote = {key: '', author: '', text: ''}) => {
 <style scoped>
 .otro-blockquote span {
   display: block;
-  color: white;
   font-style: italic;
   font-weight: bold;
   margin-top: 1em;
@@ -66,7 +64,6 @@ const createLink = (quote: IQuote = {key: '', author: '', text: ''}) => {
 .otro-blockquote::before {
   font-family: Arial;
   content: "\201C";
-  color: white;
   font-size: 4em;
   position: absolute;
   left: 10px;
@@ -74,10 +71,10 @@ const createLink = (quote: IQuote = {key: '', author: '', text: ''}) => {
 }
 
 .otro-blockquote {
-  color: rgb(var(--v-theme-greyText));
+  color: black;
   border-left: 4px solid rgb(var(--v-theme-greyText));
   line-height: 1.6;
   position: relative;
-  background: rgb(var(--v-theme-primary));
+  background: white;;
 }
 </style>

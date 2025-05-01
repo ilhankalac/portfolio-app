@@ -5,7 +5,7 @@
       impact they evoke upon reflection.
     </div>
     <div class="font-weight-light text-white mb-2 text-right">
-      Currently there are <strong> {{ quotes.length }}</strong> quotes in the
+      Currently there are <strong> {{ tempQuotes.length }}</strong> quotes in the
       collection.
     </div>
     <v-autocomplete
@@ -40,11 +40,16 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-card color="primary" elevation="10" style="max-height: 80vh; overflow-y: auto;" class="pa-2">
+    <v-card 
+      elevation="10" 
+      style="max-height: 80vh; overflow-y: auto;" 
+      class="pa-2"
+      ref="quotesContainer"
+      @scroll="handleScroll"
+    >
       <div
-        v-for="(quote, key) in quotes"
+        v-for="(quote, key) in visibleQuotes"
         :key="key"
-        class="text-justify font-weight-light text-white"
       >
         <div 
           class="d-flex justify-space-between"
@@ -75,6 +80,12 @@
           </div>
         </div>
       </div>
+      <div v-if="isLoading" class="text-center py-4">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      </div>
+      <div v-if="visibleQuotes.length === quotes.length && quotes.length > 0" class="text-center text-white py-2">
+        End of quotes
+      </div>
     </v-card>
   </div>
   <v-dialog v-model="quoteSelectedDialog" max-width="700" max-height="500">
@@ -86,7 +97,7 @@
 </template>
 <script lang="ts" setup>
 import { useDisplay } from "vuetify"
-import { onMounted, Ref, ref } from "vue"
+import { onMounted, Ref, ref, watch, nextTick } from "vue"
 import { deleteVal, getValLive } from "@/services/DataService"
 import Quote from '@/components/blogs/Quote.vue'
 import { useRouter } from "vue-router"
@@ -95,9 +106,12 @@ import { IQuote } from "@/types/other"
 const router = useRouter()
 const { smAndDown } = useDisplay()
 
+const BATCH_SIZE = 50
 const quotes: Ref<IQuote[]> = ref([])
+const visibleQuotes: Ref<IQuote[]> = ref([])
 const tempQuotes: Ref<IQuote[]> = ref([])
 const isDataLoaded = ref(false)
+const isLoading = ref(false)
 const authors: Ref<string[]> = ref([])
 const search: Ref<string> = ref('')
 const quoteSelectedDialog: Ref<boolean> = ref(false)
@@ -106,6 +120,8 @@ const selectedQuote: Ref<IQuote> = ref({
   author: '',
   key: '',
 })
+const quotesContainer: any = ref(null)
+const scrollDebounceTimer: any = ref(null)
 
 const props = defineProps<{
   origin?: string
@@ -121,10 +137,18 @@ const getData = () => {
       Object.keys(fetchedData).forEach((key, index) => {
         result.unshift({ ...fetchedData[key], key })
       })
-      quotes.value = result
       tempQuotes.value = result
-      authors.value = extractAuthors()
+      authors.value = extractAuthors(result)
       isDataLoaded.value = true
+
+      // Apply any search filters if there's an active search
+      if (search.value) {
+        searchQuotes(search.value)
+      } else {
+        quotes.value = [...result]
+        // Display initial batch of quotes
+        loadInitialQuotes()
+      }
 
       // Show quote on dialog if the route has a key
       if (router.currentRoute.value.params.id) {
@@ -138,6 +162,49 @@ const getData = () => {
     }
   })
   return unsubscribe
+}
+
+const loadInitialQuotes = () => {
+  visibleQuotes.value = quotes.value.slice(0, BATCH_SIZE)
+}
+
+const loadMoreQuotes = () => {
+  if (isLoading.value || visibleQuotes.value.length >= quotes.value.length) {
+    return
+  }
+  
+  isLoading.value = true
+  
+  // Using setTimeout to simulate network delay and prevent UI blocking
+  setTimeout(() => {
+    const nextBatch = quotes.value.slice(
+      visibleQuotes.value.length,
+      visibleQuotes.value.length + BATCH_SIZE
+    )
+    
+    visibleQuotes.value = [...visibleQuotes.value, ...nextBatch]
+    isLoading.value = false
+  }, 300)
+}
+
+const handleScroll = (event: any) => {
+  // Clear existing timer
+  if (scrollDebounceTimer.value) {
+    clearTimeout(scrollDebounceTimer.value)
+  }
+  
+  // Set a new debounce timer
+  scrollDebounceTimer.value = setTimeout(() => {
+    const container = event.target
+    
+    // Check if user scrolled near the bottom (within 100px of the bottom)
+    const isAtBottom = 
+      container.scrollHeight - container.scrollTop - container.clientHeight < 100
+    
+    if (isAtBottom) {
+      loadMoreQuotes()
+    }
+  }, 100)
 }
 
 const emitEditQuote = (quote: IQuote) => {
@@ -162,10 +229,11 @@ const searchQuotes = (searchCriteria: any) => {
     )
   })
   quotes.value = result
+  visibleQuotes.value = result.slice(0, BATCH_SIZE)
 }
 
-const extractAuthors = () => {
-  let authors = quotes.value.map((quote: IQuote) => {
+const extractAuthors = (quotesList = tempQuotes.value) => {
+  let authors = quotesList.map((quote: IQuote) => {
     return quote.author
   })
   authors = authors.filter((author: string) => {
@@ -184,7 +252,7 @@ const showQuoteOnDialog = (quote: any) => {
 }
 
 const findQuoteByKey = (key: string): IQuote[] => {
-  return quotes.value.filter((quote: IQuote) => {
+  return tempQuotes.value.filter((quote: IQuote) => {
     return quote.key === key
   })
 }
@@ -194,12 +262,24 @@ const deleteQuote = (quote: IQuote = { key: '', author: '', text: '' }) => {
     deleteVal(`blog/favorite-quotes/${quote.key}`)
       .then(() => {
         console.log('Quote deleted successfully');
+        // Remove from visible quotes as well
+        visibleQuotes.value = visibleQuotes.value.filter(q => q.key !== quote.key)
       })
       .catch((error) => {
         console.error('Error deleting quote:', error);
       });
   }
 };
+
+// Reset scroll position when quotes are filtered
+watch(() => quotes.value.length, () => {
+  nextTick(() => {
+    if (quotesContainer.value) {
+      quotesContainer.value.scrollTop = 0
+    }
+  })
+})
+
 onMounted(async () => {
   await getData()
   window.scrollTo(0, 0)
