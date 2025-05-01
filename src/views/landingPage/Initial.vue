@@ -1,111 +1,93 @@
 <template>
   <section 
-    class="container"
+    class="hero-container"
     id="#initial"
   >
-    <div
-      style="
-        bottom: 0 !important;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-      "
-      class="d-flex justify-center mb-5 scroll-down-icon"
-    >
-      <svg
-        :width="smAndDown ? '20' : '25'"
-        :height="smAndDown ? '38.5' : '50'"
-        viewBox="0 0 40 77"
-        style="transform: translate(0px, 0px); opacity: 1; cursor: pointer"
-        @click="scrollToNextSection"
-      >
-        <g id="scroll" transform="translate(-253 -787)">
-          <g
-            id="Rectangle_12"
-            data-name="Rectangle 12"
-            transform="translate(253 787)"
-            fill="none"
-            stroke="#fff"
-            stroke-width="4"
+    <!-- Parallax background layers -->
+    <div class="parallax-bg"></div>
+    <div class="overlay-gradient"></div>
+    
+    <!-- Content -->
+    <div class="content-wrapper">
+      <div class="name-container">
+        <h1 class="full-name">Ilhan Kalač</h1>
+        <div class="title-wrapper">
+          <p class="title">Frontend Developer</p>
+        </div>
+        
+        <div class="social-links mt-10">
+          <v-btn
+            class="social-btn"
+            flat
+            variant="text"
+            @click="openLink('https://github.com/ilhankalac')"
           >
-            <rect width="40" height="77" rx="20" stroke="none"></rect>
-            <rect x="2" y="2" width="36" height="73" rx="18" fill="none"></rect>
-          </g>
-          <circle
-            class="circle"
-            id="Ellipse_1"
-            data-name="Ellipse 1"
-            cx="11"
-            cy="11"
-            r="11"
-            transform="translate(262 798)"
-            fill="#fff"
-          ></circle>
-        </g>
-      </svg>
-    </div>
-  </section>
-  <div
-    class="content"
-    :style="smAndDown ? 'font-size: 15px' : 'font-size:19px'"
-  >
-    <div :class="smAndDown ? 'text-center' : 'text-left'">
-      <span
-        class="font-weight-bold full-name"
-        style="font-family: 'Be Vietnam Pro', sans-serif; text-shadow: 2px 2px rgb(var(--v-theme-primary));"
-        :style="smAndDown ? 'font-size: 30px' : 'font-size:50px'"
-      >
-        Ilhan Kalač
-      </span>
-      <p
-        style="opacity: 0.6; font-family: 'Bebas Neue', sans-serif; text-shadow: 4px 2px rgb(var(--v-theme-primary));"
-        :style="smAndDown ? 'font-size: 15px' : 'font-size:30px'"
-        class="text-center"
-      >
-        Frontend Developer
-      </p>
-      <div class="d-flex justify-center mt-4 ga-1">
-        <v-btn
-          flat
-          variant="text"
-          icon="mdi-github"
-          @click="openLink('https://github.com/ilhankalac')"
-        />
-        <v-btn
-          flat
-          variant="text"
-          icon="mdi-linkedin"
-          @click="openLink('https://www.linkedin.com/in/ilhankalac/')"
-        />
-        <v-btn
-          variant="text"
-          icon="mdi-file"
-          @click="openLink('ilhan-kalac-resume.pdf')"
-        >
-          CV
-        </v-btn>
+            <v-icon class="social-icon">mdi-github</v-icon>
+          </v-btn>
+          <v-btn
+            class="social-btn"
+            flat
+            variant="text"
+            @click="openLink('https://www.linkedin.com/in/ilhankalac/')"
+          >
+            <v-icon class="social-icon">mdi-linkedin</v-icon>
+          </v-btn>
+          <v-btn
+            class="social-btn cv-btn text-white"
+            variant="outlined"
+            @click="openLink('ilhan-kalac-resume.pdf')"
+          >
+            <v-icon class="mr-1">mdi-file-document-outline</v-icon>
+            <span>Resume</span>
+          </v-btn>
+        </div>
       </div>
     </div>
-  </div>
+    
+    <!-- Modern scroll indicator -->
+    <div class="scroll-indicator-container" @click="scrollToNextSection">
+      <div class="scroll-indicator">
+        <span class="scroll-text">Scroll</span>
+        <div class="scroll-arrow">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
 import { useDisplay } from "vuetify"
+import { onMounted, onBeforeUnmount, ref } from 'vue'
+
 const { smAndDown } = useDisplay()
+const scrollY = ref(0)
+
+const handleScroll = () => {
+  scrollY.value = window.scrollY
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const openLink = (link: string) => {
-  window.open(link)
+  window.open(link, '_blank', 'noopener,noreferrer')
 }
 
 const scrollToNextSection = () => {
   const section2 = document.getElementById("about")
 
   if (section2) {
-    // Scroll to the top of Section 2
     window.scrollTo({
       top: section2.offsetTop - window.innerHeight * 0.08,
-      behavior: "smooth", // Use smooth scrolling for a smoother transition
+      behavior: "smooth",
     })
   }
 }
@@ -113,69 +95,270 @@ const scrollToNextSection = () => {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500&display=swap");
-.container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("@/assets/landing-image.jpg");
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap");
+
+.hero-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Background elements with parallax effect */
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("@/assets/landing-image.jpg");
   background-size: cover;
   background-position: center;
-  animation: scale 3s ease;
-  height: 100vh;
+  transform: scale(1.1);
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform;
+  animation: subtle-zoom 15s infinite alternate ease-in-out;
 }
-.content {
+
+.overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+/* Content styling */
+.content-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  color: white; /* Adjust the text color as needed */
-  z-index: 1;
-  animation: slideFromLeft 2.5s ease;
-}
-.circle {
-  animation: circleAnim 1s infinite alternate-reverse;
+  width: 90%;
+  max-width: 1200px;
+  z-index: 10;
 }
 
-@-webkit-keyframes circleAnim {
-  from {
-    -webkit-transform: translate(262px, 798px);
-    transform: translate(262px, 798px);
-    z-index: 5;
-  }
-  to {
-    -webkit-transform: translate(262px, 830px);
-    transform: translate(262px, 830px);
+.name-container {
+  opacity: 0;
+  animation: fadeIn 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s forwards;
+}
+
+.full-name {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: white;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s forwards;
+}
+
+.title-wrapper {
+  height: 40px;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.2rem, 4vw, 2.2rem);
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  margin: 0.5rem 0 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.6s forwards;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    animation: lineExpand 1s cubic-bezier(0.215, 0.61, 0.355, 1) 1.2s forwards;
   }
 }
 
-@keyframes circleAnim {
-  from {
-    -webkit-transform: translate(262px, 798px);
-    transform: translate(262px, 798px);
-    z-index: 5;
-  }
-  to {
-    -webkit-transform: translate(262px, 830px);
-    transform: translate(262px, 830px);
+.social-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s forwards;
+}
+
+.social-btn {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    .social-icon {
+      transform: scale(1.1);
+    }
   }
 }
-@keyframes slideFromLeft {
+
+.social-icon {
+  font-size: 1.5rem;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.cv-btn {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Modern scroll indicator */
+.scroll-indicator-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 1.5s forwards;
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    
+    .scroll-arrow span {
+      border-color: white;
+    }
+  }
+}
+
+.scroll-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.scroll-arrow {
+  height: 30px;
+  position: relative;
+  width: 20px;
+  
+  span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(-45deg) translateX(-50%);
+    animation: scrollArrow 1.5s infinite;
+    
+    &:nth-child(2) {
+      top: 8px;
+      animation-delay: 0.2s;
+    }
+    
+    &:nth-child(3) {
+      top: 16px;
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: translate(-100%, -50%);
     opacity: 0;
   }
   to {
-    transform: translate(-50%, -50%);
     opacity: 1;
   }
 }
 
-// @keyframes scale {
-//   from {
-//     transform: scale(5);
-//   }
-//   to {
-//     transform: scale(1);
-//   }
-// }
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineExpand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
+}
+
+@keyframes scrollArrow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes subtle-zoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.15);
+  }
+}
+
+@media (max-width: 600px) {
+  .social-links {
+    justify-content: center;
+  }
+  
+  .title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .full-name, .title {
+    text-align: center;
+  }
+}
 </style>
