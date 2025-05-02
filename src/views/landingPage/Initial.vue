@@ -12,7 +12,7 @@
       <div class="name-container">
         <h1 class="full-name">Ilhan Kalač</h1>
         <div class="title-wrapper">
-          <p class="title">Frontend Developer</p>
+          <p class="title">Software Developer</p>
         </div>
         
         <div class="social-links mt-10">
@@ -128,8 +128,8 @@ const scrollToNextSection = () => {
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
     rgba(0, 0, 0, 0.4) 100%
   );
   backdrop-filter: blur(2px);
@@ -142,7 +142,7 @@ const scrollToNextSection = () => {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 1200px;
+  max-width: 900px;
   z-index: 10;
 }
 
@@ -158,7 +158,6 @@ const scrollToNextSection = () => {
   color: white;
   margin: 0;
   line-height: 1.1;
-  letter-spacing: -0.02em;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: translateY(20px);
@@ -179,6 +178,7 @@ const scrollToNextSection = () => {
   transform: translateY(20px);
   animation: slideUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.6s forwards;
   position: relative;
+  padding-left: 3px;
   
   &::after {
     content: '';
@@ -187,6 +187,7 @@ const scrollToNextSection = () => {
     left: 0;
     width: 0;
     height: 2px;
+    margin-left: 3px !important;
     background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
     animation: lineExpand 1s cubic-bezier(0.215, 0.61, 0.355, 1) 1.2s forwards;
   }
