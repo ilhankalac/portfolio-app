@@ -196,6 +196,8 @@ const getFilmsBySearchTerm = () => {
     getValWithSearchTerm("listOfSeenfilms", searchTerm.value).then((val) => {
       if (val) {
         films.value = Object.values(val) as IFilm[];
+        // Sort search results by date (newest first)
+        films.value.sort((a: IFilm, b: IFilm) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
         isDataLoaded.value = true;
       }
     });
@@ -220,6 +222,8 @@ const getFilmsByDateRange = () => {
         const filmDate = new Date(film.created_at)
         return filmDate >= firstDate && filmDate <= lastDate
       });
+      // Sort filtered results by date (newest first)
+      films.value.sort((a: IFilm, b: IFilm) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       isDataLoaded.value = true;
     }
   });
@@ -231,9 +235,8 @@ const onBottomReached = () => {
 
   isBottomReached.value = true;
   getVal("listOfSeenfilms", 10, films.value.length.toString()).then((val) => {
-    if (val) {
-      const newFilms = Object.values(val) as IFilm[];
-      films.value = films.value.concat(newFilms);
+    if (val && Array.isArray(val)) {
+      films.value = films.value.concat(val);
       isBottomReached.value = false;
     }
   });

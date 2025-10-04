@@ -100,10 +100,10 @@
           <template v-for="(longFilm, index) in filmStatsData?.longestFilm">
             <div class="d-flex justify-space-between" style="font-size: smaller">
               <span class="font-weight-light text-greyText"
-                >{{ `${index + 1}. ${longFilm.film?.title}` }}
+                >{{ `${index + 1}. ${longFilm?.title || 'Unknown Title'}` }}
               </span>
               <span class="d-flex align-center">
-                <v-icon class="mr-1">mdi-clock-time-four-outline</v-icon> {{ longFilm?.film?.duration }}</span
+                <v-icon class="mr-1">mdi-clock-time-four-outline</v-icon> {{ longFilm?.duration || 0 }}</span
               >
             </div>
           </template>

@@ -33,7 +33,7 @@
         <v-card
           color="primary"
           class="pa-4 d-flex flex-column justify-space-between"
-          :style="`min-height: 200px; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.film?.still_url}); background-size: cover; background-position: center;`"
+          :style="`min-height: 200px; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.still_url}); background-size: cover; background-position: center;`"
         >
           <div
             class="text-white mt-auto d-flex flex-column"
@@ -43,28 +43,28 @@
             "
           >
             <span class="font-weight-bold" style="font-size: 0.9rem">
-              #{{ 1148 - key }}
+              #{{ films.length - key }}
             </span>
             <span class="text-h5 font-weight-bold">
-              {{ film?.film?.title ? film.film.title.toUpperCase() : "" }}
+              {{ film?.title ? film.title.toUpperCase() : "" }}
             </span>
             <div>
-              <template v-for="(director, key) in film?.film?.directors">
+              <template v-for="(director, directorKey) in film?.directors" :key="directorKey">
                 <span style="font-size: 0.8rem" class="font-weight-regular">
-                  {{ director.name ? director.name.toUpperCase() : ""
-                  }}{{ key < film.film.directors.length - 1 ? ", " : "" }}
+                  {{ director ? director.toUpperCase() : ""
+                  }}{{ directorKey < film.directors.length - 1 ? ", " : "" }}
                 </span> </template
               >&nbsp;
-              <template v-for="(country, key) in film?.film?.historic_countries">
+              <template v-for="(country, countryKey) in film?.historic_countries" :key="countryKey">
                 <span style="font-size: 0.8rem" class="font-weight-light">
                   {{ country ? country.toUpperCase() : ""
                   }}{{
-                    key < film.film.historic_countries.length - 1 ? ", " : ""
+                    countryKey < film.historic_countries.length - 1 ? ", " : ""
                   }}
                 </span>
               </template>
               <span class="font-weight-light" style="font-size: 0.8rem"
-                >&nbsp;{{ film?.film?.year }}</span
+                >&nbsp;{{ film?.year }}</span
               >
             </div>
           </div>
@@ -82,42 +82,36 @@ const isDataLoaded: Ref<Boolean> = ref(false);
 const films: any = ref([]);
 
 const getFilms = () => {
-  getVal("ratings").then((val) => {
+  getVal("listOfSeenfilms").then((val) => {
     if (val) {
       isDataLoaded.value = true;
-      films.value = val;
+      // Convert object to array if needed, or use directly if already array
+      films.value = Array.isArray(val) ? val : Object.values(val);
     }
   });
 };
 
-interface Director {
-  name: string;
-}
-
-interface FilmDetails {
-  directors?: Director[];
+interface Film {
+  title?: string;
+  directors?: string[];
   duration?: number;
   year?: number;
-}
-
-interface Film {
-  film: FilmDetails;
   overall?: number;
+  historic_countries?: string[];
+  still_url?: string;
+  short_synopsis?: string;
+  created_at?: string;
 }
 
-interface FilmData {
-  value: Film[];
-}
-
-const calculateDirectorStats = (films: FilmData): any => {
-  const result = films.value.reduce(
+const calculateDirectorStats = (films: Film[]): any => {
+  const result = films.reduce(
     (acc: Record<string, number>, film: Film) => {
-      if (film.film.directors) {
-        film.film.directors.forEach((director) => {
-          if (acc[director.name]) {
-            acc[director.name] += 1;
+      if (film.directors) {
+        film.directors.forEach((director: string) => {
+          if (acc[director]) {
+            acc[director] += 1;
           } else {
-            acc[director.name] = 1;
+            acc[director] = 1;
           }
         });
       }
@@ -134,59 +128,66 @@ const calculateDirectorStats = (films: FilmData): any => {
   });
 };
 
-const calculateTotalWatchTime = (films: FilmData): string => {
-  const totalMinutes = films.value.reduce((acc: number, film: Film) => {
-    if (film.film.duration) {
-      acc += film.film.duration;
+const calculateTotalWatchTime = (films: Film[]): string => {
+  const totalMinutes = films.reduce((acc: number, film: Film) => {
+    if (film.duration && typeof film.duration === 'number' && !isNaN(film.duration)) {
+      acc += film.duration;
     }
     return acc;
   }, 0);
 
-  return `${(totalMinutes / 60).toFixed(2)}`;
+  if (!isFinite(totalMinutes) || totalMinutes < 0) {
+    return "0h 0m";
+  }
+
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  
+  return `${hours}h ${minutes}m`;
 };
 
-const calculateTotalFilms = (films: FilmData): number => {
-  return films.value.length;
+const calculateTotalFilms = (films: Film[]): number => {
+  return films.length;
 };
 
-const calculateAverageFilmYear = (films: FilmData): string => {
-  const totalYears = films.value.reduce((acc: number, film: Film) => {
-    if (film.film.year) {
-      acc += film.film.year;
+const calculateAverageFilmYear = (films: Film[]): string => {
+  const totalYears = films.reduce((acc: number, film: Film) => {
+    if (film.year) {
+      acc += film.year;
     }
     return acc;
   }, 0);
 
-  return (totalYears / films.value.length).toFixed(0);
+  return (totalYears / films.length).toFixed(0);
 };
 
-const calculateAverageRating = (films: FilmData): string => {
-  const totalRating = films.value.reduce((acc: number, film: Film) => {
+const calculateAverageRating = (films: Film[]): string => {
+  const totalRating = films.reduce((acc: number, film: Film) => {
     if (film.overall) {
       acc += film.overall;
     }
     return acc;
   }, 0);
 
-  return (totalRating / films.value.length).toFixed(2);
+  return (totalRating / films.length).toFixed(2);
 };
 
-const findTopLongestFilms = (films: FilmData, top: number): Film[] => {
-  return films.value
+const findTopLongestFilms = (films: Film[], top: number): Film[] => {
+  return [...films] // Create a copy to avoid mutating original array
+    .filter((film: Film) => film.duration && typeof film.duration === 'number' && !isNaN(film.duration))
     .sort((a: Film, b: Film) => {
-      if (a.film.duration && b.film.duration) {
-        return b.film.duration - a.film.duration;
-      }
-      return 0;
+      const durationA = a.duration || 0;
+      const durationB = b.duration || 0;
+      return durationB - durationA;
     })
     .slice(0, top);
 };
 
-const orderyByCountries = (films: FilmData): any => {
-  const result = films.value.reduce(
-    (acc: Record<string, number>, film: any) => {
-      if (film.film.historic_countries) {
-        film.film.historic_countries.forEach((country: any) => {
+const orderyByCountries = (films: Film[]): any => {
+  const result = films.reduce(
+    (acc: Record<string, number>, film: Film) => {
+      if (film.historic_countries) {
+        film.historic_countries.forEach((country: string) => {
           if (acc[country]) {
             acc[country] += 1;
           } else {
@@ -212,31 +213,30 @@ const orderyByCountries = (films: FilmData): any => {
 };
 
 const extractFilmData = (): any => {
-  const result = films.value.map((film: any) => {
+  const result = films.value.map((film: Film) => {
     return {
-      title: film?.film?.title ? film.film.title : '',
-      directors: film?.film?.directors ? film.film.directors.map((director: any) => director.name) : [],
-      year: film?.film?.year ? film.film.year : '1995',
-      duration: film?.film?.duration ? film.film.duration : '120',
-      rating: film?.overall ? film.overall : '',
-      still_url: film?.film?.still_url ? film.film.still_url : '',
-      short_synopsis: film?.film?.short_synopsis ? film.film.short_synopsis : '',
-      historic_countries: film?.film?.historic_countries ? film.film.historic_countries : [],
-      overall: film?.overall ? film.overall : '3',
-      created_at: film?.created_at ? film.created_at : new Date().toISOString(),
+      title: film?.title || '',
+      directors: film?.directors || [],
+      year: film?.year || 1995,
+      duration: film?.duration || 120,
+      still_url: film?.still_url || '',
+      short_synopsis: film?.short_synopsis || '',
+      historic_countries: film?.historic_countries || [],
+      overall: film?.overall || 3,
+      created_at: film?.created_at || new Date().toISOString(),
     };
   });
   setVal("listOfSeenfilms", result)
 };
 
 const generateStats = (): void => {
-  const directorStats = calculateDirectorStats(films);
-  const totalWatchTime = calculateTotalWatchTime(films);
-  const totalFilms = calculateTotalFilms(films);
-  const averageFilmYear = calculateAverageFilmYear(films);
-  const averageRating = calculateAverageRating(films);
-  const longestFilm = findTopLongestFilms(films, 20);
-  const countries = orderyByCountries(films);
+  const directorStats = calculateDirectorStats(films.value);
+  const totalWatchTime = calculateTotalWatchTime(films.value);
+  const totalFilms = calculateTotalFilms(films.value);
+  const averageFilmYear = calculateAverageFilmYear(films.value);
+  const averageRating = calculateAverageRating(films.value);
+  const longestFilm = findTopLongestFilms(films.value, 20);
+  const countries = orderyByCountries(films.value);
 
   setVal("filmStats", {
     directorStats,

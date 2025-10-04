@@ -11,19 +11,42 @@ const getVal = (path: string, limit?: number, startAfterValue?: any): Promise<an
     const nodePath = ref(firebaseDatabase, path);
     let firebaseQuery;
 
-    if (limit !== undefined) {
-      if (startAfterValue !== undefined) {
-        firebaseQuery = query(nodePath, orderByKey(), startAfter(startAfterValue), limitToFirst(limit));
-      } else {
-        firebaseQuery = query(nodePath, orderByKey(), limitToFirst(limit));
-      }
+    // For films, we'll get all data first and sort in memory for consistency
+    if (path === "listOfSeenfilms") {
+      firebaseQuery = nodePath;
     } else {
-      firebaseQuery = nodePath; 
+      // For other paths, use the original key-based ordering
+      if (limit !== undefined) {
+        if (startAfterValue !== undefined) {
+          firebaseQuery = query(nodePath, orderByKey(), startAfter(startAfterValue), limitToFirst(limit));
+        } else {
+          firebaseQuery = query(nodePath, orderByKey(), limitToFirst(limit));
+        }
+      } else {
+        firebaseQuery = nodePath; 
+      }
     }
 
     get(firebaseQuery).then((snapshot) => {
       if (snapshot.exists()) {
-        resolve(snapshot.val());
+        const data = snapshot.val();
+        
+        // If it's films data, convert to array and sort by date in descending order (newest first)
+        if (path === "listOfSeenfilms" && data) {
+          const filmsArray = Object.values(data);
+          filmsArray.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+          
+          // Apply pagination to the sorted array
+          if (limit !== undefined) {
+            const startIndex = startAfterValue ? parseInt(startAfterValue) : 0;
+            const endIndex = startIndex + limit;
+            resolve(filmsArray.slice(startIndex, endIndex));
+          } else {
+            resolve(filmsArray);
+          }
+        } else {
+          resolve(data);
+        }
       } else {
         resolve(null); 
       }
