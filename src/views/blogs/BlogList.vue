@@ -17,7 +17,7 @@
       :sm="6"
       :md="4"
       :lg="3"
-      class="px-3"
+      class="pl-0 pr-3"
     >
       <v-card
         color="transparent"
