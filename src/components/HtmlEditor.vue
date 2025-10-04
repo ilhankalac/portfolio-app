@@ -93,6 +93,72 @@
         </v-btn>
 
         <v-btn
+          class="menu-button text-black"
+          height="50"
+          width="43"
+          flat
+          :color="editor.isActive('heading', { level: 1 }) ? '#D0D0D0' : ''"
+          :class="{ 'is-active': editor.isActive('heading', { level: 1 }), 'menu-button-mobile': smAndDown }"
+          @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+        >
+          <span style="font-size: 14px; font-weight: bold;">H1</span>
+        </v-btn>
+
+        <v-btn
+          class="menu-button text-black"
+          height="50"
+          width="43"
+          flat
+          :color="editor.isActive('heading', { level: 2 }) ? '#D0D0D0' : ''"
+          :class="{ 'is-active': editor.isActive('heading', { level: 2 }), 'menu-button-mobile': smAndDown }"
+          @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+        >
+          <span style="font-size: 14px; font-weight: bold;">H2</span>
+        </v-btn>
+
+        <v-btn
+          class="menu-button text-black"
+          height="50"
+          width="43"
+          flat
+          :color="editor.isActive('heading', { level: 3 }) ? '#D0D0D0' : ''"
+          :class="{ 'is-active': editor.isActive('heading', { level: 3 }), 'menu-button-mobile': smAndDown }"
+          @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
+        >
+          <span style="font-size: 14px; font-weight: bold;">H3</span>
+        </v-btn>
+
+        <v-btn
+          class="menu-button text-black"
+          height="50"
+          width="43"
+          flat
+          :color="editor.isActive('codeBlock') ? '#D0D0D0' : ''"
+          :class="{ 'is-active': editor.isActive('codeBlock'), 'menu-button-mobile': smAndDown }"
+          @click="editor.chain().focus().toggleCodeBlock().run()"
+        >
+          <v-icon
+            icon="mdi-code-tags"
+            size="16"
+          />
+        </v-btn>
+
+        <v-btn
+          class="menu-button text-black"
+          height="50"
+          width="43"
+          flat
+          :color="editor.isActive('code') ? '#D0D0D0' : ''"
+          :class="{ 'is-active': editor.isActive('code'), 'menu-button-mobile': smAndDown }"
+          @click="editor.chain().focus().toggleCode().run()"
+        >
+          <v-icon
+            icon="mdi-code-braces"
+            size="16"
+          />
+        </v-btn>
+
+        <v-btn
           class="menu-button"
           height="50"
           width="43"
@@ -148,8 +214,12 @@ import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Underline from '@tiptap/extension-underline';
 import Mention from '@tiptap/extension-mention';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import { common, createLowlight } from 'lowlight';
 import { ref, watch } from 'vue';
 import { useDisplay } from 'vuetify';
+
+const lowlight = createLowlight(common);
 
 const { smAndDown } = useDisplay();
 
@@ -172,9 +242,20 @@ const emit = defineEmits<IEmits>();
 
 const editor = useEditor({
   extensions: [
-    StarterKit,
+    StarterKit.configure({
+      codeBlock: false, // Disable default code block
+      hardBreak: {
+        keepMarks: true,
+      },
+    }),
     Underline,
     Link,
+    CodeBlockLowlight.configure({
+      lowlight,
+      HTMLAttributes: {
+        class: 'hljs',
+      },
+    }),
     Mention.configure({
       HTMLAttributes: {
         class: 'participant-variable',
@@ -187,10 +268,37 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class: 'editor-style valid-border',
+      spellcheck: 'false',
+    },
+    transformPastedHTML(html) {
+      // Preserve multiple spaces when pasting
+      return html.replace(/ {2,}/g, match => {
+        return match.replace(/ /g, '&nbsp;');
+      });
     },
   },
+  parseOptions: {
+    preserveWhitespace: 'full',
+  },
   onUpdate({ editor }) {
-    emit('update:editorContent', editor.getHTML(), editor.getText());
+    let html = editor.getHTML();
+    // Preserve multiple spaces in output
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Convert sequences of spaces to &nbsp;
+    const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT);
+    let node;
+    while (node = walker.nextNode()) {
+      if (node.nodeValue && node.parentElement?.tagName !== 'PRE' && node.parentElement?.tagName !== 'CODE') {
+        node.nodeValue = node.nodeValue.replace(/ {2,}/g, match => {
+          return match.split('').map((_, i) => i === 0 ? ' ' : '\u00A0').join('');
+        });
+      }
+    }
+
+    html = tempDiv.innerHTML;
+    emit('update:editorContent', html, editor.getText());
   },
   onFocus() {
     emit('focus');
@@ -290,6 +398,19 @@ defineExpose({
   min-height: 200px;
   border: 1px solid #D0D0D0;
   border-top: 0;
+  white-space: pre-wrap; /* Preserve whitespace */
+
+  p {
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    line-height: 1.8;
+  }
+
+  p:empty::before {
+    content: '\00a0'; /* Non-breaking space */
+    display: inline-block;
+  }
 
   .participant-variable {
     padding: 10px 20px;
@@ -304,6 +425,61 @@ defineExpose({
 :deep(.tiptap) {
   > * + * {
     margin-top: 0.75em;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+  }
+
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  code {
+    background-color: #f4f4f4;
+    color: #c7254e;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+  }
+
+  pre {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1em 0;
+
+    code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+    }
+  }
+
+  .hljs {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
   }
 
   ol, ul {

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="font-weight-light text-white" style="opacity: 0.6">
+    <div class="font-weight-light text-black" style="opacity: 0.7;">
       I maintain a collection of my favorite quotes, arranged by the emotional
       impact they evoke upon reflection.
     </div>
-    <div class="font-weight-light text-white mb-2 text-right">
+    <div class="font-weight-light text-black mb-2 text-right">
       Currently there are <strong> {{ tempQuotes.length }}</strong> quotes in the
       collection.
     </div>
@@ -14,8 +14,8 @@
       label="Search by reference, author or keyword"
       variant="outlined"
       hide-details
-      color="white"
-      bg-color="primary"
+      color="primary"
+      bg-color="grey-lighten-4"
       class="mt-4"
       block
       clearable
@@ -83,7 +83,7 @@
       <div v-if="isLoading" class="text-center py-4">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <div v-if="visibleQuotes.length === quotes.length && quotes.length > 0" class="text-center text-white py-2">
+      <div v-if="visibleQuotes.length === quotes.length && quotes.length > 0" class="text-center text-black py-2" style="opacity: 0.6;">
         End of quotes
       </div>
     </v-card>

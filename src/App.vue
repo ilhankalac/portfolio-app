@@ -17,4 +17,21 @@ body {
     font-size: 0.9rem !important;
   }
 }
+
+/* Force list styles globally */
+ul, ol {
+  list-style: revert !important;
+}
+
+ul {
+  list-style-type: disc !important;
+}
+
+ol {
+  list-style-type: decimal !important;
+}
+
+li {
+  display: list-item !important;
+}
 </style>

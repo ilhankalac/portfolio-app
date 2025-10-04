@@ -1,5 +1,5 @@
 <template>
-  <div class="font-weight-light text-white opacity-60">
+  <div class="font-weight-light text-black" style="opacity: 0.7;">
     Collection of my thoughts and knowledge shared with the world.
   </div>
   <v-container v-if="!isDataLoaded" fluid>
@@ -9,62 +9,40 @@
       </v-col>
     </v-row>
   </v-container>
-  <v-row>
+  <v-row class="mt-2 mx-n3">
     <v-col
       v-for="(blog, key) in blogs"
       :key="key"
-      class="pa-0 mt-4"
-      :class="key % 2 !== 0 && !smAndDown && blogs.length > 1 ? 'ml-4' : ''"
-      :cols="smAndDown ? 12 : 5"
+      :cols="12"
+      :sm="6"
+      :md="4"
+      :lg="3"
+      class="px-3"
     >
       <v-card
-        color="secondary"
-        class="d-flex justify-space-between flex-column"
-        elevation="2"
-        style="min-height: 100px"
+        color="transparent"
+        class="blog-card d-flex flex-column"
+        elevation="0"
         @click="openBlog(blog, key)"
       >
         <div
-          class="d-flex justify-space-between align-center blog-header"
-          :style="
-            `position: relative;
-            background-image: linear-gradient(
-                rgba(0, 0, 0, 0),
-                rgba(0, 0, 0, 0)
-              ),
-              url(${blog.image});`
-          "
+          class="blog-header"
+          :style="`background-image: url(${blog.image});`"
         >
-          <v-sheet
-            color="white"
-            class="px-2 text-overline font-weight-bold"
-            style="
-              position: absolute;
-              bottom: 5px;
-              right: 5px;
-              border-radius: 4px;
-            "
-          >
-            Satire
-          </v-sheet>
+          <div class="blog-overlay"></div>
         </div>
-        <div class="pa-4">
-          <span
-            class="text-white font-weight-light"
-            style="font-size: 1.2rem"
-            >{{ blog.title }}</span
-          >
-        </div>
-        <div
-          class="text-greyText d-flex justify-space-between px-4 pb-4"
-          style="font-size: smaller"
-        >
-          <span>
-            by <strong>{{ blog.author }} </strong>
-          </span>
-          <span style="opacity: 0.6">
-            {{ blog.date }}
-          </span>
+        <div class="pt-4 d-flex flex-column" style="flex: 1;">
+          <h3 class="text-black mb-3 blog-title font-weight-light">
+            {{ blog.title }}
+          </h3>
+          <div class="mt-auto d-flex justify-space-between align-center">
+            <div class="text-black blog-author opacity-70">
+              {{ blog.author }}
+            </div>
+            <div class="text-black blog-date">
+              {{ blog.date }}
+            </div>
+          </div>
         </div>
       </v-card>
     </v-col>
@@ -104,11 +82,79 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+.blog-card {
+  height: 100%;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+    .blog-header {
+      transform: scale(1.05);
+    }
+
+    .blog-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+    }
+  }
+}
+
 .blog-header {
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  min-height: 200px;
+  position: relative;
+  border-radius: 4px;
+  height: 200px;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  transition: background 0.35s ease;
+}
+
+.blog-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3.4rem;
+}
+
+.blog-author {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.blog-date {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.6;
+  letter-spacing: 0.02em;
 }
 </style>

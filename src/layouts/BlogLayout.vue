@@ -1,28 +1,28 @@
 <template>
-  <v-layout class="rounded rounded-md">
-    <v-main>
+  <v-layout class="rounded rounded-md bg-white">
+    <v-main class="bg-white">
       <NavBar :origin="'configure'" />
       <v-container class="ma-0 pa-0" style="max-width: none;">
         <div style="height: 6vh;" />
         <v-row>
           <img src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="" style="width: 100%; height: 200px; object-fit: cover;" />
         </v-row>
-        <v-row class="bg-secondary">
+        <v-row class="bg-grey-lighten-4">
           <v-col v-if="!smAndDown" cols="3" />
           <v-col :cols="smAndDown ? 12 : 6" class="ma-0 pa-0">
-            <v-tabs v-if="!smAndDown" v-model="tab" bg-color="secondary">
-              <v-tab value="one" @click="openRoute('/blogs/list')"><v-icon>mdi-post</v-icon>Blog</v-tab>
-              <v-tab value="three" @click="openRoute('/list-of-seen-films')"><v-icon>mdi-filmstrip</v-icon> Films</v-tab>
-              <v-tab value="two" @click="openRoute('/favorite-quotes')"><v-icon>mdi-format-quote-close</v-icon> Favorite Quotes</v-tab>
+            <v-tabs v-if="!smAndDown" v-model="tab" bg-color="grey-lighten-4" color="primary">
+              <v-tab value="one" @click="openRoute('/blogs/list')" class="text-black"><v-icon>mdi-post</v-icon>Blog</v-tab>
+              <v-tab value="three" @click="openRoute('/list-of-seen-films')" class="text-black"><v-icon>mdi-filmstrip</v-icon> Films</v-tab>
+              <v-tab value="two" @click="openRoute('/favorite-quotes')" class="text-black"><v-icon>mdi-format-quote-close</v-icon> Favorite Quotes</v-tab>
             </v-tabs>
             <div v-else class="pa-4">
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <div v-bind="props" class="d-flex justify-space-between text-white align-center">
-                    <div color="secondary">
-                      <v-icon>{{ tabIcon }}</v-icon> {{ tabLabel }} 
+                  <div v-bind="props" class="d-flex justify-space-between text-black align-center">
+                    <div>
+                      <v-icon color="black">{{ tabIcon }}</v-icon> {{ tabLabel }}
                     </div>
-                    <v-icon>{{ `mdi-menu-${props['aria-expanded'] === 'true' ? 'up' : 'down'}` }}</v-icon>
+                    <v-icon color="black">{{ `mdi-menu-${props['aria-expanded'] === 'true' ? 'up' : 'down'}` }}</v-icon>
                   </div>
                 </template>
                 <v-list>
@@ -37,13 +37,13 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-container class="ma-0 pa-0" style="max-width: none;">
+      <v-container class="ma-0 pa-0 bg-white" style="max-width: none; min-height: 70vh;">
         <v-row class="d-flex flex-row">
-          <v-col :cols="smAndDown ? 0 : 3" class="d-flex flex-column align-center text-white"></v-col>
+          <v-col :cols="smAndDown ? 0 : 3" class="d-flex flex-column align-center"></v-col>
           <v-col :cols="smAndDown ? 12 : 6">
             <router-view />
           </v-col>
-          <v-col :cols="smAndDown ? 12 : 4" class="d-flex flex-column align-center text-white"></v-col>
+          <v-col :cols="smAndDown ? 12 : 4" class="d-flex flex-column align-center"></v-col>
         </v-row>
       </v-container>
     </v-main>

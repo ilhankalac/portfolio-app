@@ -1,30 +1,30 @@
 <template>
   <div class="d-flex justify-space-between">
-    <div class="font-weight-light text-white opacity-60">
+    <div class="font-weight-light text-black" style="opacity: 0.7;">
       Collection of films I have seen since 2016.
     </div>
     <div>
       <div class="d-flex flex-column">
         <v-btn
           @click="openStatsDialog"
-          class="ml-auto white-border"
-          color="white"
+          class="ml-auto"
+          color="primary"
           icon="mdi-chart-bar"
           size="small"
           variant="outlined"
         />
-        <span class="text-white text-center font-weight-light small-font">Stats</span>
+        <span class="text-black text-center font-weight-light small-font">Stats</span>
       </div>
     </div>
   </div>
-  <div class="d-flex text-white ga-2">
+  <div class="d-flex ga-2">
     <v-text-field
       v-model="searchTerm"
       variant="outlined"
       density="comfortable"
       label="Search criteria..."
-      color="white"
-      bg-color="primary"
+      color="primary"
+      bg-color="grey-lighten-4"
       clearable
       @click:clear="getFilms"
       @keyup.enter="debouncedGetFilmsBySearchTerm"
@@ -35,6 +35,7 @@
       multiple="range"
       density="comfortable"
       variant="outlined"
+      color="primary"
       clearable
       @update:modelValue="getFilmsByDateRange"
       @click:clear="getFilms"
@@ -49,11 +50,11 @@
     />
   </div>
   <v-container class="ma-0 pa-0" fluid>
-    <div v-if="isSearchInvoked && films.length === 0" class="text-white text-left font-weight-light">
-      There are no films with the title "{{ searchTerm }}". 
+    <div v-if="isSearchInvoked && films.length === 0" class="text-black text-left font-weight-light">
+      There are no films with the title "{{ searchTerm }}".
     </div>
-     <div v-if="isSearchInvoked && films.length > 0" class="text-white text-left font-weight-light">
-      There are <strong style="text-decoration: underline;">{{ films.length }}</strong> {{ model.length > 0 ? 'films found within the selected date range.' : `films found by search ${searchTerm}.` }} 
+     <div v-if="isSearchInvoked && films.length > 0" class="text-black text-left font-weight-light">
+      There are <strong style="text-decoration: underline;">{{ films.length }}</strong> {{ model.length > 0 ? 'films found within the selected date range.' : `films found by search ${searchTerm}.` }}
     </div>
     <v-row>
       <v-col
@@ -134,7 +135,7 @@
     />
   </v-dialog>
   <div  class="text-center mt-5">
-    <v-progress-circular v-if="!isSearchInvoked" :value="isBottomReached" indeterminate color="white" />
+    <v-progress-circular v-if="!isSearchInvoked" :value="isBottomReached" indeterminate color="primary" />
   </div>
   <div class="bottom-spacer"></div>
   <div ref="bottomElement" />
