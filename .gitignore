@@ -24,3 +24,7 @@ pnpm-debug.log*
 
 # Firebase files
 .firebase/
+
+# Script data files
+new-films.json
+*.json.backup
