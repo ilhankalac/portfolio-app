@@ -64,65 +64,68 @@
         :cols="smAndDown ? 12 : 6"
         :key="key"
       >
-        <div
-          class="pa-2 d-flex flex-column justify-space-between film-header film-col"
-          color="primary"
-          :style="`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${film?.still_url});`"
-        >
-          <div class="d-flex justify-space-between align-center">
-            <div>
-              <template v-for="index in 5">
-                <v-icon 
-                  v-if="index <= film.overall" 
-                  class="mr-1"
-                  color="yellow" 
-                >
-                  mdi-star
-                </v-icon>
-                <v-icon v-else class="mr-1" color="white">
-                  mdi-star-outline
-                </v-icon>
-              </template>
-            </div>
-            <div class="text-white font-weight-light small-font text-shadow-primary">
-              <v-icon>mdi-clock-time-four-outline</v-icon> {{ film?.duration }}
+        <div class="film-card">
+          <div
+            class="film-header"
+            :style="`background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%), url(${film?.still_url});`"
+          >
+            <div class="film-overlay">
+              <div class="d-flex justify-space-between align-center mb-2">
+                <div class="rating-stars">
+                  <template v-for="index in 5">
+                    <v-icon
+                      v-if="index <= film.overall"
+                      class="star-icon"
+                      size="small"
+                    >
+                      mdi-star
+                    </v-icon>
+                    <v-icon v-else class="star-icon star-outline" size="small">
+                      mdi-star-outline
+                    </v-icon>
+                  </template>
+                </div>
+                <div class="duration-badge">
+                  <v-icon size="small">mdi-clock-outline</v-icon>
+                  <span>{{ film?.duration }}</span>
+                </div>
+              </div>
+
+              <div class="film-info">
+                <span v-if="!isSearchInvoked" class="film-number">
+                  #{{ filmStatsData.totalFilms - key }}
+                </span>
+                <h3 class="film-title">
+                  {{ film?.title ? film.title.toUpperCase() : '' }}
+                </h3>
+                <div class="film-meta">
+                  <template v-for="(director, key) in film.directors">
+                    <span class="director-name">
+                      {{ director ? director.toUpperCase() : ''}}{{ key < film.directors.length - 1 ? ', ' : '' }}
+                    </span>
+                  </template>
+                  <span class="meta-separator">•</span>
+                  <template v-for="(country, key) in film.historic_countries">
+                    <span class="country-name">
+                      {{ country ? country.toUpperCase() : '' }}{{ key < film.historic_countries.length - 1 ? ', ' : '' }}
+                    </span>
+                  </template>
+                  <span class="meta-separator">•</span>
+                  <span class="year">{{ film?.year }}</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="text-white mt-auto d-flex flex-column text-shadow-primary text-start">
-            <span
-              v-if="!isSearchInvoked" 
-              class="font-weight-bold small-rem"
-            >
-              {{ `#${filmStatsData.totalFilms - key}` }}
-            </span>
-            <span class="text-h5 font-weight-bold">
-              {{ film?.title ? film.title.toUpperCase() : '' }}</span>
-            <div>
-              <template v-for="(director, key) in film.directors">
-                <span class="font-weight-regular small-rem">
-                  {{ director ? director.toUpperCase() : ''}} {{ key < film.directors.length - 1 ? ', ' : '' }}
-                </span> 
-              </template>
-                &nbsp;
-              <template v-for="(country, key) in film.historic_countries">
-                <span class="font-weight-light small-rem">
-                  {{ country ? country.toUpperCase() : '' }}{{ key < film.historic_countries.length - 1 ? ', ' : '' }}
-                </span>
-              </template>
-              <span class="font-weight-light small-rem">
-                &nbsp;{{ film?.year }}
+
+          <div class="film-footer">
+            <p class="synopsis">{{ film?.short_synopsis }}</p>
+            <div class="footer-meta">
+              <span class="watched-date">
+                <v-icon size="x-small" class="mr-1">mdi-calendar</v-icon>
+                {{ new Date(film?.created_at).toLocaleDateString("en-GB") }}
               </span>
             </div>
           </div>
-        </div>
-        <div 
-          style="min-height: 120px; max-height: 120px;"  
-          class="film-footer text-white pa-2 font-weight-light text-justify d-flex flex-column justify-space-between"
-        >
-          <span>{{ film?.short_synopsis }}</span>
-          <span class="font-weight-light smallest-font opacity-60">
-            {{ new Date(film?.created_at).toLocaleDateString("en-GB") }}
-          </span>
         </div>
       </v-col>
     </v-row>
@@ -290,55 +293,164 @@ onBeforeUnmount(() => {
   background: #555;
 }
 
-.opacity-60 {
-  opacity: 0.6;
+/* Film Card Styles */
+.film-card {
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.white-border {
-  border-color: white;
-}
-
-.small-font {
-  font-size: small;
-}
-
-.small-rem {
-  font-size: 0.9rem;
-}
-
-.text-shadow-primary {
-  text-shadow: 1px 1px rgb(var(--v-theme-primary));
-}
-
-.film-col {
-  box-shadow: 0 0 0 0.1px white;
-  border-radius: 5px;
+.film-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .film-header {
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  position: relative;
   min-height: 200px;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
+.film-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Rating Stars */
+.rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star-icon {
+  color: #fbbf24;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.star-outline {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Duration Badge */
+.duration-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+
+/* Film Info */
+.film-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.film-number {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.film-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.film-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.director-name {
+  font-weight: 500;
+}
+
+.country-name,
+.year {
+  font-weight: 300;
+}
+
+.meta-separator {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer */
 .film-footer {
-  background: rgb(var(--v-theme-secondary));
-  font-size: small;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  padding: 16px;
+  min-height: 120px;
+  max-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.smallest-font {
-  font-size: 0.7rem;
+.synopsis {
+  margin: 0;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+.footer-meta {
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.watched-date {
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* Utility Classes */
 .bottom-spacer {
   height: 100px;
 }
 
 :deep(.v-input__prepend) {
-  display:none !important;
+  display: none !important;
 }
 </style>
