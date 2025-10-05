@@ -147,6 +147,37 @@ watch(() => router.currentRoute.value.params.id, getBlog);
   display: inline !important;
   margin: 0 !important;
 }
+
+/* Remove margins from empty paragraphs */
+.blog-content p:empty {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+}
+
+.blog-content img,
+.blog-content .blog-image {
+  display: block !important;
+  margin: 1.5em auto 0 auto !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.blog-content p.image-caption {
+  background-color: rgb(var(--v-theme-primary)) !important;
+  color: white !important;
+  padding: 12px 16px !important;
+  text-align: center !important;
+  font-size: 0.95rem !important;
+  font-style: italic !important;
+  margin: 0 0 1.5em 0 !important;
+}
+
+/* Image without caption gets normal bottom margin */
+.blog-content img:not(:has(+ p.image-caption)),
+.blog-content .blog-image:not(:has(+ p.image-caption)) {
+  margin-bottom: 1.5em !important;
+}
 </style>
 
 <style scoped>
@@ -305,6 +336,14 @@ watch(() => router.currentRoute.value.params.id, getBlog);
 
   :deep(u) {
     text-decoration: underline;
+  }
+
+  :deep(img),
+  :deep(.blog-image) {
+    display: block !important;
+    margin: 1.5em auto !important;
+    max-width: 100% !important;
+    height: auto !important;
   }
 }
 </style>

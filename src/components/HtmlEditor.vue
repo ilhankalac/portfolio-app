@@ -164,10 +164,10 @@
           width="43"
           flat
           :class="{ 'menu-button-mobile': smAndDown }"
-          @click="$emit('file-upload')"
+          @click="addImage"
         >
           <v-icon
-            icon="mdi-file-upload"
+            icon="mdi-image"
             size="16"
           />
         </v-btn>
@@ -215,6 +215,8 @@ import Link from '@tiptap/extension-link';
 import Underline from '@tiptap/extension-underline';
 import Mention from '@tiptap/extension-mention';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import Image from '@tiptap/extension-image';
+import Paragraph from '@tiptap/extension-paragraph';
 import { common, createLowlight } from 'lowlight';
 import { ref, watch } from 'vue';
 import { useDisplay } from 'vuetify';
@@ -244,12 +246,34 @@ const editor = useEditor({
   extensions: [
     StarterKit.configure({
       codeBlock: false, // Disable default code block
+      paragraph: false, // Disable default paragraph
       hardBreak: {
         keepMarks: true,
       },
     }),
+    Paragraph.extend({
+      addAttributes() {
+        return {
+          class: {
+            default: null,
+            parseHTML: element => element.getAttribute('class'),
+            renderHTML: attributes => {
+              if (!attributes.class) {
+                return {};
+              }
+              return { class: attributes.class };
+            },
+          },
+        };
+      },
+    }),
     Underline,
     Link,
+    Image.configure({
+      HTMLAttributes: {
+        class: 'blog-image',
+      },
+    }),
     CodeBlockLowlight.configure({
       lowlight,
       HTMLAttributes: {
@@ -265,6 +289,9 @@ const editor = useEditor({
       },
     }),
   ],
+  parseOptions: {
+    preserveWhitespace: 'full',
+  },
   editorProps: {
     attributes: {
       class: 'editor-style valid-border',
@@ -346,6 +373,24 @@ function setLink() {
 
 function unlink() {
   editor.value?.chain().focus().unsetLink().run();
+}
+
+function addImage() {
+  const url = window.prompt('Unesi URL slike:');
+
+  if (url) {
+    const caption = window.prompt('Unesi opis slike (opciono):');
+
+    if (caption) {
+      // Insert image with caption - use paragraph with special class, followed by empty paragraph
+      editor.value?.commands.insertContent(
+        `<p><img src="${url}" class="blog-image" /></p><p class="image-caption">${caption}</p><p></p>`
+      );
+    } else {
+      // Insert image without caption
+      editor.value?.chain().focus().setImage({ src: url }).run();
+    }
+  }
 }
 
 function insertVariable(variable: string) {
