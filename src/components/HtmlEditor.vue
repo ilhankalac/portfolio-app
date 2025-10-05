@@ -304,9 +304,6 @@ const editor = useEditor({
       });
     },
   },
-  parseOptions: {
-    preserveWhitespace: 'full',
-  },
   onUpdate({ editor }) {
     let html = editor.getHTML();
     // Preserve multiple spaces in output
