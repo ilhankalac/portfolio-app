@@ -1,5 +1,5 @@
 <template>
-  <div class="text-black">
+  <div>
     <v-container v-if="!isDataLoaded">
       <v-row class="d-flex flex-column ga-3">
         <v-col>
@@ -19,17 +19,17 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-container v-else>
-      <div :class="smAndDown ? 'text-h6' : 'text-h5'">
+    <div fluid v-else>
+      <div :class="smAndDown ? 'text-h6' : 'text-h5'" class="blog-title">
         {{ blog.title }}
       </div>
-      <div class="font-weight-light font-italic mt-1">
+      <div>
         <span style="opacity: 0.6">Piše</span> {{ blog.author }}, 
         <span style="opacity: 0.6">objavljeno</span> {{ blog.date }}
       </div>
-      <v-divider class="mb-6" />
-      <div class="blog-content text-black" v-html="blog.html"></div>
-    </v-container>
+      <v-divider class="mb-2" />
+      <div class="blog-content text-black font-weight-light" v-html="blog.html" role="main"></div>
+    </div>
   </div>
 </template>
 
@@ -158,7 +158,6 @@ watch(() => router.currentRoute.value.params.id, getBlog);
 .blog-content img,
 .blog-content .blog-image {
   display: block !important;
-  margin: 1.5em auto 0 auto !important;
   width: 100% !important;
   height: auto !important;
 }
@@ -178,6 +177,28 @@ watch(() => router.currentRoute.value.params.id, getBlog);
 .blog-content .blog-image:not(:has(+ p.image-caption)) {
   margin-bottom: 1.5em !important;
 }
+
+/* Global styles for blog links */
+.blog-content a,
+.blog-content a:link,
+.blog-content a:visited,
+.blog-content a:active,
+.blog-content p a,
+.blog-content p a strong,
+.blog-content p strong a {
+  color: rgb(var(--v-theme-primary)) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  text-decoration-line: none !important;
+  text-decoration-style: none !important;
+}
+
+.blog-content a:hover,
+.blog-content p a:hover {
+  opacity: 0.8;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
 </style>
 
 <style scoped>
@@ -188,9 +209,23 @@ watch(() => router.currentRoute.value.params.id, getBlog);
   margin: 10px 0;
 }
 
+.blog-title {
+  color: #000000;
+  padding: 14px 0px;
+  font-size: 18px;
+}
+
+.blog-meta {
+  color: #000000;
+  padding: 14px 0px;
+  font-size: 18px;
+}
+
 .blog-content {
+  color: #000000;
+  padding: 14px 0px;
   line-height: 1.8;
-  font-size: 1.05rem;
+  font-size: 18px;
   opacity: 0.9;
   word-wrap: break-word;
   overflow-x: hidden;
@@ -302,14 +337,33 @@ watch(() => router.currentRoute.value.params.id, getBlog);
     padding: 0 !important;
   }
 
-  :deep(a) {
-    color: rgb(var(--v-theme-info));
-    text-decoration: underline;
+  :deep(a),
+  :deep(a:link),
+  :deep(a:visited),
+  :deep(a:active) {
+    color: rgb(var(--v-theme-primary)) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
     cursor: pointer;
 
     &:hover {
       opacity: 0.8;
+      text-decoration: none !important;
     }
+  }
+
+  :deep(a strong),
+  :deep(strong a) {
+    color: rgb(var(--v-theme-primary)) !important;
+    text-decoration: none !important;
+  }
+
+  :deep(p a),
+  :deep(p a strong),
+  :deep(p strong a) {
+    color: rgb(var(--v-theme-primary)) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
   }
 
   :deep(blockquote) {
@@ -344,6 +398,21 @@ watch(() => router.currentRoute.value.params.id, getBlog);
     margin: 1.5em auto !important;
     max-width: 100% !important;
     height: auto !important;
+  }
+}
+
+/* Responsive font sizes for smaller screens */
+@media (max-width: 960px) {
+  .blog-title {
+    font-size: 1rem;
+  }
+
+  .blog-meta {
+    font-size: 1rem;
+  }
+
+  .blog-content {
+    font-size: 1rem;
   }
 }
 </style>
