@@ -91,9 +91,11 @@ import { getVal } from "@/core/services/firebase.service"
 import { IFreeProject } from "@/core/types/models"
 import { Ref, onMounted, ref } from "vue"
 import { useDisplay } from "vuetify"
+import { usePageLoad } from "@/core/composables"
 const { smAndDown } = useDisplay()
 
 const projects: Ref<IFreeProject[]> = ref([])
+const { markSectionLoaded } = usePageLoad()
 
 const openLink = (link: string) => {
   window.open(link, "_blank")
@@ -106,6 +108,8 @@ onMounted(() => {
         projects.value.push({ ...val[key], key })
       })
     }
+    // Mark this section as loaded after data is fetched
+    markSectionLoaded('freetime-projects')
   })
 })
 </script>

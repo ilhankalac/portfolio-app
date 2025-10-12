@@ -61,9 +61,11 @@
 <script lang="ts" setup>
 import { useDisplay } from "vuetify"
 import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { usePageLoad } from '@/core/composables'
 
 const { smAndDown } = useDisplay()
 const scrollY = ref(0)
+const { markSectionLoaded } = usePageLoad()
 
 const handleScroll = () => {
   scrollY.value = window.scrollY
@@ -71,6 +73,8 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  // This section doesn't fetch data, mark as loaded immediately
+  markSectionLoaded('initial')
 })
 
 onBeforeUnmount(() => {

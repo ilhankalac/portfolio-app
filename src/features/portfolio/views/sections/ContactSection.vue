@@ -52,15 +52,22 @@
 
 <script lang="ts" setup>
 import Section from '@/features/portfolio/components/SectionWrapper.vue'
-import { Ref, ref } from 'vue'
+import { Ref, ref, onMounted } from 'vue'
 import { pushVal } from '@/core/services/firebase.service'
 import { useHelpers } from '@/core/composables/useHelpers'
+import { usePageLoad } from '@/core/composables'
 
 const email: Ref<string> = ref('')
 const message: Ref<string> = ref('')
 const snackbar: Ref<boolean> = ref(false)
 const text: Ref<string> = ref('Your message has been sent!')
 const emailInput = ref<HTMLInputElement | null>(null)
+const { markSectionLoaded } = usePageLoad()
+
+// This section doesn't fetch data, mark as loaded immediately
+onMounted(() => {
+  markSectionLoaded('get-in-touch')
+})
 
 const { errorMessage, validateEmail, timeStamp } = useHelpers()
 

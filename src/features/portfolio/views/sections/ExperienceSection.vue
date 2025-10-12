@@ -104,10 +104,12 @@ import { useDisplay } from 'vuetify'
 const { smAndDown } = useDisplay()
 import { getVal } from '@/core/services/firebase.service'
 import { IExperience } from '@/core/types/models';
+import { usePageLoad } from '@/core/composables'
 
 const experiences: Ref<IExperience[]> = ref([])
 const jobDialog = ref(false)
 const isDataLoaded: Ref<boolean> = ref(false)
+const { markSectionLoaded } = usePageLoad()
 
 const getData = async () => {
   await getVal('working-experience').then((fetchedData) => {
@@ -119,6 +121,8 @@ const getData = async () => {
       // Handle the case where the fetched data is null or undefined
       console.error('Error fetching data from Firebase.')
     }
+    // Mark this section as loaded after data is fetched
+    markSectionLoaded('experience')
   })
 }
 

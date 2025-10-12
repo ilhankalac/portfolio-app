@@ -73,11 +73,13 @@ import { onMounted, Ref, ref } from "vue"
 const { smAndDown } = useDisplay()
 import { getVal } from "@/core/services/firebase.service"
 import { useRouter } from "vue-router"
+import { usePageLoad } from "@/core/composables"
 
 const router = useRouter()
 
 const recommendations: Ref<IColleagueInfo[]> = ref([])
 const isDataLoaded = ref(false)
+const { markSectionLoaded } = usePageLoad()
 
 const getData = async () => {
   await getVal("recommendations").then((fetchedData) => {
@@ -87,13 +89,15 @@ const getData = async () => {
           if (fetchedData[key].showPublic) {
             result.push(fetchedData[key])
           }
-      })  
-      recommendations.value = result 
+      })
+      recommendations.value = result
       isDataLoaded.value = true
     } else {
       // Handle the case where the fetched data is null or undefined
       console.error("Error fetching data from Firebase.")
     }
+    // Mark this section as loaded after data is fetched
+    markSectionLoaded('recommendations')
   })
 }
 

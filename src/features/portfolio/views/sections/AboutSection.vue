@@ -29,14 +29,19 @@ import Section from '@/features/portfolio/components/SectionWrapper.vue'
 import BasicInfo from '@/features/portfolio/components/ProfileInfo.vue'
 import { getVal } from '@/core/services/firebase.service'
 import { onMounted, Ref, ref } from 'vue'
+import { usePageLoad } from '@/core/composables'
 const { smAndDown } = useDisplay()
 
 const aboutDescription: Ref<string> = ref('')
+const { markSectionLoaded } = usePageLoad()
+
 onMounted(() => {
   getVal('about').then((val) => {
     if (val) {
       aboutDescription.value = val
     }
+    // Mark this section as loaded after data is fetched
+    markSectionLoaded('about')
   })
 })
 </script>

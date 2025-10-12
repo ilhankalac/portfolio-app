@@ -23,15 +23,19 @@ import { useDisplay } from "vuetify";
 import { onMounted, Ref, ref } from "vue";
 import { getVal } from "@/core/services/firebase.service";
 import { ISkill } from "@/core/types/models";
+import { usePageLoad } from "@/core/composables";
 
 const { smAndDown } = useDisplay();
 const skills: Ref<ISkill[]> = ref([]);
+const { markSectionLoaded } = usePageLoad();
 
 onMounted(() => {
   getVal('skills').then((val) => {
     if (val) {
       skills.value = val;
     }
+    // Mark this section as loaded after data is fetched
+    markSectionLoaded('explore');
   });
 });
 </script>
