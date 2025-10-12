@@ -1,6 +1,6 @@
 <template>
   <div class="card-container ma-2">
-    <template v-for="(recommendation, key, index) in recommendations" :key="index">
+    <template v-for="(recommendation, key) in recommendations" :key="key">
       <v-card 
         class="card ma-2" 
         color="secondary" 
@@ -30,7 +30,7 @@
           </div>
         </v-card-title>
       </v-card>
-      <div class="card ma-2" v-if="index === Object.keys(recommendations).length - 1 && Object.keys(recommendations).length % 2 === 1" />
+      <div class="card ma-2" v-if="Number(key) === Object.keys(recommendations).length - 1 && Object.keys(recommendations).length % 2 === 1" />
     </template>
   </div>
   <v-dialog v-model="editRecommendationDialog" max-width="800" height="90vh">
