@@ -5,8 +5,8 @@
  */
 
 // Plugins
-import { registerPlugins } from '@/plugins'
-import { firebaseApp } from '@/firebase'
+import { registerPlugins } from '@/config/plugins'
+import { firebaseApp } from '@/config/firebase.config'
 
 // Components
 import App from './App.vue'
