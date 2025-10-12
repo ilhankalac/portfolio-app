@@ -90,8 +90,8 @@ const navigationLinks = [
   { text: "About", sectionId: "about" },
   { text: "Experience", sectionId: "experience" },
   { text: "Free time projects", sectionId: "freetime-projects" },
+  { text: "Skills", sectionId: "explore" },
   { text: "Recommendations", sectionId: "recommendations" },
-  { text: "Explore", sectionId: "explore" },
 ];
 // const otherInterestsLinks = ["Blog", "Projects", "Resume"]
 

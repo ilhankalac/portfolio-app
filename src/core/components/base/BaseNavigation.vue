@@ -22,6 +22,32 @@
         >
           {{ item.name }}
         </div>
+
+        <!-- Explore Dropdown -->
+        <v-menu offset-y>
+          <template v-slot:activator="{ props }">
+            <div
+              v-bind="props"
+              class="navigation__link navigation__link--dropdown"
+            >
+              Explore
+              <v-icon size="small" class="ml-1">mdi-chevron-down</v-icon>
+            </div>
+          </template>
+          <v-list class="navigation__dropdown-list">
+            <v-list-item
+              v-for="item in exploreItems"
+              :key="item.id"
+              @click="navigateToRoute(item.route)"
+              class="navigation__dropdown-item"
+            >
+              <template v-slot:prepend>
+                <v-icon :icon="item.icon" size="small" class="mr-2"></v-icon>
+              </template>
+              <v-list-item-title>{{ item.name }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
 
       <!-- Mobile Menu Toggle -->
@@ -52,6 +78,20 @@
       >
         <v-icon size="small" class="navigation__mobile-link-icon">
           mdi-chevron-right
+        </v-icon>
+        <span>{{ item.name }}</span>
+      </div>
+
+      <!-- Mobile Explore Section -->
+      <div class="navigation__mobile-divider">Explore</div>
+      <div
+        v-for="item in exploreItems"
+        :key="item.id"
+        class="navigation__mobile-link navigation__mobile-link--sub"
+        @click="navigateToRoute(item.route)"
+      >
+        <v-icon size="small" class="navigation__mobile-link-icon">
+          {{ item.icon }}
         </v-icon>
         <span>{{ item.name }}</span>
       </div>
@@ -87,8 +127,15 @@ const navigationItems = [
   { id: '1', name: 'About', sectionId: 'about' },
   { id: '2', name: 'Experience', sectionId: 'experience' },
   { id: '3', name: 'Projects', sectionId: 'freetime-projects' },
-  { id: '4', name: 'Recommendations', sectionId: 'recommendations' },
-  { id: '5', name: 'Explore', sectionId: 'explore' },
+  { id: '4', name: 'Skills', sectionId: 'explore' },
+  { id: '5', name: 'Recommendations', sectionId: 'recommendations' },
+]
+
+// Explore dropdown items
+const exploreItems = [
+  { id: 'blogs', name: 'Blogs', route: '/blogs/list', icon: 'mdi-post' },
+  { id: 'films', name: 'Films', route: '/list-of-seen-films', icon: 'mdi-filmstrip' },
+  { id: 'quotes', name: 'Quotes', route: '/favorite-quotes', icon: 'mdi-format-quote-close' },
 ]
 
 // Methods
@@ -98,6 +145,11 @@ const toggleMobileMenu = () => {
 
 const isActiveSection = (sectionId: string) => {
   return activeSection.value === sectionId
+}
+
+const navigateToRoute = (routePath: string) => {
+  isMobileMenuOpen.value = false
+  router.push(routePath)
 }
 
 const navigateToSection = (sectionId: string) => {
@@ -251,6 +303,8 @@ onMounted(() => {
     border-radius: 6px;
     transition: all 0.2s ease;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -261,6 +315,50 @@ onMounted(() => {
       color: rgba(255, 255, 255, 1);
       background-color: rgba(255, 255, 255, 0.12);
       font-weight: 500;
+    }
+
+    &--dropdown {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__dropdown-list {
+    background-color: rgb(var(--v-theme-primary)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    min-width: 180px;
+  }
+
+  &__dropdown-item {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-transform: uppercase;
+    font-size: 0.813rem;
+    letter-spacing: 0.8px;
+    transition: all 0.2s ease;
+    padding: 12px 16px;
+
+    :deep(.v-list-item-title) {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.813rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    :deep(.v-icon) {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+
+      :deep(.v-list-item-title) {
+        color: rgba(255, 255, 255, 1);
+      }
+
+      :deep(.v-icon) {
+        color: rgba(255, 255, 255, 1);
+      }
     }
   }
 
@@ -307,11 +405,27 @@ onMounted(() => {
         color: rgba(255, 255, 255, 1);
       }
     }
+
+    &--sub {
+      padding-left: 32px;
+      opacity: 0.9;
+    }
   }
 
   &__mobile-link-icon {
     color: rgba(255, 255, 255, 0.5);
     transition: color 0.2s ease;
+  }
+
+  &__mobile-divider {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 16px 16px 8px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
