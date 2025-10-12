@@ -240,7 +240,6 @@ onMounted(() => {
   &__container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 16px 32px;
     max-width: 1400px;
     margin: 0 auto;
@@ -251,6 +250,7 @@ onMounted(() => {
     align-items: center;
     gap: 12px;
     cursor: pointer;
+    flex: 1;
   }
 
   &__avatar {
@@ -287,9 +287,8 @@ onMounted(() => {
     display: flex;
     align-items: center;
     gap: 8px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex: 1;
+    justify-content: flex-end;
   }
 
   &__link {
