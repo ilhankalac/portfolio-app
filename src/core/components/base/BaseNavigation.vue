@@ -1,177 +1,334 @@
 <template>
-  <nav
-    class="nav-bar"
-    :style="isMenuClicked && smAndDown ? 'min-height: 48vh' : 'min-height: 6vh'"
-    :class="smAndDown ? 'flex-column' : 'd-flex justify-center align-center'"
-  >
-    <div v-if="smAndDown" class="d-flex flex-row justify-space-between pa-5">
-      <div class="text-darkText text-subtitle font-weight-bold">
-        <v-avatar>
-          <v-img src="@/assets/ilhan_kalac_small.png" alt="avatar" />
+  <nav class="navigation" :class="{ 'navigation--mobile-expanded': isMobileMenuOpen && isMobile }">
+    <div class="navigation__container">
+      <!-- Avatar & Name -->
+      <div class="navigation__brand">
+        <v-avatar class="navigation__avatar" size="40">
+          <v-img src="@/assets/ilhan_kalac_small.png" alt="Ilhan Kalac" />
         </v-avatar>
+        <div class="navigation__name">
+          <span class="navigation__name-first">ILHAN </span><span class="navigation__name-last">KALAČ</span>
+        </div>
       </div>
-      <div v-show="smAndDown">
-        <v-btn color="white" variant="text" @click="isMenuClicked = !isMenuClicked">
-          <v-icon>
-            {{ isMenuClicked ? "mdi-close" : "mdi-menu" }}
-          </v-icon>
-        </v-btn>
-      </div>
-    </div>
-    <div v-if="!smAndDown" class="text-darkText text-subtitle font-weight-bold">
-      <v-avatar>
-        <v-img src="@/assets/ilhan_kalac_small.png" alt="avatar" />
-      </v-avatar>
-    </div>
-    <div 
-      v-if="(smAndDown && isMenuClicked) || !smAndDown"
-      class="d-flex"
-      :class="smAndDown ? 'flex-column justify-center  slideOut' : 'justify-center'"
-    > 
-      <v-list :class="smAndDown ? '' : 'd-flex flex-row ga-1'" style="overflow-y: hidden; background-color: rgb(var(--v-theme-primary));">
-        <v-list-item
-          v-for="(item, i) in navButtons"
-          item-title="name"
-          item-value="id"
-          style="cursor: pointer"
-          tabindex="0"
-          class="text-white font-weight-light navbar-item"
-          @click="changeTheRoute(item.sectionId)"
+
+      <!-- Desktop Navigation Links -->
+      <div v-if="!isMobile" class="navigation__links-wrapper">
+        <div
+          v-for="item in navigationItems"
+          :key="item.id"
+          class="navigation__link"
+          :class="{ 'navigation__link--active': isActiveSection(item.sectionId) }"
+          @click="navigateToSection(item.sectionId)"
         >
-          <template v-slot:prepend>
-            <v-list-item>
-              <v-icon
-                v-if="smAndDown"
-                class="text-center"
-                :color="currentSection === item.sectionId ? 'grey-lighten' : 'grey'"
-              > mdi-chevron-right
-              </v-icon>
-              <span class="text-overline font-weight-light" :class="currentSection === item.sectionId ? 'text-grey-lighten-1 font-weight-bold' : 'text-grey'">
-                {{ item.name }}
-              </span>
-            </v-list-item>
-          </template>
-        </v-list-item>
-      </v-list>
+          {{ item.name }}
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <v-btn
+        v-if="isMobile"
+        icon
+        variant="text"
+        color="white"
+        class="navigation__menu-toggle"
+        @click="toggleMobileMenu"
+        aria-label="Toggle navigation menu"
+      >
+        <v-icon>{{ isMobileMenuOpen ? 'mdi-close' : 'mdi-menu' }}</v-icon>
+      </v-btn>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div
+      v-if="isMobile && isMobileMenuOpen"
+      class="navigation__mobile-menu"
+    >
+      <div
+        v-for="item in navigationItems"
+        :key="item.id"
+        class="navigation__mobile-link"
+        :class="{ 'navigation__mobile-link--active': isActiveSection(item.sectionId) }"
+        @click="navigateToSection(item.sectionId)"
+      >
+        <v-icon size="small" class="navigation__mobile-link-icon">
+          mdi-chevron-right
+        </v-icon>
+        <span>{{ item.name }}</span>
+      </div>
     </div>
   </nav>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useDisplay } from 'vuetify'
-import { useRouter } from 'vue-router'
-import { useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
+// Props
+const props = defineProps<{
+  origin?: string
+}>()
+
+// Composables
 const { smAndDown } = useDisplay()
 const router = useRouter()
-const isMenuClicked = ref(false)
-const currentSection: any = ref('initial')
 const route = useRoute()
 
-const navButtons = [
-  { id: '0', name: 'Home', sectionId: '#initial' },
+// State
+const isMobileMenuOpen = ref(false)
+const activeSection = ref('initial')
+
+// Computed
+const isMobile = computed(() => smAndDown.value)
+
+// Navigation items
+const navigationItems = [
+  { id: '0', name: 'Home', sectionId: 'initial' },
   { id: '1', name: 'About', sectionId: 'about' },
   { id: '2', name: 'Experience', sectionId: 'experience' },
   { id: '3', name: 'Projects', sectionId: 'freetime-projects' },
   { id: '4', name: 'Recommendations', sectionId: 'recommendations' },
   { id: '5', name: 'Explore', sectionId: 'explore' },
-
 ]
 
-const props = defineProps<{
-  origin?: string
-}>()
-
-
-const changeTheRoute = (sectionId: string = '') => {
-  isMenuClicked.value = false
-  if(props.origin === 'configure') {
-    router.push('/').then(() => {
-      router.push({ hash: '#' + sectionId })
-    })
-    return
-  }
-
-  if (sectionId === 'initial') {
-    router.push({ path: '/' })
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-    return
-  }
-  router.push({ hash: '#' + sectionId })
+// Methods
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
-onMounted(() => {
-  const sectionId = route.hash.slice(1)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const targetSectionId = entry.target.getAttribute('id')
-        const url = targetSectionId === '#initial' ? '/' : `/#${targetSectionId}`
-        if (targetSectionId && targetSectionId !== 'shadow-host-companion') {
-          window.history.pushState({}, '', url)
-          currentSection.value = targetSectionId
-        }
-      }
-    })
-  }, {
-    threshold: 0.25
-  })
+const isActiveSection = (sectionId: string) => {
+  return activeSection.value === sectionId
+}
 
-  if (sectionId) {
-    const targetElement = document.getElementById(sectionId)
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' })
-    }
+const navigateToSection = (sectionId: string) => {
+  isMobileMenuOpen.value = false
+
+  // Navigate to home (top of page)
+  if (sectionId === 'initial') {
+    // Use replace to avoid adding to history
+    router.replace({ path: '/', hash: '' })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return
   }
 
+  // Handle navigation from configure page
+  if (props.origin === 'configure') {
+    router.push('/').then(() => {
+      router.push({ hash: `#${sectionId}` })
+      // Scroll after navigation
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        element?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    })
+    return
+  }
+
+  // Navigate to section with smooth scroll
+  const element = document.getElementById(sectionId)
+  if (element) {
+    router.push({ hash: `#${sectionId}` })
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+const setupSectionObserver = () => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('id')
+
+          if (sectionId && sectionId !== 'shadow-host-companion') {
+            const url = sectionId === 'initial' ? '/' : `/#${sectionId}`
+            window.history.pushState({}, '', url)
+            activeSection.value = sectionId
+          }
+        }
+      })
+    },
+    { threshold: 0.25 }
+  )
+
+  // Observe all sections
   document.querySelectorAll('section').forEach((section) => {
     observer.observe(section)
   })
+}
+
+const scrollToInitialSection = () => {
+  const sectionId = route.hash.slice(1)
+
+  if (sectionId) {
+    const element = document.getElementById(sectionId)
+    element?.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+// Lifecycle
+onMounted(() => {
+  setupSectionObserver()
+  scrollToInitialSection()
 })
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-.logo {
-  font-family: 'Bebas Neue', sans-serif; 
-  font-size: 1.5rem; 
-  letter-spacing: 3px;
-  text-shadow: 4px 2px rgb(var(--v-theme-primary));
-}
-.nav-bar {
-  min-height: 6vh;
-  background-color: rgb(var(--v-theme-primary));
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+.navigation {
   position: fixed;
-  min-width: 100%;
   top: 0;
-  color: rgb(var(--v-theme-darkText));
+  left: 0;
+  right: 0;
   z-index: 1200;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.9rem;
+  background-color: rgb(var(--v-theme-primary));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  &__avatar {
+    transition: transform 0.2s ease;
+  }
+
+  &__name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.95);
+    white-space: nowrap;
+  }
+
+  &__name-first {
+    font-weight: 100;
+    letter-spacing: 0.4rem;
+    opacity: 0.8;
+    font-size: smaller;
+  }
+
+  &__name-last {
+    font-weight: 400;
+    letter-spacing: 0.4rem;
+    opacity: 0.9;
+    font-size: smaller;
+  }
+
+  &__brand:hover &__avatar {
+    transform: scale(1.05);
+  }
+
+  &__links-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    font-size: 0.813rem;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &--active {
+      color: rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 0.12);
+      font-weight: 500;
+    }
+  }
+
+  &__menu-toggle {
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__mobile-menu {
+    animation: slideDown 0.3s ease-out;
+    padding: 8px 24px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  &__mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    padding: 12px 16px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &--active {
+      color: rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 0.1);
+      font-weight: 500;
+
+      .navigation__mobile-link-icon {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+
+  &__mobile-link-icon {
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s ease;
+  }
 }
 
-.slideOut {
-  animation: slideOut 1s ease-in-out;
-}
-
-@keyframes slideOut {
+@keyframes slideDown {
   from {
-    max-height: 1vh;
+    opacity: 0;
+    max-height: 0;
   }
   to {
-    max-height: 48vh;
+    opacity: 1;
+    max-height: 500px;
   }
 }
 
-.navbar-item {
-  transition: 0.3s;
-  border-radius: 0.5rem;
-  &:hover {
-    background-color: rgba(77, 84, 128, 0.1);
+@media (max-width: 960px) {
+  .navigation__container {
+    padding: 12px 20px;
   }
 }
 </style>

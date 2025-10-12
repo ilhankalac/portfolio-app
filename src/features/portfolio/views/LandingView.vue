@@ -1,7 +1,7 @@
 <template>
-  <section 
+  <section
     class="hero-container"
-    id="#initial"
+    id="initial"
   >
     <!-- Parallax background layers -->
     <div class="parallax-bg"></div>
