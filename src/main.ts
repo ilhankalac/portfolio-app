@@ -6,7 +6,6 @@
 
 // Plugins
 import { registerPlugins } from '@/config/plugins'
-import { firebaseApp } from '@/config/firebase.config'
 
 // Components
 import App from './App.vue'
@@ -16,6 +15,6 @@ import { createApp } from 'vue'
 
 const app = createApp(App)
 app.component('QuillEditor')
-registerPlugins(app, firebaseApp)
+registerPlugins(app)
 
 app.mount('#app')

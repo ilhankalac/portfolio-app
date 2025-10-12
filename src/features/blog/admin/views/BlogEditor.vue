@@ -77,6 +77,7 @@ const blog: Ref<any> = ref({
   author: '',
   key: '',
   html: '',
+  created_at: '',
 });
 
 const fullscreen: Ref<boolean> = ref(false);
@@ -84,6 +85,9 @@ const selectedKey: Ref<string> = ref('');
 
 const save = () => {
   if (selectedKey.value !== '') {
+    if (!blog.value.created_at) {
+      blog.value.created_at = new Date().toISOString();
+    }
     setVal('blog/posts/' + selectedKey.value, blog.value);
     getBlogs();
     return;
@@ -94,6 +98,9 @@ const save = () => {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .toLowerCase();
+  
+  // Set created_at timestamp when creating new blog
+  blog.value.created_at = new Date().toISOString();
 
   pushVal('blog/posts', blog.value);
   getBlogs();
@@ -120,6 +127,7 @@ const resetBlog = () => {
     author: '',
     key: '',
     html: '',
+    created_at: '',
   };
 };
 
@@ -128,6 +136,7 @@ const setSelectedBlog = (item: any) => {
   blog.value = {
     ...item,
     html: item.html,
+    created_at: item.created_at, // Preserve created_at when editing
   };
 };
 

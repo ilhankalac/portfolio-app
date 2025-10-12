@@ -63,7 +63,17 @@ const getBlogs = () => {
   getVal("blog/posts").then((val) => {
     if (val) {
       isDataLoaded.value = true;
-      blogs.value = val;
+      // Convert object to array with keys preserved
+      const blogsArray = Object.entries(val).map(([key, value]: [string, any]) => ({
+        ...value,
+        firebaseKey: key
+      }));
+      // Sort blogs by created_at from newest to oldest
+      blogs.value = blogsArray.sort((a: any, b: any) => {
+        const dateA = new Date(a.created_at || 0).getTime();
+        const dateB = new Date(b.created_at || 0).getTime();
+        return dateB - dateA; // Descending order (newest first)
+      });
     }
   });
 };
@@ -72,7 +82,7 @@ const openBlog = (blog: any, key: number) => {
   const keyAndTitle =
     blog.title.replace(/\s+/g, "-").replace(/-+/g, "-").toLowerCase() +
     "/key=" +
-    key;
+    blog.firebaseKey;
   router.push({ name: "BlogPage", params: { id: keyAndTitle } });
 };
 
