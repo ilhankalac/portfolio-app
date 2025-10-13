@@ -139,12 +139,12 @@ onMounted(() => {
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 .about-section-modern {
-  min-height: 80vh;
+  min-height: 65vh;
   background: linear-gradient(180deg, 
     rgb(var(--v-theme-primary)) 0%, 
     rgba(var(--v-theme-primary), 0.95) 100%
   );
-  padding: 3rem 2rem;
+  padding: 0.7rem;
   position: relative;
   
   &::before {
