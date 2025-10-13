@@ -1,129 +1,148 @@
 <template>
   <section class="about-section-modern" id="about">
-    <div class="section-container">
-      <!-- Header with animated title -->
-      <div class="section-header">
-        <div class="header-content">
-          <span class="section-label">Who am I</span>
-          <h2 class="section-title">About Me</h2>
-          <div class="title-accent"></div>
-        </div>
-      </div>
-
-      <!-- Main content grid -->
-      <div class="content-grid">
-        <!-- Profile Card -->
-        <div class="profile-card glass-card">
-          <div class="profile-image-wrapper">
-            <div class="image-glow"></div>
-            <v-avatar size="120" class="profile-avatar">
-              <v-img alt="Profile" src="@/assets/profile_photo.jpg" />
-            </v-avatar>
-          </div>
-          
-          <div class="profile-info">
-            <h3 class="profile-name">Ilhan Kalač</h3>
-            <p class="profile-role">Software Developer</p>
+    <v-container fluid>
+      <v-row class="d-flex justify-center">
+        <v-col :cols="colsNumber">
+          <!-- Header with animated title -->
+          <div class="section-header">
+            <div class="header-content">
+              <span class="section-label">Who am I</span>
+              <h2 class="section-title">About Me</h2>
+              <div class="title-accent"></div>
+            </div>
           </div>
 
-          <!-- Contact Info -->
-          <div class="contact-list">
-            <a href="https://www.google.com/mapsa/place/Podgorica" 
-               target="_blank" 
-               class="contact-item">
-              <v-icon size="20">mdi-map-marker</v-icon>
-              <span>Podgorica, Montenegro</span>
-            </a>
-            <a href="mailto:ilhandeveloper@gmail.com" class="contact-item">
-              <v-icon size="20">mdi-email</v-icon>
-              <span>ilhandeveloper@gmail.com</span>
-            </a>
-            <a href="tel:+38268186196" class="contact-item">
-              <v-icon size="20">mdi-phone</v-icon>
-              <span>+382 68 186 196</span>
-            </a>
-          </div>
-
-          <!-- Social Links -->
-          <div class="social-links">
-            <a href="https://github.com/ilhankalac" 
-               target="_blank" 
-               class="social-link">
-              <v-icon>mdi-github</v-icon>
-            </a>
-            <a href="https://www.linkedin.com/in/ilhankalac/" 
-               target="_blank" 
-               class="social-link">
-              <v-icon>mdi-linkedin</v-icon>
-            </a>
-            <a href="https://www.instagram.com/vizija/" 
-               target="_blank" 
-               class="social-link">
-              <v-icon>mdi-instagram</v-icon>
-            </a>
-          </div>
-
-          <!-- Divider -->
-          <div class="section-divider"></div>
-
-          <!-- Explore More Section -->
-          <div class="explore-section">
-            <h4 class="explore-title">Explore More</h4>
-            <div class="links-grid">
-              <div @click="router.push({ path: 'blogs/list' })" class="link-item">
-                <div class="link-icon">
-                  <v-icon size="20">mdi-post</v-icon>
-                </div>
-                <div class="link-content">
-                  <span class="link-title">Blog Posts</span>
-                  <span class="link-subtitle">My thoughts</span>
-                </div>
+          <!-- Main content grid -->
+          <div class="content-grid">
+            <!-- Profile Card -->
+            <div class="profile-card glass-card">
+              <div class="profile-image-wrapper">
+                <div class="image-glow"></div>
+                <v-avatar size="120" class="profile-avatar">
+                  <v-img alt="Profile" src="@/assets/profile_photo.jpg" />
+                </v-avatar>
               </div>
-              <div @click="router.push({ path: 'favorite-quotes' })" class="link-item">
-                <div class="link-icon">
-                  <v-icon size="20">mdi-format-quote-close</v-icon>
-                </div>
-                <div class="link-content">
-                  <span class="link-title">Quotes</span>
-                  <span class="link-subtitle">Inspiration</span>
-                </div>
+              
+              <div class="profile-info">
+                <h3 class="profile-name">Ilhan Kalač</h3>
+                <p class="profile-role">Software Developer</p>
               </div>
-              <div @click="router.push({ path: 'list-of-seen-films' })" class="link-item">
-                <div class="link-icon">
-                  <v-icon size="20">mdi-filmstrip</v-icon>
-                </div>
-                <div class="link-content">
-                  <span class="link-title">Films</span>
-                  <span class="link-subtitle">My collection</span>
+
+              <!-- Contact Info -->
+              <div class="contact-list">
+                <a href="https://www.google.com/mapsa/place/Podgorica" 
+                   target="_blank" 
+                   class="contact-item">
+                  <v-icon size="20">mdi-map-marker</v-icon>
+                  <span>Podgorica, Montenegro</span>
+                </a>
+                <a href="mailto:ilhandeveloper@gmail.com" class="contact-item">
+                  <v-icon size="20">mdi-email</v-icon>
+                  <span>ilhandeveloper@gmail.com</span>
+                </a>
+                <a href="tel:+38268186196" class="contact-item">
+                  <v-icon size="20">mdi-phone</v-icon>
+                  <span>+382 68 186 196</span>
+                </a>
+              </div>
+
+              <!-- Social Links -->
+              <div class="social-links">
+                <a href="https://github.com/ilhankalac" 
+                   target="_blank" 
+                   class="social-link">
+                  <v-icon>mdi-github</v-icon>
+                </a>
+                <a href="https://www.linkedin.com/in/ilhankalac/" 
+                   target="_blank" 
+                   class="social-link">
+                  <v-icon>mdi-linkedin</v-icon>
+                </a>
+                <a href="https://www.instagram.com/vizija/" 
+                   target="_blank" 
+                   class="social-link">
+                  <v-icon>mdi-instagram</v-icon>
+                </a>
+              </div>
+
+              <!-- Divider -->
+              <div class="section-divider"></div>
+
+              <!-- Explore More Section -->
+              <div class="explore-section">
+                <h4 class="explore-title">Explore More</h4>
+                <div class="links-grid">
+                  <div @click="router.push({ path: 'blogs/list' })" class="link-item">
+                    <div class="link-icon">
+                      <v-icon size="20">mdi-post</v-icon>
+                    </div>
+                    <div class="link-content">
+                      <span class="link-title">Blog Posts</span>
+                      <span class="link-subtitle">My thoughts</span>
+                    </div>
+                  </div>
+                  <div @click="router.push({ path: 'favorite-quotes' })" class="link-item">
+                    <div class="link-icon">
+                      <v-icon size="20">mdi-format-quote-close</v-icon>
+                    </div>
+                    <div class="link-content">
+                      <span class="link-title">Quotes</span>
+                      <span class="link-subtitle">Inspiration</span>
+                    </div>
+                  </div>
+                  <div @click="router.push({ path: 'list-of-seen-films' })" class="link-item">
+                    <div class="link-icon">
+                      <v-icon size="20">mdi-filmstrip</v-icon>
+                    </div>
+                    <div class="link-content">
+                      <span class="link-title">Films</span>
+                      <span class="link-subtitle">My collection</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Description Card -->
-        <div class="description-card glass-card">
-          <div v-if="aboutDescription" v-html="aboutDescription" class="description-content" />
-          <div v-else class="loading-state">
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line short"></div>
+            <!-- Description Card -->
+            <div class="description-card glass-card">
+              <div v-if="aboutDescription" v-html="aboutDescription" class="description-content" />
+              <div v-else class="loading-state">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from 'vue'
+import { computed, onMounted, Ref, ref } from 'vue'
+import { useDisplay } from 'vuetify'
 import { usePageLoad } from '@/core/composables'
 import { getVal } from '@/core/services/firebase.service'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const { name } = useDisplay()
 const aboutDescription: Ref<string> = ref('')
 const { markSectionLoaded } = usePageLoad()
+
+// Use the same column logic as SectionWrapper
+const colsNumber = computed(() => {
+  switch (name.value) {
+    case 'xs': return 12
+    case 'sm': return 12
+    case 'md': return 8
+    case 'lg': return 7
+    case 'xl': return 7
+    case 'xxl': return 7
+  }
+  return 12
+})
 
 onMounted(() => {
   getVal('about').then((val) => {
@@ -144,7 +163,6 @@ onMounted(() => {
     rgb(var(--v-theme-primary)) 0%, 
     rgba(var(--v-theme-primary), 0.95) 100%
   );
-  padding: 0.7rem;
   position: relative;
   
   &::before {
@@ -159,13 +177,6 @@ onMounted(() => {
       radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
     pointer-events: none;
   }
-}
-
-.section-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
 /* Header Styling */
