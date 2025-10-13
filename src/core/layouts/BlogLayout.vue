@@ -3,7 +3,6 @@
     <v-main class="bg-white">
       <NavBar :origin="'configure'" />
       <v-container class="ma-0 pa-0" style="max-width: none;">
-        <div style="height: 6vh;" />
         <v-row>
           <img src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg" alt="" style="width: 100%; height: 200px; object-fit: cover;" />
         </v-row>
