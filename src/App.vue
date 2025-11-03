@@ -18,7 +18,6 @@ body {
   }
 }
 
-/* Force list styles globally */
 ul, ol {
   list-style: revert !important;
 }
