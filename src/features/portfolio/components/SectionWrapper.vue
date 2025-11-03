@@ -4,7 +4,7 @@
       :style="customStyle"
       fluid
     >
-      <div class="pb-5 pt-10 text-center">
+      <div class="pb-5 pt-20 text-center">
         <p
           :class="`text-center text-overline mb-1 text-white`"
           :style="smAndDown ? 'font-size: 20px !important' : 'font-size: 30px !important'"
@@ -58,5 +58,10 @@ const colsNumber = computed(() => {
 }
 .timeline-item:hover {
   background-color: rgba(180, 180, 180, 0.1) !important;
+}
+
+section {
+  position: relative;
+  z-index: 10;
 }
 </style>
