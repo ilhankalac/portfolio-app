@@ -1,78 +1,69 @@
 <template>
-  <v-card 
-    color="primary"
-    flat
-  >
-    <div class="font-weight-light mt-5 mb-2 text-white text-center">
-      Projects I worked on in {{ props.selectedItem.title }}
+  <div class="projects-section">
+    <div class="projects-header">
+      <span class="projects-title">Projects</span>
+      <span class="projects-count">{{ props.selectedItem.projects?.length || 0 }}</span>
     </div>
-    <v-timeline 
-      align="start"
-      line-color="secondary"
-      line-thickness="1"
-    >
-      <v-timeline-item
-        v-for="experience in props.selectedItem.projects"
-        size="15px"
-        dot-color="white"
-        :key="experience.time"
-        :fill-dot="true"
-        :hide-dot="smAndDown"
+
+    <div class="projects-list">
+      <div
+        v-for="project in props.selectedItem.projects"
+        :key="project.time"
+        class="project-item"
       >
-          <div class="font-weight-normal d-flex justify-space-between mb-1 pt-2">
-            <div 
-              class="d-flex flex-column"
-            >
-              <strong>{{ experience.name }}</strong>
-              <span 
-                class="font-weight-light  text-greyText"
-                style="font-size: 14px !important; margin-top:2px;" 
-              > 
-                {{ experience.startDate }} - {{ experience.endDate }}
-              </span>
-            </div>
-            
-            <div 
-              class="d-flex"
-            >
-              <v-btn
-                v-if="experience.code_link"
-                flat
-                variant="text"
-                @click="openLink(experience.code_link)"
-              >
-                Code
-                <v-icon>mdi-code-tags</v-icon>
-              </v-btn>
-              <div class="d-flex">
-                <v-btn 
-                  v-if="experience.project_link"
-                  variant="text"
-                  @click="openLink(experience.project_link)"
-                > 
-                  Live
-                  <v-icon class="mr-1">mdi-open-in-new</v-icon> 
-                </v-btn>
-              </div>
-            </div>
+        <div class="project-header">
+          <div class="project-main">
+            <h4 class="project-name">{{ project.name }}</h4>
+            <span class="project-period">
+              {{ project.startDate }} - {{ project.endDate }}
+            </span>
           </div>
-          <div 
-            v-html="addLeftMarginToHtml(experience.description)" 
-            class="font-weight-light text-greyText mb-2"
-            style="font-size: 14px !important; margin-top:2px;"
-          />
-          <div class="text-white">
-            <template v-for="tech in experience.technologies" :key="tech.id" class="">
-              <v-chip label  link size="small" class="my-1 mr-1 text-greyText">
-                <v-icon start :icon="`mdi-${tech.icon}`"></v-icon>
-                {{ tech.name }}
-              </v-chip>
-            </template>
-          </div> <br v-if="props.selectedItem.projects.length > 1">
-      </v-timeline-item>
-    </v-timeline>
-    <v-divider v-if="smAndDown"/>
-  </v-card><br>
+
+          <div class="project-links">
+            <v-btn
+              v-if="project.code_link"
+              size="small"
+              variant="text"
+              class="link-btn"
+              @click.stop="openLink(project.code_link)"
+            >
+              <v-icon size="18">mdi-code-tags</v-icon>
+              Code
+            </v-btn>
+            <v-btn
+              v-if="project.project_link"
+              size="small"
+              variant="text"
+              class="link-btn"
+              @click.stop="openLink(project.project_link)"
+            >
+              <v-icon size="18">mdi-open-in-new</v-icon>
+              Live
+            </v-btn>
+          </div>
+        </div>
+
+        <div
+          v-if="project.description"
+          v-html="addLeftMarginToHtml(project.description)"
+          class="project-description"
+        />
+
+        <div v-if="project.technologies?.length" class="project-technologies">
+          <v-chip
+            v-for="tech in project.technologies"
+            :key="tech.id"
+            size="small"
+            variant="outlined"
+            class="tech-chip"
+          >
+            <v-icon start size="16" :icon="`mdi-${tech.icon}`"></v-icon>
+            {{ tech.name }}
+          </v-chip>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -134,72 +125,169 @@ const addLeftMarginToHtml = (content: string) => {
 </script>
 
 <style lang="scss" scoped>
-/* width */
-::-webkit-scrollbar {
-  width: 5px;
+.projects-section {
+  margin-top: 8px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgb(var(--v-theme-primary));
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
+.projects-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-
-.card-header {
-  height: 50px;
-  background-color:  rgb(var(--v-theme-primary)); 
-  position: sticky; 
-  top: 0; 
-  z-index: 1000;
-}
-
-:deep(.v-timeline-item__opposite){
-  display: none;
-}
-
-:deep(.v-timeline--vertical.v-timeline){
-  row-gap: 0px;
-}
-
-:deep(.v-timeline-item) .v-timeline-item__body {
-  padding:0px 0px 0px 10px !important;
-
-  // Add margin left to v-timeline-teim
-  // margin-left: 5px !important;
-}
-
-
-
-
-// Add or remove line divider in timeline
-:deep(.v-timeline-divider ){
-  display: none;
-}
-
-@media screen and (max-width: 700px) {
-  :deep(.v-timeline-divider__after ){
-    display: none;
+  .projects-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
-  :deep(.v-timeline-divider__before ){
-    display: none;
+  .projects-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+  }
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-item {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.project-main {
+  flex: 1;
+  min-width: 200px;
+}
+
+.project-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.project-period {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  display: block;
+}
+
+.project-links {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+
+  .link-btn {
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: none;
+    letter-spacing: 0;
+    padding: 0 12px;
+
+    &:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    :deep(.v-icon) {
+      margin-right: 4px;
+    }
+  }
+}
+
+.project-description {
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+
+  :deep(p) {
+    margin-bottom: 8px;
   }
 
-  :deep(.v-timeline--vertical.v-timeline){
-    row-gap: 0px;
+  :deep(ul), :deep(ol) {
+    margin: 8px 0;
+    padding-left: 20px;
   }
-  :deep(.v-timeline-item) .v-timeline-item__body {
-    padding:10px !important;
-    margin-left: 0px !important;
+
+  :deep(li) {
+    margin-bottom: 4px;
+  }
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+
+  .tech-chip {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    height: 28px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    :deep(.v-icon) {
+      opacity: 0.8;
+    }
+  }
+}
+
+// Mobile Responsive
+@media screen and (max-width: 699px) {
+  .project-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .project-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .project-name {
+    font-size: 0.95rem;
+  }
+
+  .project-period {
+    font-size: 0.75rem;
   }
 }
 </style>
