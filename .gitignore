@@ -2,8 +2,13 @@
 node_modules
 /dist
 
+# Nuxt build output
+.nuxt/
+.output/
+
 
 # local env files
+.env
 .env.local
 .env.*.local
 

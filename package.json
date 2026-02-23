@@ -1,17 +1,21 @@
 {
-  "name": "vuetify-project",
-  "version": "0.0.0",
+  "name": "portfolio-app",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
     "merge-films": "node scripts/merge-film-data.js"
   },
   "dependencies": {
-    "@mdi/font": "7.0.96",
+    "@iconify-json/mdi": "^1.2.0",
+    "@nuxt/ui": "^3.0.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@pinia/nuxt": "^0.5.0",
     "@tiptap/extension-code-block-lowlight": "^2.26.2",
     "@tiptap/extension-image": "^2.4.0",
     "@tiptap/extension-link": "^2.4.0",
@@ -24,33 +28,20 @@
     "@tiptap/suggestion": "^2.4.0",
     "@tiptap/vue-3": "^2.4.0",
     "@vueup/vue-quill": "^1.2.0",
-    "core-js": "^3.29.0",
     "firebase": "^10.7.2",
     "firebase-tools": "^13.5.1",
     "highlight.js": "^11.11.1",
     "lodash": "^4.17.21",
     "lowlight": "^3.3.0",
+    "nuxt": "^3.16.0",
     "pinia": "^2.0.0",
-    "roboto-fontface": "*",
-    "vue": "^3.5.22",
-    "vue-router": "^4.0.0",
-    "vuetify": "^3.6.8"
+    "sass-embedded": "^1.80.0"
   },
   "devDependencies": {
     "@babel/types": "^7.21.4",
     "@types/lodash": "^4.17.4",
     "@types/node": "^22.10.1",
     "@types/quill": "^2.0.14",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/eslint-config-typescript": "^11.0.0",
-    "eslint-plugin-vue": "^9.19.2",
-    "sass": "^1.60.0",
-    "typescript": "^5.6.3",
-    "unplugin-fonts": "^1.0.3",
-    "vite": "^5.4.11",
-    "vite-plugin-vuetify": "^2.0.4",
-    "vue-tsc": "^2.1.10"
+    "typescript": "^5.6.3"
   }
 }
