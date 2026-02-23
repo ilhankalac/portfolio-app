@@ -94,16 +94,7 @@
 </template>
 
 <script lang="ts" setup>
-import { aboutDescription as staticAbout } from '~/data/portfolio'
-
-const { getVal } = useFirebase()
-const aboutDescription = ref(staticAbout)
-
-onMounted(() => {
-  getVal('about').then((val: string | null) => {
-    if (val) aboutDescription.value = val
-  })
-})
+import { aboutDescription } from '~/data/portfolio'
 </script>
 
 <style scoped lang="scss">

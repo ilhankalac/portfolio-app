@@ -56,26 +56,13 @@
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import ExperienceCard from '~/components/portfolio/ExperienceCard.vue'
 import type { IExperience } from '~/types/models'
-import { experiences as staticExperiences } from '~/data/portfolio'
+import { experiences } from '~/data/portfolio'
 
-const { getVal } = useFirebase()
-const experiences = ref<IExperience[]>(staticExperiences)
 const expandedId = ref<number | null>(null)
 
 const toggleCard = (index: number) => {
   expandedId.value = expandedId.value === index ? null : index
 }
-
-onMounted(async () => {
-  const fetchedData = await getVal('working-experience')
-  if (fetchedData) {
-    const keys = Object.keys(fetchedData)
-    const firstKey = keys[0]
-    if (firstKey) {
-      experiences.value = ((fetchedData as any)[firstKey] as any[]).reverse()
-    }
-  }
-})
 </script>
 
 <style lang="scss" scoped>

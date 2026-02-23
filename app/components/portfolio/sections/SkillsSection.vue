@@ -20,14 +20,5 @@
 <script lang="ts" setup>
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import type { ISkill } from '~/types/models'
-import { skills as staticSkills } from '~/data/portfolio'
-
-const { getVal } = useFirebase()
-const skills = ref<ISkill[]>(staticSkills)
-
-onMounted(() => {
-  getVal('skills').then((val: ISkill[] | null) => {
-    if (val) skills.value = val
-  })
-})
+import { skills } from '~/data/portfolio'
 </script>

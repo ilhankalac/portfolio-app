@@ -1,4 +1,11 @@
 export default defineNuxtRouteMiddleware(async (to) => {
+  if (import.meta.server) {
+    return navigateTo({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  }
+
   const { $firebaseAuth, $onAuthStateChanged } = useNuxtApp()
 
   const getCurrentUser = (): Promise<any> => {

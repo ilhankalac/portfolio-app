@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  ssr: false,
+  ssr: true,
 
   modules: [
     '@nuxt/ui',

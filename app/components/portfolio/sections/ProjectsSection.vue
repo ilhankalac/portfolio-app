@@ -66,23 +66,14 @@
 <script lang="ts" setup>
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import type { IFreeProject } from '~/types/models'
-import { projects as staticProjects } from '~/data/portfolio'
+import { projects } from '~/data/portfolio'
 
-const { getVal } = useFirebase()
-const projects = ref<IFreeProject[]>(staticProjects)
 const isMobile = ref(false)
 
 const checkMobile = () => { isMobile.value = window.innerWidth < 600 }
 onMounted(() => {
   checkMobile()
   window.addEventListener('resize', checkMobile)
-  getVal('free-time-projects').then((val: any) => {
-    if (val) {
-      const result: IFreeProject[] = []
-      Object.keys(val).forEach((key) => { result.push({ ...val[key], key }) })
-      projects.value = result
-    }
-  })
 })
 onUnmounted(() => { window.removeEventListener('resize', checkMobile) })
 

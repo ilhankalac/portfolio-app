@@ -1,15 +1,16 @@
 import { ref as dbRef, set, onValue, push, remove, query, limitToFirst, get, orderByKey, startAfter } from 'firebase/database'
 
 export function useFirebase() {
-  const { $firebaseDatabase } = useNuxtApp()
+  const getDb = () => useNuxtApp().$firebaseDatabase
 
   const setVal = (path: string, data: any) => {
-    set(dbRef($firebaseDatabase, path), data)
+    set(dbRef(getDb(), path), data)
   }
 
   const getVal = (path: string, limit?: number, startAfterValue?: any): Promise<any> => {
     return new Promise((resolve, reject) => {
-      const nodePath = dbRef($firebaseDatabase, path)
+      const db = getDb()
+      const nodePath = dbRef(db, path)
       let firebaseQuery
 
       if (path === 'listOfSeenfilms') {
@@ -54,7 +55,8 @@ export function useFirebase() {
   }
 
   const getValLive = (path: string, callback: (data: any) => void) => {
-    const nodePath = dbRef($firebaseDatabase, path)
+    const db = getDb()
+    const nodePath = dbRef(db, path)
     const unsubscribe = onValue(nodePath, (snapshot) => {
       const data = snapshot.val()
       callback(data)
@@ -63,14 +65,16 @@ export function useFirebase() {
   }
 
   const pushVal = (path: string, data: any) => {
-    const dataListRef = dbRef($firebaseDatabase, path)
+    const db = getDb()
+    const dataListRef = dbRef(db, path)
     const newPostRef = push(dataListRef)
     set(newPostRef, { ...data })
   }
 
   const deleteVal = (path: string): Promise<void> => {
     return new Promise((resolve, reject) => {
-      const nodePath = dbRef($firebaseDatabase, path)
+      const db = getDb()
+      const nodePath = dbRef(db, path)
       remove(nodePath)
         .then(() => resolve())
         .catch((error) => reject(error))
@@ -79,7 +83,8 @@ export function useFirebase() {
 
   const getValWithSearchTerm = (path: string, searchTerm: string): Promise<any> => {
     return new Promise((resolve, reject) => {
-      const nodePath = dbRef($firebaseDatabase, path)
+      const db = getDb()
+      const nodePath = dbRef(db, path)
 
       get(nodePath).then((snapshot) => {
         if (snapshot.exists()) {

@@ -54,22 +54,7 @@
 <script lang="ts" setup>
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import type { IColleagueInfo } from '~/types/models'
-import { recommendations as staticRecommendations } from '~/data/portfolio'
-
-const { getVal } = useFirebase()
-const recommendations = ref<IColleagueInfo[]>(staticRecommendations)
-
-onMounted(() => {
-  getVal('recommendations').then((fetchedData: any) => {
-    if (fetchedData) {
-      const result: IColleagueInfo[] = []
-      Object.keys(fetchedData).forEach((key) => {
-        if (fetchedData[key].showPublic) result.push(fetchedData[key])
-      })
-      recommendations.value = result
-    }
-  })
-})
+import { recommendations } from '~/data/portfolio'
 
 const openLink = (link: string) => { window.open(link) }
 </script>
