@@ -1,24 +1,11 @@
 <template>
-  <section :id="sectionId" class="relative z-10">
-    <div :style="customStyle" class="w-full px-4 py-0">
-      <div v-if="header" class="pb-5 pt-20 text-center">
-        <p
-          class="text-center uppercase mb-1 tracking-wider"
-          :class="[
-            isMobile ? 'text-xl' : 'text-3xl',
-            textColor === 'white' ? 'text-white' : 'text-gray-800'
-          ]"
-        >
-          {{ header }}
-        </p>
-        <div
-          v-if="header"
-          class="mx-auto border-t opacity-50"
-          :class="textColor === 'white' ? 'border-white' : 'border-gray-300'"
-          style="width: 150px;"
-        />
+  <section :id="sectionId" class="section-wrap">
+    <div :style="customStyle" class="section-inner">
+      <div v-if="header" class="section-header">
+        <span v-if="label" class="section-label">{{ label }}</span>
+        <h2 class="section-title">{{ header }}</h2>
       </div>
-      <div class="max-w-4xl mx-auto pb-12">
+      <div class="section-body">
         <slot />
       </div>
     </div>
@@ -30,14 +17,56 @@ interface ISection {
   sectionId?: string
   customStyle?: string
   header?: string
+  label?: string
   textColor?: string
   colsNumber?: number
 }
 
 defineProps<ISection>()
-const isMobile = ref(false)
-
-const checkMobile = () => { isMobile.value = window.innerWidth < 600 }
-onMounted(() => { checkMobile(); window.addEventListener('resize', checkMobile) })
-onUnmounted(() => { window.removeEventListener('resize', checkMobile) })
 </script>
+
+<style scoped lang="scss">
+.section-wrap {
+  position: relative;
+  z-index: 10;
+}
+
+.section-inner {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.section-header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+  padding-bottom: 1.25rem;
+}
+
+.section-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #818cf8;
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.section-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+</style>

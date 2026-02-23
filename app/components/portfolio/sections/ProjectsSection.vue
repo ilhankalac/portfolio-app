@@ -1,6 +1,7 @@
 <template>
   <SectionWrapper
     sectionId="freetime-projects"
+    label="Side projects"
     header="Freetime Projects"
     :customStyle="`background: rgb(var(--color-primary-rgb));`"
     textColor="white"
@@ -8,14 +9,14 @@
     <div class="flex flex-col gap-10">
       <div v-for="(project, index) in projects" :key="index">
         <div
-          class="uppercase text-xs tracking-wider mb-1 text-white"
+          class="uppercase text-[0.7rem] tracking-wider mb-0.5 text-white/90"
           :class="[isMobile ? 'text-center' : (index % 2 === 1 ? 'text-right' : 'text-left')]"
         >
           <UIcon :name="project.icon?.startsWith('mdi-') ? `i-${project.icon}` : `i-mdi-${project.icon}`" class="mb-0.5" />
-          <span class="ml-2 font-semibold">{{ project.title }}</span>
+          <span class="ml-1.5 font-semibold">{{ project.title }}</span>
         </div>
         <div
-          class="font-light text-white/40 text-xs mb-3"
+          class="font-normal text-white/35 text-[0.7rem] mb-3"
           :class="[isMobile ? 'text-center' : (index % 2 === 1 ? 'text-right' : 'text-left')]"
         >
           Date of creation: {{ project.dateOfCreation }}
@@ -27,7 +28,7 @@
             isMobile ? 'flex-col' : (index % 2 === 1 ? 'flex-row-reverse' : 'flex-row')
           ]"
         >
-          <div class="flex-1 font-light text-white/60 text-sm leading-relaxed text-justify" v-html="project.description" />
+          <div class="flex-1 font-normal text-white/50 text-[0.8rem] leading-relaxed text-justify" v-html="project.description" />
           <div class="flex-1">
             <img :src="project.image" alt="Project Image" class="rounded-lg w-full h-auto shadow-lg" />
           </div>
@@ -41,7 +42,7 @@
         >
           <div class="flex flex-wrap gap-1.5">
             <template v-for="tech in project.technologies" :key="tech.id">
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 border border-white/15 rounded text-white/50 text-xs">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 border border-white/10 rounded text-white/40 text-[0.7rem]">
                 <UIcon :name="`i-mdi-${tech.icon}`" />
                 {{ tech.name }}
               </span>

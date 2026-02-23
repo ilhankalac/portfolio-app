@@ -1,14 +1,15 @@
 <template>
   <SectionWrapper
     class="skills-section"
-    header="My skills"
+    label="What I use"
+    header="My Skills"
     :customStyle="`background: rgb(var(--color-primary-rgb));`"
     sectionId="explore"
     textColor="white"
   >
     <div class="flex flex-wrap justify-center gap-2">
       <template v-for="skill in skills" :key="skill.name">
-        <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.05] border border-white/10 rounded-lg text-white/70 text-sm hover:bg-white/[0.08] hover:border-white/20 hover:text-white/90 transition-all duration-200 cursor-default">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.04] border border-white/[0.07] rounded-lg text-white/55 text-[0.8rem] hover:bg-white/[0.07] hover:border-white/15 hover:text-white/80 transition-all duration-200 cursor-default">
           <UIcon :name="`i-mdi-${skill.icon}`" class="text-lg" />
           {{ skill.name }}
         </span>

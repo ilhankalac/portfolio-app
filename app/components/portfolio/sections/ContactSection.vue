@@ -1,6 +1,7 @@
 <template>
   <SectionWrapper
     class="get-in-section"
+    label="Let's connect"
     header="Get in Touch"
     :customStyle="`background: rgb(var(--color-primary-rgb));`"
     textColor="white"

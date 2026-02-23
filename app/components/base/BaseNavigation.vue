@@ -1,79 +1,66 @@
 <template>
-  <nav class="navigation" :class="{ 'navigation--mobile-expanded': isMobileMenuOpen && isMobile }">
-    <div class="navigation__container">
-      <!-- Avatar & Name -->
-      <div class="navigation__brand">
-        <img
-          src="~/assets/images/ilhan_kalac_small.png"
-          alt="Ilhan Kalac"
-          class="w-10 h-10 rounded-full transition-transform duration-200 hover:scale-105"
-        />
-        <div class="navigation__name">
-          <span class="navigation__name-first">ILHAN </span><span class="navigation__name-last">KALAČ</span>
-        </div>
+  <nav class="nav" :class="{ scrolled, 'mobile-open': mobileOpen }">
+    <div class="nav-inner">
+      <!-- Brand -->
+      <div class="nav-brand" @click="navigateToSection('initial')">
+        <span class="brand-name">
+          <span class="brand-first">Ilhan</span>
+          <span class="brand-last">Kalač</span>
+        </span>
       </div>
 
-      <!-- Desktop Navigation Links -->
-      <div v-if="!isMobile" class="navigation__links-wrapper">
-        <div
-          v-for="item in navigationItems"
+      <!-- Desktop links -->
+      <div class="nav-links">
+        <button
+          v-for="item in navItems"
           :key="item.id"
-          class="navigation__link"
-          :class="{ 'navigation__link--active': isActiveSection(item.sectionId) }"
-          @click="navigateToSection(item.sectionId)"
+          class="nav-link"
+          :class="{ active: activeSection === item.id }"
+          @click="navigateToSection(item.id)"
         >
-          {{ item.name }}
-        </div>
+          {{ item.label }}
+        </button>
 
-        <!-- Explore Dropdown -->
         <UDropdownMenu :items="exploreMenuItems">
-          <div class="navigation__link navigation__link--dropdown">
+          <button class="nav-link">
             Explore
-            <UIcon name="i-mdi-chevron-down" class="ml-1 text-sm" />
-          </div>
+            <UIcon name="i-mdi-chevron-down" class="text-xs ml-0.5 opacity-60" />
+          </button>
         </UDropdownMenu>
       </div>
 
-      <!-- Mobile Menu Toggle -->
-      <UButton
-        v-if="isMobile"
-        :icon="isMobileMenuOpen ? 'i-mdi-close' : 'i-mdi-menu'"
-        variant="ghost"
-        color="neutral"
-        class="text-white opacity-90 hover:opacity-100"
-        @click="toggleMobileMenu"
-        aria-label="Toggle navigation menu"
-      />
+      <!-- Mobile toggle -->
+      <button class="nav-toggle" @click="mobileOpen = !mobileOpen" aria-label="Menu">
+        <span class="toggle-bar" :class="{ open: mobileOpen }"></span>
+      </button>
     </div>
 
-    <!-- Mobile Navigation Menu -->
-    <div
-      v-if="isMobile && isMobileMenuOpen"
-      class="navigation__mobile-menu"
-    >
-      <div
-        v-for="item in navigationItems"
-        :key="item.id"
-        class="navigation__mobile-link"
-        :class="{ 'navigation__mobile-link--active': isActiveSection(item.sectionId) }"
-        @click="navigateToSection(item.sectionId)"
-      >
-        <UIcon name="i-mdi-chevron-right" class="text-sm text-white/50" />
-        <span>{{ item.name }}</span>
-      </div>
+    <!-- Mobile menu -->
+    <Transition name="mobile-menu">
+      <div v-if="mobileOpen" class="nav-mobile">
+        <button
+          v-for="item in navItems"
+          :key="item.id"
+          class="mobile-link"
+          :class="{ active: activeSection === item.id }"
+          @click="navigateToSection(item.id)"
+        >
+          {{ item.label }}
+        </button>
 
-      <!-- Mobile Explore Section -->
-      <div class="navigation__mobile-divider">Explore</div>
-      <div
-        v-for="item in exploreItems"
-        :key="item.id"
-        class="navigation__mobile-link navigation__mobile-link--sub"
-        @click="navigateToRoute(item.route)"
-      >
-        <UIcon :name="item.icon" class="text-sm text-white/50" />
-        <span>{{ item.name }}</span>
+        <div class="mobile-divider"></div>
+
+        <button
+          v-for="item in exploreItems"
+          :key="item.route"
+          class="mobile-link mobile-link--sub"
+          @click="goTo(item.route)"
+        >
+          <UIcon :name="item.icon" class="text-sm opacity-50" />
+          {{ item.label }}
+        </button>
       </div>
-    </div>
+    </Transition>
   </nav>
 </template>
 
@@ -85,63 +72,39 @@ const props = defineProps<{
 const router = useRouter()
 const route = useRoute()
 
-const isMobileMenuOpen = ref(false)
+const mobileOpen = ref(false)
+const scrolled = ref(false)
 const activeSection = ref('initial')
-const isMobile = ref(false)
 
-const checkMobile = () => {
-  isMobile.value = window.innerWidth < 960
-}
-
-onMounted(() => {
-  checkMobile()
-  window.addEventListener('resize', checkMobile)
-  setupSectionObserver()
-  scrollToInitialSection()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', checkMobile)
-})
-
-const navigationItems = [
-  { id: '0', name: 'Home', sectionId: 'initial' },
-  { id: '1', name: 'About', sectionId: 'about' },
-  { id: '2', name: 'Experience', sectionId: 'experience' },
-  { id: '3', name: 'Projects', sectionId: 'freetime-projects' },
-  { id: '4', name: 'Skills', sectionId: 'explore' },
-  { id: '5', name: 'Recommendations', sectionId: 'recommendations' },
+const navItems = [
+  { id: 'initial', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'freetime-projects', label: 'Projects' },
+  { id: 'recommendations', label: 'Recommendations' },
 ]
 
 const exploreItems = [
-  { id: 'blogs', name: 'Blogs', route: '/blogs/list', icon: 'i-mdi-post' },
-  { id: 'films', name: 'Films', route: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
-  { id: 'quotes', name: 'Quotes', route: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
+  { label: 'Blogs', route: '/blogs/list', icon: 'i-mdi-post' },
+  { label: 'Films', route: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
+  { label: 'Quotes', route: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
 ]
 
 const exploreMenuItems = computed(() => [
   exploreItems.map(item => ({
-    label: item.name,
+    label: item.label,
     icon: item.icon,
-    click: () => navigateToRoute(item.route),
+    click: () => goTo(item.route),
   }))
 ])
 
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
-
-const isActiveSection = (sectionId: string) => {
-  return activeSection.value === sectionId
-}
-
-const navigateToRoute = (routePath: string) => {
-  isMobileMenuOpen.value = false
-  navigateTo(routePath)
+const goTo = (path: string) => {
+  mobileOpen.value = false
+  navigateTo(path)
 }
 
 const navigateToSection = async (sectionId: string) => {
-  isMobileMenuOpen.value = false
+  mobileOpen.value = false
 
   if (sectionId === 'initial') {
     router.replace({ path: '/', hash: '' })
@@ -153,195 +116,256 @@ const navigateToSection = async (sectionId: string) => {
     await navigateTo('/')
     await navigateTo({ hash: `#${sectionId}` })
     setTimeout(() => {
-      const element = document.getElementById(sectionId)
-      element?.scrollIntoView({ behavior: 'smooth' })
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
     }, 100)
     return
   }
 
-  const element = document.getElementById(sectionId)
-  if (element) {
+  const el = document.getElementById(sectionId)
+  if (el) {
     router.push({ hash: `#${sectionId}` })
-    element.scrollIntoView({ behavior: 'smooth' })
+    el.scrollIntoView({ behavior: 'smooth' })
   }
 }
 
-const setupSectionObserver = () => {
+onMounted(() => {
+  // Scroll detection
+  const onScroll = () => {
+    scrolled.value = window.scrollY > 20
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+
+  // Section observer
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const sectionId = entry.target.getAttribute('id')
-          if (sectionId && sectionId !== 'shadow-host-companion') {
-            const url = sectionId === 'initial' ? '/' : `/#${sectionId}`
-            window.history.pushState({}, '', url)
-            activeSection.value = sectionId
+          const id = entry.target.getAttribute('id')
+          if (id && id !== 'shadow-host-companion') {
+            activeSection.value = id
+            const url = id === 'initial' ? '/' : `/#${id}`
+            window.history.replaceState({}, '', url)
           }
         }
       })
     },
     { threshold: 0.25 }
   )
+  document.querySelectorAll('section').forEach((s) => observer.observe(s))
 
-  document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section)
-  })
-}
-
-const scrollToInitialSection = () => {
-  const sectionId = route.hash.slice(1)
-  if (sectionId) {
-    const element = document.getElementById(sectionId)
-    element?.scrollIntoView({ behavior: 'smooth' })
+  // Hash scroll
+  const hash = route.hash.slice(1)
+  if (hash) {
+    document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
   }
-}
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+    observer.disconnect()
+  })
+})
 </script>
 
 <style scoped lang="scss">
-.navigation {
+.nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1200;
-  background-color: rgb(var(--color-primary-rgb));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
 
-  &__container {
-    display: flex;
-    align-items: center;
-    padding: 16px 32px;
-    max-width: 1400px;
-    margin: 0 auto;
+  &.scrolled {
+    background: rgba(15, 23, 42, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.875rem 2rem;
+
+  @media (max-width: 640px) {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* Brand */
+.nav-brand {
+  cursor: pointer;
+}
+
+.brand-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-first {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.brand-last {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin-left: 0.2rem;
+}
+
+/* Desktop links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  &__brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    flex: 1;
-  }
-
-  &__name {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
-    letter-spacing: 2px;
+  &.active {
     color: rgba(255, 255, 255, 0.95);
-    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: 500;
   }
+}
 
-  &__name-first {
-    font-weight: 100;
-    letter-spacing: 0.4rem;
-    opacity: 0.8;
-    font-size: smaller;
-  }
+/* Mobile toggle - animated hamburger */
+.nav-toggle {
+  display: none;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 
-  &__name-last {
-    font-weight: 400;
-    letter-spacing: 0.4rem;
-    opacity: 0.9;
-    font-size: smaller;
-  }
-
-  &__links-wrapper {
+  @media (max-width: 960px) {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    justify-content: flex-end;
+  }
+}
+
+.toggle-bar {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
-  &__link {
-    color: rgba(255, 255, 255, 0.75);
-    cursor: pointer;
-    padding: 8px 16px;
-    text-transform: uppercase;
-    font-size: 0.813rem;
-    font-weight: 400;
-    letter-spacing: 0.8px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+  &::before { top: -6px; }
+  &::after { top: 6px; }
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 1);
-    }
+  &.open {
+    background: transparent;
+    &::before { top: 0; transform: rotate(45deg); }
+    &::after { top: 0; transform: rotate(-45deg); }
+  }
+}
 
-    &--active {
-      color: rgba(255, 255, 255, 1);
-      background-color: rgba(255, 255, 255, 0.12);
-      font-weight: 500;
-    }
+/* Mobile menu */
+.nav-mobile {
+  padding: 0.5rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 
-    &--dropdown {
-      display: flex;
-      align-items: center;
-    }
+  @media (min-width: 961px) {
+    display: none;
+  }
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  &__mobile-menu {
-    animation: slideDown 0.3s ease-out;
-    padding: 8px 24px 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  &.active {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.07);
+    font-weight: 500;
   }
 
-  &__mobile-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: rgba(255, 255, 255, 0.75);
-    cursor: pointer;
-    padding: 12px 16px;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.8px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 1);
-    }
-
-    &--active {
-      color: rgba(255, 255, 255, 1);
-      background-color: rgba(255, 255, 255, 0.1);
-      font-weight: 500;
-    }
-
-    &--sub {
-      padding-left: 32px;
-      opacity: 0.9;
-    }
-  }
-
-  &__mobile-divider {
-    color: rgba(255, 255, 255, 0.5);
+  &--sub {
+    padding-left: 1.25rem;
     font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 16px 16px 8px;
-    margin-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
-@keyframes slideDown {
-  from { opacity: 0; max-height: 0; }
-  to { opacity: 1; max-height: 500px; }
+.mobile-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 0.5rem 0.75rem;
 }
 
-@media (max-width: 960px) {
-  .navigation__container {
-    padding: 12px 20px;
-  }
+/* Mobile menu transition */
+.mobile-menu-enter-active {
+  animation: slideIn 0.25s ease-out;
+}
+
+.mobile-menu-leave-active {
+  animation: slideIn 0.2s ease-in reverse;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>

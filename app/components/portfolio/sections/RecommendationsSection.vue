@@ -2,6 +2,7 @@
   <SectionWrapper
     sectionId="recommendations"
     class="recommendations-section"
+    label="What others say"
     header="Recommendations"
     textColor="white"
     :customStyle="`background: rgb(var(--color-primary-rgb));`"
@@ -14,7 +15,7 @@
       >
         <div class="relative pl-6 border-l-2 border-white/20">
           <div class="absolute -left-[10px] top-0 text-3xl text-white/40 font-serif leading-none">&ldquo;</div>
-          <div class="text-white/80 font-light leading-relaxed text-sm recommendation-text" v-html="recommendation.textHtml" />
+          <div class="text-white/55 font-normal leading-relaxed text-[0.8rem] recommendation-text" v-html="recommendation.textHtml" />
         </div>
 
         <div class="flex justify-between items-center mt-4 pl-6">
@@ -25,8 +26,8 @@
               class="w-12 h-12 rounded-full object-cover bg-white/10 border border-white/20"
             />
             <div>
-              <div class="text-white font-medium text-sm">{{ recommendation.fullName }}</div>
-              <div class="text-white/50 text-xs">{{ recommendation.role }}</div>
+              <div class="text-white/90 font-semibold text-[0.8rem]">{{ recommendation.fullName }}</div>
+              <div class="text-white/40 text-[0.7rem]">{{ recommendation.role }}</div>
             </div>
           </div>
           <div class="flex gap-1">
@@ -44,7 +45,7 @@
       </div>
     </div>
 
-    <div class="text-white/40 font-light text-sm mt-8">
+    <div class="text-white/35 font-normal text-[0.75rem] mt-8">
       <p>Feel free to share your recommendation if you've collaborated with me by clicking <strong class="font-bold underline cursor-pointer hover:text-white/60 transition-colors" @click="navigateTo('/write-recommendation')">on this link</strong>.</p>
       <p class="mt-1">Note: It will be displayed here after the admin approves it.</p>
     </div>

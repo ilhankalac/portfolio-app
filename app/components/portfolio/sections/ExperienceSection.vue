@@ -1,6 +1,7 @@
 <template>
   <SectionWrapper
     class="experience-section"
+    label="What I've done"
     header="Experience"
     :customStyle="`min-height: auto; background: rgb(var(--color-primary-rgb))`"
     sectionId="experience"
@@ -22,12 +23,12 @@
             />
           </div>
           <div class="flex-1 min-w-0">
-            <div class="text-xl font-semibold text-white mb-1 leading-tight">{{ experience.title }}</div>
-            <div class="text-[0.95rem] text-white/70 mb-2">{{ experience.position }}</div>
-            <div class="flex items-center gap-4 text-sm text-white/50 flex-wrap">
+            <div class="text-[0.925rem] font-semibold text-white/90 mb-0.5 leading-tight">{{ experience.title }}</div>
+            <div class="text-[0.8rem] text-white/55 mb-1.5">{{ experience.position }}</div>
+            <div class="flex items-center gap-3 text-[0.75rem] text-white/40 flex-wrap">
               <span>{{ experience.date }}</span>
               <span class="flex items-center gap-1">
-                <UIcon name="i-mdi-map-marker" class="text-sm" />
+                <UIcon name="i-mdi-map-marker" class="text-xs" />
                 {{ experience.location }}
               </span>
             </div>
@@ -42,8 +43,8 @@
         </div>
 
         <Transition name="expand">
-          <div v-if="expandedId === index" class="mt-6 pt-6 border-t border-white/10 animate-[fadeIn_0.4s_ease]">
-            <div v-html="experience.description" class="text-white/70 leading-relaxed mb-6 text-[0.95rem]" />
+          <div v-if="expandedId === index" class="mt-5 pt-5 border-t border-white/10 animate-[fadeIn_0.4s_ease]">
+            <div v-html="experience.description" class="text-white/55 leading-relaxed mb-5 text-[0.8rem]" />
             <ExperienceCard :selected-item="experience" @close="expandedId = null" />
           </div>
         </Transition>
