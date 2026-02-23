@@ -147,7 +147,7 @@ watch(() => route.params.id, getBlog)
 }
 
 .blog-content p.image-caption {
-  background-color: rgb(var(--color-primary)) !important;
+  background-color: rgb(var(--color-primary-rgb)) !important;
   color: white !important;
   padding: 12px 16px !important;
   text-align: center !important;
@@ -170,7 +170,7 @@ watch(() => route.params.id, getBlog)
 .blog-content p a,
 .blog-content p a strong,
 .blog-content p strong a {
-  color: rgb(var(--color-primary)) !important;
+  color: rgb(var(--color-primary-rgb)) !important;
   text-decoration: none !important;
   border-bottom: none !important;
 }
@@ -324,7 +324,7 @@ watch(() => route.params.id, getBlog)
 .blog-content :deep(a:link),
 .blog-content :deep(a:visited),
 .blog-content :deep(a:active) {
-  color: rgb(var(--color-primary)) !important;
+  color: rgb(var(--color-primary-rgb)) !important;
   text-decoration: none !important;
   border-bottom: none !important;
   cursor: pointer;
@@ -337,14 +337,14 @@ watch(() => route.params.id, getBlog)
 
 .blog-content :deep(a strong),
 .blog-content :deep(strong a) {
-  color: rgb(var(--color-primary)) !important;
+  color: rgb(var(--color-primary-rgb)) !important;
   text-decoration: none !important;
 }
 
 .blog-content :deep(p a),
 .blog-content :deep(p a strong),
 .blog-content :deep(p strong a) {
-  color: rgb(var(--color-primary)) !important;
+  color: rgb(var(--color-primary-rgb)) !important;
   text-decoration: none !important;
   border-bottom: none !important;
 }

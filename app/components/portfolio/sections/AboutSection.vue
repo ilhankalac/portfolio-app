@@ -109,7 +109,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .about-section-modern {
   min-height: 65vh;
-  background: linear-gradient(180deg, rgb(var(--color-primary)) 0%, rgba(var(--color-primary), 0.95) 100%);
+  background: linear-gradient(180deg, rgb(var(--color-primary-rgb)) 0%, rgba(var(--color-primary-rgb), 0.95) 100%);
   position: relative;
 
   &::before {

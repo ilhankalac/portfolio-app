@@ -2,7 +2,7 @@
   <SectionWrapper
     class="experience-section"
     header="Experience"
-    :customStyle="`min-height: auto; background: rgb(var(--color-primary))`"
+    :customStyle="`min-height: auto; background: rgb(var(--color-primary-rgb))`"
     sectionId="experience"
   >
     <div class="flex flex-col gap-4 w-full">
@@ -80,7 +80,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .experience-section {
-  background: rgb(var(--color-primary));
+  background: rgb(var(--color-primary-rgb));
   color: white;
   padding-bottom: 60px;
 }

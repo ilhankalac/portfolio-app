@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--color-secondary));
+  background: rgb(var(--color-secondary-rgb));
 }
 
 ::-webkit-scrollbar-thumb {

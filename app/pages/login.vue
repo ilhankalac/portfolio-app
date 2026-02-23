@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white flex justify-center items-center min-h-screen" style="background-color: rgb(var(--color-primary));">
+  <div class="text-white flex justify-center items-center min-h-screen" style="background-color: rgb(var(--color-primary-rgb));">
     <div class="w-full max-w-md mx-2">
       <h2 class="mb-4 font-light text-2xl">Portfolio login</h2>
       <UInput

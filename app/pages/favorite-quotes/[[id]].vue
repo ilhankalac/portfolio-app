@@ -301,7 +301,7 @@ onBeforeUnmount(() => {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-primary));
+  background: rgb(var(--color-primary-rgb));
 }
 
 ::-webkit-scrollbar-thumb:hover {

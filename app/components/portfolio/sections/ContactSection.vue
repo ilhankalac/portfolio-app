@@ -2,7 +2,7 @@
   <SectionWrapper
     class="get-in-section"
     header="Get in Touch"
-    :customStyle="`background: rgb(var(--color-primary));`"
+    :customStyle="`background: rgb(var(--color-primary-rgb));`"
     textColor="white"
     sectionId="get-in-touch"
   >

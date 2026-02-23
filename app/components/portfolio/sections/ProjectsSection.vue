@@ -2,7 +2,7 @@
   <SectionWrapper
     sectionId="freetime-projects"
     header="Freetime Projects"
-    :customStyle="`background: rgb(var(--color-primary));`"
+    :customStyle="`background: rgb(var(--color-primary-rgb));`"
     textColor="white"
   >
     <div class="flex flex-col gap-10">

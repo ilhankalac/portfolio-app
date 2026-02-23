@@ -4,7 +4,7 @@
     class="recommendations-section"
     header="Recommendations"
     textColor="white"
-    :customStyle="`background: rgb(var(--color-primary));`"
+    :customStyle="`background: rgb(var(--color-primary-rgb));`"
   >
     <div class="flex flex-col gap-8">
       <div

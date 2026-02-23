@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: rgb(var(--color-primary)); min-height: 100vh;">
+  <div style="background-color: rgb(var(--color-primary-rgb)); min-height: 100vh;">
     <BaseNavigation origin="configure" />
     <div class="max-w-2xl mx-auto px-4 pt-20 pb-10">
       <RecommendationEditor

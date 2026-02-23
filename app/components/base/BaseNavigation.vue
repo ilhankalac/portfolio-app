@@ -204,7 +204,7 @@ const scrollToInitialSection = () => {
   left: 0;
   right: 0;
   z-index: 1200;
-  background-color: rgb(var(--color-primary));
+  background-color: rgb(var(--color-primary-rgb));
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
 

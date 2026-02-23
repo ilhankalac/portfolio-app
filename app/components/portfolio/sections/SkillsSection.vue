@@ -2,7 +2,7 @@
   <SectionWrapper
     class="skills-section"
     header="My skills"
-    :customStyle="`background: rgb(var(--color-primary));`"
+    :customStyle="`background: rgb(var(--color-primary-rgb));`"
     sectionId="explore"
     textColor="white"
   >

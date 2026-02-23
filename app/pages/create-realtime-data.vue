@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen p-4" style="background-color: rgb(var(--color-primary));">
+  <div class="min-h-screen p-4" style="background-color: rgb(var(--color-primary-rgb));">
     <CreateRealtimeData />
   </div>
 </template>
