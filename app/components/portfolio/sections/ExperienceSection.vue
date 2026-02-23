@@ -56,7 +56,10 @@
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import ExperienceCard from '~/components/portfolio/ExperienceCard.vue'
 import type { IExperience } from '~/types/models'
-import { experiences } from '~/data/portfolio'
+
+const props = defineProps<{
+  experiences: IExperience[]
+}>()
 
 const expandedId = ref<number | null>(null)
 

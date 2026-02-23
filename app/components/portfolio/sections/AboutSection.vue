@@ -79,7 +79,7 @@
             </div>
 
             <div class="description-card glass-card">
-              <div v-if="aboutDescription" v-html="aboutDescription" class="description-content" />
+              <div v-if="description" v-html="description" class="description-content" />
               <div v-else class="loading-state">
                 <div class="skeleton-line"></div>
                 <div class="skeleton-line"></div>
@@ -94,7 +94,9 @@
 </template>
 
 <script lang="ts" setup>
-import { aboutDescription } from '~/data/portfolio'
+defineProps<{
+  description: string | null
+}>()
 </script>
 
 <style scoped lang="scss">

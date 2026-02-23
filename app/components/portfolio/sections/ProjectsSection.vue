@@ -66,7 +66,10 @@
 <script lang="ts" setup>
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import type { IFreeProject } from '~/types/models'
-import { projects } from '~/data/portfolio'
+
+defineProps<{
+  projects: IFreeProject[]
+}>()
 
 const isMobile = ref(false)
 

@@ -20,5 +20,8 @@
 <script lang="ts" setup>
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import type { ISkill } from '~/types/models'
-import { skills } from '~/data/portfolio'
+
+defineProps<{
+  skills: ISkill[]
+}>()
 </script>

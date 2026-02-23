@@ -6,6 +6,10 @@ export default defineNuxtConfig({
 
   ssr: true,
 
+  experimental: {
+    inlineSSRStyles: true,
+  },
+
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt',

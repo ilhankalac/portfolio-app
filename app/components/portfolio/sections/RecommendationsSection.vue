@@ -54,7 +54,10 @@
 <script lang="ts" setup>
 import SectionWrapper from '~/components/portfolio/SectionWrapper.vue'
 import type { IColleagueInfo } from '~/types/models'
-import { recommendations } from '~/data/portfolio'
+
+defineProps<{
+  recommendations: IColleagueInfo[]
+}>()
 
 const openLink = (link: string) => { window.open(link) }
 </script>
