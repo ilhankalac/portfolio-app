@@ -7,31 +7,31 @@
     textColor="white"
     sectionId="get-in-touch"
   >
-    <div class="max-w-lg mx-auto my-8">
+    <div class="contact-form">
+      <p class="contact-desc">Have a question or want to work together? Drop me a message.</p>
       <UInput
         ref="emailInput"
         v-model="email"
         placeholder="Your Email"
         variant="outline"
-        size="lg"
-        class="mb-4"
+        size="md"
+        class="mb-3"
         :color="errorMessage ? 'error' : undefined"
       />
-      <p v-if="errorMessage" class="text-red-400 text-sm mb-2">{{ errorMessage }}</p>
+      <p v-if="errorMessage" class="text-red-400 text-[0.75rem] mb-2">{{ errorMessage }}</p>
 
       <UTextarea
         v-model="message"
         placeholder="Your Message"
         variant="outline"
-        size="lg"
-        :rows="5"
-        class="mb-4"
+        size="md"
+        :rows="4"
+        class="mb-3"
       />
 
       <UButton
-        class="mt-2 w-full"
         variant="outline"
-        size="lg"
+        size="md"
         color="neutral"
         @click="sendEmail"
       >
@@ -70,3 +70,19 @@ const sendEmail = () => {
   message.value = ''
 }
 </script>
+
+<style scoped lang="scss">
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+</style>
