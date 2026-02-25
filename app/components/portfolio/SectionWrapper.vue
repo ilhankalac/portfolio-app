@@ -33,14 +33,14 @@ defineProps<ISection>()
 
 .section-inner {
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .section-header {
-  max-width: 900px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding-top: 2.5rem;
-  padding-bottom: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
 .section-label {
@@ -65,7 +65,7 @@ defineProps<ISection>()
 }
 
 .section-body {
-  max-width: 900px;
+  max-width: 1080px;
   margin: 0 auto;
   padding-bottom: 2rem;
 }

@@ -3,7 +3,7 @@
     sectionId="about"
     label="Who am I"
     header="About Me"
-    :customStyle="`background: rgb(var(--color-primary-rgb)); padding: 0 2rem;`"
+    :customStyle="`background: rgb(var(--color-primary-rgb));`"
   >
     <div class="about-inner">
       <!-- Profile -->
@@ -139,7 +139,6 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .about-inner {
-  max-width: 900px;
   margin: 0 auto;
 }
 

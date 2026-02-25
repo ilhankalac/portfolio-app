@@ -112,6 +112,7 @@ const scrollToWork = () => {
   background: rgb(var(--color-primary-rgb));
   display: flex;
   align-items: center;
+  padding: 0 1.5rem;
 }
 
 /* Gradient mesh */
@@ -172,9 +173,9 @@ const scrollToWork = () => {
   justify-content: space-between;
   gap: 3rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 4rem 0;
 }
 
 /* Text side */
@@ -431,7 +432,7 @@ const scrollToWork = () => {
   .hero-content {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 3rem 1.25rem 4rem;
+    padding: 3rem 0 4rem;
     gap: 2rem;
   }
 
