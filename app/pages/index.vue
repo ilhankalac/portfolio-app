@@ -39,23 +39,27 @@ const pageTitle = computed(() => sectionTitles[activeSection.value] || 'Ilhan Ka
 useHead({ title: pageTitle })
 
 onMounted(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id')
-          if (id && id in sectionTitles) {
-            activeSection.value = id
-          }
-        }
-      })
-    },
-    { threshold: 0.3 }
-  )
+  const sections = Array.from(document.querySelectorAll('section[id]')).filter(
+    (s) => s.id in sectionTitles
+  ) as HTMLElement[]
 
-  document.querySelectorAll('section[id]').forEach((s) => observer.observe(s))
+  const updateTitle = () => {
+    const offset = 100
+    let currentId = 'initial'
 
-  onUnmounted(() => observer.disconnect())
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= offset) {
+        currentId = section.id
+      }
+    }
+
+    activeSection.value = currentId
+  }
+
+  window.addEventListener('scroll', updateTitle, { passive: true })
+  updateTitle()
+
+  onUnmounted(() => window.removeEventListener('scroll', updateTitle))
 })
 
 const [

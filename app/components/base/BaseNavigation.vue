@@ -129,29 +129,32 @@ const navigateToSection = async (sectionId: string) => {
 }
 
 onMounted(() => {
-  // Scroll detection
-  const onScroll = () => {
-    scrolled.value = window.scrollY > 20
-  }
-  window.addEventListener('scroll', onScroll, { passive: true })
+  const sections = Array.from(document.querySelectorAll('section[id]')).filter(
+    (s) => s.getAttribute('id') !== 'shadow-host-companion'
+  ) as HTMLElement[]
 
-  // Section observer
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id')
-          if (id && id !== 'shadow-host-companion') {
-            activeSection.value = id
-            const url = id === 'initial' ? '/' : `/#${id}`
-            window.history.replaceState({}, '', url)
-          }
-        }
-      })
-    },
-    { threshold: 0.25 }
-  )
-  document.querySelectorAll('section').forEach((s) => observer.observe(s))
+  const updateActiveSection = () => {
+    scrolled.value = window.scrollY > 20
+
+    const offset = 100
+    let currentId = 'initial'
+
+    for (const section of sections) {
+      const top = section.getBoundingClientRect().top
+      if (top <= offset) {
+        currentId = section.id
+      }
+    }
+
+    if (currentId !== activeSection.value) {
+      activeSection.value = currentId
+      const url = currentId === 'initial' ? '/' : `/#${currentId}`
+      window.history.replaceState({}, '', url)
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveSection, { passive: true })
+  updateActiveSection()
 
   // Hash scroll
   const hash = route.hash.slice(1)
@@ -160,8 +163,7 @@ onMounted(() => {
   }
 
   onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll)
-    observer.disconnect()
+    window.removeEventListener('scroll', updateActiveSection)
   })
 })
 </script>
