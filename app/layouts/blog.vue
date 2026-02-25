@@ -5,7 +5,7 @@
     <!-- Header Image -->
     <div class="w-full h-[200px]">
       <img
-        src="https://i.ibb.co/28dkxvJ/2023-05-24-07-36-IMG-9646.jpg"
+        src="/images/blog/header.webp"
         alt=""
         class="w-full h-full object-cover"
       />

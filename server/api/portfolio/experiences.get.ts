@@ -16,5 +16,5 @@ export default defineEventHandler(async () => {
       result.push(value)
     }
   }
-  return result
+  return result.map((exp) => ({ ...exp, logoSrc: mapImageUrl(exp.logoSrc) }))
 })

@@ -11,5 +11,10 @@ export default defineEventHandler(async () => {
     ? data.filter(Boolean)
     : Object.values(data)
 
-  return all.filter((rec) => rec && rec.showPublic !== false)
+  return all
+    .filter((rec) => rec && rec.showPublic !== false)
+    .map((rec) => {
+      const avatar = mapImageUrl(rec.avatarSrc) || mapAvatarByName(rec.fullName)
+      return { ...rec, avatarSrc: avatar || rec.avatarSrc }
+    })
 })

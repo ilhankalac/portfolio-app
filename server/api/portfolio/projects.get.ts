@@ -7,6 +7,6 @@ export default defineEventHandler(async () => {
   if (!data) return []
 
   // Data may be an array or an object with keys
-  if (Array.isArray(data)) return data.filter(Boolean)
-  return Object.values(data)
+  const all = Array.isArray(data) ? data.filter(Boolean) : Object.values(data) as any[]
+  return all.map((p) => ({ ...p, image: mapImageUrl(p.image) }))
 })

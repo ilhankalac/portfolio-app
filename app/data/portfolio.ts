@@ -9,7 +9,7 @@ export const experiences: IExperience[] = [
     date: 'Feb 2021 - Jan 2026',
     description: '<p>In 2021, I started as a frontend engineer at Codeus. I got the job by showing my ability to create apps with <strong>Vue</strong>, along with using <strong>Tailwind</strong> and <strong>Firebase</strong>. I quickly learned Vue in a couple of days, having previously worked with Angular.</p><p><br></p><p>\tThe wonderful <strong>environment</strong> and <strong>work</strong> <strong>ethic</strong> at Codeus are the main reasons I\'m still employed there. The most advantageous aspect of the experience within this company is its <strong>very clever and professional team development</strong>, which progresses with software development every day.</p>',
     location: 'Podgorica, Montenegro',
-    logoSrc: 'https://codeus.me/img/codeus_logo.png',
+    logoSrc: '/images/logos/codeus_logo.svg',
     position: 'Frontend Engineer',
     title: 'Codeus',
     projects: [
@@ -61,7 +61,7 @@ export const experiences: IExperience[] = [
     date: 'Apr 2018 - Oct 2018',
     description: '<p>At Galis, I was recommended by a colleague at Comtrade, and I\'ve been working with them remotely. Nebojsa, the CEO of the company, has been a pleasure to work with. The company\'s focus on musical schools has allowed me to contribute to projects involving software for renting musical instruments and notes, tailored specifically to the needs of this industry in Serbia.</p>',
     location: 'Belgrade, Serbia',
-    logoSrc: 'https://galilej.com/wp-content/uploads/2022/08/galilei-en-300x87-1-200x58.png',
+    logoSrc: '/images/logos/galilei_logo.webp',
     position: 'Frontend Engineer',
     title: 'Galilei',
     projects: [
@@ -89,7 +89,7 @@ export const experiences: IExperience[] = [
     date: 'Oct 2019 - Feb 2021',
     description: '<p>At Comtrade, I had the opportunity to join a project after my team won a week-long challenge created by Comtrade company. Our goal was to learn ASP.NET Core and create an application showcasing different aspects of various companies, including authentication features. This experience demonstrated our ability to quickly grasp new concepts and work together effectively to achieve project success.</p>',
     location: 'Belgrade, Serbia',
-    logoSrc: 'https://itkonekt.com/media/2022/09/Comtrade_transparent.png',
+    logoSrc: '/images/logos/comtrade_logo.webp',
     position: 'Backend Engineer',
     title: 'Comtrade',
     projects: [
@@ -134,7 +134,7 @@ export const projects: IFreeProject[] = [
     dateOfCreation: 'January 2021.',
     description: '<p> I made a straightforward app with Angular and Firebase that shows COVID-19 stats for my hometown. It was a quick and easy way to stay updated on the pandemic situation locally during the Covid-19 pandemic. To complement this, I developed a web scraper using the Puppeteer library to fetch data from ijzcg.me since it doesn\'t have an API for this purpose. </p>',
     icon: 'mdi-virus',
-    image: 'https://i.ibb.co/dsTPST3/Screenshot-from-2024-03-01-21-31-07.png',
+    image: '/images/projects/covid19_tracker.webp',
     live_demo: 'https://covid-19-rozaje.web.app/',
     source_code: 'https://github.com/ilhankalac/covid-19-rozaje',
     technologies: [
@@ -150,7 +150,7 @@ export const projects: IFreeProject[] = [
     dateOfCreation: 'August 2021.',
     description: '<p> I\'ve collaborated with local ecological volunteers to develop an app where they can upload trash data and display it on a map for users to see online. </p><br><p> I developed the frontend of the app using Vue 3, taking advantage of its reactivity and component-based structure. </p><br><p>Firebase powers the backend of the app, providing features such as Firestore for database storage and Authentication for user management. </p><p>The interactive maps in the app are created using Leaflet, a lightweight JavaScript library known for its ease of use and extensive plugin support.</p>',
     icon: 'mdi-trash-can',
-    image: 'https://i.ibb.co/tZzdHZf/Screenshot-from-2024-03-02-18-59-29.png',
+    image: '/images/projects/trash_points.webp',
     live_demo: 'https://prod-rozaje-trash-points.web.app/',
     source_code: 'https://github.com/ilhankalac/rozaje-trash-points',
     technologies: [
@@ -165,7 +165,7 @@ export const projects: IFreeProject[] = [
     dateOfCreation: 'January 2024.',
     description: '<p>I\'ve built my personal portfolio with Vue 3 and Vuetify, aiming to show my technical skills and capabilities through the application itself. Utilizing the Vuetify library, I\'ve ensured a responsive and accessible design that highlights my expertise in web development. </p><p></p><p>Within my portfolio, I\'ve integrated my personal achievements, such as a blog featuring my favorite quotes and reflections on films I\'ve watched. </p><p></p><p>My intention is to progressively integrate all my life achievements into this app, creating a dynamic archive of my journey. </p><p></p><p>The portfolio is hosted on Firebase, providing a secure and reliable environment for my personal projects. </p>',
     icon: 'mdi-code-tags',
-    image: 'https://i.ibb.co/K05P98m/Screenshot-from-2024-03-03-14-59-39.png',
+    image: '/images/projects/personal_portfolio.webp',
     live_demo: 'https://ilhankalac.com/',
     source_code: '',
     technologies: [
@@ -182,7 +182,7 @@ export const recommendations: IColleagueInfo[] = [
     id: 1,
     fullName: 'Andreja Bićanin',
     role: 'Frontend Engineer',
-    avatarSrc: 'https://avatars.githubusercontent.com/u/41993408?v=4',
+    avatarSrc: '/images/avatars/andreja_bicanin.webp',
     githubLink: 'https://github.com/Andreja98',
     linkedinLink: 'https://www.linkedin.com/in/andreja-bi%C4%87anin-8a387b196/',
     showPublic: true,
@@ -191,7 +191,7 @@ export const recommendations: IColleagueInfo[] = [
   {
     fullName: 'Omar Đečević',
     role: 'Backend Developer',
-    avatarSrc: 'https://avatars.githubusercontent.com/u/74052766?v=4',
+    avatarSrc: '/images/avatars/omar_decevic.webp',
     githubLink: 'https://github.com/drahil',
     linkedinLink: 'https://www.linkedin.com/in/omar-%C4%91e%C4%8Devi%C4%87-6a72881ab/',
     showPublic: true,
@@ -200,7 +200,7 @@ export const recommendations: IColleagueInfo[] = [
   {
     fullName: 'Igor Marjanović',
     role: 'Game Developer',
-    avatarSrc: 'https://avatars.githubusercontent.com/u/37368378?v=4',
+    avatarSrc: '/images/avatars/igor_marjanovic.webp',
     githubLink: 'https://github.com/Yogimanz',
     linkedinLink: 'https://www.linkedin.com/in/igorsmarjanovic/',
     showPublic: true,
@@ -210,7 +210,7 @@ export const recommendations: IColleagueInfo[] = [
     id: 3,
     fullName: 'Jovan Vasiljević',
     role: 'Film Director',
-    avatarSrc: 'https://i.ibb.co/0sQG5PC/Capture.png',
+    avatarSrc: '/images/avatars/jovan_vasiljevic.webp',
     instagramLink: 'https://www.instagram.com/cinematologist_',
     showPublic: true,
     textHtml: '<blockquote> I met Ilhan at the beginning of our collaboration on social media. Throughout our partnership, Ilhan has proven to be diligent and responsible, and the mere fact that I met him in the world of social media, and not computer science, speaks to his curiosity and versatile spirit. </blockquote>',
@@ -218,7 +218,7 @@ export const recommendations: IColleagueInfo[] = [
   {
     fullName: 'Dimitrije Gerenčić',
     role: 'Frontend Developer',
-    avatarSrc: 'https://i.ibb.co/RpsDQ9vB/image.png',
+    avatarSrc: '/images/avatars/dimitrije_gerencic.webp',
     githubLink: 'https://github.com/dimitrijegerencic',
     instagramLink: 'https://www.instagram.com/dimitrijegerencic/',
     linkedinLink: 'https://www.linkedin.com/in/dimitrije-geren%C4%8Di%C4%87-0510b023a/',
@@ -228,7 +228,7 @@ export const recommendations: IColleagueInfo[] = [
   {
     fullName: 'Nikolina Šikmanović',
     role: 'Software Developer',
-    avatarSrc: 'https://media.licdn.com/dms/image/v2/D4D03AQEf5Bgo2yadFg/profile-displayphoto-shrink_400_400/B4DZQEuplcGgAk-/0/1735246127273?e=1766016000&v=beta&t=j3IBwQ9qQBhjn9Jyqv4_36mwriwtOfcvOprgkSfktIg',
+    avatarSrc: '/images/avatars/nikolina.webp',
     githubLink: 'https://github.com/NinaSikmanovic',
     linkedinLink: 'https://www.linkedin.com/in/nikolina-sikmanovic-b8789a261/',
     showPublic: true,
@@ -237,13 +237,14 @@ export const recommendations: IColleagueInfo[] = [
   {
     fullName: 'Anđela Miljanić',
     role: 'Backend Engineer',
+    avatarSrc: '/images/avatars/andjela.webp',
     showPublic: true,
     textHtml: '<p>Ilhan brings an energy to the team that\'s impossible to overlook - lively, engaging, expressive and occasionally armed with a literary quote that appears out of nowhere. Collaborating with him is this rare blend of shared humor, book references and steady, thoughtful frontend work. He\'s the kind of teammate who makes the work better simply by being part of it.</p>',
   },
   {
     fullName: 'Stefan Mikić',
     role: 'Senior Software Engineer',
-    avatarSrc: 'https://media.licdn.com/dms/image/v2/D4D03AQGus7MZ6Khfhg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1687617346104?e=1766620800&v=beta&t=jz5ikTW-QkEwqIPGA-wPD2WWX2zZtvw5siwEceiG4xo',
+    avatarSrc: '/images/avatars/stefan.webp',
     linkedinLink: 'www.linkedin.com/in/mikicstefan',
     showPublic: true,
     textHtml: '<p>We worked together at <strong>Codeus</strong> and during that time he proved to be a reliable, motivated, and genuinely passionate engineer. What I appreciated most was his desire to really understand how things work, not just on the surface, but in depth. He\'s the kind of teammate who brings positive energy, cares about the quality of his work and I truly enjoyed working with him.</p>',
