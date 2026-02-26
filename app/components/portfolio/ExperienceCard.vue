@@ -1,37 +1,38 @@
 <template>
-  <div class="projects-section mt-2">
-    <div class="flex items-center gap-3 mb-5">
-      <span class="text-[0.8rem] font-semibold text-white/90 uppercase tracking-wider">Projects</span>
-      <span class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-white/8 text-[0.65rem] font-semibold text-white/70">
-        {{ props.selectedItem.projects?.length || 0 }}
-      </span>
+  <div class="projects-wrap">
+    <div class="projects-label">
+      <UIcon name="i-mdi-folder-outline" class="projects-label-icon" />
+      <span>Projects</span>
+      <span class="projects-count">{{ props.selectedItem.projects?.length || 0 }}</span>
     </div>
 
-    <div class="flex flex-col gap-5">
+    <div class="projects-list">
       <div
-        v-for="project in props.selectedItem.projects"
-        :key="project.time"
-        class="p-4 bg-white/[0.03] border border-white/[0.08] rounded-xl transition-all duration-300 hover:bg-white/[0.05] hover:border-white/[0.12]"
+        v-for="(project, index) in props.selectedItem.projects"
+        :key="project.time || index"
+        class="project-item"
       >
-        <div class="flex justify-between items-start gap-4 mb-3 flex-wrap">
-          <div class="flex-1 min-w-[200px]">
-            <h4 class="text-[0.85rem] font-semibold text-white/90 mb-0.5 leading-tight">{{ project.name }}</h4>
-            <span class="text-[0.7rem] text-white/40 block">{{ project.startDate }} - {{ project.endDate }}</span>
+        <div class="project-top">
+          <div class="project-info">
+            <h4 class="project-name">{{ project.name }}</h4>
+            <span class="project-dates">{{ project.startDate }} - {{ project.endDate }}</span>
           </div>
-          <div class="flex gap-2 shrink-0">
+          <div class="project-actions">
             <button
               v-if="project.code_link"
-              class="flex items-center gap-1 text-white/50 text-[0.75rem] hover:text-white/85 hover:bg-white/6 px-2.5 py-1 rounded transition-colors"
+              class="project-btn"
               @click.stop="openLink(project.code_link)"
             >
-              <UIcon name="i-mdi-code-tags" class="text-sm" /> Code
+              <UIcon name="i-mdi-github" />
+              <span class="project-btn-label">Code</span>
             </button>
             <button
               v-if="project.project_link"
-              class="flex items-center gap-1 text-white/50 text-[0.75rem] hover:text-white/85 hover:bg-white/6 px-2.5 py-1 rounded transition-colors"
+              class="project-btn"
               @click.stop="openLink(project.project_link)"
             >
-              <UIcon name="i-mdi-open-in-new" class="text-sm" /> Live
+              <UIcon name="i-mdi-open-in-new" />
+              <span class="project-btn-label">Live</span>
             </button>
           </div>
         </div>
@@ -39,16 +40,16 @@
         <div
           v-if="project.description"
           v-html="addLeftMarginToHtml(project.description)"
-          class="text-white/50 leading-relaxed text-[0.8rem] mb-3 [&_p]:mb-1.5 [&_ul]:my-1.5 [&_ul]:pl-5 [&_ol]:my-1.5 [&_ol]:pl-5 [&_li]:mb-0.5"
+          class="project-desc"
         />
 
-        <div v-if="project.technologies?.length" class="flex flex-wrap gap-2 mt-3">
+        <div v-if="project.technologies?.length" class="project-techs">
           <span
             v-for="tech in project.technologies"
             :key="tech.id"
-            class="inline-flex items-center gap-1 px-2 py-0.5 border border-white/10 rounded text-white/50 text-[0.7rem] hover:bg-white/[0.04] hover:border-white/18 transition-colors"
+            class="tech-pill"
           >
-            <UIcon :name="`i-mdi-${tech.icon}`" class="text-xs opacity-70" />
+            <UIcon :name="`i-mdi-${tech.icon}`" class="tech-pill-icon" />
             {{ tech.name }}
           </span>
         </div>
@@ -63,11 +64,164 @@ interface IExperienceProps {
 }
 
 const props = defineProps<IExperienceProps>()
-const emit = defineEmits(['close'])
 
-const openLink = (link: string) => { window.open(link) }
+const openLink = (link: string) => { window.open(link, '_blank') }
 
 const addLeftMarginToHtml = (content: string) => {
   return content.replace(/ql-indent/g, 'ml-4 ql-indent')
 }
 </script>
+
+<style lang="scss" scoped>
+.projects-wrap {
+  margin-top: 0.25rem;
+}
+
+.projects-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.875rem;
+}
+
+.projects-label-icon {
+  font-size: 0.85rem;
+  color: #818cf8;
+}
+
+.projects-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9999px;
+  background: rgba(129, 140, 248, 0.15);
+  color: #818cf8;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.project-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.project-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-name {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 0.2rem;
+  line-height: 1.3;
+}
+
+.project-dates {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.project-btn-label {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.project-desc {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 0.75rem;
+
+  :deep(p) { margin: 0 0 0.4rem; }
+  :deep(ul), :deep(ol) { margin: 0.4rem 0; padding-left: 1.25rem; }
+  :deep(li) { margin-bottom: 0.25rem; }
+}
+
+.project-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(129, 140, 248, 0.25);
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
+.tech-pill-icon {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+</style>
