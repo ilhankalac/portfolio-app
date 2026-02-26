@@ -144,7 +144,7 @@
 </template>
 
 <script setup lang="ts">
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 import FilmStats from '~/components/common/FilmStats.vue'
 import type { IFilm, IFilmStatsData, IDirectorStats } from '~/types/models'
 

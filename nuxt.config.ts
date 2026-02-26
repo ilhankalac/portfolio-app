@@ -6,6 +6,10 @@ export default defineNuxtConfig({
 
   ssr: true,
 
+  nitro: {
+    preset: 'static',
+  },
+
   experimental: {
     inlineSSRStyles: true,
   },
