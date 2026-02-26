@@ -36,7 +36,23 @@ const sectionTitles: Record<string, string> = {
 const activeSection = ref('initial')
 const pageTitle = computed(() => sectionTitles[activeSection.value] || 'Ilhan Kalač')
 
-useHead({ title: pageTitle })
+useHead({
+  title: pageTitle,
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Ilhan Kalač',
+        url: 'https://ilhan.io',
+        jobTitle: 'Software Engineer',
+        description: 'Software Engineer specializing in web development.',
+        sameAs: [],
+      }),
+    },
+  ],
+})
 
 onMounted(() => {
   const sections = Array.from(document.querySelectorAll('section[id]')).filter(

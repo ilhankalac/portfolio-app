@@ -10,14 +10,36 @@ export default defineNuxtConfig({
     preset: 'static',
   },
 
-  experimental: {
-    inlineSSRStyles: true,
+  experimental: {},
+
+  app: {
+    head: {
+      htmlAttrs: { lang: 'en' },
+      meta: [
+        { name: 'description', content: 'Ilhan Kalač — Software Engineer specializing in web development. Explore my experience, projects, and skills.' },
+        { name: 'author', content: 'Ilhan Kalač' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://ilhan.io' },
+        { property: 'og:title', content: 'Ilhan Kalač — Software Engineer' },
+        { property: 'og:description', content: 'Software Engineer specializing in web development. Explore my experience, projects, and skills.' },
+        { property: 'og:image', content: 'https://ilhan.io/og-image.jpg' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Ilhan Kalač — Software Engineer' },
+        { name: 'twitter:description', content: 'Software Engineer specializing in web development. Explore my experience, projects, and skills.' },
+        { name: 'twitter:image', content: 'https://ilhan.io/og-image.jpg' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/profile.ico' },
+        { rel: 'canonical', href: 'https://ilhan.io' },
+      ],
+    },
   },
 
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/sitemap',
   ],
 
   css: [
@@ -46,6 +68,11 @@ export default defineNuxtConfig({
       firebaseMeasurementId: '',
       firebaseDatabaseUrl: '',
     }
+  },
+
+  sitemap: {
+    siteUrl: 'https://ilhan.io',
+    exclude: ['/admin-panel/**', '/create-realtime-data', '/login'],
   },
 
   compatibilityDate: '2025-01-01',

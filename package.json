@@ -15,6 +15,7 @@
     "@iconify-json/mdi": "^1.2.0",
     "@nuxt/ui": "^3.0.0",
     "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/sitemap": "^7.6.0",
     "@pinia/nuxt": "^0.5.0",
     "@tiptap/extension-code-block-lowlight": "^2.26.2",
     "@tiptap/extension-image": "^2.4.0",
