@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     preset: 'static',
     prerender: {
       crawlLinks: true,
-      routes: ['/blogs/list', '/favorite-quotes', '/list-of-seen-films'],
+      routes: ['/blogs', '/favorite-quotes', '/list-of-seen-films'],
     },
   },
 

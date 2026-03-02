@@ -81,7 +81,7 @@ const navigationLinks = [
 ]
 
 const otherInterestsLinks = [
-  { text: 'Blog', url: '/blogs/list' },
+  { text: 'Blog', url: '/blogs' },
   { text: 'Favorite Quotes', url: '/favorite-quotes' },
   { text: 'List of seen films', url: '/list-of-seen-films' },
   { text: 'Resume', url: 'ilhan-kalac-resume.pdf' },

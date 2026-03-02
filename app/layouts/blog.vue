@@ -55,7 +55,7 @@ import BaseNavigation from '~/components/base/BaseNavigation.vue'
 const router = useRouter()
 
 const tabConfig = [
-  { label: 'Blog', value: 'one', path: '/blogs/list', icon: 'i-mdi-post' },
+  { label: 'Blog', value: 'one', path: '/blogs', icon: 'i-mdi-post' },
   { label: 'Films', value: 'three', path: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
   { label: 'Quotes', value: 'two', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
 ]

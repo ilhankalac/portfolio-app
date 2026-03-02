@@ -24,7 +24,7 @@
       <a href="https://www.instagram.com/vizija/" target="_blank" class="flex items-center gap-3 text-sm hover:text-white transition-colors">
         <UIcon name="i-mdi-instagram" /> @vizija
       </a>
-      <div class="flex items-center gap-3 text-sm hover:text-white cursor-pointer transition-colors" @click="navigateTo('/blogs/list')">
+      <div class="flex items-center gap-3 text-sm hover:text-white cursor-pointer transition-colors" @click="navigateTo('/blogs')">
         <UIcon name="i-mdi-post" /> Blogs
       </div>
       <div class="flex items-center gap-3 text-sm hover:text-white cursor-pointer transition-colors" @click="navigateTo('/favorite-quotes')">

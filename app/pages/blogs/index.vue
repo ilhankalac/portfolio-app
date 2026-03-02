@@ -70,7 +70,7 @@ definePageMeta({ layout: 'blog' })
 
 useHead({
   title: 'Blog — Ilhan Kalač',
-  link: [{ rel: 'canonical', href: 'https://ilhan.io/blogs/list' }],
+  link: [{ rel: 'canonical', href: 'https://ilhan.io/blogs' }],
 })
 
 useSeoMeta({
@@ -79,7 +79,7 @@ useSeoMeta({
   ogTitle: 'Blog — Ilhan Kalač',
   ogDescription: 'Collection of thoughts and knowledge shared by Ilhan Kalač — Software Engineer.',
   ogImage: 'https://ilhan.io/og-image.jpg',
-  ogUrl: 'https://ilhan.io/blogs/list',
+  ogUrl: 'https://ilhan.io/blogs',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Blog — Ilhan Kalač',
   twitterDescription: 'Collection of thoughts and knowledge shared by Ilhan Kalač — Software Engineer.',

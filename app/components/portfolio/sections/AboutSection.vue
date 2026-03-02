@@ -57,7 +57,7 @@
 
       <!-- Explore -->
       <div class="explore-row">
-        <button class="explore-pill" @click="navigateTo('/blogs/list')">
+        <button class="explore-pill" @click="navigateTo('/blogs')">
           <UIcon name="i-mdi-post" />
           Blog Posts
         </button>

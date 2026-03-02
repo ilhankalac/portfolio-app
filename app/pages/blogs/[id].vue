@@ -12,7 +12,7 @@
     <!-- Post -->
     <div v-else-if="blog" class="post">
       <!-- Back button -->
-      <button class="back-btn" @click="navigateTo('/blogs/list')">
+      <button class="back-btn" @click="navigateTo('/blogs')">
         <UIcon name="i-mdi-arrow-left" class="back-icon" />
         Back to posts
       </button>

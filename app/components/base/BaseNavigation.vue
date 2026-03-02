@@ -85,7 +85,7 @@ const navItems = [
 ]
 
 const exploreItems = [
-  { label: 'Blogs', route: '/blogs/list', icon: 'i-mdi-post' },
+  { label: 'Blogs', route: '/blogs', icon: 'i-mdi-post' },
   { label: 'Films', route: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
   { label: 'Quotes', route: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
 ]
