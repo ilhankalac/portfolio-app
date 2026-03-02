@@ -1,46 +1,49 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen">
     <BaseNavigation origin="configure" />
 
-    <!-- Header Image -->
-    <div class="w-full h-[200px]">
+    <!-- Cover image -->
+    <div class="cover-wrap">
       <img
         src="/images/blog/header.webp"
         alt=""
-        class="w-full h-full object-cover"
+        class="cover-img"
       />
+      <div class="cover-overlay" />
     </div>
 
     <!-- Tabs -->
-    <div class="bg-gray-100">
-      <div class="max-w-3xl mx-auto">
+    <div class="tab-bar">
+      <div class="tab-bar-inner">
         <!-- Desktop Tabs -->
-        <div class="hidden md:flex">
-          <UTabs
-            :items="tabs"
-            :default-value="activeTab"
-            @update:model-value="onTabChange"
-          />
+        <div class="tab-pills">
+          <button
+            v-for="tab in tabConfig"
+            :key="tab.value"
+            class="tab-pill"
+            :class="{ active: activeTab === tab.value }"
+            @click="openRoute(tab.path)"
+          >
+            <UIcon :name="tab.icon" class="tab-pill-icon" />
+            {{ tab.label }}
+          </button>
         </div>
 
         <!-- Mobile Dropdown -->
-        <div class="md:hidden p-4">
+        <div class="tab-mobile">
           <UDropdownMenu :items="mobileMenuItems">
-            <UButton
-              variant="ghost"
-              class="text-black w-full justify-between"
-              trailing-icon="i-mdi-chevron-down"
-            >
-              <UIcon :name="activeTabIcon" class="text-black" />
+            <button class="tab-mobile-btn">
+              <UIcon :name="activeTabIcon" class="tab-mobile-icon" />
               {{ activeTabLabel }}
-            </UButton>
+              <UIcon name="i-mdi-chevron-down" class="tab-mobile-chevron" />
+            </button>
           </UDropdownMenu>
         </div>
       </div>
     </div>
 
     <!-- Content -->
-    <div class="max-w-3xl mx-auto px-4 py-6" style="min-height: 70vh;">
+    <div class="blog-layout-content">
       <slot />
     </div>
   </div>
@@ -54,10 +57,8 @@ const router = useRouter()
 const tabConfig = [
   { label: 'Blog', value: 'one', path: '/blogs/list', icon: 'i-mdi-post' },
   { label: 'Films', value: 'three', path: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
-  { label: 'Favorite Quotes', value: 'two', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
+  { label: 'Quotes', value: 'two', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
 ]
-
-const tabs = tabConfig.map(t => ({ label: t.label, value: t.value }))
 
 const activeTab = ref('one')
 
@@ -77,13 +78,6 @@ const openRoute = (path: string) => {
   navigateTo(path)
 }
 
-const onTabChange = (value: string | number) => {
-  const tab = tabConfig.find(t => t.value === value)
-  if (tab) {
-    navigateTo(tab.path)
-  }
-}
-
 onMounted(() => {
   const currentPath = router.currentRoute.value.path
   const matchedTab = tabConfig.find(t => currentPath.startsWith(t.path))
@@ -92,3 +86,138 @@ onMounted(() => {
   }
 })
 </script>
+
+<style scoped lang="scss">
+/* Cover image */
+.cover-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.4) 0%,
+    rgba(15, 23, 42, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.tab-bar {
+  position: sticky;
+  top: 56px;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tab-bar-inner {
+  max-width: 64rem; /* max-w-5xl */
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+}
+
+.tab-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+.tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &.active {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.tab-pill-icon {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+/* Mobile dropdown */
+.tab-mobile {
+  display: none;
+
+  @media (max-width: 640px) {
+    display: block;
+  }
+}
+
+.tab-mobile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.tab-mobile-icon {
+  font-size: 0.9rem;
+  color: #818cf8;
+}
+
+.tab-mobile-chevron {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-left: auto;
+}
+
+/* Content area */
+.blog-layout-content {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+  min-height: 70vh;
+}
+</style>

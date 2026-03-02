@@ -9,7 +9,7 @@
       <span>
         ― &nbsp;{{ selectedQuote?.author ? selectedQuote.author : 'Unknown author' }}
       </span>
-      <button class="ml-2 opacity-60 hover:opacity-100 transition-opacity" @click="createLink(selectedQuote)">
+      <button class="copy-btn" @click="createLink(selectedQuote)">
         <UIcon name="i-mdi-content-copy" class="text-sm" />
       </button>
     </div>
@@ -39,11 +39,21 @@ const createLink = (quote: IQuote = { key: '', author: '', text: '' }) => {
 </script>
 
 <style scoped>
+.otro-blockquote {
+  color: rgba(255, 255, 255, 0.75);
+  border-left: 4px solid #4f46e5;
+  line-height: 1.6;
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
 .otro-blockquote span {
   display: block;
   font-style: italic;
   font-weight: bold;
   margin-top: 1em;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .otro-blockquote::before {
@@ -53,13 +63,21 @@ const createLink = (quote: IQuote = { key: '', author: '', text: '' }) => {
   position: absolute;
   left: 10px;
   top: -10px;
+  color: #818cf8;
+  opacity: 0.4;
 }
 
-.otro-blockquote {
-  color: black;
-  border-left: 4px solid rgb(var(--color-grey-text));
-  line-height: 1.6;
-  position: relative;
-  background: white;
+.copy-btn {
+  opacity: 0.3;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  color: #818cf8;
 }
 </style>

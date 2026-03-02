@@ -1,31 +1,28 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <div class="font-light text-black opacity-70">
-        Collection of films I have seen since 2016.
-      </div>
-      <div>
-        <div class="flex flex-col">
-          <UButton
-            class="ml-auto"
-            color="primary"
-            icon="i-mdi-chart-bar"
-            size="sm"
-            variant="outline"
-            @click="openStatsDialog"
-          />
-          <span class="text-black text-center font-light text-xs">Stats</span>
-        </div>
+    <!-- Section header -->
+    <div class="list-header">
+      <span class="list-label">Cinema</span>
+      <h1 class="list-title">Films I've Watched</h1>
+      <div class="list-header-row">
+        <p class="list-subtitle">
+          Collection of films I have seen since 2016.
+        </p>
+        <button class="stats-btn" @click="openStatsDialog">
+          <UIcon name="i-mdi-chart-bar" class="stats-icon" />
+          Stats
+        </button>
       </div>
     </div>
 
-    <div class="flex gap-2 mt-2">
+    <!-- Search -->
+    <div class="search-wrap">
       <UInput
         v-model="searchTerm"
-        placeholder="Search criteria..."
+        placeholder="Search films..."
         size="lg"
         class="flex-1"
-        :ui="{ base: 'bg-gray-100' }"
+        :ui="{ base: 'bg-transparent text-white placeholder-white/30' }"
         @keyup.enter="debouncedGetFilmsBySearchTerm"
       >
         <template v-if="searchTerm" #trailing>
@@ -40,27 +37,37 @@
       </UInput>
     </div>
 
-    <div v-if="!isDataLoaded" class="flex flex-col gap-2 mt-4">
-      <USkeleton v-for="i in 5" :key="i" class="h-48 w-full rounded-xl" />
+    <!-- Loading skeleton -->
+    <div v-if="!isDataLoaded" class="film-grid mt-5">
+      <div v-for="i in 4" :key="i" class="skeleton-card">
+        <div class="skeleton-image" />
+        <div class="skeleton-body">
+          <div class="skeleton-line skeleton-line--title" />
+          <div class="skeleton-line skeleton-line--text" />
+          <div class="skeleton-line skeleton-line--short" />
+        </div>
+      </div>
     </div>
 
+    <!-- Content -->
     <div class="mt-4">
-      <div v-if="isSearchInvoked && films.length === 0" class="text-black text-left font-light">
+      <div v-if="isSearchInvoked && films.length === 0" class="search-info">
         There are no films with the title "{{ searchTerm }}".
       </div>
-      <div v-if="isSearchInvoked && films.length > 0" class="text-black text-left font-light mb-2">
-        There are <strong class="underline">{{ films.length }}</strong> films found by search {{ searchTerm }}.
+      <div v-if="isSearchInvoked && films.length > 0" class="search-info mb-3">
+        There are <strong>{{ films.length }}</strong> films found by search "{{ searchTerm }}".
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="film-grid">
         <div
           v-for="(film, key) in films"
           :key="key"
           class="film-card"
+          :style="{ '--delay': `${key * 80}ms` }"
         >
           <div
             class="film-header"
-            :style="`background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%), url(${film?.still_url});`"
+            :style="`background-image: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%), url(${film?.still_url});`"
           >
             <div class="film-overlay">
               <div class="flex justify-between items-center mb-2">
@@ -136,7 +143,7 @@
     </UModal>
 
     <div v-if="!isSearchInvoked" class="text-center mt-5">
-      <UIcon name="i-mdi-loading" class="animate-spin text-2xl" />
+      <UIcon name="i-mdi-loading" class="animate-spin text-2xl text-white/30" />
     </div>
     <div class="bottom-spacer" />
     <div ref="bottomElement" />
@@ -247,42 +254,116 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
-::-webkit-scrollbar {
-  width: 10px;
+<style scoped lang="scss">
+/* Section header */
+.list-header {
+  padding-bottom: 1.25rem;
 }
 
-::-webkit-scrollbar-track {
-  background: rgb(var(--color-secondary-rgb));
+.list-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #818cf8;
+  margin-bottom: 0.4rem;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-neutral));
+.list-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.list-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 
-/* Film Card Styles */
+.list-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stats-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.stats-icon {
+  font-size: 0.85rem;
+  color: #818cf8;
+}
+
+/* Search */
+.search-wrap {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-info {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Grid */
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Film Card */
 .film-card {
-  height: 100%;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
   overflow: hidden;
-  background: white;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  animation: cardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) both;
 
-.film-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.12),
-    0 8px 24px rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.1);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .film-header {
@@ -379,22 +460,21 @@ onBeforeUnmount(() => {
 
 /* Footer */
 .film-footer {
-  padding: 16px;
-  min-height: 120px;
-  max-height: 120px;
+  padding: 1rem 1.25rem;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .synopsis {
   margin: 0;
-  color: #374151;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
   text-align: justify;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -411,13 +491,61 @@ onBeforeUnmount(() => {
 .watched-date {
   display: flex;
   align-items: center;
-  color: #6b7280;
-  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
   font-weight: 400;
 }
 
-/* Utility Classes */
+/* Skeleton */
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.skeleton-image {
+  min-height: 200px;
+  background: rgba(255, 255, 255, 0.04);
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-body {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-line {
+  height: 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+
+  &--title { width: 70%; height: 0.85rem; }
+  &--text { width: 100%; }
+  &--short { width: 35%; }
+}
+
+/* Utility */
 .bottom-spacer {
   height: 100px;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

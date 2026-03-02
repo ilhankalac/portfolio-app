@@ -1,20 +1,23 @@
 <template>
   <div>
-    <div class="font-light text-black opacity-70">
-      I maintain a collection of my favorite quotes, arranged by the emotional
-      impact they evoke upon reflection.
-    </div>
-    <div class="font-light text-black mb-2 text-right">
-      Currently there are <strong>{{ tempQuotes.length }}</strong> quotes in the
-      collection.
+    <!-- Section header -->
+    <div class="list-header">
+      <span class="list-label">Collection</span>
+      <h1 class="list-title">Favorite Quotes</h1>
+      <p class="list-subtitle">
+        I maintain a collection of my favorite quotes, arranged by the emotional
+        impact they evoke upon reflection.
+        <span v-if="tempQuotes.length" class="quote-count">{{ tempQuotes.length }} quotes</span>
+      </p>
     </div>
 
+    <!-- Search -->
     <UInput
       v-model="search"
       placeholder="Search by reference, author or keyword"
       size="lg"
-      class="mt-4"
-      :ui="{ base: 'bg-gray-100' }"
+      class="w-full"
+      :ui="{ base: 'bg-transparent text-white placeholder-white/30' }"
       @keydown.enter="handleEnter"
     >
       <template v-if="search" #trailing>
@@ -28,14 +31,19 @@
       </template>
     </UInput>
 
+    <!-- Loading skeleton -->
     <div v-if="!isDataLoaded" class="flex flex-col gap-3 mt-4">
-      <USkeleton v-for="i in 5" :key="i" class="h-24 w-full" />
+      <div v-for="i in 5" :key="i" class="skeleton-quote">
+        <div class="skeleton-line skeleton-line--long" />
+        <div class="skeleton-line skeleton-line--medium" />
+        <div class="skeleton-line skeleton-line--short" />
+      </div>
     </div>
 
+    <!-- Quotes list -->
     <div
       ref="quotesContainer"
-      class="quotes-container mt-4 p-2 rounded-lg shadow-md bg-white"
-      style="max-height: 80vh; overflow-y: auto;"
+      class="quotes-container mt-4"
       @scroll="handleScroll"
     >
       <div
@@ -68,11 +76,11 @@
         </div>
       </div>
       <div v-if="isLoading" class="text-center py-4">
-        <UIcon name="i-mdi-loading" class="animate-spin text-2xl" />
+        <UIcon name="i-mdi-loading" class="animate-spin text-2xl text-white/30" />
       </div>
       <div
         v-if="visibleQuotes.length === quotes.length && quotes.length > 0"
-        class="text-center text-black py-2 opacity-60"
+        class="text-center py-3 end-text"
       >
         End of quotes
       </div>
@@ -141,7 +149,6 @@ const getData = () => {
       authors.value = extractAuthors(result)
       isDataLoaded.value = true
 
-      // Apply any search filters if there's an active search
       if (search.value) {
         searchQuotes(search.value)
       } else {
@@ -149,7 +156,6 @@ const getData = () => {
         loadInitialQuotes()
       }
 
-      // Show quote on dialog if the route has a key
       if (route.params.id) {
         const idParam = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
         if (!idParam) return
@@ -256,7 +262,6 @@ const deleteQuoteItem = (quote: IQuote = { key: '', author: '', text: '' }) => {
   }
 }
 
-// Reset scroll position when quotes are filtered
 watch(
   () => quotes.value.length,
   () => {
@@ -268,7 +273,6 @@ watch(
   }
 )
 
-// Watch search for live filtering
 watch(search, (val) => {
   searchQuotes(val)
 })
@@ -285,26 +289,111 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+/* Section header */
+.list-header {
+  padding-bottom: 1.25rem;
+}
+
+.list-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #818cf8;
+  margin-bottom: 0.4rem;
+}
+
+.list-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.list-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
+
+.quote-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  margin-left: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9999px;
+  vertical-align: middle;
+}
+
+/* Quotes container */
 .quotes-container {
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.1),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.07),
-    0px 1px 3px 0px rgba(0, 0, 0, 0.06);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-::-webkit-scrollbar {
-  width: 10px;
+.end-text {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
 }
 
-::-webkit-scrollbar-track {
-  background: rgb(var(--color-neutral));
+/* Skeleton */
+.skeleton-quote {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-primary-rgb));
+.skeleton-line {
+  height: 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+
+  &--long { width: 90%; }
+  &--medium { width: 70%; }
+  &--short { width: 30%; }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* Scrollbar */
+.quotes-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.quotes-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.quotes-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.quotes-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 </style>
