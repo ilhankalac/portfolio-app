@@ -119,29 +119,29 @@ const getReadingTime = (blog: any): number => {
 .list-label {
   display: block;
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: #818cf8;
   margin-bottom: 0.4rem;
 }
 
 .list-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
   margin: 0;
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .list-subtitle {
-  font-size: 0.85rem;
+  font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.4);
   margin: 0.5rem 0 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* Grid */
@@ -231,11 +231,11 @@ const getReadingTime = (blog: any): number => {
 
 .card-title {
   font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -243,7 +243,7 @@ const getReadingTime = (blog: any): number => {
 }
 
 .card-excerpt {
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.4);
   margin: 0;
@@ -267,7 +267,7 @@ const getReadingTime = (blog: any): number => {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.35);
 }
 
@@ -286,8 +286,8 @@ const getReadingTime = (blog: any): number => {
 .reading-pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.55rem;
-  font-size: 0.6rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.05);

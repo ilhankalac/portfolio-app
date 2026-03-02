@@ -316,29 +316,29 @@ onBeforeUnmount(() => {
 .list-label {
   display: block;
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: #818cf8;
   margin-bottom: 0.4rem;
 }
 
 .list-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
   margin: 0;
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .list-subtitle {
-  font-size: 0.85rem;
+  font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.4);
   margin: 0.5rem 0 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .quote-count {
@@ -346,7 +346,7 @@ onBeforeUnmount(() => {
   align-items: center;
   padding: 0.15rem 0.5rem;
   margin-left: 0.25rem;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.05);

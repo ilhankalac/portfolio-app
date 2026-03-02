@@ -292,7 +292,7 @@ onMounted(() => {
   padding: 0.4rem 0;
   margin-bottom: 1.5rem;
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.4);
   background: none;
@@ -312,11 +312,11 @@ onMounted(() => {
 /* Title */
 .post-title {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
   margin: 0 0 1.25rem;
 }
 
@@ -357,13 +357,13 @@ onMounted(() => {
 }
 
 .meta-author {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
 }
 
 .meta-date {
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.35);
 }
 
@@ -377,7 +377,7 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.65rem;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.05);
@@ -402,7 +402,7 @@ onMounted(() => {
   gap: 0.35rem;
   padding: 0.4rem 0.75rem;
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.45);
   background: rgba(255, 255, 255, 0.04);
@@ -436,50 +436,52 @@ onMounted(() => {
 .blog-content {
   color: rgba(255, 255, 255, 0.8);
   padding: 0;
-  line-height: 1.8;
-  font-size: 1.05rem;
+  line-height: 1.75;
+  font-size: 1.125rem;
   word-wrap: break-word;
   overflow-x: hidden;
 }
 
 .blog-content :deep(h1) {
-  font-size: 1.75em;
+  font-size: 1.875em;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
   margin-top: 1.5em;
   margin-bottom: 0.6em;
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
 }
 
 .blog-content :deep(h2) {
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
-  margin-top: 1.3em;
+  margin-top: 1.4em;
   margin-bottom: 0.5em;
   line-height: 1.3;
+  letter-spacing: -0.02em;
 }
 
 .blog-content :deep(h3) {
-  font-size: 1.15em;
+  font-size: 1.25em;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
-  margin-top: 1em;
+  margin-top: 1.2em;
   margin-bottom: 0.4em;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .blog-content :deep(p) {
-  margin: 0.5em 0;
+  margin: 0.75em 0;
   white-space: pre-wrap;
-  line-height: 1.8;
+  line-height: 1.75;
   color: rgba(255, 255, 255, 0.8);
 }
 
 .blog-content :deep(br) {
   display: block;
   margin: 0.5em 0;
-  line-height: 1.8;
+  line-height: 1.75;
 }
 
 .blog-content :deep(code) {
@@ -488,7 +490,7 @@ onMounted(() => {
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 0.9em;
+  font-size: 0.875em;
 }
 
 .blog-content :deep(pre) {
@@ -497,7 +499,7 @@ onMounted(() => {
   padding: 1.25rem !important;
   border-radius: 0.75rem !important;
   overflow-x: auto;
-  margin: 1.5em 0 !important;
+  margin: 1.75em 0 !important;
 }
 
 .blog-content :deep(pre code) {
@@ -505,7 +507,7 @@ onMounted(() => {
   color: inherit !important;
   padding: 0 !important;
   border-radius: 0 !important;
-  font-size: 0.9em;
+  font-size: 0.875em;
   font-family: 'Courier New', Courier, monospace;
   display: block;
   line-height: 1.6;
@@ -682,11 +684,11 @@ onMounted(() => {
 /* Responsive */
 @media (max-width: 640px) {
   .post-title {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
   }
 
   .blog-content {
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
   }
 
   .share-row {
