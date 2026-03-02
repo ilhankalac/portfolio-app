@@ -3,13 +3,13 @@
     <p class="font-light text-black opacity-70">
       Collection of my thoughts and knowledge shared with the world.
     </p>
-    <div v-if="!isDataLoaded" class="flex flex-col gap-3 mt-4">
+    <div v-if="status === 'pending'" class="flex flex-col gap-3 mt-4">
       <USkeleton v-for="i in 3" :key="i" class="h-48 w-full" />
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
       <div
-        v-for="(blog, key) in blogs"
-        :key="key"
+        v-for="blog in blogs"
+        :key="blog.firebaseKey"
         class="blog-card flex flex-col cursor-pointer"
         @click="openBlog(blog)"
       >
@@ -29,39 +29,14 @@
 </template>
 
 <script setup lang="ts">
-const { getVal } = useFirebase()
-
 definePageMeta({ layout: 'blog' })
 
-const isDataLoaded = ref(false)
-const blogs = ref<any[]>([])
-
-const getBlogs = () => {
-  getVal('blog/posts').then((val: any) => {
-    if (val) {
-      isDataLoaded.value = true
-      const blogsArray = Object.entries(val).map(([key, value]: [string, any]) => ({
-        ...value,
-        firebaseKey: key,
-      }))
-      blogs.value = blogsArray.sort((a: any, b: any) => {
-        return new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
-      })
-    }
-  })
-}
+const { data: blogs, status } = await useFetch<any[]>('/api/blog/posts', { default: () => [] })
 
 const openBlog = (blog: any) => {
-  const keyAndTitle =
-    blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase() +
-    '/key=' +
-    blog.firebaseKey
-  navigateTo(`/blogs/${keyAndTitle}`)
+  const slug = blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase()
+  navigateTo(`/blogs/${slug}?key=${blog.firebaseKey}`)
 }
-
-onMounted(() => {
-  getBlogs()
-})
 </script>
 
 <style scoped>

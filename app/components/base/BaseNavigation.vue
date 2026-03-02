@@ -94,7 +94,7 @@ const exploreMenuItems = computed(() => [
   exploreItems.map(item => ({
     label: item.label,
     icon: item.icon,
-    click: () => goTo(item.route),
+    onSelect: () => goTo(item.route),
   }))
 ])
 
@@ -113,11 +113,10 @@ const navigateToSection = async (sectionId: string) => {
   }
 
   if (props.origin === 'configure') {
-    await navigateTo('/')
-    await navigateTo({ hash: `#${sectionId}` })
+    await navigateTo({ path: '/', hash: `#${sectionId}` })
     setTimeout(() => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
-    }, 100)
+    }, 300)
     return
   }
 

@@ -68,7 +68,7 @@ const mobileMenuItems = computed(() => [
   tabConfig.map(t => ({
     label: t.label,
     icon: t.icon,
-    click: () => openRoute(t.path),
+    onSelect: () => openRoute(t.path),
   }))
 ])
 
@@ -85,8 +85,8 @@ const onTabChange = (value: string | number) => {
 }
 
 onMounted(() => {
-  const currentPath = '/' + router.currentRoute.value.path.split('/')[1]
-  const matchedTab = tabConfig.find(t => t.path === currentPath)
+  const currentPath = router.currentRoute.value.path
+  const matchedTab = tabConfig.find(t => currentPath.startsWith(t.path))
   if (matchedTab) {
     activeTab.value = matchedTab.value
   }

@@ -76,14 +76,14 @@ const navigationLinks = [
   { text: 'About', sectionId: 'about' },
   { text: 'Experience', sectionId: 'experience' },
   { text: 'Free time projects', sectionId: 'freetime-projects' },
-  { text: 'Skills', sectionId: 'explore' },
   { text: 'Recommendations', sectionId: 'recommendations' },
+  { text: 'Contact', sectionId: 'get-in-touch' },
 ]
 
 const otherInterestsLinks = [
-  { text: 'Blog', url: 'blogs/list' },
-  { text: 'Favorite Quotes', url: 'favorite-quotes' },
-  { text: 'List of seen films', url: 'list-of-seen-films' },
+  { text: 'Blog', url: '/blogs/list' },
+  { text: 'Favorite Quotes', url: '/favorite-quotes' },
+  { text: 'List of seen films', url: '/list-of-seen-films' },
   { text: 'Resume', url: 'ilhan-kalac-resume.pdf' },
 ]
 
@@ -100,7 +100,7 @@ const changeTheRoute = (sectionId: string = '') => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     return
   }
-  router.push({ hash: '#' + sectionId })
+  router.push({ path: '/', hash: '#' + sectionId })
 }
 
 const openLink = (link: string) => {

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="!isDataLoaded">
+    <div v-if="status === 'pending'">
       <div class="flex flex-col gap-3">
         <USkeleton class="h-8 w-full max-w-2xl" />
         <USkeleton class="h-96 w-full" />
       </div>
     </div>
-    <div v-else>
+    <div v-else-if="blog">
       <div class="blog-title text-lg md:text-xl">
         {{ blog.title }}
       </div>
@@ -15,7 +15,7 @@
         <span class="opacity-60">objavljeno</span> {{ blog.date }}
       </div>
       <hr class="mb-2 border-gray-300" />
-      <div class="blog-content text-black font-light" v-html="blog.html" role="main" />
+      <div class="blog-content text-black font-light" v-html="processedHtml" role="main" />
     </div>
   </div>
 </template>
@@ -45,54 +45,39 @@ hljs.registerLanguage('vue', vue)
 
 definePageMeta({ layout: 'blog' })
 
-const { getVal } = useFirebase()
 const route = useRoute()
+const blogKey = computed(() => route.query.key as string)
 
-const blog = ref<any>({})
-const isDataLoaded = ref(false)
-
-const getBlog = () => {
-  isDataLoaded.value = false
-  const idParam = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
-  const key = idParam?.split('key=')[1]
-  if (!key) return
-  getVal('blog/posts/').then((val: any) => {
-    if (val && val[key]) {
-      let htmlContent = val[key].html
-
-      // Replace empty paragraphs with line breaks for proper spacing
-      htmlContent = htmlContent.replace(/<p><\/p>/g, '<br/>')
-      htmlContent = htmlContent.replace(/<p>\s*<\/p>/g, '<br/>')
-
-      // Preserve leading/trailing spaces in paragraphs by converting to &nbsp;
-      htmlContent = htmlContent.replace(/<p>(\s+)/g, (_match: string, spaces: string) => {
-        return '<p>' + spaces.replace(/ /g, '&nbsp;')
-      })
-      htmlContent = htmlContent.replace(/(\s+)<\/p>/g, (_match: string, spaces: string) => {
-        return spaces.replace(/ /g, '&nbsp;') + '</p>'
-      })
-
-      blog.value = {
-        ...val[key],
-        html: htmlContent,
-      }
-      isDataLoaded.value = true
-
-      // Apply syntax highlighting after DOM update
-      nextTick(() => {
-        document.querySelectorAll('.blog-content pre code').forEach((block) => {
-          hljs.highlightElement(block as HTMLElement)
-        })
-      })
-    }
-  })
-}
-
-onMounted(() => {
-  getBlog()
+const { data: blog, status } = await useFetch<any>(() => `/api/blog/post/${blogKey.value}`, {
+  watch: [blogKey],
 })
 
-watch(() => route.params.id, getBlog)
+const processedHtml = computed(() => {
+  if (!blog.value?.html) return ''
+  let htmlContent = blog.value.html
+
+  htmlContent = htmlContent.replace(/<p><\/p>/g, '<br/>')
+  htmlContent = htmlContent.replace(/<p>\s*<\/p>/g, '<br/>')
+
+  htmlContent = htmlContent.replace(/<p>(\s+)/g, (_match: string, spaces: string) => {
+    return '<p>' + spaces.replace(/ /g, '&nbsp;')
+  })
+  htmlContent = htmlContent.replace(/(\s+)<\/p>/g, (_match: string, spaces: string) => {
+    return spaces.replace(/ /g, '&nbsp;') + '</p>'
+  })
+
+  return htmlContent
+})
+
+onMounted(() => {
+  watch(processedHtml, () => {
+    nextTick(() => {
+      document.querySelectorAll('.blog-content pre code').forEach((block) => {
+        hljs.highlightElement(block as HTMLElement)
+      })
+    })
+  }, { immediate: true })
+})
 </script>
 
 <style>
