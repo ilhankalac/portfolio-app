@@ -25,7 +25,7 @@
     <div v-else class="blog-grid">
       <NuxtLink
         v-for="(blog, index) in blogs"
-        :key="blog.firebaseKey"
+        :key="blog.slug"
         :to="getBlogUrl(blog)"
         class="blog-card"
         :style="{ '--delay': `${index * 120}ms` }"
@@ -89,8 +89,7 @@ useSeoMeta({
 const { data: blogs, status } = await useFetch<any[]>('/api/blog/posts', { default: () => [] })
 
 const getBlogUrl = (blog: any) => {
-  const slug = blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase()
-  return `/blogs/${slug}?key=${blog.firebaseKey}`
+  return `/blogs/${blog.slug}`
 }
 
 const stripHtml = (html: string): string => {

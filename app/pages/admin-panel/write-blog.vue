@@ -115,11 +115,21 @@
 <script setup lang="ts">
 import BaseEditor from '~/components/base/BaseEditor.vue'
 
-const { getVal, setVal, pushVal, deleteVal } = useFirebase()
+const { getVal, setVal, deleteVal } = useFirebase()
 
 definePageMeta({ middleware: 'auth', layout: 'admin' })
 
 const BLOG_PATH = 'blog/posts'
+
+const generateSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
 
 const loading = ref(true)
 const saving = ref(false)
@@ -197,8 +207,17 @@ const saveBlog = async () => {
 
   saving.value = true
   try {
+    const slug = editingKey.value || generateSlug(blogForm.value.title)
+
+    if (!editingKey.value && blogs.value[slug]) {
+      showStatus('A blog with this title already exists.', 'error')
+      saving.value = false
+      return
+    }
+
     const data = {
       title: blogForm.value.title,
+      slug,
       date: blogForm.value.date,
       author: blogForm.value.author,
       image: blogForm.value.image,
@@ -208,15 +227,10 @@ const saveBlog = async () => {
         : new Date().toISOString(),
     }
 
-    if (editingKey.value) {
-      await setVal(`${BLOG_PATH}/${editingKey.value}`, data)
-      blogs.value[editingKey.value] = data
-      showStatus('Blog updated.', 'success')
-    } else {
-      await pushVal(BLOG_PATH, data)
-      await fetchBlogs()
-      showStatus('Blog published.', 'success')
-    }
+    await setVal(`${BLOG_PATH}/${slug}`, data)
+    blogs.value[slug] = data
+
+    showStatus(editingKey.value ? 'Blog updated.' : 'Blog published.', 'success')
     resetForm()
   } catch (e) {
     showStatus('Failed to save. Check console.', 'error')

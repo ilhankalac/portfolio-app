@@ -101,10 +101,10 @@ hljs.registerLanguage('vue', vue)
 definePageMeta({ layout: 'blog' })
 
 const route = useRoute()
-const blogKey = computed(() => route.query.key as string)
+const slug = computed(() => route.params.id as string)
 
-const { data: blog, status } = await useFetch<any>(() => `/api/blog/post/${blogKey.value}`, {
-  watch: [blogKey],
+const { data: blog, status } = await useFetch<any>(() => `/api/blog/post/${slug.value}`, {
+  watch: [slug],
 })
 
 const blogDescription = computed(() => {
