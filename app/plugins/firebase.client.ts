@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
+import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 
   const firebaseConfig = {
@@ -19,6 +19,7 @@ export default defineNuxtPlugin(() => {
   const firebaseApp = initializeApp(firebaseConfig)
   const firebaseDatabase = getDatabase(firebaseApp)
   const firebaseAuth = getAuth(firebaseApp)
+  await setPersistence(firebaseAuth, browserLocalPersistence)
 
   return {
     provide: {

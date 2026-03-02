@@ -1,35 +1,52 @@
 <template>
-  <div class="text-white flex justify-center items-center min-h-screen" style="background-color: rgb(var(--color-primary-rgb));">
-    <div class="w-full max-w-md mx-2">
-      <h2 class="mb-4 font-light text-2xl">Portfolio login</h2>
-      <UInput
-        v-model="email"
-        placeholder="Email"
-        size="lg"
-        class="mb-4"
-      />
-      <UInput
-        v-model="password"
-        type="password"
-        placeholder="Password"
-        size="lg"
-        class="mb-4"
-        @keyup.enter="login"
-      />
-      <div v-if="hasError" class="mb-4 p-3 bg-red-500/20 border border-red-500 rounded text-red-300 text-sm">
-        Your email or password is incorrect, please try again...
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-icon">
+          <UIcon name="i-mdi-lock-outline" />
+        </div>
+        <h2 class="login-title">Admin Login</h2>
+        <p class="login-subtitle">Sign in to manage your portfolio</p>
       </div>
-      <UButton
-        block
-        variant="outline"
-        color="neutral"
-        size="lg"
-        :disabled="loading"
-        :loading="loading"
-        @click="login"
-      >
-        Login
-      </UButton>
+
+      <div class="login-form">
+        <div class="field">
+          <label class="field-label">Email</label>
+          <UInput
+            v-model="email"
+            placeholder="your@email.com"
+            size="lg"
+            class="w-full"
+          />
+        </div>
+        <div class="field">
+          <label class="field-label">Password</label>
+          <UInput
+            v-model="password"
+            type="password"
+            placeholder="Enter password"
+            size="lg"
+            class="w-full"
+            @keyup.enter="login"
+          />
+        </div>
+
+        <div v-if="hasError" class="error-msg">
+          Incorrect email or password. Please try again.
+        </div>
+
+        <UButton
+          block
+          color="primary"
+          size="lg"
+          :disabled="loading"
+          :loading="loading"
+          class="login-btn"
+          @click="login"
+        >
+          Sign In
+        </UButton>
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +60,7 @@ const loading = ref(false)
 const hasError = ref(false)
 
 const login = async () => {
+  hasError.value = false
   loading.value = true
   try {
     await $signIn($firebaseAuth, email.value, password.value)
@@ -55,3 +73,86 @@ const login = async () => {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(129, 140, 248, 0.12);
+  color: #818cf8;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.login-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+.login-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0.35rem 0 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.01em;
+}
+
+.error-msg {
+  padding: 0.6rem 0.85rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+  color: #f87171;
+  font-size: 0.8rem;
+}
+
+.login-btn {
+  margin-top: 0.25rem;
+}
+</style>

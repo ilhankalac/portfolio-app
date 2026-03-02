@@ -1,10 +1,7 @@
 export default defineNuxtRouteMiddleware(async (to) => {
-  if (import.meta.server) {
-    return navigateTo({
-      path: '/login',
-      query: { redirect: to.fullPath }
-    })
-  }
+  // Skip auth check on server — Firebase auth only works client-side.
+  // The client will handle the redirect after hydration.
+  if (import.meta.server) return
 
   const { $firebaseAuth, $onAuthStateChanged } = useNuxtApp()
 
