@@ -9,6 +9,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/200.html"
+      }
+    ],
     "headers": [
       {
         "source": "**/*.@(js|css|webp|png|jpg|svg|woff2)",

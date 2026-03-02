@@ -23,12 +23,12 @@
 
     <!-- Blog cards -->
     <div v-else class="blog-grid">
-      <div
+      <NuxtLink
         v-for="(blog, index) in blogs"
         :key="blog.firebaseKey"
+        :to="getBlogUrl(blog)"
         class="blog-card"
         :style="{ '--delay': `${index * 120}ms` }"
-        @click="openBlog(blog)"
       >
         <!-- Image -->
         <div class="card-image-wrap">
@@ -60,7 +60,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -88,9 +88,9 @@ useSeoMeta({
 
 const { data: blogs, status } = await useFetch<any[]>('/api/blog/posts', { default: () => [] })
 
-const openBlog = (blog: any) => {
+const getBlogUrl = (blog: any) => {
   const slug = blog.title.replace(/\s+/g, '-').replace(/-+/g, '-').toLowerCase()
-  navigateTo(`/blogs/${slug}?key=${blog.firebaseKey}`)
+  return `/blogs/${slug}?key=${blog.firebaseKey}`
 }
 
 const stripHtml = (html: string): string => {
@@ -158,6 +158,9 @@ const getReadingTime = (blog: any): number => {
 
 /* Card */
 .blog-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 1rem;
