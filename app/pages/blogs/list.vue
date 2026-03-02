@@ -68,6 +68,24 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'blog' })
 
+useHead({
+  title: 'Blog — Ilhan Kalač',
+  link: [{ rel: 'canonical', href: 'https://ilhan.io/blogs/list' }],
+})
+
+useSeoMeta({
+  description: 'Collection of thoughts and knowledge shared by Ilhan Kalač — Software Engineer.',
+  ogType: 'website',
+  ogTitle: 'Blog — Ilhan Kalač',
+  ogDescription: 'Collection of thoughts and knowledge shared by Ilhan Kalač — Software Engineer.',
+  ogImage: 'https://ilhan.io/og-image.jpg',
+  ogUrl: 'https://ilhan.io/blogs/list',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Blog — Ilhan Kalač',
+  twitterDescription: 'Collection of thoughts and knowledge shared by Ilhan Kalač — Software Engineer.',
+  twitterImage: 'https://ilhan.io/og-image.jpg',
+})
+
 const { data: blogs, status } = await useFetch<any[]>('/api/blog/posts', { default: () => [] })
 
 const openBlog = (blog: any) => {

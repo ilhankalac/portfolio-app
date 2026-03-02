@@ -105,6 +105,24 @@ import type { IQuote } from '~/types/models'
 
 definePageMeta({ layout: 'blog' })
 
+useHead({
+  title: 'Favorite Quotes — Ilhan Kalač',
+  link: [{ rel: 'canonical', href: 'https://ilhan.io/favorite-quotes' }],
+})
+
+useSeoMeta({
+  description: 'A collection of favorite quotes curated by Ilhan Kalač, arranged by emotional impact.',
+  ogType: 'website',
+  ogTitle: 'Favorite Quotes — Ilhan Kalač',
+  ogDescription: 'A collection of favorite quotes curated by Ilhan Kalač, arranged by emotional impact.',
+  ogImage: 'https://ilhan.io/og-image.jpg',
+  ogUrl: 'https://ilhan.io/favorite-quotes',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Favorite Quotes — Ilhan Kalač',
+  twitterDescription: 'A collection of favorite quotes curated by Ilhan Kalač, arranged by emotional impact.',
+  twitterImage: 'https://ilhan.io/og-image.jpg',
+})
+
 const { getValLive, deleteVal } = useFirebase()
 const route = useRoute()
 

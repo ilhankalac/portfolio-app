@@ -107,6 +107,34 @@ const { data: blog, status } = await useFetch<any>(() => `/api/blog/post/${blogK
   watch: [blogKey],
 })
 
+const blogDescription = computed(() => {
+  if (!blog.value?.html) return ''
+  const text = blog.value.html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
+  return text.length > 160 ? text.slice(0, 157) + '...' : text
+})
+
+useHead({
+  title: () => blog.value?.title ? `${blog.value.title} — Ilhan Kalač` : 'Blog — Ilhan Kalač',
+  link: [
+    { rel: 'canonical', href: `https://ilhan.io${route.fullPath}` },
+  ],
+})
+
+useSeoMeta({
+  description: () => blogDescription.value,
+  ogType: 'article',
+  ogTitle: () => blog.value?.title || 'Blog — Ilhan Kalač',
+  ogDescription: () => blogDescription.value,
+  ogImage: () => blog.value?.image || 'https://ilhan.io/og-image.jpg',
+  ogUrl: () => `https://ilhan.io${route.fullPath}`,
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => blog.value?.title || 'Blog — Ilhan Kalač',
+  twitterDescription: () => blogDescription.value,
+  twitterImage: () => blog.value?.image || 'https://ilhan.io/og-image.jpg',
+  articleAuthor: () => blog.value?.author || 'Ilhan Kalač',
+  articlePublishedTime: () => blog.value?.created_at || '',
+})
+
 const copied = ref(false)
 
 const processedHtml = computed(() => {

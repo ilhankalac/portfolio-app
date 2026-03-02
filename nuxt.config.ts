@@ -7,7 +7,13 @@ export default defineNuxtConfig({
   ssr: true,
 
   nitro: {
-    preset: 'static',
+    preset: 'node-server',
+  },
+
+  routeRules: {
+    '/blogs/**': { ssr: true },
+    '/favorite-quotes/**': { ssr: true },
+    '/list-of-seen-films': { ssr: true },
   },
 
   experimental: {},

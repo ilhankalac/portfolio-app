@@ -157,6 +157,24 @@ import type { IFilm, IFilmStatsData, IDirectorStats } from '~/types/models'
 
 definePageMeta({ layout: 'blog' })
 
+useHead({
+  title: 'Films I\'ve Watched — Ilhan Kalač',
+  link: [{ rel: 'canonical', href: 'https://ilhan.io/list-of-seen-films' }],
+})
+
+useSeoMeta({
+  description: 'Collection of films watched by Ilhan Kalač since 2016.',
+  ogType: 'website',
+  ogTitle: 'Films I\'ve Watched — Ilhan Kalač',
+  ogDescription: 'Collection of films watched by Ilhan Kalač since 2016.',
+  ogImage: 'https://ilhan.io/og-image.jpg',
+  ogUrl: 'https://ilhan.io/list-of-seen-films',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Films I\'ve Watched — Ilhan Kalač',
+  twitterDescription: 'Collection of films watched by Ilhan Kalač since 2016.',
+  twitterImage: 'https://ilhan.io/og-image.jpg',
+})
+
 const { getVal, getValWithSearchTerm } = useFirebase()
 
 const isDataLoaded = ref(false)
