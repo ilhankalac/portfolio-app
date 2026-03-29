@@ -10,23 +10,23 @@
     <div class="hero-content">
       <!-- Left: Text content -->
       <div class="hero-text">
-        <div class="hero-greeting" :class="{ 'is-visible': entered }">
+        <div class="hero-greeting">
           Hey there, I'm
         </div>
 
-        <h1 class="hero-name" :class="{ 'is-visible': entered }">
+        <h1 class="hero-name">
           Ilhan Kalač
         </h1>
 
-        <div class="hero-tagline" :class="{ 'is-visible': entered }">
-          <span class="tagline-text" ref="taglineRef">{{ displayedTagline }}<span class="tagline-cursor">|</span></span>
+        <div class="hero-tagline">
+          <span class="tagline-text">{{ displayedTagline }}<span class="tagline-cursor">|</span></span>
         </div>
 
-        <p class="hero-intro" :class="{ 'is-visible': entered }">
+        <p class="hero-intro">
           Building digital experiences with clean code and creative solutions. Based in Podgorica, Montenegro.
         </p>
 
-        <div class="hero-cta" :class="{ 'is-visible': entered }">
+        <div class="hero-cta">
           <button class="btn-primary" @click="scrollToWork">
             View My Work
             <UIcon name="i-mdi-arrow-down" class="text-sm" />
@@ -37,7 +37,7 @@
           </button>
         </div>
 
-        <div class="hero-social" :class="{ 'is-visible': entered }">
+        <div class="hero-social">
           <a href="https://github.com/ilhankalac" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
             <UIcon name="i-mdi-github" />
           </a>
@@ -51,7 +51,7 @@
       </div>
 
       <!-- Right: Photo -->
-      <div class="hero-photo" :class="{ 'is-visible': entered }">
+      <div class="hero-photo">
         <div class="photo-frame">
           <img
             src="~/assets/images/landing-image.jpg"
@@ -71,7 +71,6 @@
 </template>
 
 <script lang="ts" setup>
-const entered = ref(false)
 const displayedTagline = ref('')
 const tagline = 'Software Developer'
 
@@ -85,10 +84,7 @@ const typeTagline = () => {
 }
 
 onMounted(() => {
-  requestAnimationFrame(() => {
-    entered.value = true
-  })
-  setTimeout(typeTagline, 800)
+  typeTagline()
 })
 
 const openLink = (link: string) => {
@@ -194,11 +190,6 @@ const scrollToWork = () => {
   color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
   letter-spacing: 0.01em;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
-
-  &.is-visible { opacity: 1; transform: translateY(0); }
 }
 
 /* Name */
@@ -210,22 +201,9 @@ const scrollToWork = () => {
   color: rgba(255, 255, 255, 0.95);
   margin: 0;
   letter-spacing: -0.02em;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-
-  &.is-visible { opacity: 1; transform: translateY(0); }
 }
 
 /* Tagline */
-.hero-tagline {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
-
-  &.is-visible { opacity: 1; transform: translateY(0); }
-}
-
 .tagline-text {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
@@ -253,11 +231,6 @@ const scrollToWork = () => {
   color: rgba(255, 255, 255, 0.45);
   margin: 0.25rem 0 0.5rem;
   max-width: 440px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
-
-  &.is-visible { opacity: 1; transform: translateY(0); }
 }
 
 /* CTA */
@@ -265,11 +238,6 @@ const scrollToWork = () => {
   display: flex;
   gap: 0.625rem;
   margin-top: 0.25rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s;
-
-  &.is-visible { opacity: 1; transform: translateY(0); }
 }
 
 .btn-primary {
@@ -321,11 +289,6 @@ const scrollToWork = () => {
   display: flex;
   gap: 0.375rem;
   margin-top: 0.25rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
-
-  &.is-visible { opacity: 1; transform: translateY(0); }
 }
 
 .social-icon {
@@ -353,11 +316,6 @@ const scrollToWork = () => {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-
-  &.is-visible { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .photo-frame {
