@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     preset: 'static',
     prerender: {
       crawlLinks: true,
-      routes: ['/blogs', '/favorite-quotes', '/list-of-seen-films'],
+      routes: ['/favorite-quotes', '/list-of-seen-films'],
     },
   },
 
@@ -41,6 +41,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/ui',
+    '@nuxt/content',
     '@pinia/nuxt',
     '@nuxtjs/google-fonts',
     '@nuxtjs/sitemap',

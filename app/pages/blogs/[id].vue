@@ -70,48 +70,30 @@
       </div>
 
       <!-- Content -->
-      <div class="blog-content" v-html="processedHtml" role="main" />
+      <div class="blog-content" role="main">
+        <ContentRenderer v-if="blog" :value="blog" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
-import typescript from 'highlight.js/lib/languages/typescript'
-import python from 'highlight.js/lib/languages/python'
-import java from 'highlight.js/lib/languages/java'
-import css from 'highlight.js/lib/languages/css'
-import html from 'highlight.js/lib/languages/xml'
-import json from 'highlight.js/lib/languages/json'
-import bash from 'highlight.js/lib/languages/bash'
-import vue from 'highlight.js/lib/languages/xml'
-
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('typescript', typescript)
-hljs.registerLanguage('python', python)
-hljs.registerLanguage('java', java)
-hljs.registerLanguage('css', css)
-hljs.registerLanguage('html', html)
-hljs.registerLanguage('xml', html)
-hljs.registerLanguage('json', json)
-hljs.registerLanguage('bash', bash)
-hljs.registerLanguage('vue', vue)
-
 definePageMeta({ layout: 'blog' })
 
 const route = useRoute()
 const slug = computed(() => route.params.id as string)
 
-const { data: blog, status } = await useFetch<any>(() => `/api/blog/post/${slug.value}`, {
-  watch: [slug],
-})
+const { data: blog, status } = await useAsyncData(
+  () => `blog-${slug.value}`,
+  () => queryCollection('blogs').path(`/blogs/${slug.value}`).first(),
+  { watch: [slug] },
+)
 
-const blogDescription = computed(() => {
-  if (!blog.value?.html) return ''
-  const text = blog.value.html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
-  return text.length > 160 ? text.slice(0, 157) + '...' : text
-})
+if (!blog.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Blog post not found', fatal: true })
+}
+
+const blogDescription = computed(() => blog.value?.description || '')
 
 useHead({
   title: () => blog.value?.title ? `${blog.value.title} — Ilhan Kalač` : 'Blog — Ilhan Kalač',
@@ -132,34 +114,12 @@ useSeoMeta({
   twitterDescription: () => blogDescription.value,
   twitterImage: () => blog.value?.image || 'https://ilhan.io/og-image.jpg',
   articleAuthor: () => blog.value?.author || 'Ilhan Kalač',
-  articlePublishedTime: () => blog.value?.created_at || '',
+  articlePublishedTime: () => blog.value?.publishedAt || '',
 })
 
 const copied = ref(false)
 
-const processedHtml = computed(() => {
-  if (!blog.value?.html) return ''
-  let htmlContent = blog.value.html
-
-  htmlContent = htmlContent.replace(/<p><\/p>/g, '<br/>')
-  htmlContent = htmlContent.replace(/<p>\s*<\/p>/g, '<br/>')
-
-  htmlContent = htmlContent.replace(/<p>(\s+)/g, (_match: string, spaces: string) => {
-    return '<p>' + spaces.replace(/ /g, '&nbsp;')
-  })
-  htmlContent = htmlContent.replace(/(\s+)<\/p>/g, (_match: string, spaces: string) => {
-    return spaces.replace(/ /g, '&nbsp;') + '</p>'
-  })
-
-  return htmlContent
-})
-
-const readingTime = computed(() => {
-  if (!blog.value?.html) return 0
-  const text = blog.value.html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
-  const words = text.split(/\s+/).length
-  return Math.max(1, Math.round(words / 200))
-})
+const readingTime = computed(() => blog.value?.readingTime || 0)
 
 const currentUrl = computed(() => {
   if (import.meta.client) return window.location.href
@@ -169,7 +129,7 @@ const currentUrl = computed(() => {
 const encodedUrl = computed(() => encodeURIComponent(currentUrl.value))
 const encodedTitle = computed(() => encodeURIComponent(blog.value?.title || ''))
 
-const getInitial = (name: string) => {
+const getInitial = (name: string | undefined | null) => {
   return name ? name.charAt(0).toUpperCase() : '?'
 }
 
@@ -181,22 +141,10 @@ const copyLink = async () => {
     setTimeout(() => { copied.value = false }, 2000)
   } catch {}
 }
-
-onMounted(() => {
-  watch(processedHtml, () => {
-    nextTick(() => {
-      document.querySelectorAll('.blog-content pre code').forEach((block) => {
-        hljs.highlightElement(block as HTMLElement)
-      })
-    })
-  }, { immediate: true })
-})
 </script>
 
 <style>
-@import 'highlight.js/styles/atom-one-dark.css';
-
-/* === Global blog content styles (unscoped for v-html) === */
+/* === Global blog content styles === */
 .blog-content ul {
   list-style-type: disc !important;
   padding-left: 40px !important;

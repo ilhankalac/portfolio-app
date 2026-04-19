@@ -115,7 +115,6 @@ const portfolioSections = [
 ]
 
 const creativeTools = [
-  { name: 'Write Blog', icon: 'file-document-edit', path: 'write-blog' },
   { name: 'Write Quote', icon: 'format-quote-close', path: 'write-quote' },
   { name: 'Configure Films', icon: 'filmstrip', path: 'configure-films' },
 ]

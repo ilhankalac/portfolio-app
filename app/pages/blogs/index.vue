@@ -25,8 +25,8 @@
     <div v-else class="blog-grid">
       <NuxtLink
         v-for="(blog, index) in blogs"
-        :key="blog.slug"
-        :to="getBlogUrl(blog)"
+        :key="blog.path"
+        :to="blog.path"
         class="blog-card"
         :style="{ '--delay': `${index * 120}ms` }"
       >
@@ -47,7 +47,7 @@
         <!-- Body -->
         <div class="card-body">
           <h3 class="card-title">{{ blog.title }}</h3>
-          <p v-if="getExcerpt(blog)" class="card-excerpt">{{ getExcerpt(blog) }}</p>
+          <p v-if="blog.description" class="card-excerpt">{{ blog.description }}</p>
 
           <div class="card-footer">
             <div class="card-meta">
@@ -55,8 +55,8 @@
               <span class="card-dot">&middot;</span>
               <span class="card-date">{{ blog.date }}</span>
             </div>
-            <span v-if="getReadingTime(blog)" class="reading-pill">
-              {{ getReadingTime(blog) }} min read
+            <span v-if="blog.readingTime" class="reading-pill">
+              {{ blog.readingTime }} min read
             </span>
           </div>
         </div>
@@ -86,29 +86,13 @@ useSeoMeta({
   twitterImage: 'https://ilhan.io/og-image.jpg',
 })
 
-const { data: blogs, status } = await useFetch<any[]>('/api/blog/posts', { default: () => [] })
-
-const getBlogUrl = (blog: any) => {
-  return `/blogs/${blog.slug}`
-}
-
-const stripHtml = (html: string): string => {
-  if (!html) return ''
-  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
-}
-
-const getExcerpt = (blog: any): string => {
-  const text = stripHtml(blog.html || blog.description || '')
-  if (!text) return ''
-  return text.length > 120 ? text.slice(0, 120) + '...' : text
-}
-
-const getReadingTime = (blog: any): number => {
-  const text = stripHtml(blog.html || '')
-  if (!text) return 0
-  const words = text.split(/\s+/).length
-  return Math.max(1, Math.round(words / 200))
-}
+const { data: blogs, status } = await useAsyncData('blog-list', () =>
+  queryCollection('blogs')
+    .select('title', 'description', 'author', 'date', 'image', 'publishedAt', 'readingTime', 'path')
+    .order('publishedAt', 'DESC')
+    .all(),
+  { default: () => [] },
+)
 </script>
 
 <style scoped lang="scss">
