@@ -5,6 +5,7 @@ node_modules
 # Nuxt build output
 .nuxt/
 .output/
+.data/
 
 
 # local env files
