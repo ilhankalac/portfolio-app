@@ -40,8 +40,19 @@
       </div>
     </div>
 
+    <div v-else-if="loadError" class="quote-state mt-4">
+      <UIcon name="i-mdi-alert-circle-outline" class="quote-state-icon" />
+      <p>{{ loadError }}</p>
+    </div>
+
+    <div v-else-if="!visibleQuotes.length" class="quote-state mt-4">
+      <UIcon name="i-mdi-format-quote-close" class="quote-state-icon" />
+      <p>No quotes found.</p>
+    </div>
+
     <!-- Quotes list -->
     <div
+      v-else
       ref="quotesContainer"
       class="quotes-container mt-4"
       @scroll="handleScroll"
@@ -134,6 +145,7 @@ const visibleQuotes = ref<IQuote[]>([])
 const tempQuotes = ref<IQuote[]>([])
 const isDataLoaded = ref(false)
 const isLoading = ref(false)
+const loadError = ref('')
 const authors = ref<string[]>([])
 const search = ref('')
 const quoteSelectedDialog = ref(false)
@@ -150,6 +162,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['edit-quote'])
+let unsubscribeQuotes: (() => void) | undefined
 
 const checkMobile = () => {
   isMobile.value = window.innerWidth < 768
@@ -158,6 +171,9 @@ const checkMobile = () => {
 const getData = () => {
   const path = 'blog/favorite-quotes'
   const unsubscribe = getValLive(path, (fetchedData: any) => {
+    isDataLoaded.value = true
+    loadError.value = ''
+
     if (fetchedData) {
       const result: any[] = []
       Object.keys(fetchedData).forEach((key) => {
@@ -165,7 +181,6 @@ const getData = () => {
       })
       tempQuotes.value = result
       authors.value = extractAuthors(result)
-      isDataLoaded.value = true
 
       if (search.value) {
         searchQuotes(search.value)
@@ -183,8 +198,18 @@ const getData = () => {
         }
       }
     } else {
-      console.error('Error fetching data from Firebase.')
+      tempQuotes.value = []
+      quotes.value = []
+      visibleQuotes.value = []
+      authors.value = []
     }
+  }, (error: Error) => {
+    console.error('Error fetching favorite quotes from Firebase:', error)
+    isDataLoaded.value = true
+    loadError.value = 'Quotes are unavailable right now.'
+    tempQuotes.value = []
+    quotes.value = []
+    visibleQuotes.value = []
   })
   return unsubscribe
 }
@@ -298,12 +323,13 @@ watch(search, (val) => {
 onMounted(async () => {
   checkMobile()
   window.addEventListener('resize', checkMobile)
-  await getData()
+  unsubscribeQuotes = getData()
   window.scrollTo(0, 0)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkMobile)
+  unsubscribeQuotes?.()
 })
 </script>
 
@@ -368,6 +394,29 @@ onBeforeUnmount(() => {
 .end-text {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.25);
+}
+
+.quote-state {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.quote-state-icon {
+  flex: 0 0 auto;
+  color: rgba(129, 140, 248, 0.75);
+  font-size: 1.25rem;
 }
 
 /* Skeleton */

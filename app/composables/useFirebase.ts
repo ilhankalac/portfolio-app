@@ -54,12 +54,14 @@ export function useFirebase() {
     })
   }
 
-  const getValLive = (path: string, callback: (data: any) => void) => {
+  const getValLive = (path: string, callback: (data: any) => void, onError?: (error: Error) => void) => {
     const db = getDb()
     const nodePath = dbRef(db, path)
     const unsubscribe = onValue(nodePath, (snapshot) => {
       const data = snapshot.val()
       callback(data)
+    }, (error) => {
+      onError?.(error)
     })
     return unsubscribe
   }
