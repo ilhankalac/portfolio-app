@@ -60,10 +60,6 @@
           />
           <div class="photo-glow" aria-hidden="true"></div>
         </div>
-        <div class="photo-status">
-          <span class="status-dot"></span>
-          <span class="status-label">Available for work</span>
-        </div>
       </div>
     </div>
 
@@ -349,32 +345,6 @@ const scrollToWork = () => {
   pointer-events: none;
 }
 
-.photo-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-  animation: statusPulse 2s ease-in-out infinite;
-}
-
-.status-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.55);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
 
 @keyframes statusPulse {
   0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.5); }
