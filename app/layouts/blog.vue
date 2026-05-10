@@ -58,6 +58,7 @@ const tabConfig = [
   { label: 'Blog', value: 'one', path: '/blogs', icon: 'i-mdi-post' },
   { label: 'Films', value: 'three', path: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
   { label: 'Quotes', value: 'two', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
+  { label: 'Now', value: 'four', path: '/now', icon: 'i-mdi-pulse' },
 ]
 
 const activeTab = ref('one')
