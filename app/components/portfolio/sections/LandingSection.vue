@@ -10,6 +10,12 @@
     <div class="hero-content">
       <!-- Left: Text content -->
       <div class="hero-text">
+        <NuxtLink to="/now" class="now-pill" aria-label="See what I'm up to right now">
+          <span class="now-pill-dot" aria-hidden="true"></span>
+          <span class="now-pill-text">What I'm up to now</span>
+          <UIcon name="i-mdi-arrow-right" class="now-pill-arrow" />
+        </NuxtLink>
+
         <div class="hero-greeting">
           Hey there, I'm
         </div>
@@ -177,6 +183,59 @@ const scrollToWork = () => {
   flex-direction: column;
   gap: 0.5rem;
   max-width: 520px;
+}
+
+/* "Now" status pill */
+.now-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  padding: 0.3rem 0.7rem 0.3rem 0.55rem;
+  margin-bottom: 0.6rem;
+  background: rgba(129, 140, 248, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.18);
+  border-radius: 9999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: all 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(129, 140, 248, 0.14);
+    border-color: rgba(129, 140, 248, 0.35);
+    color: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+  }
+
+  &:hover .now-pill-arrow {
+    transform: translateX(2px);
+  }
+}
+
+.now-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  animation: nowPulse 2s ease-out infinite;
+}
+
+@keyframes nowPulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.now-pill-arrow {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  transition: transform 0.25s ease;
 }
 
 /* Greeting */
@@ -367,6 +426,10 @@ const scrollToWork = () => {
   .hero-text {
     align-items: center;
     max-width: 100%;
+  }
+
+  .now-pill {
+    align-self: center;
   }
 
   .hero-intro {
