@@ -385,7 +385,7 @@ const copyLink = async () => {
   color: rgba(255, 255, 255, 0.8);
   padding: 0;
   line-height: 1.75;
-  font-size: 1.125rem;
+  font-size: 1rem;
   word-wrap: break-word;
   overflow-x: hidden;
 }
@@ -636,7 +636,7 @@ const copyLink = async () => {
   }
 
   .blog-content {
-    font-size: 1.0625rem;
+    font-size: 1rem;
   }
 
   .share-row {

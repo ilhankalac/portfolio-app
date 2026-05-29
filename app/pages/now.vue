@@ -131,9 +131,19 @@ const workingOn: { title: string; description: string; status: WorkStatus }[] = 
     status: 'shipping',
   },
   {
+    title: 'ViaLuxury — Luxury travel platform',
+    description: 'Where most of my time goes — building the customer-facing frontend in Nuxt 4 & Vue 3: booking flow, holiday-package offers, payments, accounts, and a fully multilingual (i18n) experience.',
+    status: 'shipping',
+  },
+  {
     title: 'Infinitydrive.lu — Premium car dealership',
     description: 'Built the web platform for a Luxembourg-based premium used-car dealership — vehicle catalogue, financing requests, and a French-localized customer experience.',
     status: 'shipping',
+  },
+  {
+    title: 'Personal portfolio — Nuxt 4 migration',
+    description: 'Migrating this site from Nuxt 3 to Nuxt 4 — new app/ directory structure, updated data fetching, and refreshing the content/blog setup along the way.',
+    status: 'wip',
   },
 ]
 
@@ -144,11 +154,11 @@ const learning: string[] = [
 ]
 
 const reading: { title: string; author: string }[] = [
-  { title: 'Jadnici', author: 'Viktor Igo'}
+  { title: 'Jadnici I', author: 'Viktor Igo'}
 ]
 
 const goals: { label: string; progress: number }[] = [
-  { label: 'Read 3 books', progress: 75 },
+  { label: 'Read 3 books', progress: 100 },
   { label: 'Finish 5th Fullstack Open module', progress: 0 },
 ]
 
