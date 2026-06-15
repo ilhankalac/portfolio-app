@@ -3,7 +3,7 @@ title: "My AI Stack as a Developer: How I Use Copilot and Claude in Daily Workfl
 date: "05/10/2025"
 publishedAt: "2025-10-12"
 author: "Ilhan Kalac"
-image: "https://zenobyte.com.vn/wp-content/uploads/2019/04/Claude-va-Copilot.jpg"
+image: "/images/blog/header.webp"
 description: "In my daily workflow as a developer, I rely on several AI tools to boost productivity, solve coding problems, and explore new ideas. Over time, I’ve develope..."
 readingTime: 3
 slug: "how-i-solve-problems-as-a-developer-using-ai-tools"
