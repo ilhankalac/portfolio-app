@@ -1,7 +1,7 @@
 ---
 title: "Mladi za digitalnu promociju Rožaja: kako sam držao web radionice za srednjoškolce"
-date: "15.06.2026."
-publishedAt: "2026-06-15"
+date: "29.06.2026."
+publishedAt: "2026-06-29"
 author: "Ilhan Kalač"
 image: "/images/blog/o-ruk-radionica/header.webp"
 description: "Prijatelji su me pozvali da održim radionice programiranja u Rožajama. Kroz dvanaest radionica učio sam srednjoškolce web developmentu, Git-u i AI alatima, ali prije svega tome kako se uči i razmišlja."
