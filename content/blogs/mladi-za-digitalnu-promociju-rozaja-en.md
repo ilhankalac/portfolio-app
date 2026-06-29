@@ -64,9 +64,9 @@ The students from the Vocational High School came in with really solid prior kno
 
 In the second half, all that knowledge clicked into place. Three teams built three projects covering many topics about Rožaje, and I'm sure someone will benefit from each of them:
 
-- **[dozivirozaje.me](https://dozivirozaje.me)**, a tourist guide through the town and its surroundings
-- **[guidetourrozaje.me](https://guidetourrozaje.me)**, a guide to the tours and landmarks of Rožaje
-- **[skijalistestedim.me](https://skijalistestedim.me)**, the Štedim ski resort
+- **<a href="https://dozivirozaje.me" target="_blank" rel="noopener">dozivirozaje.me</a>**, a tourist guide through the town and its surroundings
+- **<a href="https://guidetourrozaje.me" target="_blank" rel="noopener">guidetourrozaje.me</a>**, a guide to the tours and landmarks of Rožaje
+- **<a href="https://skijalistestedim.me" target="_blank" rel="noopener">skijalistestedim.me</a>**, the Štedim ski resort
 
 All of it was done while I followed the process through Pull Requests, in a very professional way. They went through branches, code review, merging changes and deploying the site to the internet. They felt all of it, from the very first recorded step to a site that is live and carries their name.
 
@@ -74,7 +74,7 @@ All of it was done while I followed the process through Pull Requests, in a very
 
 All of the workshop material is public. Anyone who wants to walk the same path can access it on GitHub, with lesson plans, examples and starter files for each workshop:
 
-👉 [github.com/ilhankalac/o-ruk-radionica](https://github.com/ilhankalac/o-ruk-radionica)
+👉 <a href="https://github.com/ilhankalac/o-ruk-radionica" target="_blank" rel="noopener">github.com/ilhankalac/o-ruk-radionica</a>
 
 ## Conclusion
 

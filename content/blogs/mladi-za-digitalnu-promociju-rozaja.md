@@ -64,9 +64,9 @@ Učenici Srednje stručne škole imali su baš dobro predznanje za ovu radionicu
 
 U drugoj polovini je sve to znanje sjelo na svoje mjesto. Tri tima napravila su tri projekta koji pokrivaju mnogo tema o Rožajama, i siguran sam da će neko od njih imati koristi:
 
-- **[dozivirozaje.me](https://dozivirozaje.me)**, turistički vodič kroz grad i okolinu
-- **[guidetourrozaje.me](https://guidetourrozaje.me)**, vodič kroz ture i znamenitosti Rožaja
-- **[skijalistestedim.me](https://skijalistestedim.me)**, skijalište Štedim
+- **<a href="https://dozivirozaje.me" target="_blank" rel="noopener">dozivirozaje.me</a>**, turistički vodič kroz grad i okolinu
+- **<a href="https://guidetourrozaje.me" target="_blank" rel="noopener">guidetourrozaje.me</a>**, vodič kroz ture i znamenitosti Rožaja
+- **<a href="https://skijalistestedim.me" target="_blank" rel="noopener">skijalistestedim.me</a>**, skijalište Štedim
 
 Sve je rađeno dok sam ja pratio proces kroz Pull Request-ove, na jako profesionalan način. Prošli su kroz grane, pregled koda, spajanje izmjena i postavljanje sajta na internet. Osjetili su sve, od prvog snimljenog koraka do sajta koji je živ i nosi njihovo ime.
 
@@ -74,7 +74,7 @@ Sve je rađeno dok sam ja pratio proces kroz Pull Request-ove, na jako profesion
 
 Sav materijal sa radionica je javan. Svako ko želi da prođe isti put može mu pristupiti na GitHub-u, sa planovima časova, primjerima i početnim fajlovima za svaku radionicu:
 
-👉 [github.com/ilhankalac/o-ruk-radionica](https://github.com/ilhankalac/o-ruk-radionica)
+👉 <a href="https://github.com/ilhankalac/o-ruk-radionica" target="_blank" rel="noopener">github.com/ilhankalac/o-ruk-radionica</a>
 
 ## Zaključak
 
