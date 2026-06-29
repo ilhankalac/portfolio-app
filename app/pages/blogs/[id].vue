@@ -40,6 +40,14 @@
 
       <!-- Share buttons -->
       <div class="share-row">
+        <NuxtLink
+          v-if="blog.altSlug"
+          class="share-btn lang-btn"
+          :to="`/blogs/${blog.altSlug}`"
+        >
+          <UIcon name="i-mdi-translate" />
+          {{ blog.lang === 'en' ? 'Pročitaj na našem jeziku' : 'Read in English' }}
+        </NuxtLink>
         <button class="share-btn" @click="copyLink" :title="copied ? 'Copied!' : 'Copy link'">
           <UIcon :name="copied ? 'i-mdi-check' : 'i-mdi-link-variant'" />
           {{ copied ? 'Copied' : 'Copy link' }}
@@ -364,6 +372,18 @@ const copyLink = async () => {
     color: rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.lang-btn {
+  color: #818cf8;
+  background: rgba(129, 140, 248, 0.1);
+  border-color: rgba(129, 140, 248, 0.25);
+
+  &:hover {
+    color: #a5b4fc;
+    background: rgba(129, 140, 248, 0.18);
+    border-color: rgba(129, 140, 248, 0.4);
   }
 }
 

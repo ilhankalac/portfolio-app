@@ -14,6 +14,8 @@ export default defineContentConfig({
         description: z.string().optional(),
         readingTime: z.number().optional(),
         slug: z.string().optional(),
+        lang: z.string().optional(),
+        altSlug: z.string().optional(),
       }),
     }),
   },

@@ -86,11 +86,14 @@ useSeoMeta({
   twitterImage: 'https://ilhan.io/og-image.jpg',
 })
 
-const { data: blogs, status } = await useAsyncData('blog-list', () =>
-  queryCollection('blogs')
-    .select('title', 'description', 'author', 'date', 'image', 'publishedAt', 'readingTime', 'path')
+const { data: blogs, status } = await useAsyncData('blog-list', async () => {
+  const all = await queryCollection('blogs')
+    .select('title', 'description', 'author', 'date', 'image', 'publishedAt', 'readingTime', 'path', 'lang')
     .order('publishedAt', 'DESC')
-    .all(),
+    .all()
+  // Hide alternate-language versions from the listing; show only primary posts.
+  return all.filter(blog => blog.lang !== 'en')
+},
   { default: () => [] },
 )
 </script>
