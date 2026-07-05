@@ -7,6 +7,9 @@
   --color-dark-text: 55 67 85;     /* #374355 */
   --color-grey-text: 191 196 212;  /* #BFC4D4 */
   height: 100%;
+  /* Always reserve the scrollbar gutter so centered content never shifts
+     horizontally when page height changes (e.g. Films loads in batches). */
+  scrollbar-gutter: stable;
 }
 
 body {

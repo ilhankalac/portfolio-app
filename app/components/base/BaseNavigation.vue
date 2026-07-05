@@ -22,7 +22,7 @@
           {{ item.label }}
         </button>
 
-        <UDropdownMenu :items="exploreMenuItems">
+        <UDropdownMenu :items="exploreMenuItems" :modal="false">
           <button class="nav-link" :class="{ active: isExploreRoute }">
             Explore
             <UIcon name="i-mdi-chevron-down" class="text-xs ml-0.5 opacity-60" />
