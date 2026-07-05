@@ -77,7 +77,7 @@
     <section class="now-section">
       <h2 class="section-title">
         <UIcon name="i-mdi-target" class="section-icon" />
-        Goals this quarter
+        Goals this quarter (Jul–Sep 2026)
       </h2>
       <div class="goal-list">
         <div
@@ -119,30 +119,25 @@ useSeoMeta({
   twitterImage: 'https://ilhan.io/og-image.jpg',
 })
 
-type WorkStatus = 'shipping' | 'wip' | 'paused'
+type WorkStatus = 'shipping' | 'shipped' | 'wip' | 'paused'
 
-const lastUpdated = 'May 2026'
+const lastUpdated = 'July 2026'
 const location = 'Podgorica, Montenegro'
 
 const workingOn: { title: string; description: string; status: WorkStatus }[] = [
   {
-    title: 'Day job — frontend engineering',
-    description: 'Building product features and shipping polished UI in a Vue / Nuxt stack.',
-    status: 'shipping',
-  },
-  {
     title: 'ViaLuxury — Luxury travel platform',
-    description: 'Where most of my time goes — building the customer-facing frontend in Nuxt 4 & Vue 3: booking flow, holiday-package offers, payments, accounts, and a fully multilingual (i18n) experience.',
+    description: 'My full-time day job (remote) — where most of my time goes. Building the customer-facing frontend in Nuxt 4 & Vue 3: booking flow, holiday-package offers, payments, accounts, and a fully multilingual (i18n) experience.',
     status: 'shipping',
   },
   {
     title: 'Infinitydrive.lu — Premium car dealership',
     description: 'Built the web platform for a Luxembourg-based premium used-car dealership — vehicle catalogue, financing requests, and a French-localized customer experience.',
-    status: 'shipping',
+    status: 'shipped',
   },
   {
-    title: 'Personal portfolio — Nuxt 4 migration',
-    description: 'Migrating this site from Nuxt 3 to Nuxt 4 — new app/ directory structure, updated data fetching, and refreshing the content/blog setup along the way.',
+    title: 'Personal portfolio — ilhan.io',
+    description: 'Maintaining and improving this site — adding new features, writing blog posts, and keeping the content fresh.',
     status: 'wip',
   },
 ]
@@ -158,12 +153,13 @@ const reading: { title: string; author: string }[] = [
 ]
 
 const goals: { label: string; progress: number }[] = [
-  { label: 'Read 3 books', progress: 100 },
+  { label: 'Read 2 books', progress: 0 },
   { label: 'Finish 5th Fullstack Open module', progress: 0 },
 ]
 
 const statusLabel = (s: WorkStatus) => {
   if (s === 'shipping') return 'Shipping'
+  if (s === 'shipped') return 'Live'
   if (s === 'wip') return 'In progress'
   return 'Paused'
 }
@@ -310,6 +306,12 @@ const statusLabel = (s: WorkStatus) => {
     color: #34d399;
     background: rgba(52, 211, 153, 0.1);
     border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  &.status-shipped {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.2);
   }
 
   &.status-wip {
