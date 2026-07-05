@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+  --color-primary-rgb: 15 23 42;       /* slate-900 = #0F172A */
+  --color-secondary-rgb: 35 48 57;     /* #233039 */
+  --color-dark-text: 55 67 85;     /* #374355 */
+  --color-grey-text: 191 196 212;  /* #BFC4D4 */
+  height: 100%;
+}
+
+body {
+  background-color: rgb(var(--color-primary-rgb));
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.9rem;
+  }
+}
+
+ul, ol {
+  list-style: revert;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  display: list-item;
+}

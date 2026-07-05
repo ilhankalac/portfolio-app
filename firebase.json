@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "dist",
+    "public": ".output/public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,7 +12,18 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/200.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css|webp|png|jpg|svg|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
       }
     ]
   }

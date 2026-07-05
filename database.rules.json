@@ -1,6 +1,51 @@
 {
   "rules": {
-    ".read": "true",  // 2024-2-19
-    ".write": "true",  // 2024-2-19
+    ".read": false,
+    ".write": false,
+    "about": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "recommendations": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "working-experience": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "skills": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "free-time-projects": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "listOfSeenfilms": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "filmStats": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "blog": {
+      "favorite-quotes": {
+        ".read": true,
+        ".write": "auth != null"
+      }
+    },
+    "contacted": {
+      ".read": "auth != null",
+      ".write": true,
+      "$messageId": {
+        ".validate": "newData.hasChildren(['email', 'message', 'timeStamp'])"
+      }
+    },
+    "contact-messages": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
   }
 }
