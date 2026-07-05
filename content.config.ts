@@ -13,6 +13,7 @@ export default defineContentConfig({
         image: z.string().optional(),
         description: z.string().optional(),
         readingTime: z.number().optional(),
+        tags: z.array(z.string()).optional(),
         slug: z.string().optional(),
         lang: z.string().optional(),
         altSlug: z.string().optional(),
