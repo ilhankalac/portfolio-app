@@ -6,6 +6,7 @@ author: "Ilhan Kalač"
 image: "/images/blog/o-ruk-radionica/header.webp"
 description: "Friends invited me to run programming workshops in Rožaje. Across twelve sessions I taught high schoolers web development, Git and AI tools, but above all how to learn and how to think."
 readingTime: 5
+tags: ["Teaching", "Community"]
 slug: "mladi-za-digitalnu-promociju-rozaja-en"
 lang: "en"
 altSlug: "mladi-za-digitalnu-promociju-rozaja"

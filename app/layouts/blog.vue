@@ -2,49 +2,33 @@
   <div class="min-h-screen">
     <BaseNavigation origin="configure" />
 
-    <!-- Cover image -->
-    <div class="cover-wrap">
-      <img
-        src="/images/blog/header.webp"
-        alt=""
-        class="cover-img"
-      />
-      <div class="cover-overlay" />
-    </div>
-
-    <!-- Tabs -->
-    <div class="tab-bar">
-      <div class="tab-bar-inner">
-        <!-- Desktop Tabs -->
-        <div class="tab-pills">
-          <button
-            v-for="tab in tabConfig"
-            :key="tab.value"
-            class="tab-pill"
-            :class="{ active: activeTab === tab.value }"
-            @click="openRoute(tab.path)"
+    <div class="explore-shell">
+      <!-- Sidebar -->
+      <aside class="explore-sidebar">
+        <span class="sidebar-label">Explore</span>
+        <nav class="sidebar-nav">
+          <NuxtLink
+            v-for="section in sections"
+            :key="section.path"
+            :to="section.path"
+            class="sidebar-item"
+            :class="{ 'sidebar-item--active': isActive(section) }"
           >
-            <UIcon :name="tab.icon" class="tab-pill-icon" />
-            {{ tab.label }}
-          </button>
-        </div>
+            <span class="item-icon-wrap">
+              <UIcon :name="section.icon" class="item-icon" />
+            </span>
+            <span class="item-text">
+              <span class="item-label">{{ section.label }}</span>
+              <span class="item-desc">{{ section.description }}</span>
+            </span>
+          </NuxtLink>
+        </nav>
+      </aside>
 
-        <!-- Mobile Dropdown -->
-        <div class="tab-mobile">
-          <UDropdownMenu :items="mobileMenuItems">
-            <button class="tab-mobile-btn">
-              <UIcon :name="activeTabIcon" class="tab-mobile-icon" />
-              {{ activeTabLabel }}
-              <UIcon name="i-mdi-chevron-down" class="tab-mobile-chevron" />
-            </button>
-          </UDropdownMenu>
-        </div>
-      </div>
-    </div>
-
-    <!-- Content -->
-    <div class="blog-layout-content">
-      <slot />
+      <!-- Content -->
+      <main class="explore-content">
+        <slot />
+      </main>
     </div>
   </div>
 </template>
@@ -52,173 +36,204 @@
 <script setup lang="ts">
 import BaseNavigation from '~/components/base/BaseNavigation.vue'
 
-const router = useRouter()
+const route = useRoute()
 
-const tabConfig = [
-  { label: 'Blog', value: 'one', path: '/blogs', icon: 'i-mdi-post' },
-  { label: 'Films', value: 'three', path: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
-  { label: 'Quotes', value: 'two', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
-  { label: 'Now', value: 'four', path: '/now', icon: 'i-mdi-pulse' },
+const sections = [
+  { label: 'Blog', path: '/blogs', icon: 'i-mdi-post-outline', description: 'Thoughts & knowledge' },
+  { label: 'Films', path: '/list-of-seen-films', icon: 'i-mdi-filmstrip', description: 'Every film I’ve seen' },
+  { label: 'Quotes', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close', description: 'Lines worth remembering' },
+  { label: 'Now', path: '/now', icon: 'i-mdi-pulse', description: 'What I’m up to' },
 ]
 
-const activeTab = ref('one')
-
-const activeTabIcon = computed(() => tabConfig.find(t => t.value === activeTab.value)?.icon || 'i-mdi-post')
-const activeTabLabel = computed(() => tabConfig.find(t => t.value === activeTab.value)?.label || 'Blog')
-
-const mobileMenuItems = computed(() => [
-  tabConfig.map(t => ({
-    label: t.label,
-    icon: t.icon,
-    onSelect: () => openRoute(t.path),
-  }))
-])
-
-const openRoute = (path: string) => {
-  activeTab.value = tabConfig.find(t => t.path === path)?.value || 'one'
-  navigateTo(path)
-}
-
-onMounted(() => {
-  const currentPath = router.currentRoute.value.path
-  const matchedTab = tabConfig.find(t => currentPath.startsWith(t.path))
-  if (matchedTab) {
-    activeTab.value = matchedTab.value
-  }
-})
+const isActive = (section: { path: string }) => route.path.startsWith(section.path)
 </script>
 
 <style scoped lang="scss">
-/* Cover image */
-.cover-wrap {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-
-.cover-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.cover-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.4) 0%,
-    rgba(15, 23, 42, 0.85) 100%
-  );
-  pointer-events: none;
-}
-
-.tab-bar {
-  position: sticky;
-  top: 56px;
-  z-index: 100;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.tab-bar-inner {
-  max-width: 64rem; /* max-w-5xl */
-  margin: 0 auto;
-  padding: 0.75rem 1.5rem;
-}
-
-.tab-pills {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-
-  @media (max-width: 640px) {
-    display: none;
-  }
-}
-
-.tab-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.75rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.45);
-  background: none;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
-
-  &:hover {
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  &.active {
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.08);
-  }
-}
-
-.tab-pill-icon {
-  font-size: 0.875rem;
-  opacity: 0.7;
-}
-
-/* Mobile dropdown */
-.tab-mobile {
-  display: none;
-
-  @media (max-width: 640px) {
-    display: block;
-  }
-}
-
-.tab-mobile-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
-}
-
-.tab-mobile-icon {
-  font-size: 0.9rem;
-  color: #818cf8;
-}
-
-.tab-mobile-chevron {
-  font-size: 0.75rem;
-  opacity: 0.5;
-  margin-left: auto;
-}
-
-/* Content area */
-.blog-layout-content {
-  max-width: 64rem;
+.explore-shell {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 3rem;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 2.5rem 1.5rem 3rem;
   min-height: 70vh;
+}
+
+/* Sidebar */
+.explore-sidebar {
+  position: sticky;
+  top: 5.5rem;
+  align-self: start;
+  /* Offset the items' internal padding so icons/text align with the navbar brand */
+  margin-left: -0.75rem;
+}
+
+.sidebar-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.65rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+
+    .item-label {
+      color: rgba(255, 255, 255, 0.95);
+    }
+  }
+
+  &--active {
+    background: rgba(129, 140, 248, 0.08);
+
+    .item-icon-wrap {
+      color: #a5b4fc;
+      background: rgba(129, 140, 248, 0.14);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+
+    .item-label {
+      color: #e0e7ff;
+    }
+
+    &:hover {
+      background: rgba(129, 140, 248, 0.12);
+    }
+  }
+}
+
+.item-icon-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.55rem;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.2s ease;
+}
+
+.item-icon {
+  font-size: 1rem;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.item-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 550;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.item-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.32);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Content */
+.explore-content {
+  min-width: 0;
+}
+
+/* Mobile: sidebar becomes a sticky horizontal bar */
+@media (max-width: 768px) {
+  .explore-shell {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 0;
+  }
+
+  .explore-sidebar {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 100;
+    margin: 0 -1.5rem;
+    padding: 0.6rem 1.5rem;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .sidebar-label {
+    display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 0.35rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .sidebar-item {
+    flex-shrink: 0;
+    padding: 0.4rem 0.7rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+
+    &--active {
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+  }
+
+  .item-icon-wrap {
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+  }
+
+  .item-icon {
+    font-size: 0.9rem;
+  }
+
+  .item-desc {
+    display: none;
+  }
+
+  .item-label {
+    font-size: 0.8rem;
+  }
 }
 </style>

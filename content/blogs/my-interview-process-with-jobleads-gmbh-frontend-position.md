@@ -6,6 +6,7 @@ author: "Ilhan Kalač"
 image: "https://mont.design/wp-content/uploads/2025/11/Experience-JobLeads.jpg"
 description: "Recently, I went through a structured interview process with JobLeads GmbH for a Frontend role. I decided to document the experience objectively, outlining h..."
 readingTime: 5
+tags: ["Career"]
 slug: "my-interview-process-with-jobleads-gmbh-frontend-position"
 ---
 Recently, I went through a structured interview process with **JobLeads GmbH** for a Frontend role. I decided to document the experience objectively, outlining how the process was organized, what was expected technically, and what I learned from it.

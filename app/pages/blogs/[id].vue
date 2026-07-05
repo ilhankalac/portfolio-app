@@ -81,6 +81,38 @@
       <div class="blog-content" role="main">
         <ContentRenderer v-if="blog" :value="blog" />
       </div>
+
+      <!-- Related posts -->
+      <section v-if="related.length" class="related-section">
+        <h2 class="related-heading">Keep reading</h2>
+        <div class="related-grid">
+          <NuxtLink
+            v-for="post in related"
+            :key="post.path"
+            :to="post.path"
+            class="related-card"
+          >
+            <div class="related-image-wrap">
+              <img
+                v-if="post.image"
+                :src="post.image"
+                :alt="post.title"
+                class="related-image"
+              />
+              <div v-else class="related-image-placeholder">
+                <UIcon name="i-mdi-post-outline" />
+              </div>
+            </div>
+            <div class="related-body">
+              <span class="related-meta">
+                {{ formatDate(post.publishedAt) }}
+                <template v-if="post.readingTime"> &middot; {{ post.readingTime }} min read</template>
+              </span>
+              <h3 class="related-title">{{ post.title }}</h3>
+            </div>
+          </NuxtLink>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -124,6 +156,39 @@ useSeoMeta({
   articleAuthor: () => blog.value?.author || 'Ilhan Kalač',
   articlePublishedTime: () => blog.value?.publishedAt || '',
 })
+
+// Related posts: prefer posts sharing a tag, exclude the current post and its
+// alternate-language version, always show primary-language posts only.
+const { data: related } = await useAsyncData(
+  () => `related-${slug.value}`,
+  async () => {
+    const current = blog.value
+    if (!current) return []
+    const all = await queryCollection('blogs')
+      .select('title', 'image', 'publishedAt', 'readingTime', 'path', 'lang', 'tags')
+      .order('publishedAt', 'DESC')
+      .all()
+    const candidates = all.filter(post =>
+      post.path !== current.path
+      && post.lang !== 'en'
+      && (!current.altSlug || !post.path.endsWith(`/${current.altSlug}`)),
+    )
+    const currentTags = current.tags ?? []
+    return candidates
+      .map(post => ({ post, shared: (post.tags ?? []).filter(tag => currentTags.includes(tag)).length }))
+      .sort((a, b) => b.shared - a.shared)
+      .slice(0, 2)
+      .map(({ post }) => post)
+  },
+  { watch: [slug], default: () => [] },
+)
+
+const formatDate = (iso?: string) => {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return iso
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
 
 const copied = ref(false)
 
@@ -596,6 +661,107 @@ const copyLink = async () => {
   object-fit: cover;
   margin: 10px 0;
   border-radius: 0.75rem;
+}
+
+/* Related posts */
+.related-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.related-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.related-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.1);
+
+    .related-image {
+      transform: scale(1.04);
+    }
+
+    .related-title {
+      color: #a5b4fc;
+    }
+  }
+}
+
+.related-image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 8;
+}
+
+.related-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.related-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.1);
+  font-size: 1.5rem;
+}
+
+.related-body {
+  padding: 0.9rem 1.1rem 1.1rem;
+}
+
+.related-meta {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.35rem;
+}
+
+.related-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.45;
+  margin: 0;
+  transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Skeleton loading */

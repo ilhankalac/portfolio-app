@@ -6,6 +6,7 @@ author: "Ilhan Kalac"
 image: "/images/blog/header.webp"
 description: "In my daily workflow as a developer, I rely on several AI tools to boost productivity, solve coding problems, and explore new ideas. Over time, I’ve develope..."
 readingTime: 3
+tags: ["AI", "Tooling"]
 slug: "how-i-solve-problems-as-a-developer-using-ai-tools"
 ---
 In my daily workflow as a developer, I rely on several AI tools to boost productivity, solve coding problems, and explore new ideas. Over time, I’ve developed a kind of personal “AI stack” — each tool has its own place depending on what I’m working on and how complex the task is.

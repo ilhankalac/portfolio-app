@@ -3,6 +3,7 @@
     <div class="nav-inner">
       <!-- Brand -->
       <div class="nav-brand" @click="navigateToSection('initial')">
+        <span class="brand-mark">IK</span>
         <span class="brand-name">
           <span class="brand-first">Ilhan</span>
           <span class="brand-last">Kalač</span>
@@ -22,11 +23,17 @@
         </button>
 
         <UDropdownMenu :items="exploreMenuItems">
-          <button class="nav-link">
+          <button class="nav-link" :class="{ active: isExploreRoute }">
             Explore
             <UIcon name="i-mdi-chevron-down" class="text-xs ml-0.5 opacity-60" />
           </button>
         </UDropdownMenu>
+
+        <span class="nav-sep" />
+
+        <button class="nav-cta" @click="navigateToSection('get-in-touch')">
+          Get in touch
+        </button>
       </div>
 
       <!-- Mobile toggle -->
@@ -59,6 +66,13 @@
           <UIcon :name="item.icon" class="text-sm opacity-50" />
           {{ item.label }}
         </button>
+
+        <div class="mobile-divider"></div>
+
+        <button class="mobile-link mobile-link--cta" @click="navigateToSection('get-in-touch')">
+          <UIcon name="i-mdi-email-outline" class="text-sm" />
+          Get in touch
+        </button>
       </div>
     </Transition>
   </nav>
@@ -90,6 +104,10 @@ const exploreItems = [
   { label: 'Quotes', route: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
   { label: 'Now', route: '/now', icon: 'i-mdi-clock-time-four-outline' },
 ]
+
+const isExploreRoute = computed(() =>
+  exploreItems.some(item => route.path.startsWith(item.route)),
+)
 
 const exploreMenuItems = computed(() => [
   exploreItems.map(item => ({
@@ -191,9 +209,10 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
+  /* Match .explore-shell (72rem / 1.5rem) so the brand aligns with page content */
+  max-width: 72rem;
   margin: 0 auto;
-  padding: 0.875rem 2rem;
+  padding: 0.75rem 1.5rem;
 
   @media (max-width: 640px) {
     padding: 0.75rem 1.25rem;
@@ -202,12 +221,37 @@ onMounted(() => {
 
 /* Brand */
 .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   cursor: pointer;
+
+  &:hover .brand-mark {
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+  }
+}
+
+.brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.55rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  transition: box-shadow 0.25s ease;
+  flex-shrink: 0;
 }
 
 .brand-name {
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   letter-spacing: 0.01em;
 }
 
@@ -236,28 +280,59 @@ onMounted(() => {
 .nav-link {
   display: flex;
   align-items: center;
-  padding: 0.35rem 0.65rem;
+  padding: 0.4rem 0.75rem;
   font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
   background: none;
   border: none;
-  border-radius: 6px;
+  border-radius: 9999px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
   letter-spacing: 0.01em;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     background: rgba(255, 255, 255, 0.05);
   }
 
   &.active {
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.08);
-    font-weight: 500;
+    color: #c7d2fe;
+    background: rgba(129, 140, 248, 0.12);
+  }
+}
+
+.nav-sep {
+  width: 1px;
+  height: 1.1rem;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 0.6rem;
+  flex-shrink: 0;
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.95rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c7d2fe;
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    color: #e0e7ff;
+    background: rgba(129, 140, 248, 0.2);
+    border-color: rgba(129, 140, 248, 0.5);
+    box-shadow: 0 0 16px rgba(129, 140, 248, 0.15);
   }
 }
 
@@ -348,6 +423,20 @@ onMounted(() => {
   &--sub {
     padding-left: 1.25rem;
     font-size: 0.75rem;
+  }
+
+  &--cta {
+    color: #c7d2fe;
+    background: rgba(129, 140, 248, 0.1);
+    border: 1px solid rgba(129, 140, 248, 0.25);
+    justify-content: center;
+    font-weight: 600;
+    margin-top: 0.25rem;
+
+    &:hover {
+      color: #e0e7ff;
+      background: rgba(129, 140, 248, 0.18);
+    }
   }
 }
 

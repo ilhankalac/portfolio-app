@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     preset: 'static',
     prerender: {
       crawlLinks: true,
-      routes: ['/favorite-quotes', '/list-of-seen-films'],
+      routes: ['/favorite-quotes', '/list-of-seen-films', '/rss.xml'],
     },
   },
 
@@ -35,6 +35,7 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/profile.ico' },
         { rel: 'canonical', href: 'https://ilhan.io' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'Ilhan Kalač — Blog', href: '/rss.xml' },
       ],
     },
   },

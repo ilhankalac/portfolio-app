@@ -6,6 +6,7 @@ author: "Ilhan Kalač"
 image: "/images/blog/o-ruk-radionica/header.webp"
 description: "Prijatelji su me pozvali da održim radionice programiranja u Rožajama. Kroz dvanaest radionica učio sam srednjoškolce web developmentu, Git-u i AI alatima, ali prije svega tome kako se uči i razmišlja."
 readingTime: 5
+tags: ["Teaching", "Community"]
 slug: "mladi-za-digitalnu-promociju-rozaja"
 lang: "sr"
 altSlug: "mladi-za-digitalnu-promociju-rozaja-en"
