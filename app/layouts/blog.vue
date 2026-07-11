@@ -55,7 +55,8 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   gap: 3rem;
   max-width: 72rem;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 3rem;
+  /* Top padding clears the fixed navbar (~3.3rem) so page eyebrows/titles aren't hidden */
+  padding: 5.5rem 1.5rem 3rem;
   min-height: 70vh;
 }
 
@@ -176,7 +177,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   .explore-shell {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    padding-top: 0;
+    padding-top: 3.5rem;
   }
 
   .explore-sidebar {
