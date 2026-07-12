@@ -1,8 +1,37 @@
 import type { IExperience, ISkill, IFreeProject, IColleagueInfo } from '~/types/models'
 
-export const aboutDescription: string = `<p>Frontend engineer specialized in Vue 3 and TypeScript, with 6+ years of experience delivering large-scale enterprise applications in healthcare, POS and education. Focused on performance, accessibility and robust frontend architecture. Open to remote worldwide or hybrid in EU/Balkans.</p><p></p><p></p><p>I hold a <strong>Bachelor of Applied Science in Electrical Engineering</strong>, earned in Belgrade, Serbia.</p><p></p><p></p><p>Although I began my journey with <strong>C#</strong> and the <a target="_blank" rel="noopener noreferrer nofollow" href="http://ASP.NET"><strong>ASP.NET</strong></a><strong> Core</strong> framework, my path naturally evolved toward frontend development, where I discovered my true passion.</p><p></p><p></p><p>Currently, I work as a <strong>frontend developer</strong> at a company that specializes in web applications, where I continuously refine my skills and expand my expertise in the constantly evolving field of frontend development.</p><p></p><p></p><p>I have experience with <strong>agile methodologies</strong> and I am proficient in using <strong>Atlassian tools</strong> such as Jira and Confluence, which I use daily to ensure effective collaboration and project management.</p><p></p><p></p><p>Outside of work, I am deeply interested in <strong>artistic films</strong>, <strong>photography</strong>, and <strong>philosophical literature</strong>. I stay active through <strong>calisthenics</strong> and I am dedicated to <strong>continuous self-improvement</strong> in every aspect of life, firmly believing that <strong>great achievements come only through discipline</strong>.</p>`
+export const aboutDescription: string = `<p>Frontend engineer specialized in Vue 3 and TypeScript, with 6+ years of experience delivering large-scale enterprise applications in healthcare, POS and education. Focused on performance, accessibility and robust frontend architecture. Open to remote worldwide or hybrid in EU/Balkans.</p><p></p><p></p><p>I hold a <strong>Bachelor of Applied Science in Electrical Engineering</strong>, earned in Belgrade, Serbia.</p><p></p><p></p><p>I began my journey with <strong>C#</strong> and the <a target="_blank" rel="noopener noreferrer nofollow" href="http://ASP.NET"><strong>ASP.NET</strong></a><strong> Core</strong> framework, and although frontend development became my main focus and true passion, that backend foundation still serves me today in full-stack work.</p><p></p><p></p><p>Currently, I work as a <strong>full-stack developer</strong> at <strong>ViaLuxury</strong>, a luxury hotel and holiday-package platform based in Amsterdam, where I build a large multilingual booking application with <strong>Nuxt</strong>, <strong>Vue 3</strong> and <strong>TypeScript</strong>, while also contributing to its <strong>ASP.NET Core</strong> backend.</p><p></p><p></p><p>I have experience with <strong>agile methodologies</strong> and I am proficient in using <strong>Atlassian tools</strong> such as Jira and Confluence, which I use daily to ensure effective collaboration and project management.</p><p></p><p></p><p>Outside of work, I am deeply interested in <strong>artistic films</strong>, <strong>photography</strong>, and <strong>philosophical literature</strong>. I stay active through <strong>calisthenics</strong> and I am dedicated to <strong>continuous self-improvement</strong> in every aspect of life, firmly believing that <strong>great achievements come only through discipline</strong>.</p>`
 
 export const experiences: IExperience[] = [
+  {
+    id: 4,
+    company_link: 'https://vialuxury.com/',
+    date: 'Jan 2026 - Present',
+    description: '<p>In January 2026 I joined <strong>ViaLuxury</strong>, a luxury hotel and holiday-package platform based in Amsterdam, as a full-stack developer working fully remote. I focus primarily on the customer-facing frontend — a large multilingual booking application built with <strong>Nuxt</strong>, <strong>Vue 3</strong> and <strong>TypeScript</strong> — while also contributing to the <strong>ASP.NET Core</strong> backend and shared API integration layer.</p>',
+    location: 'Amsterdam, Netherlands · Remote',
+    logoSrc: '/images/logos/vialuxury_logo.svg',
+    position: 'Full-Stack Developer (Nuxt 4 / Vue 3, ASP.NET Core)',
+    title: 'ViaLuxury',
+    projects: [
+      {
+        description: '<p>A multilingual luxury hotel and holiday-package booking platform. As a full-stack developer I work across the Nuxt frontend and the ASP.NET Core backend, shipping customer-facing features end to end.</p><h3>Key contributions:</h3><ul><li class="ql-indent-1">Contributed to a <strong>multilingual hotel booking platform</strong> built with <strong>Nuxt</strong> (50+ routes, 250+ components).</li><li class="ql-indent-1">Implemented and expanded the <strong>My Account</strong> area, including dashboard views, booking overview and user profile management.</li><li class="ql-indent-1">Built a <strong>passwordless authentication</strong> flow and session handling logic.</li><li class="ql-indent-1">Worked on <strong>checkout and booking flows</strong>, including availability handling, pricing logic, discounts and gift-card support.</li><li class="ql-indent-1">Integrated <strong>PostHog</strong> for event tracking and feature-flag experiments, enabling data-driven iterations on checkout and account flows.</li><li class="ql-indent-1">Helped optimize <strong>SSR/CSR rendering strategies</strong> to balance SEO and transactional performance.</li><li class="ql-indent-1">Contributed to a shared <strong>API integration layer</strong> with authentication and retry logic.</li></ul>',
+        endDate: 'Present',
+        name: 'ViaLuxury Booking Platform',
+        project_link: 'https://vialuxury.com/',
+        startDate: 'Jan 2026',
+        technologies: [
+          { icon: 'nuxt', id: 1, name: 'Nuxt 4' },
+          { icon: 'vuejs', id: 2, name: 'Vue 3' },
+          { icon: 'language-typescript', id: 3, name: 'TypeScript' },
+          { icon: 'tailwind', id: 4, name: 'Tailwind CSS' },
+          { icon: 'code-tags', id: 5, name: 'Pinia' },
+          { icon: 'chart-box', id: 6, name: 'PostHog' },
+          { icon: 'language-csharp', id: 7, name: 'ASP.NET Core' },
+          { icon: 'git', id: 8, name: 'Git' },
+        ],
+      },
+    ],
+  },
   {
     id: 3,
     company_link: 'https://codeus.me/',
@@ -112,6 +141,7 @@ export const experiences: IExperience[] = [
 
 export const skills: ISkill[] = [
   { icon: 'vuejs', key: 0, name: 'Vue.js' },
+  { icon: 'nuxt', key: 15, name: 'Nuxt' },
   { icon: 'language-typescript', key: 1, name: 'TypeScript' },
   { icon: 'language-javascript', key: 2, name: 'JavaScript' },
   { icon: 'language-html5', key: 3, name: 'HTML5' },

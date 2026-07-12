@@ -84,10 +84,10 @@ const props = defineProps<{
 }>()
 
 const stats = [
-  { key: 'years', value: 5, label: 'Years Experience', icon: 'i-mdi-briefcase-outline' },
+  { key: 'years', value: 6, label: 'Years Experience', icon: 'i-mdi-briefcase-outline' },
   { key: 'projects', value: 20, label: 'Projects', icon: 'i-mdi-rocket-launch-outline' },
   { key: 'technologies', value: 10, label: 'Technologies', icon: 'i-mdi-code-tags' },
-  { key: 'companies', value: 3, label: 'Companies', icon: 'i-mdi-office-building-outline' },
+  { key: 'companies', value: 4, label: 'Companies', icon: 'i-mdi-office-building-outline' },
 ]
 
 const animatedStats = reactive<Record<string, number>>({
