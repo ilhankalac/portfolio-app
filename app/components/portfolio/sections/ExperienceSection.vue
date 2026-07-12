@@ -204,7 +204,9 @@ const toggleCard = (index: number) => {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
+  padding: 6px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
 
@@ -212,6 +214,7 @@ const toggleCard = (index: number) => {
     width: 40px;
     height: 40px;
     border-radius: 10px;
+    padding: 5px;
   }
 }
 
