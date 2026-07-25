@@ -64,7 +64,7 @@
             :ui="{ base: 'bg-white/[0.03] border border-white/[0.07] text-white placeholder-white/25' }"
           >
             <template v-if="search" #trailing>
-              <UButton icon="i-mdi-close" color="neutral" variant="link" size="xs" @click="search = ''" />
+              <UButton icon="i-mdi-close" color="neutral" variant="link" size="xs" @click="clearSearch" />
             </template>
           </UInput>
 
@@ -165,6 +165,7 @@ definePageMeta({
   // NuxtPage keys pages by their interpolated path, so writing the quote id into the
   // URL would tear down and remount this page. A fixed key keeps the list mounted.
   key: 'favorite-quotes',
+  scrollToTop: false,
 })
 
 useHead({
@@ -311,6 +312,10 @@ const filteredQuotes = computed(() => {
 const visibleQuotes = computed(() => filteredQuotes.value.slice(0, visibleCount.value))
 
 /* ---------- Interactions ---------- */
+
+const clearSearch = () => {
+  search.value = ''
+}
 
 const selectVoice = (author: string) => {
   if (!author) return
