@@ -1,83 +1,232 @@
 <template>
-  <blockquote
-    class="otro-blockquote mb-8 mt-4"
-    :class="origin === 'quote-dialog' ? 'py-10 pr-10 md:p-[1.2em_30px_1.2em_75px]' : ''"
-    style="padding: 1.2em 30px 1.2em 75px;"
+  <article
+    class="quote-card"
+    tabindex="0"
+    role="button"
+    :aria-label="`Open quote by ${author}`"
+    @click="emit('open', quote)"
+    @keydown.enter.prevent="emit('open', quote)"
+    @keydown.space.prevent="emit('open', quote)"
   >
-    <div style="font-style: italic" class="text-justify pr-7" v-html="selectedQuote?.text" />
-    <div class="flex items-center justify-between p-0 mt-5 font-normal">
-      <span>
-        ― &nbsp;{{ selectedQuote?.author ? selectedQuote.author : 'Unknown author' }}
-      </span>
-      <button class="copy-btn" @click="createLink(selectedQuote)">
-        <UIcon name="i-mdi-content-copy" class="text-sm" />
+    <span class="card-glyph" aria-hidden="true">&ldquo;</span>
+
+    <p class="card-text" :class="{ 'card-text--long': isTruncated }">{{ preview }}</p>
+
+    <span v-if="isTruncated" class="card-more">
+      Read in full
+      <UIcon name="i-mdi-arrow-right" class="more-icon" />
+    </span>
+
+    <footer class="card-foot">
+      <button
+        class="card-author"
+        :title="`Show only ${author}`"
+        @click.stop="emit('select-voice', quote.author || '')"
+      >
+        <QuoteMonogram :author="quote.author" />
+        <span class="author-text">
+          <span class="author-name">{{ author }}</span>
+          <span v-if="work" class="author-work">{{ work }}</span>
+        </span>
       </button>
-    </div>
-  </blockquote>
+
+      <span class="card-actions">
+        <button class="icon-btn" title="Copy quote" @click.stop="copyQuoteText(quote)">
+          <UIcon name="i-mdi-content-copy" />
+        </button>
+        <button class="icon-btn" title="Copy link to quote" @click.stop="copyQuoteLink(quote)">
+          <UIcon name="i-mdi-link-variant" />
+        </button>
+      </span>
+    </footer>
+  </article>
 </template>
 
 <script lang="ts" setup>
+import QuoteMonogram from '~/components/common/QuoteMonogram.vue'
 import type { IQuote } from '~/types/models'
 
-const toast = useToast()
+const PREVIEW_LENGTH = 260
 
-const props = defineProps<{
-  origin?: string
-  selectedQuote?: IQuote
+const props = defineProps<{ quote: IQuote }>()
+
+const emit = defineEmits<{
+  (e: 'open', quote: IQuote): void
+  (e: 'select-voice', author: string): void
 }>()
 
-const createLink = (quote: IQuote = { key: '', author: '', text: '' }) => {
-  const link = window.location.origin + '/favorite-quotes/' + quote.key
-  navigator.clipboard.writeText(link)
-    .then(() => {
-      toast.add({ title: 'Link for sharing the quote has been copied to clipboard.', icon: 'i-mdi-information-outline' })
-    })
-    .catch((error) => {
-      console.error('Failed to copy link to clipboard:', error)
-    })
-}
+const { stripHtml, authorName, quoteWork, copyQuoteText, copyQuoteLink } = useQuotes()
+
+const plainText = computed(() => stripHtml(props.quote.text))
+const isTruncated = computed(() => plainText.value.length > PREVIEW_LENGTH)
+const preview = computed(() => {
+  if (!isTruncated.value) return plainText.value
+  const cut = plainText.value.slice(0, PREVIEW_LENGTH)
+  const lastSpace = cut.lastIndexOf(' ')
+  return `${cut.slice(0, lastSpace > 180 ? lastSpace : cut.length).trimEnd()}…`
+})
+
+const author = computed(() => authorName(props.quote.author))
+const work = computed(() => quoteWork(props.quote))
 </script>
 
-<style scoped>
-.otro-blockquote {
-  color: rgba(255, 255, 255, 0.75);
-  border-left: 4px solid #4f46e5;
-  line-height: 1.6;
+<style scoped lang="scss">
+.quote-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 0 0.5rem 0.5rem 0;
-}
-
-.otro-blockquote span {
   display: block;
-  font-style: italic;
-  font-weight: bold;
-  margin-top: 1em;
-  color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  padding: 1.35rem 1.4rem 1.1rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.3s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(129, 140, 248, 0.28);
+    box-shadow: 0 18px 36px -22px rgba(0, 0, 0, 0.8);
+    outline: none;
+
+    .card-glyph { color: rgba(129, 140, 248, 0.28); }
+    .card-actions { opacity: 1; }
+    .card-more { color: #a5b4fc; }
+    .more-icon { transform: translateX(3px); }
+  }
 }
 
-.otro-blockquote::before {
-  font-family: Arial;
-  content: "\201C";
-  font-size: 4em;
+.card-glyph {
   position: absolute;
-  left: 10px;
-  top: -10px;
-  color: #818cf8;
-  opacity: 0.4;
+  top: -0.35rem;
+  right: 0.85rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 4.25rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  transition: color 0.25s ease;
 }
 
-.copy-btn {
-  opacity: 0.3;
-  color: rgba(255, 255, 255, 0.6);
+.card-text {
+  position: relative;
+  margin: 0;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: 0.003em;
+}
+
+.card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.2s ease;
+}
+
+.more-icon {
+  font-size: 0.85rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-author {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
   background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
+  text-align: left;
+
+  &:hover .author-name {
+    color: #a5b4fc;
+  }
+}
+
+.author-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.author-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 550;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.author-work {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex-shrink: 0;
+  opacity: 0;
   transition: opacity 0.2s ease;
 }
 
-.copy-btn:hover {
-  opacity: 1;
-  color: #818cf8;
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.45rem;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: #a5b4fc;
+    background: rgba(129, 140, 248, 0.12);
+  }
+}
+
+/* Touch devices have no hover — keep the actions visible. */
+@media (hover: none) {
+  .card-actions { opacity: 0.55; }
 }
 </style>

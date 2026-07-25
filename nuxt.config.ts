@@ -59,6 +59,8 @@ export default defineNuxtConfig({
       'Be Vietnam Pro': [400, 500, 700],
       'Bebas Neue': [400],
       Poppins: [300, 400, 500, 600],
+      // Editorial serif used for quote typography.
+      Newsreader: [300, 400, 500],
     },
     display: 'swap',
   },

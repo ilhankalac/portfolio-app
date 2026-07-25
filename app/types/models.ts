@@ -50,6 +50,20 @@ export interface IQuote {
   key: string
   text: string
   author: string
+  /** Optional attribution details stored on some entries. */
+  work?: string
+  source?: string
+  quote_source?: string
+  year?: string | number
+  imageSrc?: string
+}
+
+/** An author/source aggregated across the quote collection. */
+export interface IVoice {
+  author: string
+  name: string
+  count: number
+  screen: boolean
 }
 
 export interface IFilm {
