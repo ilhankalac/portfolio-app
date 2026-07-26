@@ -65,6 +65,11 @@ export default defineNuxtConfig({
     display: 'swap',
   },
 
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+  },
+
   runtimeConfig: {
     public: {
       firebaseApiKey: '',
