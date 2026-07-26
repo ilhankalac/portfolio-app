@@ -175,7 +175,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
 /* Mobile: sidebar becomes a sticky horizontal bar */
 @media (max-width: 768px) {
   .explore-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
     padding-top: 3.5rem;
   }
