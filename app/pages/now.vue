@@ -121,7 +121,7 @@ useSeoMeta({
 
 type WorkStatus = 'shipping' | 'shipped' | 'wip' | 'paused'
 
-const lastUpdated = 'July 2026'
+const lastUpdated = 'August 2026'
 const location = 'Podgorica, Montenegro'
 
 const workingOn: { title: string; description: string; status: WorkStatus }[] = [
@@ -149,12 +149,12 @@ const learning: string[] = [
 ]
 
 const reading: { title: string; author: string }[] = [
-  { title: 'Jadnici I', author: 'Viktor Igo'}
+  { title: 'Jadnici II', author: 'Viktor Igo'}
 ]
 
 const goals: { label: string; progress: number }[] = [
-  { label: 'Read 2 books', progress: 0 },
-  { label: 'Finish 5th Fullstack Open module', progress: 0 },
+  { label: 'Read 2 books', progress: 50 },
+  { label: 'Finish 5th Fullstack Open module', progress: 50 },
 ]
 
 const statusLabel = (s: WorkStatus) => {
