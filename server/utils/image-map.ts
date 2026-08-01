@@ -5,8 +5,8 @@ const imageMap: Record<string, string> = {
   'https://galilej.com/wp-content/uploads/2022/08/galilei-en-300x87-1-200x58.png': '/images/logos/galilei_logo.webp',
 
   // Project screenshots
-  'https://i.ibb.co/dsTPST3/Screenshot-from-2024-03-01-21-31-07.png': '/images/projects/covid19_tracker.webp',
-  'https://i.ibb.co/tZzdHZf/Screenshot-from-2024-03-02-18-59-29.png': '/images/projects/trash_points.webp',
+  'https://i.ibb.co/dsTPST3/Screenshot-from-2024-03-01-21-31-07.png': '/images/projects/covid19_tracker-v2.webp',
+  'https://i.ibb.co/tZzdHZf/Screenshot-from-2024-03-02-18-59-29.png': '/images/projects/trash_points-v2.webp',
   'https://i.ibb.co/K05P98m/Screenshot-from-2024-03-03-14-59-39.png': '/images/projects/personal_portfolio.webp',
 
   // Avatars

@@ -164,7 +164,7 @@ export const projects: IFreeProject[] = [
     dateOfCreation: 'January 2021.',
     description: '<p>An archive of every COVID-19 snapshot the Institute of Public Health of Montenegro published for my hometown — 404 snapshots between June 2020 and September 2021, kept in one place after the institute stopped reporting per-municipality figures.</p><br><p>Recently rebuilt: headline numbers for the whole period (a peak of 399 active cases, 448 days tracked, the largest jump between two snapshots), period filters, two charts — the active-case trend with a 7-snapshot rolling average, and the change between snapshots — plus a searchable table with CSV export and a dark mode.</p><br><p>Built with Angular and Angular Material, charts in Chart.js, hosted on Firebase. The data comes from a web scraper I wrote with Puppeteer, automated by a GitHub Actions workflow that ran daily, since ijzcg.me offers no API.</p>',
     icon: 'mdi-virus',
-    image: '/images/projects/covid19_tracker.webp',
+    image: '/images/projects/covid19_tracker-v2.webp',
     live_demo: 'https://covid-19-rozaje.web.app/',
     source_code: 'https://github.com/ilhankalac/covid-19-rozaje',
     technologies: [
@@ -181,7 +181,7 @@ export const projects: IFreeProject[] = [
     dateOfCreation: 'August 2021.',
     description: '<p>Built together with local ecological volunteers — a civic monitoring tool for the illegal dumpsites around my hometown. Anyone can report a dumpsite with a photo and a pin on the map; volunteers clean it on the ground and flip its status from unresolved to cleaned.</p><br><p>Recently rebuilt from the ground up: a new dark interface, an operational map console with status filters and search by settlement, and a community dashboard that tracks cleanup progress over time.</p><br><p>Vue 3 and Vuetify on the frontend, Firebase (Firestore + Authentication) for data and user management, and Leaflet for the interactive map.</p>',
     icon: 'mdi-trash-can',
-    image: '/images/projects/trash_points.webp',
+    image: '/images/projects/trash_points-v2.webp',
     live_demo: 'https://prod-rozaje-trash-points.web.app/',
     source_code: 'https://github.com/ilhankalac/rozaje-trash-points',
     technologies: [
