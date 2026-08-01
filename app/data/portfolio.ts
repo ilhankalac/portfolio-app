@@ -178,17 +178,18 @@ export const projects: IFreeProject[] = [
   {
     key: 1,
     dateOfCreation: 'August 2021.',
-    description: '<p> I\'ve collaborated with local ecological volunteers to develop an app where they can upload trash data and display it on a map for users to see online. </p><br><p> I developed the frontend of the app using Vue 3, taking advantage of its reactivity and component-based structure. </p><br><p>Firebase powers the backend of the app, providing features such as Firestore for database storage and Authentication for user management. </p><p>The interactive maps in the app are created using Leaflet, a lightweight JavaScript library known for its ease of use and extensive plugin support.</p>',
+    description: '<p>Built together with local ecological volunteers — a civic monitoring tool for the illegal dumpsites around my hometown. Anyone can report a dumpsite with a photo and a pin on the map; volunteers clean it on the ground and flip its status from unresolved to cleaned.</p><br><p>Recently rebuilt from the ground up: a new dark interface, an operational map console with status filters and search by settlement, and a community dashboard that tracks cleanup progress over time.</p><br><p>Vue 3 and Vuetify on the frontend, Firebase (Firestore + Authentication) for data and user management, and Leaflet for the interactive map.</p>',
     icon: 'mdi-trash-can',
     image: '/images/projects/trash_points.webp',
     live_demo: 'https://prod-rozaje-trash-points.web.app/',
     source_code: 'https://github.com/ilhankalac/rozaje-trash-points',
     technologies: [
       { icon: 'vuejs', id: 1, name: 'Vue.js' },
-      { icon: 'firebase', id: 2, name: 'Firebase' },
-      { icon: 'code-tags', id: 3, name: 'Leaflet' },
+      { icon: 'vuetify', id: 2, name: 'Vuetify' },
+      { icon: 'firebase', id: 3, name: 'Firebase' },
+      { icon: 'code-tags', id: 4, name: 'Leaflet' },
     ],
-    title: 'Trash points for my hometown',
+    title: 'Očistimo Rožaje — trash points map',
   },
   {
     key: 2,
