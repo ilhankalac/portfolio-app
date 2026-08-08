@@ -198,7 +198,7 @@ export const projects: IFreeProject[] = [
     description: '<p>I\'ve built my personal portfolio with Vue 3 and Vuetify, aiming to show my technical skills and capabilities through the application itself. Utilizing the Vuetify library, I\'ve ensured a responsive and accessible design that highlights my expertise in web development. </p><p></p><p>Within my portfolio, I\'ve integrated my personal achievements, such as a blog featuring my favorite quotes and reflections on films I\'ve watched. </p><p></p><p>My intention is to progressively integrate all my life achievements into this app, creating a dynamic archive of my journey. </p><p></p><p>The portfolio is hosted on Firebase, providing a secure and reliable environment for my personal projects. </p>',
     icon: 'mdi-code-tags',
     image: '/images/projects/personal_portfolio.webp',
-    live_demo: 'https://ilhankalac.com/',
+    live_demo: 'https://ilhan.io/',
     source_code: '',
     technologies: [
       { icon: 'vuejs', id: 1, name: 'Vue.js' },

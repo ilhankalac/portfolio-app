@@ -24,9 +24,10 @@
           <div class="card-image-overlay">
             <UButton
               v-if="project.live_demo"
-              variant="solid"
+              variant="ghost"
               size="sm"
-              color="white"
+              color="neutral"
+              class="overlay-btn overlay-btn--primary"
               @click="openLink(project.live_demo)"
             >
               <UIcon name="i-mdi-open-in-new" class="mr-1" />
@@ -34,9 +35,10 @@
             </UButton>
             <UButton
               v-if="project.source_code"
-              variant="outline"
+              variant="ghost"
               size="sm"
-              color="white"
+              color="neutral"
+              class="overlay-btn"
               @click="openLink(project.source_code)"
             >
               <UIcon name="i-mdi-github" class="mr-1" />
@@ -125,6 +127,27 @@ const openLink = (link: string) => { window.open(link, '_blank') }
 
     .card-image-overlay {
       opacity: 1;
+
+      .overlay-btn {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .overlay-btn:hover {
+        transform: translateY(0) scale(1.06);
+        background: rgba(255, 255, 255, 0.22);
+        border-color: rgba(255, 255, 255, 0.45);
+        box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.55);
+      }
+
+      .overlay-btn--primary:hover {
+        background: #fff;
+        border-color: #fff;
+      }
+
+      .overlay-btn:active {
+        transform: translateY(0) scale(0.97);
+      }
     }
   }
 }
@@ -164,6 +187,38 @@ const openLink = (link: string) => { window.open(link, '_blank') }
   backdrop-filter: blur(4px);
   opacity: 0;
   transition: opacity 0.3s ease;
+
+  .overlay-btn {
+    cursor: pointer;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 9999px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease,
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+
+    &:nth-child(2) {
+      transition-delay: 0.05s;
+    }
+  }
+
+  .overlay-btn--primary {
+    color: #0f172a;
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 255, 255, 0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-image-overlay .overlay-btn {
+    transform: none !important;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
 }
 
 .card-body {
