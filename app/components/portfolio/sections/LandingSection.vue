@@ -25,22 +25,43 @@
         </h1>
 
         <div class="hero-tagline">
-          <span class="tagline-text">{{ displayedTagline }}<span class="tagline-cursor">|</span></span>
+          <span class="tagline-text">{{ displayedRole }}<span class="tagline-cursor" aria-hidden="true">|</span></span>
         </div>
 
         <p class="hero-intro">
-          Building digital experiences with clean code and creative solutions. Based in Podgorica, Montenegro.
+          I build large-scale enterprise applications with <strong>Nuxt</strong>, <strong>Vue 3</strong>
+          and <strong>TypeScript</strong> — shipped across healthcare, POS and education.
+          Currently full-stack at <strong>ViaLuxury</strong> in Amsterdam, based in Podgorica, Montenegro.
         </p>
+
+        <dl class="hero-stats">
+          <div class="stat">
+            <dt class="stat-label">Experience</dt>
+            <dd class="stat-value">6+ years</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Focus</dt>
+            <dd class="stat-value">Frontend architecture</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Available for</dt>
+            <dd class="stat-value">Remote &amp; EU hybrid</dd>
+          </div>
+        </dl>
 
         <div class="hero-cta">
           <button class="btn-primary" @click="scrollToWork">
-            View My Work
+            See My Experience
             <UIcon name="i-mdi-arrow-down" class="text-sm" />
           </button>
-          <button class="btn-ghost" @click="openLink('ilhan-kalac-resume.pdf')">
-            <UIcon name="i-mdi-file-document-outline" class="text-sm" />
+          <a
+            class="btn-ghost"
+            href="/ilhan-kalac-resume.pdf"
+            download="ilhan-kalac-resume.pdf"
+          >
+            <UIcon name="i-mdi-tray-arrow-down" class="text-sm" />
             Download CV
-          </button>
+          </a>
         </div>
 
         <div class="hero-social">
@@ -73,31 +94,73 @@
 </template>
 
 <script lang="ts" setup>
-const displayedTagline = ref('')
-const tagline = 'Software Developer'
+const roles = [
+  'Full-stack Developer',
+  'Nuxt & Vue 3 Specialist',
+  'TypeScript Enthusiast',
+]
 
-const typeTagline = () => {
-  let i = 0
-  const interval = setInterval(() => {
-    displayedTagline.value = tagline.slice(0, i + 1)
-    i++
-    if (i >= tagline.length) clearInterval(interval)
-  }, 60)
+// Seeded with the first role so SSR renders real text — no empty line on hydration.
+const displayedRole = ref(roles[0]!)
+
+let timer: ReturnType<typeof setTimeout> | undefined
+
+const TYPE_MS = 65
+const ERASE_MS = 35
+const HOLD_MS = 2200
+
+const cycleRoles = () => {
+  let roleIndex = 0
+  let charCount = roles[0]!.length
+  let erasing = false
+
+  const tick = () => {
+    const role = roles[roleIndex]!
+
+    if (erasing) {
+      charCount--
+      if (charCount === 0) {
+        erasing = false
+        roleIndex = (roleIndex + 1) % roles.length
+      }
+    }
+    else {
+      charCount++
+      if (charCount >= role.length) {
+        charCount = role.length
+        erasing = true
+        displayedRole.value = role
+        timer = setTimeout(tick, HOLD_MS)
+        return
+      }
+    }
+
+    displayedRole.value = roles[roleIndex]!.slice(0, charCount)
+    timer = setTimeout(tick, erasing ? ERASE_MS : TYPE_MS)
+  }
+
+  timer = setTimeout(tick, HOLD_MS)
 }
 
 onMounted(() => {
-  typeTagline()
+  // Respect users who asked for less motion — they keep the static first role.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  cycleRoles()
 })
 
-const openLink = (link: string) => {
-  window.open(link, '_blank', 'noopener,noreferrer')
-}
+onUnmounted(() => {
+  if (timer) clearTimeout(timer)
+})
 
 const scrollToWork = () => {
   const el = document.getElementById('experience')
-  if (el) {
-    window.scrollTo({ top: el.offsetTop - window.innerHeight * 0.08, behavior: 'smooth' })
-  }
+  if (!el) return
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  window.scrollTo({
+    top: el.offsetTop - window.innerHeight * 0.08,
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  })
 }
 </script>
 
@@ -118,6 +181,7 @@ const scrollToWork = () => {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .mesh-blob {
@@ -125,6 +189,9 @@ const scrollToWork = () => {
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.35;
+  /* Promote to its own layer so the 80px blur rasterises once instead of
+     repainting on every animation frame. */
+  will-change: transform;
   animation: meshFloat 20s ease-in-out infinite;
 
   &--1 {
@@ -181,8 +248,8 @@ const scrollToWork = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  max-width: 520px;
+  gap: 0.25rem;
+  max-width: 560px;
 }
 
 /* "Now" status pill */
@@ -241,8 +308,8 @@ const scrollToWork = () => {
 /* Greeting */
 .hero-greeting {
   font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.62);
   font-weight: 400;
   letter-spacing: 0.01em;
 }
@@ -250,27 +317,33 @@ const scrollToWork = () => {
 /* Name */
 .hero-name {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.15;
+  font-size: clamp(2.75rem, 6vw, 4.25rem);
+  line-height: 1.05;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0;
-  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0.1rem 0 0.35rem;
+  letter-spacing: -0.035em;
 }
 
 /* Tagline */
+.hero-tagline {
+  /* Reserve the line so rotating roles never reflow the text below. */
+  min-height: 1.9rem;
+}
+
 .tagline-text {
   font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  color: #818cf8;
-  letter-spacing: 0.01em;
-  font-weight: 500;
+  font-size: 1.25rem;
+  color: #a5b4fc;
+  letter-spacing: 0.005em;
+  font-weight: 600;
 }
 
 .tagline-cursor {
   animation: cursorBlink 0.8s steps(1) infinite;
-  color: #818cf8;
+  color: #a5b4fc;
   font-weight: 300;
+  margin-left: 0.05em;
 }
 
 @keyframes cursorBlink {
@@ -281,60 +354,101 @@ const scrollToWork = () => {
 /* Intro text */
 .hero-intro {
   font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.45);
-  margin: 0.25rem 0 0.5rem;
-  max-width: 440px;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0.4rem 0 0.25rem;
+  max-width: 30rem;
+
+  strong {
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 600;
+  }
+}
+
+/* Credibility strip */
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin: 1.1rem 0 0.35rem;
+  padding: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
 }
 
 /* CTA */
 .hero-cta {
   display: flex;
   gap: 0.625rem;
-  margin-top: 0.25rem;
+  margin-top: 1.1rem;
+}
+
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 9999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+              color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 3px;
+  }
 }
 
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.625rem 1.25rem;
   background: #4f46e5;
-  color: white;
-  border: none;
-  border-radius: 9999px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: #fff;
+  border: 1px solid #4f46e5;
 
   &:hover {
     background: #4338ca;
+    border-color: #4338ca;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
   }
 }
 
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.625rem 1.25rem;
   background: transparent;
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 9999px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
     transform: translateY(-2px);
   }
 }
@@ -342,25 +456,31 @@ const scrollToWork = () => {
 /* Social */
 .hero-social {
   display: flex;
-  gap: 0.375rem;
-  margin-top: 0.25rem;
+  gap: 0.25rem;
+  margin-top: 0.9rem;
+  margin-left: -0.5rem;
 }
 
 .social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  color: rgba(255, 255, 255, 0.4);
+  width: 36px;
+  height: 36px;
+  color: rgba(255, 255, 255, 0.55);
   border-radius: 8px;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
+  font-size: 1.15rem;
+  transition: color 0.25s ease, background-color 0.25s ease;
   text-decoration: none;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 2px;
   }
 }
 
@@ -404,10 +524,26 @@ const scrollToWork = () => {
   pointer-events: none;
 }
 
+/* Reduced motion: kill the ambient loops, keep the layout identical */
+@media (prefers-reduced-motion: reduce) {
+  .mesh-blob {
+    animation: none;
+  }
 
-@keyframes statusPulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.5); }
-  50% { box-shadow: 0 0 14px rgba(34, 197, 94, 0.7); }
+  .now-pill-dot {
+    animation: none;
+  }
+
+  .tagline-cursor {
+    animation: none;
+    opacity: 0;
+  }
+
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .now-pill:hover {
+    transform: none;
+  }
 }
 
 /* Mobile */
@@ -434,6 +570,16 @@ const scrollToWork = () => {
 
   .hero-intro {
     text-align: center;
+    font-size: 0.9375rem;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    gap: 1.25rem 1.5rem;
+  }
+
+  .stat {
+    align-items: center;
   }
 
   .hero-cta {
