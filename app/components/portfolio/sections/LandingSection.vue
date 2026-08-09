@@ -31,7 +31,8 @@
         <p class="hero-intro">
           I build large-scale enterprise applications with <strong>Nuxt</strong>, <strong>Vue 3</strong>
           and <strong>TypeScript</strong> — shipped across healthcare, POS and education.
-          Currently full-stack at <strong>ViaLuxury</strong> in Amsterdam, based in Podgorica, Montenegro.
+          Currently full-stack at <strong>ViaLuxury</strong> in Amsterdam<span class="intro-location">,
+          based in Podgorica, Montenegro</span>.
         </p>
 
         <dl class="hero-stats">
@@ -554,7 +555,7 @@ const scrollToWork = () => {
   }
 }
 
-/* Mobile */
+/* Mobile — tuned so the CTAs land above the fold on a phone. */
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
@@ -563,50 +564,156 @@ const scrollToWork = () => {
   .hero-content {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 2rem 0 4rem;
-    gap: 2rem;
+    padding: 1.25rem 0 2.5rem;
+    gap: 1.1rem;
   }
 
   .hero-text {
     align-items: center;
     max-width: 100%;
+    gap: 0;
   }
 
   .now-pill {
     align-self: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-greeting {
+    font-size: 0.8125rem;
+  }
+
+  .hero-name {
+    font-size: clamp(1.9rem, 8.5vw, 2.5rem);
+    margin: 0.05rem 0 0.2rem;
+  }
+
+  .hero-tagline {
+    min-height: 1.6rem;
+  }
+
+  .tagline-text {
+    font-size: 1.0625rem;
   }
 
   .hero-intro {
     text-align: center;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    margin: 0.35rem 0 0;
+    max-width: 24rem;
   }
 
+  /* Location already sits in the About section — drop it to save a fold line. */
+  .intro-location {
+    display: none;
+  }
+
+  /* Labels are dropped and the values collapse into one dot-separated line —
+     three stacked label/value pairs cost ~90px of fold on a phone. */
   .hero-stats {
     justify-content: center;
-    gap: 1.25rem 1.5rem;
+    gap: 0 0.5rem;
+    margin: 0.7rem 0 0;
   }
 
   .stat {
-    align-items: center;
+    flex-direction: row;
+    align-items: baseline;
   }
 
+  .stat-label {
+    display: none;
+  }
+
+  .stat-value {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .stat:not(:last-child)::after {
+    content: '·';
+    margin-left: 0.5rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Side by side rather than stacked — two full-width buttons cost ~95px of fold. */
   .hero-cta {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
+    margin-top: 0.9rem;
+    gap: 0.5rem;
   }
 
   .btn-primary, .btn-ghost {
     justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.8125rem;
+    /* Keep a comfortable tap target even at the reduced padding. */
+    min-height: 44px;
   }
 
   .hero-social {
     justify-content: center;
+    margin-top: 0.5rem;
+    margin-left: 0;
   }
 
   .photo-frame {
-    width: 200px;
-    height: 240px;
-    border-radius: 16px;
+    width: 148px;
+    height: 178px;
+    border-radius: 14px;
+  }
+}
+
+/* Narrow phones — the two CTAs no longer fit one row at the sizes above. */
+@media (max-width: 400px) {
+  .btn-primary, .btn-ghost {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.75rem;
+    gap: 0.3rem;
+  }
+
+  .hero-cta {
+    gap: 0.4rem;
+  }
+
+  .photo-frame {
+    width: 132px;
+    height: 158px;
+  }
+
+  .hero-intro {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Very narrow legacy phones (≤340px). Even at 104px the portrait is too small
+   to read as a portrait, so it yields the fold to the pitch and the CTAs. */
+@media (max-width: 340px) {
+  .hero-photo {
+    display: none;
+  }
+
+  .hero-content {
+    gap: 0;
+    padding-top: 2rem;
+  }
+
+  .hero-name {
+    font-size: 1.85rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    margin-top: 0.8rem;
+  }
+
+  .btn-primary, .btn-ghost {
+    width: 100%;
+    font-size: 0.8125rem;
   }
 }
 </style>
