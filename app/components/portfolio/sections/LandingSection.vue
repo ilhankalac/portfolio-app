@@ -81,9 +81,13 @@
       <div class="hero-photo">
         <div class="photo-frame">
           <img
-            src="~/assets/images/landing-image.jpg"
-            alt="Ilhan Kalač"
+            src="~/assets/images/landing-portrait.webp"
+            alt="Portrait of Ilhan Kalač"
             class="photo-img"
+            width="800"
+            height="1000"
+            fetchpriority="high"
+            decoding="async"
           />
           <div class="photo-glow" aria-hidden="true"></div>
         </div>
@@ -166,6 +170,9 @@ const scrollToWork = () => {
 
 <style scoped lang="scss">
 .hero {
+  /* Height of the fixed .nav (measured ~58px) — hero content must clear it. */
+  --nav-height: 3.75rem;
+
   position: relative;
   min-height: 80vh;
   width: 100%;
@@ -173,7 +180,7 @@ const scrollToWork = () => {
   background: rgb(var(--color-primary-rgb));
   display: flex;
   align-items: center;
-  padding: 0 1.5rem;
+  padding: var(--nav-height) 1.5rem 0;
 }
 
 /* Gradient mesh */
@@ -509,7 +516,8 @@ const scrollToWork = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  /* Keeps the face in the upper third of the frame instead of dead centre. */
+  object-position: center 22%;
   display: block;
 }
 
@@ -555,7 +563,7 @@ const scrollToWork = () => {
   .hero-content {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 3rem 0 4rem;
+    padding: 2rem 0 4rem;
     gap: 2rem;
   }
 
