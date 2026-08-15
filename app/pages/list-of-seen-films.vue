@@ -132,7 +132,7 @@
       </div>
     </div>
 
-    <UModal v-model:open="isStatsDialogOpen">
+    <UModal v-model:open="isStatsDialogOpen" :ui="{ content: 'sm:max-w-2xl bg-transparent ring-0 shadow-none' }">
       <template #content>
         <FilmStats
           :film-stats-data="filmStatsData"
