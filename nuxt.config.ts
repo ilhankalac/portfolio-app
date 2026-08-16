@@ -61,6 +61,8 @@ export default defineNuxtConfig({
       Poppins: [300, 400, 500, 600],
       // Editorial serif used for quote typography.
       Newsreader: [300, 400, 500],
+      // High-contrast display serif — hero name and tagline only.
+      'Playfair Display': [400, 500],
     },
     display: 'swap',
   },

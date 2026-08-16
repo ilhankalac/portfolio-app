@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseNavigation />
-    <LandingSection />
+    <LandingSection :watching="watching ?? []" />
     <AboutSection :description="aboutDescription" :skills="skills ?? []" />
     <ExperienceSection :experiences="experiences" />
     <ProjectsSection :projects="projects" />
@@ -22,7 +22,7 @@ import ProjectsSection from '~/components/portfolio/sections/ProjectsSection.vue
 import RecommendationsSection from '~/components/portfolio/sections/RecommendationsSection.vue'
 import ContactSection from '~/components/portfolio/sections/ContactSection.vue'
 import Footer from '~/components/common/Footer.vue'
-import type { IExperience, ISkill, IFreeProject, IColleagueInfo } from '~/types/models'
+import type { IExperience, ISkill, IFreeProject, IColleagueInfo, IWatchedFilm } from '~/types/models'
 
 const sectionTitles: Record<string, string> = {
   'initial': 'Ilhan Kalač',
@@ -84,11 +84,13 @@ const [
   { data: projects },
   { data: skills },
   { data: recommendations },
+  { data: watching },
 ] = await Promise.all([
   useFetch<string>('/api/portfolio/about'),
   useFetch<IExperience[]>('/api/portfolio/experiences', { default: () => [] }),
   useFetch<IFreeProject[]>('/api/portfolio/projects', { default: () => [] }),
   useFetch<ISkill[]>('/api/portfolio/skills', { default: () => [] }),
   useFetch<IColleagueInfo[]>('/api/portfolio/recommendations', { default: () => [] }),
+  useFetch<IWatchedFilm[]>('/api/now/watching', { default: () => [] }),
 ])
 </script>

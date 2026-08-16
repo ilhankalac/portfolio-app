@@ -78,6 +78,14 @@ export interface IFilm {
   created_at: string
 }
 
+/** Trimmed film record served to the hero's "Watching" column. */
+export interface IWatchedFilm {
+  title: string
+  year: number
+  rating: number
+  watchedAt: string
+}
+
 export interface IDirectorStats {
   name: string
   count: number

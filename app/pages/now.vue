@@ -73,6 +73,15 @@
       </ul>
     </section>
 
+    <!-- Thinking about -->
+    <section class="now-section">
+      <h2 class="section-title">
+        <UIcon name="i-mdi-palette-outline" class="section-icon" />
+        Thinking about
+      </h2>
+      <p class="now-prose">{{ thinkingAbout }}</p>
+    </section>
+
     <!-- Goals -->
     <section class="now-section">
       <h2 class="section-title">
@@ -119,43 +128,8 @@ useSeoMeta({
   twitterImage: 'https://ilhan.io/og-image.jpg',
 })
 
-type WorkStatus = 'shipping' | 'shipped' | 'wip' | 'paused'
-
-const lastUpdated = 'August 2026'
-const location = 'Podgorica, Montenegro'
-
-const workingOn: { title: string; description: string; status: WorkStatus }[] = [
-  {
-    title: 'ViaLuxury — Luxury travel platform',
-    description: 'My full-time day job (remote) — where most of my time goes. Building the customer-facing frontend in Nuxt 4 & Vue 3: booking flow, holiday-package offers, payments, accounts, and a fully multilingual (i18n) experience.',
-    status: 'shipping',
-  },
-  {
-    title: 'Infinitydrive.lu — Premium car dealership',
-    description: 'Built the web platform for a Luxembourg-based premium used-car dealership — vehicle catalogue, financing requests, and a French-localized customer experience.',
-    status: 'shipped',
-  },
-  {
-    title: 'Personal portfolio — ilhan.io',
-    description: 'Maintaining and improving this site — adding new features, writing blog posts, and keeping the content fresh.',
-    status: 'wip',
-  },
-]
-
-const learning: string[] = [
-  'Fullstackopen.com — comprehensive modern web development course',
-  'Core Web Vitals concepts and optimization techniques',
-  'ASP.NET Core',
-]
-
-const reading: { title: string; author: string }[] = [
-  { title: 'Jadnici II', author: 'Viktor Igo'}
-]
-
-const goals: { label: string; progress: number }[] = [
-  { label: 'Read 2 books', progress: 50 },
-  { label: 'Finish 5th Fullstack Open module', progress: 50 },
-]
+import type { WorkStatus } from '~/data/now'
+import { lastUpdated, location, workingOn, learning, reading, goals, thinkingAbout } from '~/data/now'
 
 const statusLabel = (s: WorkStatus) => {
   if (s === 'shipping') return 'Shipping'
@@ -363,6 +337,16 @@ const statusLabel = (s: WorkStatus) => {
       background: #818cf8;
     }
   }
+}
+
+/* Prose block (Thinking about) */
+.now-prose {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  max-width: 42rem;
 }
 
 /* Reading list */

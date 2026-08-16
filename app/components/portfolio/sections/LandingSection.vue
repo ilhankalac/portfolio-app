@@ -7,155 +7,130 @@
       <div class="mesh-blob mesh-blob--3"></div>
     </div>
 
-    <div class="hero-content">
-      <!-- Left: Text content -->
-      <div class="hero-text">
-        <NuxtLink to="/now" class="now-pill" aria-label="See what I'm up to right now">
-          <span class="now-pill-dot" aria-hidden="true"></span>
-          <span class="now-pill-text">What I'm up to now</span>
-          <UIcon name="i-mdi-arrow-right" class="now-pill-arrow" />
-        </NuxtLink>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <!-- Left: Text content -->
+        <div class="hero-text">
+          <NuxtLink to="/now" class="now-pill" aria-label="See what I'm up to right now">
+            <span class="now-pill-dot" aria-hidden="true"></span>
+            <span class="now-pill-text">What I'm up to now</span>
+            <UIcon name="i-mdi-arrow-right" class="now-pill-arrow" />
+          </NuxtLink>
 
-        <div class="hero-greeting">
-          Hey there, I'm
+          <h1 class="hero-name">
+            Ilhan Kalač
+          </h1>
+
+          <p class="hero-tagline">
+            Software engineer. Film obsessive. Occasional writer.
+          </p>
+
+          <p class="hero-intro">
+            I build large-scale applications with <strong>Nuxt</strong>, <strong>Vue 3</strong>
+            and <strong>TypeScript</strong> — shipped across healthcare, POS and education.
+            <br class="intro-break" />
+            Currently full-stack at <strong>ViaLuxury</strong> — redefining luxury travel.
+          </p>
+
+          <div class="hero-cta">
+            <button class="btn-primary" @click="scrollToWork">
+              View Work
+              <UIcon name="i-mdi-arrow-right" class="btn-icon" />
+            </button>
+            <a
+              class="btn-ghost"
+              href="/ilhan-kalac-resume.pdf"
+              download="ilhan-kalac-resume.pdf"
+            >
+              Download CV
+              <UIcon name="i-mdi-tray-arrow-down" class="btn-icon" />
+            </a>
+          </div>
+
+          <div class="hero-social">
+            <a href="https://github.com/ilhankalac" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <UIcon name="i-mdi-github" />
+            </a>
+            <a href="https://www.linkedin.com/in/ilhankalac/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+              <UIcon name="i-mdi-linkedin" />
+            </a>
+            <a href="https://www.instagram.com/vizija/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+              <UIcon name="i-mdi-instagram" />
+            </a>
+          </div>
         </div>
 
-        <h1 class="hero-name">
-          Ilhan Kalač
-        </h1>
-
-        <div class="hero-tagline">
-          <span class="tagline-text">{{ displayedRole }}<span class="tagline-cursor" aria-hidden="true">|</span></span>
-        </div>
-
-        <p class="hero-intro">
-          I build large-scale enterprise applications with <strong>Nuxt</strong>, <strong>Vue 3</strong>
-          and <strong>TypeScript</strong> — shipped across healthcare, POS and education.
-          Currently full-stack at <strong>ViaLuxury</strong> in Amsterdam<span class="intro-location">,
-          based in Podgorica, Montenegro</span>.
-        </p>
-
-        <dl class="hero-stats">
-          <div class="stat">
-            <dt class="stat-label">Experience</dt>
-            <dd class="stat-value">6+ years</dd>
+        <!-- Right: Photo -->
+        <div class="hero-photo">
+          <div class="photo-frame">
+            <img
+              src="~/assets/images/landing-portrait.webp"
+              alt="Portrait of Ilhan Kalač"
+              class="photo-img"
+              width="800"
+              height="1000"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <div class="photo-glow" aria-hidden="true"></div>
           </div>
-          <div class="stat">
-            <dt class="stat-label">Focus</dt>
-            <dd class="stat-value">Frontend architecture</dd>
-          </div>
-          <div class="stat">
-            <dt class="stat-label">Available for</dt>
-            <dd class="stat-value">Remote &amp; EU hybrid</dd>
-          </div>
-        </dl>
-
-        <div class="hero-cta">
-          <button class="btn-primary" @click="scrollToWork">
-            See My Experience
-            <UIcon name="i-mdi-arrow-down" class="text-sm" />
-          </button>
-          <a
-            class="btn-ghost"
-            href="/ilhan-kalac-resume.pdf"
-            download="ilhan-kalac-resume.pdf"
-          >
-            <UIcon name="i-mdi-tray-arrow-down" class="text-sm" />
-            Download CV
-          </a>
-        </div>
-
-        <div class="hero-social">
-          <a href="https://github.com/ilhankalac" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
-            <UIcon name="i-mdi-github" />
-          </a>
-          <a href="https://www.linkedin.com/in/ilhankalac/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
-            <UIcon name="i-mdi-linkedin" />
-          </a>
-          <a href="https://www.instagram.com/vizija/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
-            <UIcon name="i-mdi-instagram" />
-          </a>
         </div>
       </div>
 
-      <!-- Right: Photo -->
-      <div class="hero-photo">
-        <div class="photo-frame">
-          <img
-            src="~/assets/images/landing-portrait.webp"
-            alt="Portrait of Ilhan Kalač"
-            class="photo-img"
-            width="800"
-            height="1000"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <div class="photo-glow" aria-hidden="true"></div>
+      <!-- NOW strip -->
+      <NuxtLink to="/now" class="now-strip" aria-label="See what I'm up to right now">
+        <span class="now-strip-label">
+          Now
+          <span class="now-strip-dot" aria-hidden="true"></span>
+        </span>
+
+        <div class="now-strip-grid">
+          <div v-for="column in nowColumns" :key="column.label" class="now-col">
+            <span class="now-col-head">
+              <UIcon :name="column.icon" class="now-col-icon" />
+              {{ column.label }}
+            </span>
+            <span class="now-col-text">{{ column.text }}</span>
+          </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
-
   </section>
 </template>
 
 <script lang="ts" setup>
-const roles = [
-  'Full-stack Developer',
-  'Nuxt & Vue 3 Specialist',
-  'TypeScript Enthusiast',
-]
+import { currentWork, reading, thinkingAbout } from '~/data/now'
+import type { IWatchedFilm } from '~/types/models'
 
-// Seeded with the first role so SSR renders real text — no empty line on hydration.
-const displayedRole = ref(roles[0]!)
+const props = defineProps<{
+  /** Most recently watched films, newest first. Empty until the API resolves. */
+  watching?: IWatchedFilm[]
+}>()
 
-let timer: ReturnType<typeof setTimeout> | undefined
-
-const TYPE_MS = 65
-const ERASE_MS = 35
-const HOLD_MS = 2200
-
-const cycleRoles = () => {
-  let roleIndex = 0
-  let charCount = roles[0]!.length
-  let erasing = false
-
-  const tick = () => {
-    const role = roles[roleIndex]!
-
-    if (erasing) {
-      charCount--
-      if (charCount === 0) {
-        erasing = false
-        roleIndex = (roleIndex + 1) % roles.length
-      }
-    }
-    else {
-      charCount++
-      if (charCount >= role.length) {
-        charCount = role.length
-        erasing = true
-        displayedRole.value = role
-        timer = setTimeout(tick, HOLD_MS)
-        return
-      }
-    }
-
-    displayedRole.value = roles[roleIndex]!.slice(0, charCount)
-    timer = setTimeout(tick, erasing ? ERASE_MS : TYPE_MS)
-  }
-
-  timer = setTimeout(tick, HOLD_MS)
+/** Joins a list into "A, B and C" so each column reads as a sentence. */
+const toSentence = (parts: string[]): string => {
+  if (parts.length <= 1) return parts[0] ?? ''
+  return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`
 }
 
-onMounted(() => {
-  // Respect users who asked for less motion — they keep the static first role.
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  cycleRoles()
+const readingText = computed(() => {
+  if (!reading.length) return 'Between books at the moment.'
+  return toSentence(reading.map(book => `${book.title} by ${book.author}`)) + '.'
 })
 
-onUnmounted(() => {
-  if (timer) clearTimeout(timer)
+const watchingText = computed(() => {
+  const films = props.watching ?? []
+  // Falls back to the Films page pitch if the build-time fetch returned nothing.
+  if (!films.length) return 'Working through the MUBI backlog.'
+  return toSentence(films.map(film => film.title)) + '.'
 })
+
+const nowColumns = computed(() => [
+  { label: 'Working', icon: 'i-mdi-laptop', text: currentWork.short ?? currentWork.title },
+  { label: 'Reading', icon: 'i-mdi-book-open-page-variant-outline', text: readingText.value },
+  { label: 'Watching', icon: 'i-mdi-movie-open-outline', text: watchingText.value },
+  { label: 'Thinking about', icon: 'i-mdi-palette-outline', text: thinkingAbout },
+])
 
 const scrollToWork = () => {
   const el = document.getElementById('experience')
@@ -175,13 +150,13 @@ const scrollToWork = () => {
   --nav-height: 3.75rem;
 
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh;
   width: 100%;
   overflow: hidden;
   background: rgb(var(--color-primary-rgb));
   display: flex;
   align-items: center;
-  padding: var(--nav-height) 1.5rem 0;
+  padding: var(--nav-height) 1.5rem 2rem;
 }
 
 /* Gradient mesh */
@@ -237,18 +212,24 @@ const scrollToWork = () => {
   75% { transform: translate(10px, 30px) scale(1.02); }
 }
 
-/* Content layout */
-.hero-content {
+/* Layout */
+.hero-inner {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+.hero-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 4rem 0;
 }
 
 /* Text side */
@@ -256,8 +237,8 @@ const scrollToWork = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  max-width: 560px;
+  align-items: flex-start;
+  max-width: 620px;
 }
 
 /* "Now" status pill */
@@ -265,9 +246,8 @@ const scrollToWork = () => {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  align-self: flex-start;
   padding: 0.3rem 0.7rem 0.3rem 0.55rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1.1rem;
   background: rgba(129, 140, 248, 0.08);
   border: 1px solid rgba(129, 140, 248, 0.18);
   border-radius: 9999px;
@@ -313,60 +293,35 @@ const scrollToWork = () => {
   transition: transform 0.25s ease;
 }
 
-/* Greeting */
-.hero-greeting {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.62);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-/* Name */
+/* Name — the display serif carries the whole redesign */
 .hero-name {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.75rem, 6vw, 4.25rem);
-  line-height: 1.05;
-  font-weight: 700;
+  font-family: 'Playfair Display', 'Newsreader', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 5.75rem);
+  line-height: 1;
+  font-weight: 500;
   color: #fff;
-  margin: 0.1rem 0 0.35rem;
-  letter-spacing: -0.035em;
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 
 /* Tagline */
 .hero-tagline {
-  /* Reserve the line so rotating roles never reflow the text below. */
-  min-height: 1.9rem;
-}
-
-.tagline-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
+  font-family: 'Playfair Display', 'Newsreader', Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: 400;
   color: #a5b4fc;
-  letter-spacing: 0.005em;
-  font-weight: 600;
-}
-
-.tagline-cursor {
-  animation: cursorBlink 0.8s steps(1) infinite;
-  color: #a5b4fc;
-  font-weight: 300;
-  margin-left: 0.05em;
-}
-
-@keyframes cursorBlink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  letter-spacing: -0.005em;
+  margin: 1rem 0 0;
 }
 
 /* Intro text */
 .hero-intro {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.68);
-  margin: 0.4rem 0 0.25rem;
-  max-width: 30rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 1.15rem 0 0;
+  max-width: 34rem;
 
   strong {
     color: rgba(255, 255, 255, 0.92);
@@ -374,54 +329,22 @@ const scrollToWork = () => {
   }
 }
 
-/* Credibility strip */
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.75rem;
-  margin: 1.1rem 0 0.35rem;
-  padding: 0;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.stat-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: rgba(255, 255, 255, 0.42);
-}
-
-.stat-value {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-}
-
 /* CTA */
 .hero-cta {
   display: flex;
-  gap: 0.625rem;
-  margin-top: 1.1rem;
+  gap: 0.75rem;
+  margin-top: 1.9rem;
 }
 
 .btn-primary,
 .btn-ghost {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 9999px;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
   font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -433,6 +356,15 @@ const scrollToWork = () => {
     outline: 2px solid #a5b4fc;
     outline-offset: 3px;
   }
+
+  &:hover .btn-icon {
+    transform: translateX(2px);
+  }
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
 }
 
 .btn-primary {
@@ -465,7 +397,7 @@ const scrollToWork = () => {
 .hero-social {
   display: flex;
   gap: 0.25rem;
-  margin-top: 0.9rem;
+  margin-top: 1.1rem;
   margin-left: -0.5rem;
 }
 
@@ -475,7 +407,7 @@ const scrollToWork = () => {
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.45);
   border-radius: 8px;
   font-size: 1.15rem;
   transition: color 0.25s ease, background-color 0.25s ease;
@@ -495,16 +427,12 @@ const scrollToWork = () => {
 /* Photo side */
 .hero-photo {
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
 }
 
 .photo-frame {
   position: relative;
-  width: 300px;
-  height: 360px;
+  width: 340px;
+  height: 420px;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -533,19 +461,97 @@ const scrollToWork = () => {
   pointer-events: none;
 }
 
+/* NOW strip */
+.now-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 1.6rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  text-decoration: none;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+
+  &:hover {
+    border-color: rgba(129, 140, 248, 0.28);
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 3px;
+  }
+}
+
+.now-strip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.now-strip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #818cf8;
+}
+
+.now-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 2rem;
+  flex: 1;
+}
+
+.now-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.75rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+
+  &:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+.now-col-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.now-col-icon {
+  font-size: 1rem;
+  color: #818cf8;
+}
+
+.now-col-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.48);
+}
+
 /* Reduced motion: kill the ambient loops, keep the layout identical */
 @media (prefers-reduced-motion: reduce) {
-  .mesh-blob {
-    animation: none;
-  }
-
+  .mesh-blob,
   .now-pill-dot {
     animation: none;
-  }
-
-  .tagline-cursor {
-    animation: none;
-    opacity: 0;
   }
 
   .btn-primary:hover,
@@ -555,101 +561,90 @@ const scrollToWork = () => {
   }
 }
 
+/* Tablet — the four NOW columns stop fitting on one row well before the
+   layout itself breaks, so they fold to a 2×2 grid first. */
+@media (max-width: 1024px) {
+  .now-strip {
+    flex-direction: column;
+    gap: 1.35rem;
+    padding: 1.4rem 1.5rem;
+  }
+
+  .now-strip-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.35rem 1.75rem;
+    width: 100%;
+  }
+
+  .now-col:nth-child(odd) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .photo-frame {
+    width: 270px;
+    height: 340px;
+  }
+}
+
 /* Mobile — tuned so the CTAs land above the fold on a phone. */
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
+    padding-bottom: 3rem;
+  }
+
+  .hero-inner {
+    gap: 2rem;
   }
 
   .hero-content {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 1.25rem 0 2.5rem;
-    gap: 1.1rem;
+    gap: 1.25rem;
   }
 
   .hero-text {
     align-items: center;
     max-width: 100%;
-    gap: 0;
   }
 
   .now-pill {
-    align-self: center;
-    margin-bottom: 0.4rem;
-  }
-
-  .hero-greeting {
-    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
   }
 
   .hero-name {
-    font-size: clamp(1.9rem, 8.5vw, 2.5rem);
-    margin: 0.05rem 0 0.2rem;
+    font-size: clamp(2.5rem, 12vw, 3.4rem);
   }
 
   .hero-tagline {
-    min-height: 1.6rem;
-  }
-
-  .tagline-text {
-    font-size: 1.0625rem;
+    font-size: 1.05rem;
+    margin-top: 0.7rem;
   }
 
   .hero-intro {
-    text-align: center;
     font-size: 0.875rem;
-    line-height: 1.55;
-    margin: 0.35rem 0 0;
-    max-width: 24rem;
+    line-height: 1.6;
+    margin-top: 0.85rem;
+    max-width: 26rem;
   }
 
-  /* Location already sits in the About section — drop it to save a fold line. */
-  .intro-location {
+  /* One flowing paragraph reads better than two short centred lines. */
+  .intro-break {
     display: none;
   }
 
-  /* Labels are dropped and the values collapse into one dot-separated line —
-     three stacked label/value pairs cost ~90px of fold on a phone. */
-  .hero-stats {
-    justify-content: center;
-    gap: 0 0.5rem;
-    margin: 0.7rem 0 0;
-  }
-
-  .stat {
-    flex-direction: row;
-    align-items: baseline;
-  }
-
-  .stat-label {
-    display: none;
-  }
-
-  .stat-value {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.72);
-  }
-
-  .stat:not(:last-child)::after {
-    content: '·';
-    margin-left: 0.5rem;
-    color: rgba(255, 255, 255, 0.3);
-  }
-
-  /* Side by side rather than stacked — two full-width buttons cost ~95px of fold. */
   .hero-cta {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin-top: 0.9rem;
+    margin-top: 1.4rem;
     gap: 0.5rem;
   }
 
   .btn-primary, .btn-ghost {
     justify-content: center;
-    padding: 0.6rem 1rem;
+    padding: 0.65rem 1.15rem;
     font-size: 0.8125rem;
     /* Keep a comfortable tap target even at the reduced padding. */
     min-height: 44px;
@@ -657,21 +652,39 @@ const scrollToWork = () => {
 
   .hero-social {
     justify-content: center;
-    margin-top: 0.5rem;
+    margin-top: 0.7rem;
     margin-left: 0;
   }
 
   .photo-frame {
-    width: 148px;
-    height: 178px;
+    width: 168px;
+    height: 205px;
     border-radius: 14px;
+  }
+
+  /* Single column — 2×2 leaves the text columns too narrow to read. */
+  .now-strip {
+    text-align: left;
+    gap: 1.1rem;
+    padding: 1.25rem 1.25rem;
+  }
+
+  .now-strip-grid {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .now-col {
+    padding-left: 0;
+    border-left: none;
+    gap: 0.3rem;
   }
 }
 
 /* Narrow phones — the two CTAs no longer fit one row at the sizes above. */
 @media (max-width: 400px) {
   .btn-primary, .btn-ghost {
-    padding: 0.6rem 0.7rem;
+    padding: 0.6rem 0.8rem;
     font-size: 0.75rem;
     gap: 0.3rem;
   }
@@ -681,8 +694,8 @@ const scrollToWork = () => {
   }
 
   .photo-frame {
-    width: 132px;
-    height: 158px;
+    width: 140px;
+    height: 172px;
   }
 
   .hero-intro {
@@ -699,16 +712,14 @@ const scrollToWork = () => {
 
   .hero-content {
     gap: 0;
-    padding-top: 2rem;
   }
 
   .hero-name {
-    font-size: 1.85rem;
+    font-size: 2.2rem;
   }
 
   .hero-cta {
     flex-direction: column;
-    margin-top: 0.8rem;
   }
 
   .btn-primary, .btn-ghost {
