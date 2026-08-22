@@ -29,7 +29,7 @@ public/images/      Project, blog, logo & avatar assets
 scripts/            Data utilities (e.g. merge-film-data)
 ```
 
-## Getting Started
+## Getting Started with the project
 
 ```bash
 # Install dependencies
