@@ -22,7 +22,7 @@
           </h1>
 
           <p class="hero-tagline">
-            Software engineer. Film obsessive. Occasional writer.
+            Software engineer.
           </p>
 
           <p class="hero-intro">
@@ -128,7 +128,7 @@ const watchingText = computed(() => {
 const nowColumns = computed(() => [
   { label: 'Working', icon: 'i-mdi-laptop', text: currentWork.short ?? currentWork.title },
   { label: 'Reading', icon: 'i-mdi-book-open-page-variant-outline', text: readingText.value },
-  { label: 'Watching', icon: 'i-mdi-movie-open-outline', text: watchingText.value },
+  { label: 'Last watched', icon: 'i-mdi-movie-open-outline', text: watchingText.value },
   { label: 'Thinking about', icon: 'i-mdi-palette-outline', text: thinkingAbout },
 ])
 
@@ -293,24 +293,24 @@ const scrollToWork = () => {
   transition: transform 0.25s ease;
 }
 
-/* Name — the display serif carries the whole redesign */
+/* Name — a modern geometric display sans carries the whole redesign */
 .hero-name {
-  font-family: 'Playfair Display', 'Newsreader', Georgia, serif;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: clamp(3rem, 8vw, 5.75rem);
   line-height: 1;
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 /* Tagline */
 .hero-tagline {
-  font-family: 'Playfair Display', 'Newsreader', Georgia, serif;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: clamp(1.15rem, 2.2vw, 1.6rem);
-  font-weight: 400;
+  font-weight: 500;
   color: #a5b4fc;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
   margin: 1rem 0 0;
 }
 
@@ -464,7 +464,7 @@ const scrollToWork = () => {
 /* NOW strip */
 .now-strip {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 2.5rem;
   padding: 1.6rem 2rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -489,7 +489,6 @@ const scrollToWork = () => {
   align-items: center;
   gap: 0.45rem;
   flex-shrink: 0;
-  padding-top: 0.1rem;
   font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
@@ -566,6 +565,7 @@ const scrollToWork = () => {
 @media (max-width: 1024px) {
   .now-strip {
     flex-direction: column;
+    align-items: flex-start;
     gap: 1.35rem;
     padding: 1.4rem 1.5rem;
   }
