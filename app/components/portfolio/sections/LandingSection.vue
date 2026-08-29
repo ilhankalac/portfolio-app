@@ -26,10 +26,10 @@
           </p>
 
           <p class="hero-intro">
-            I build large-scale applications with <strong>Nuxt</strong>, <strong>Vue 3</strong>
-            and <strong>TypeScript</strong> — shipped across healthcare, POS and education.
+            I build large-scale applications with <strong>Nuxt</strong>, <strong>Vue 3</strong>,
+            <strong>TypeScript</strong> and <strong>ASP.NET Core</strong>, shipped across healthcare, POS and education.
             <br class="intro-break" />
-            Currently full-stack at <strong>ViaLuxury</strong> — redefining luxury travel.
+            Currently full-stack at <strong>ViaLuxury</strong>, redefining luxury travel.
           </p>
 
           <div class="hero-cta">
