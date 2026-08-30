@@ -32,8 +32,8 @@
             <span class="top-title">{{ song.title }}</span>
             <span class="top-artist">{{ song.artist }}</span>
           </div>
-          <a v-if="song.link" :href="song.link" target="_blank" rel="noopener noreferrer" class="top-link" :aria-label="`Play ${song.title}`">
-            <UIcon name="i-mdi-play-circle-outline" />
+          <a v-if="song.link" :href="song.link" target="_blank" rel="noopener noreferrer" class="top-link" :aria-label="`Watch ${song.title} on YouTube`">
+            <UIcon name="i-mdi-youtube" />
           </a>
         </div>
       </div>
@@ -75,8 +75,8 @@
           <span class="song-artist">{{ entry.song.artist }}</span>
           <span v-if="entry.song.note" class="song-note">{{ entry.song.note }}</span>
         </div>
-        <a v-if="entry.song.link" :href="entry.song.link" target="_blank" rel="noopener noreferrer" class="song-link" :aria-label="`Play ${entry.song.title}`">
-          <UIcon name="i-mdi-play-circle-outline" />
+        <a v-if="entry.song.link" :href="entry.song.link" target="_blank" rel="noopener noreferrer" class="song-link" :aria-label="`Watch ${entry.song.title} on YouTube`">
+          <UIcon name="i-mdi-youtube" />
         </a>
       </div>
     </div>
@@ -231,13 +231,19 @@ onMounted(() => {
 
 .top-rank {
   position: absolute;
-  top: 0.7rem;
-  right: 0.85rem;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 1;
+  padding: 0.15rem 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 0.4rem;
   font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 1.35rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.12);
-  line-height: 1;
+  color: #fff;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
 }
 
 .top-cover {

@@ -24,16 +24,11 @@ export interface Genre {
 }
 
 export const topSongs: Song[] = [
-  { title: 'Time', artist: 'Hans Zimmer', note: 'Inception' },
-  { title: 'Comfortably Numb', artist: 'Pink Floyd' },
-  { title: 'D.A.N.C.E.', artist: 'Justice' },
-  { title: 'Starman', artist: 'David Bowie' },
-  { title: 'Breathe', artist: 'The Prodigy' },
-  { title: '2021', artist: 'Justice' },
-  { title: 'Echoes', artist: 'Pink Floyd' },
-  { title: 'Sicko Mode', artist: 'Travis Scott' },
-  { title: 'Circle of Life', artist: 'Hans Zimmer', note: 'The Lion King' },
-  { title: 'One More Time', artist: 'Daft Punk' },
+  { title: 'Lady Fantasy', artist: 'Camel', note: 'Mirage', cover: '/images/music/camel-mirage.webp', link: 'https://www.youtube.com/results?search_query=Camel+Lady+Fantasy' },
+  { title: 'Beyond', artist: 'Daft Punk', note: 'Random Access Memories', cover: '/images/music/daft-punk-random-access-memories.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Beyond' },
+  { title: 'Epitaph', artist: 'King Crimson', note: 'In the Court of the Crimson King', cover: '/images/music/king-crimson-in-the-court.webp', link: 'https://www.youtube.com/results?search_query=King+Crimson+Epitaph' },
+  { title: 'Bullitt', artist: 'Lalo Schifrin', note: 'Bullitt', cover: '/images/music/lalo-schifrin-bullitt.webp', link: 'https://www.youtube.com/results?search_query=Lalo+Schifrin+Bullitt' },
+  { title: 'Veridis Quo', artist: 'Daft Punk', note: 'Discovery', cover: '/images/music/daft-punk-discovery.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Veridis+Quo' },
 ]
 
 export const genres: Genre[] = [
@@ -42,6 +37,7 @@ export const genres: Genre[] = [
     label: 'Filmska muzika',
     icon: 'i-mdi-movie-open-outline',
     songs: [
+      { title: 'Bullitt', artist: 'Lalo Schifrin', note: 'Bullitt', cover: '/images/music/lalo-schifrin-bullitt.webp', link: 'https://www.youtube.com/results?search_query=Lalo+Schifrin+Bullitt' },
       { title: 'Time', artist: 'Hans Zimmer', note: 'Inception' },
       { title: 'Circle of Life', artist: 'Hans Zimmer', note: 'The Lion King' },
       { title: 'Mombasa', artist: 'Hans Zimmer', note: 'Inception' },
@@ -53,6 +49,8 @@ export const genres: Genre[] = [
     label: 'Elektronska',
     icon: 'i-mdi-waveform',
     songs: [
+      { title: 'Beyond', artist: 'Daft Punk', note: 'Random Access Memories', cover: '/images/music/daft-punk-random-access-memories.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Beyond' },
+      { title: 'Veridis Quo', artist: 'Daft Punk', note: 'Discovery', cover: '/images/music/daft-punk-discovery.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Veridis+Quo' },
       { title: 'D.A.N.C.E.', artist: 'Justice' },
       { title: '2021', artist: 'Justice' },
       { title: 'One More Time', artist: 'Daft Punk' },
@@ -65,6 +63,8 @@ export const genres: Genre[] = [
     label: 'Prog rock',
     icon: 'i-mdi-guitar-electric',
     songs: [
+      { title: 'Lady Fantasy', artist: 'Camel', note: 'Mirage', cover: '/images/music/camel-mirage.webp', link: 'https://www.youtube.com/results?search_query=Camel+Lady+Fantasy' },
+      { title: 'Epitaph', artist: 'King Crimson', note: 'In the Court of the Crimson King', cover: '/images/music/king-crimson-in-the-court.webp', link: 'https://www.youtube.com/results?search_query=King+Crimson+Epitaph' },
       { title: 'Comfortably Numb', artist: 'Pink Floyd' },
       { title: 'Echoes', artist: 'Pink Floyd' },
       { title: '21st Century Schizoid Man', artist: 'King Crimson' },
