@@ -29,6 +29,7 @@ export const topSongs: Song[] = [
   { title: 'Epitaph', artist: 'King Crimson', note: 'In the Court of the Crimson King', cover: '/images/music/king-crimson-in-the-court.webp', link: 'https://www.youtube.com/results?search_query=King+Crimson+Epitaph' },
   { title: 'Bullitt', artist: 'Lalo Schifrin', note: 'Bullitt', cover: '/images/music/lalo-schifrin-bullitt.webp', link: 'https://www.youtube.com/results?search_query=Lalo+Schifrin+Bullitt' },
   { title: 'Veridis Quo', artist: 'Daft Punk', note: 'Discovery', cover: '/images/music/daft-punk-discovery.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Veridis+Quo' },
+  { title: 'Hipishizik Metafizik', artist: 'Rambo Amadeus', note: 'Hipishizik Metafizik', cover: '/images/music/rambo-amadeus-hipishizik-metafizik.webp', link: 'https://www.youtube.com/watch?v=rYZmNybdFSY' },
 ]
 
 export const genres: Genre[] = [
@@ -79,6 +80,27 @@ export const genres: Genre[] = [
       { title: 'Starman', artist: 'David Bowie' },
       { title: 'Paranoid Android', artist: 'Radiohead' },
       { title: 'Karma Police', artist: 'Radiohead' },
+    ],
+  },
+  {
+    id: 'balkan',
+    label: 'Balkan funk',
+    icon: 'i-mdi-saxophone',
+    songs: [
+      {
+        title: 'Hipishizik Metafizik',
+        artist: 'Rambo Amadeus',
+        note: 'Hipishizik Metafizik',
+        cover: '/images/music/rambo-amadeus-hipishizik-metafizik.webp',
+        link: 'https://www.youtube.com/watch?v=rYZmNybdFSY',
+      },
+      {
+        title: 'F.A.P. Mašina',
+        artist: 'Rambo Amadeus',
+        note: 'Koncert u KUD France Prešeren',
+        cover: '/images/music/rambo-amadeus-koncert-kud.webp',
+        link: 'https://www.youtube.com/watch?v=9Ireu1PW2nU',
+      },
     ],
   },
 ]
