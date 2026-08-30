@@ -99,6 +99,7 @@ const navigationLinks = [
 const otherInterestsLinks = [
   { text: 'Blog', url: '/blogs' },
   { text: 'Favorite Quotes', url: '/favorite-quotes' },
+  { text: 'Favorite Songs', url: '/favorite-songs' },
   { text: 'List of seen films', url: '/list-of-seen-films' },
   { text: 'Resume', url: 'ilhan-kalac-resume.pdf' },
 ]

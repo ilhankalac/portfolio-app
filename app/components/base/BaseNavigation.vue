@@ -102,6 +102,7 @@ const exploreItems = [
   { label: 'Blogs', route: '/blogs', icon: 'i-mdi-post' },
   { label: 'Films', route: '/list-of-seen-films', icon: 'i-mdi-filmstrip' },
   { label: 'Quotes', route: '/favorite-quotes', icon: 'i-mdi-format-quote-close' },
+  { label: 'Songs', route: '/favorite-songs', icon: 'i-mdi-music-note-outline' },
   { label: 'Now', route: '/now', icon: 'i-mdi-clock-time-four-outline' },
 ]
 
