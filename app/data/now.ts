@@ -26,7 +26,7 @@ export interface Goal {
   progress: number
 }
 
-export const lastUpdated = 'August 2026'
+export const lastUpdated = 'October 2026'
 export const location = 'Podgorica, Montenegro'
 
 export const workingOn: WorkItem[] = [
@@ -51,15 +51,15 @@ export const workingOn: WorkItem[] = [
 export const learning: string[] = [
   'Fullstackopen.com — comprehensive modern web development course',
   'Core Web Vitals concepts and optimization techniques',
-  'ASP.NET Core',
+  'ASP.NET Core — building a modular-monolith Web API (Rožaje Portal): pagination & filtering, domain exceptions, IExceptionHandler and ProblemDetails error handling',
 ]
 
 export const reading: Book[] = [
-  { title: 'Jadnici II', author: 'Viktor Igo' },
+  { title: 'Jadi mladog Vertera', author: 'Johan Volfgang Gete' },
 ]
 
 export const goals: Goal[] = [
-  { label: 'Read 2 books', progress: 50 },
+  { label: 'Read 2 books', progress: 100 },
   { label: 'Finish 5th Fullstack Open module', progress: 50 },
 ]
 
