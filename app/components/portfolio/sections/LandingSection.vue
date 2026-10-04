@@ -39,11 +39,12 @@
             </button>
             <a
               class="btn-ghost"
-              href="/ilhan-kalac-resume.pdf"
-              download="ilhan-kalac-resume.pdf"
+              href="/ilhan-kalac-resume.pdf?v=2026-10b"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Download CV
-              <UIcon name="i-mdi-tray-arrow-down" class="btn-icon" />
+              View CV
+              <UIcon name="i-mdi-open-in-new" class="btn-icon" />
             </a>
           </div>
 

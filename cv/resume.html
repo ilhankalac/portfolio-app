@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ilhan Kalac - Resume</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+<header>
+  <h1>Ilhan Kalac</h1>
+  <h2>Full-Stack Developer</h2>
+  <p class="contact">Podgorica, Montenegro | <a href="mailto:ilhandeveloper@gmail.com">ilhandeveloper@gmail.com</a> | <a href="tel:+38268186196">+382 68 186 196</a> | <a href="https://www.linkedin.com/in/ilhankalac/">LinkedIn</a></p>
+</header>
+
+<section>
+  <h3>Professional Summary</h3>
+  <p>Full-stack developer with 6+ years of experience, focused on Vue/Nuxt and growing on the backend with ASP.NET Core. Takes ownership of features end to end, from product decisions and architecture to deployment and measuring results. Currently the sole frontend developer at ViaLuxury, where moving maps to self-hosted infrastructure saves around €5,000 per year. Previously achieved full WCAG compliance on a US healthcare platform serving 50,000+ users, unified 4 legacy routing systems into one, and delivered a POS frontend used in 7,000+ retail locations.</p>
+</section>
+
+<section>
+  <h3>Technical Skills</h3>
+  <div class="skills">
+    <p>Core: Vue 3, Nuxt 3/4 (SSR), TypeScript, JavaScript (ESNext), Pinia</p>
+    <p>Backend: ASP.NET Core, C#, REST API design &amp; integration</p>
+    <p>UI/UX: Tailwind CSS, Vuetify, Nuxt UI, UI implementation from Figma, Accessibility (WCAG)</p>
+    <p>Tooling: Vite, Git, GitHub Actions (CI/CD), Cloudflare Workers, PostHog, Firebase, Jira, AI-assisted development (Claude Code)</p>
+  </div>
+</section>
+
+<section>
+  <h3>Professional Experience</h3>
+
+  <div class="role">
+    <span>Full-Stack Developer, ViaLuxury</span>
+    <span>Remote (Amsterdam, NL), Jan 2026 — Present</span>
+  </div>
+  <ul>
+    <li>Own the entire frontend as the sole frontend developer of a multilingual booking platform for luxury hotels and holiday packages (Nuxt 4 SSR, Vue 3, TypeScript, 7 languages), from planning and architecture to release</li>
+    <li>Cut map costs by around €5,000 per year by replacing MapTiler with a self-hosted Protomaps solution, writing and deploying the Cloudflare Workers that serve the maps</li>
+    <li>Led the redesign of the whole platform and rolled it out through PostHog A/B tests, so every change was measured against real booking data</li>
+    <li>Rebuilt search and checkout, the two key steps of the booking funnel, with API-driven filters, an interactive hotel map and clearer room and cancellation options</li>
+    <li>Improved page speed and Lighthouse scores by optimizing SSR, reducing JavaScript on initial load and fetching data in parallel</li>
+    <li>Work across the stack: built ASP.NET Core features end to end (user favorites, lead pipeline for new hotel partners) and migrated a large part of the frontend to TypeScript</li>
+    <li>Use AI tools (Claude Code) daily to ship faster, while staying responsible for architecture, code review and quality</li>
+    <li><strong>Tech:</strong> Nuxt 4 (SSR), Vue 3, TypeScript, Tailwind CSS, Pinia, MapLibre GL, Protomaps, Cloudflare Workers, PostHog, ASP.NET Core, C#, EF Core</li>
+  </ul>
+
+  <div class="role">
+    <span>Frontend Developer, Codeus</span>
+    <span>Podgorica, Feb 2021 — Jan 2026</span>
+  </div>
+  <ul>
+    <li>Led frontend development across 3 enterprise products serving 50,000+ users combined, establishing architecture patterns and code standards adopted team-wide</li>
+    <li>Drove major UX, performance, and accessibility improvements, including achieving full WCAG compliance on a US healthcare platform after an external audit</li>
+    <li>Collaborated closely with designers, backend team, and stakeholders to ship features efficiently and reduce delivery friction</li>
+  </ul>
+
+  <h4>Major Projects</h4>
+  <h4><a href="https://gitlab.com/isard/isardvdi/-/tree/nuxt3-frontend/old-frontend/src/components?ref_type=heads">IsardVDI Portal (Open-Source VDI Platform)</a></h4>
+  <ul>
+    <li>Designed and built the base Nuxt 3 architecture, routing logic, and authentication flows (SAML, form login, password reset, token navigation)</li>
+    <li>Integrated API v4 with a custom fetch layer for consistent data handling</li>
+    <li>Shipped a fully localized and accessible UI (en, es, fr, eu-ES) using Nuxt UI, Tailwind, Pinia, and Valibot</li>
+    <li>Set up robust validation, disclaimers, maintenance mode, and resilient form flows</li>
+  </ul>
+
+  <h4>Health Data Platform (US Healthcare)</h4>
+  <ul>
+    <li>Migrated the platform from Webpack to Vite, reducing build times by ~60% and transitioning to a fully client-side architecture</li>
+    <li>Unified four separate routing systems into one scalable Vue Router setup, reducing complexity and maintenance overhead</li>
+    <li>Built a standalone Vue 3 + TypeScript portal using typed services, OOP-inspired structure, and bearer-token authentication</li>
+    <li>Fixed all accessibility issues flagged by internal and external WCAG audits, achieving full compliance</li>
+    <li><strong>Tech:</strong> Vue 3, TypeScript, Vite, Vue Router, Vuetify, Laravel, REST APIs, GitHub Actions</li>
+  </ul>
+
+  <h4>Allegra POS Software</h4>
+  <ul>
+    <li>Developed Vue.js POS frontend deployed across 7,000+ retail locations in the US</li>
+    <li>Added multi-language i18n and standardized UI components for enterprise deployments</li>
+    <li>Improved reliability and consistency of UI interactions across devices</li>
+    <li><strong>Tech:</strong> Vue.js, TypeScript, i18n</li>
+  </ul>
+
+  <div class="role">
+    <span>Fullstack Developer, Galilej</span>
+    <span>Belgrade, Oct 2019 — Feb 2021</span>
+  </div>
+  <ul>
+    <li>Built and maintained software used by music schools, covering scheduling, payments, and instrument-rental features</li>
+    <li>Developed a rental-tracking module handling 500+ monthly transactions across 20+ music schools in Serbia</li>
+    <li>Led development of Medijateka – Nototeka, an Angular + Firebase web app for a large active user base</li>
+    <li>Implemented automated CI/CD pipelines using GitHub Actions</li>
+    <li><strong>Tech:</strong> Angular, TypeScript, Firebase Auth, Angular Material, Git, Linux</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Education</h3>
+  <div class="role">
+    <span>School of Information and Technology</span>
+    <span>Belgrade, Oct 2016 — Oct 2019</span>
+  </div>
+  <p>Bachelor in Applied Electrical and Computer Science<br>Engineering (EQF 6)</p>
+</section>
+
+<section>
+  <h3>Additional Information</h3>
+  <ul class="info">
+    <li><strong>Links:</strong> <a href="https://www.linkedin.com/in/ilhankalac/">LinkedIn</a>, <a href="https://github.com/ilhankalac">GitHub</a>, <a href="https://ilhan.io">Portfolio</a></li>
+    <li><strong>Languages:</strong> English - fluent, Serbian native, German - A2 (actively learning, targeting B1)</li>
+  </ul>
+</section>
+</body>
+</html>

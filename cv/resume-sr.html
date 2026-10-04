@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<title>Ilhan Kalac - CV</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+<header>
+  <h1>Ilhan Kalac</h1>
+  <h2>Full-Stack Developer</h2>
+  <p class="contact">Podgorica, Crna Gora | <a href="mailto:ilhandeveloper@gmail.com">ilhandeveloper@gmail.com</a> | <a href="tel:+38268186196">+382 68 186 196</a> | <a href="https://www.linkedin.com/in/ilhankalac/">LinkedIn</a></p>
+</header>
+
+<section>
+  <h3>Profesionalni sažetak</h3>
+  <p>Full-stack developer sa više od 6 godina iskustva, fokusiran na Vue/Nuxt, a sve više radim i backend u ASP.NET Core-u. Preuzimam funkcionalnosti od početka do kraja, od odluka o proizvodu i arhitekture do deploya i mjerenja rezultata. Trenutno jedini frontend developer u ViaLuxury, gdje prelazak mapa na sopstvenu infrastrukturu štedi oko 5.000 € godišnje. Ranije sam ostvario potpunu WCAG usklađenost na zdravstvenoj platformi u SAD-u sa preko 50.000 korisnika, objedinio 4 naslijeđena sistema rutiranja u jedan i isporučio POS frontend koji se koristi na više od 7.000 maloprodajnih lokacija.</p>
+</section>
+
+<section>
+  <h3>Vještine</h3>
+  <div class="skills">
+    <p>Core: Vue 3, Nuxt 3/4 (SSR), TypeScript, JavaScript (ESNext), Pinia</p>
+    <p>Backend: ASP.NET Core, C#, REST API dizajn i integracija</p>
+    <p>UI/UX: Tailwind CSS, Vuetify, Nuxt UI, implementacija dizajna iz Figme, pristupačnost (WCAG)</p>
+    <p>Alati: Vite, Git, GitHub Actions (CI/CD), Cloudflare Workers, PostHog, Firebase, Jira, razvoj uz AI (Claude Code)</p>
+  </div>
+</section>
+
+<section>
+  <h3>Profesionalno iskustvo</h3>
+
+  <div class="role">
+    <span>Full-Stack Developer, ViaLuxury</span>
+    <span>Remote (Amsterdam, NL), Jan 2026 — danas</span>
+  </div>
+  <ul>
+    <li>Vodim kompletan frontend kao jedini frontend developer višejezične booking platforme za luksuzne hotele i turističke pakete (Nuxt 4 SSR, Vue 3, TypeScript, 7 jezika), od planiranja i arhitekture do produkcije</li>
+    <li>Smanjio troškove mapa za oko 5.000 € godišnje zamjenom MapTiler-a sopstvenim Protomaps rješenjem, uz Cloudflare Workere koje sam napisao i deployao</li>
+    <li>Vodio redizajn cijele platforme i pustio ga kroz PostHog A/B testove, tako da je svaka promjena mjerena na stvarnim rezervacijama</li>
+    <li>Ponovo izgradio pretragu i checkout, dva ključna koraka do rezervacije, sa filterima iz API-ja, interaktivnom mapom hotela i jasnijim izborom soba i opcija otkazivanja</li>
+    <li>Ubrzao stranice i poboljšao Lighthouse rezultate optimizacijom SSR-a, manje JavaScript-a pri prvom učitavanju i paralelnim učitavanjem podataka</li>
+    <li>Radim kroz cijeli stack: napravio ASP.NET Core funkcionalnosti od baze do API-ja (omiljeni hoteli, prijave novih hotelskih partnera) i prebacio velik dio frontenda na TypeScript</li>
+    <li>Svakodnevno koristim AI alate (Claude Code) da brže isporučujem, uz punu odgovornost za arhitekturu, code review i kvalitet</li>
+    <li><strong>Tehnologije:</strong> Nuxt 4 (SSR), Vue 3, TypeScript, Tailwind CSS, Pinia, MapLibre GL, Protomaps, Cloudflare Workers, PostHog, ASP.NET Core, C#, EF Core</li>
+  </ul>
+
+  <div class="role">
+    <span>Frontend Developer, Codeus</span>
+    <span>Podgorica, Feb 2021 — Jan 2026</span>
+  </div>
+  <ul>
+    <li>Vodio frontend razvoj na 3 enterprise proizvoda sa ukupno preko 50.000 korisnika i postavio arhitekturne obrasce i standarde koda koje je usvojio cijeli tim</li>
+    <li>Pokrenuo velika unapređenja UX-a, performansi i pristupačnosti, uključujući potpunu WCAG usklađenost zdravstvene platforme u SAD-u nakon eksterne revizije</li>
+    <li>Blisko sarađivao sa dizajnerima, backend timom i klijentima kako bi se funkcionalnosti isporučivale brže i bez zastoja</li>
+  </ul>
+
+  <h4>Ključni projekti</h4>
+  <h4><a href="https://gitlab.com/isard/isardvdi/-/tree/nuxt3-frontend/old-frontend/src/components?ref_type=heads">IsardVDI Portal (open-source VDI platforma)</a></h4>
+  <ul>
+    <li>Dizajnirao i implementirao osnovnu Nuxt 3 arhitekturu, logiku rutiranja i autentifikacione tokove (SAML, prijava putem forme, reset lozinke, navigacija putem tokena)</li>
+    <li>Integrisao API v4 kroz prilagođeni fetch sloj radi konzistentnog rukovanja podacima</li>
+    <li>Isporučio potpuno lokalizovan i pristupačan interfejs (en, es, fr, eu-ES) koristeći Nuxt UI, Tailwind, Pinia i Valibot</li>
+    <li>Postavio pouzdanu validaciju, disclaimere, maintenance mod i otporne tokove formi</li>
+  </ul>
+
+  <h4>Health Data Platform (zdravstveni sistem u SAD-u)</h4>
+  <ul>
+    <li>Migrirao platformu sa Webpack-a na Vite, smanjivši vrijeme builda za oko 60%, i prešao na potpuno client-side arhitekturu</li>
+    <li>Objedinio četiri odvojena sistema rutiranja u jednu skalabilnu Vue Router konfiguraciju, smanjujući kompleksnost i troškove održavanja</li>
+    <li>Izgradio samostalni Vue 3 + TypeScript portal sa tipiziranim servisima, OOP strukturom i autentifikacijom putem bearer tokena</li>
+    <li>Otklonio sve probleme pristupačnosti iz internih i eksternih WCAG revizija i postigao potpunu usklađenost</li>
+    <li><strong>Tehnologije:</strong> Vue 3, TypeScript, Vite, Vue Router, Vuetify, Laravel, REST API-ji, GitHub Actions</li>
+  </ul>
+
+  <h4>Allegra POS softver</h4>
+  <ul>
+    <li>Razvijao Vue.js frontend za POS sistem koji radi na više od 7.000 maloprodajnih lokacija u SAD-u</li>
+    <li>Implementirao višejezičku podršku (i18n) i standardizovane UI komponente za enterprise okruženja</li>
+    <li>Unaprijedio pouzdanost i konzistentnost korisničkih interakcija na različitim uređajima</li>
+    <li><strong>Tehnologije:</strong> Vue.js, TypeScript, i18n</li>
+  </ul>
+
+  <div class="role">
+    <span>Fullstack Developer, Galilej</span>
+    <span>Beograd, Oct 2019 — Feb 2021</span>
+  </div>
+  <ul>
+    <li>Razvijao i održavao softver za muzičke škole, uključujući zakazivanje časova, naplatu i iznajmljivanje instrumenata</li>
+    <li>Napravio modul za praćenje iznajmljivanja sa preko 500 mjesečnih transakcija u više od 20 muzičkih škola u Srbiji</li>
+    <li>Vodio razvoj aplikacije Medijateka – Nototeka, Angular + Firebase web aplikacije sa velikom i aktivnom bazom korisnika</li>
+    <li>Postavio automatizovane CI/CD procese koristeći GitHub Actions</li>
+    <li><strong>Tehnologije:</strong> Angular, TypeScript, Firebase Auth, Angular Material, Git, Linux</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Obrazovanje</h3>
+  <div class="role">
+    <span>School of Information and Technology</span>
+    <span>Beograd, Oct 2016 — Oct 2019</span>
+  </div>
+  <p>Bachelor primijenjenog elektrotehničkog i računarskog inženjerstva (EQF 6)</p>
+</section>
+
+<section>
+  <h3>Dodatne informacije</h3>
+  <ul class="info">
+    <li><strong>Linkovi:</strong> <a href="https://www.linkedin.com/in/ilhankalac/">LinkedIn</a>, <a href="https://github.com/ilhankalac">GitHub</a>, <a href="https://ilhan.io">Portfolio</a></li>
+    <li><strong>Jezici:</strong> Engleski - tečno, Srpski - maternji, Njemački - A2 (u procesu učenja, cilj B1)</li>
+  </ul>
+</section>
+</body>
+</html>

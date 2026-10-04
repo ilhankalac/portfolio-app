@@ -35,7 +35,7 @@
             <template v-for="link in otherInterestsLinks" :key="link.text">
               <a
                 v-if="link.text === 'Resume'"
-                href="ilhan-kalac-resume.pdf"
+                href="/ilhan-kalac-resume.pdf?v=2026-10b"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="footer-link"
@@ -101,7 +101,7 @@ const otherInterestsLinks = [
   { text: 'Favorite Quotes', url: '/favorite-quotes' },
   { text: 'Favorite Songs', url: '/favorite-songs' },
   { text: 'List of seen films', url: '/list-of-seen-films' },
-  { text: 'Resume', url: 'ilhan-kalac-resume.pdf' },
+  { text: 'Resume', url: '/ilhan-kalac-resume.pdf?v=2026-10b' },
 ]
 
 const socialMediaLinks = [
