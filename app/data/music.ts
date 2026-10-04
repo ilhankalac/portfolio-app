@@ -28,6 +28,7 @@ export const topSongs: Song[] = [
   { title: 'Beyond', artist: 'Daft Punk', note: 'Random Access Memories', cover: '/images/music/daft-punk-random-access-memories.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Beyond' },
   { title: 'Epitaph', artist: 'King Crimson', note: 'In the Court of the Crimson King', cover: '/images/music/king-crimson-in-the-court.webp', link: 'https://www.youtube.com/results?search_query=King+Crimson+Epitaph' },
   { title: 'Bullitt', artist: 'Lalo Schifrin', note: 'Bullitt', cover: '/images/music/lalo-schifrin-bullitt.webp', link: 'https://www.youtube.com/results?search_query=Lalo+Schifrin+Bullitt' },
+  { title: 'El Dumo', artist: 'Smak', link: 'https://www.youtube.com/results?search_query=Smak+El+Dumo' },
   { title: 'Veridis Quo', artist: 'Daft Punk', note: 'Discovery', cover: '/images/music/daft-punk-discovery.webp', link: 'https://www.youtube.com/results?search_query=Daft+Punk+Veridis+Quo' },
   { title: 'Hipishizik Metafizik', artist: 'Rambo Amadeus', note: 'Hipishizik Metafizik', cover: '/images/music/rambo-amadeus-hipishizik-metafizik.webp', link: 'https://www.youtube.com/watch?v=rYZmNybdFSY' },
 ]
@@ -66,6 +67,7 @@ export const genres: Genre[] = [
     songs: [
       { title: 'Lady Fantasy', artist: 'Camel', note: 'Mirage', cover: '/images/music/camel-mirage.webp', link: 'https://www.youtube.com/results?search_query=Camel+Lady+Fantasy' },
       { title: 'Epitaph', artist: 'King Crimson', note: 'In the Court of the Crimson King', cover: '/images/music/king-crimson-in-the-court.webp', link: 'https://www.youtube.com/results?search_query=King+Crimson+Epitaph' },
+      { title: 'El Dumo', artist: 'Smak', link: 'https://www.youtube.com/results?search_query=Smak+El+Dumo' },
       { title: 'Comfortably Numb', artist: 'Pink Floyd' },
       { title: 'Echoes', artist: 'Pink Floyd' },
       { title: '21st Century Schizoid Man', artist: 'King Crimson' },
