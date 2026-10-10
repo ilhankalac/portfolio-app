@@ -49,9 +49,8 @@ export const workingOn: WorkItem[] = [
 ]
 
 export const learning: string[] = [
-  'Fullstackopen.com — comprehensive modern web development course',
   'Core Web Vitals concepts and optimization techniques',
-  'ASP.NET Core — building a modular-monolith Web API (Rožaje Portal): pagination & filtering, domain exceptions, IExceptionHandler and ProblemDetails error handling',
+  'ASP.NET Core — modular-monolith Web API: domain modeling, status workflow, validation and error handling (ProblemDetails)',
 ]
 
 export const reading: Book[] = [
@@ -59,8 +58,9 @@ export const reading: Book[] = [
 ]
 
 export const goals: Goal[] = [
-  { label: 'Read 2 books', progress: 100 },
-  { label: 'Finish 5th Fullstack Open module', progress: 50 },
+  { label: 'Read 3 books', progress: 10 },
+  { label: 'Finish validation & error handling in ASP.NET Core (FluentValidation)', progress: 70 },
+  { label: 'Learn PostgreSQL + EF Core in ASP.NET Core', progress: 0 },
 ]
 
 /**

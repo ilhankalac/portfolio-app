@@ -86,7 +86,7 @@
     <section class="now-section">
       <h2 class="section-title">
         <UIcon name="i-mdi-target" class="section-icon" />
-        Goals this quarter (Jul–Sep 2026)
+        Goals this quarter (Oct–Dec 2026)
       </h2>
       <div class="goal-list">
         <div
