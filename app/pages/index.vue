@@ -47,7 +47,7 @@ useHead({
         name: 'Ilhan Kalač',
         url: 'https://ilhan.io',
         jobTitle: 'Software Engineer',
-        description: 'Software Engineer specializing in web development.',
+        description: 'Software engineer building multilingual web products with Nuxt, Vue, TypeScript and ASP.NET Core.',
         sameAs: [],
       }),
     },

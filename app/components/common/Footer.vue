@@ -8,7 +8,7 @@
           </button>
 
           <div class="brand-copy">
-            <p class="brand-kicker">Software Developer</p>
+            <p class="brand-kicker">Software Engineer</p>
             <h2>Ilhan Kalač</h2>
             <p>
               Building focused web experiences with clean interfaces, thoughtful details,

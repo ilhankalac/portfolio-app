@@ -54,7 +54,7 @@ export const learning: string[] = [
 ]
 
 export const reading: Book[] = [
-  { title: 'Jadi mladog Vertera', author: 'Johan Volfgang Gete' },
+  { title: 'The Sorrows of Young Werther', author: 'Johann Wolfgang von Goethe' },
 ]
 
 export const goals: Goal[] = [

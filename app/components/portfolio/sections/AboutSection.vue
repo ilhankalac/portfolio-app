@@ -15,7 +15,7 @@
         />
         <div class="profile-meta">
           <h3 class="profile-name">Ilhan Kalač</h3>
-          <p class="profile-role">Software Developer · Podgorica, Montenegro</p>
+          <p class="profile-role">Software Engineer · Podgorica, Montenegro</p>
         </div>
       </div>
 
