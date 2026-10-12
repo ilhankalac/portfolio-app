@@ -32,6 +32,10 @@
           </div>
         </div>
         <div class="meta-right">
+          <span v-if="views" class="reading-pill">
+            <UIcon name="i-mdi-eye-outline" class="pill-icon" />
+            {{ formatViews(views) }}
+          </span>
           <span v-if="readingTime" class="reading-pill">
             {{ readingTime }} min read
           </span>
@@ -193,6 +197,22 @@ const formatDate = (iso?: string) => {
 const copied = ref(false)
 
 const readingTime = computed(() => blog.value?.readingTime || 0)
+
+const { trackView } = useBlogViews()
+const views = ref<number | null>(null)
+
+const formatViews = (count: number) => `${count.toLocaleString('en-US')} ${count === 1 ? 'view' : 'views'}`
+
+const loadViews = async () => {
+  try {
+    views.value = await trackView(slug.value)
+  } catch {
+    views.value = null
+  }
+}
+
+onMounted(loadViews)
+watch(slug, loadViews)
 
 const currentUrl = computed(() => {
   if (import.meta.client) return window.location.href
@@ -388,6 +408,10 @@ const copyLink = async () => {
   color: rgba(255, 255, 255, 0.35);
 }
 
+.pill-icon {
+  font-size: 0.85rem;
+}
+
 .meta-right {
   display: flex;
   align-items: center;
@@ -397,6 +421,7 @@ const copyLink = async () => {
 .reading-pill {
   display: inline-flex;
   align-items: center;
+  gap: 0.3rem;
   padding: 0.25rem 0.65rem;
   font-size: 0.75rem;
   font-weight: 500;

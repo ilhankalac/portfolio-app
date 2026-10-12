@@ -61,6 +61,7 @@
             <span class="meta-date">{{ formatDate(featured.publishedAt) }}</span>
             <span class="meta-dot">&middot;</span>
             <span v-if="featured.readingTime" class="meta-read">{{ featured.readingTime }} min read</span>
+            <span v-if="viewsFor(featured.path)" class="meta-read">{{ viewsFor(featured.path) }} views</span>
             <span
               v-for="tag in featured.tags"
               :key="tag"
@@ -106,6 +107,9 @@
                 class="row-tag"
               >{{ tag }}</span>
               <span v-if="post.readingTime" class="row-read">{{ post.readingTime }} min</span>
+              <span v-if="viewsFor(post.path)" class="row-read">
+                <UIcon name="i-mdi-eye-outline" class="row-views-icon" />{{ viewsFor(post.path) }}
+              </span>
               <UIcon name="i-mdi-arrow-right" class="row-arrow" />
             </div>
           </NuxtLink>
@@ -153,6 +157,20 @@ const { data: blogs, status } = await useAsyncData('blog-list', async () => {
 )
 
 const activeTag = ref<string | null>(null)
+
+const { getAllViews } = useBlogViews()
+const views = ref<Record<string, number>>({})
+
+const viewsFor = (path: string) => {
+  const count = views.value[path.split('/').pop() ?? '']
+  return count ? count.toLocaleString('en-US') : null
+}
+
+onMounted(async () => {
+  try {
+    views.value = await getAllViews()
+  } catch {}
+})
 
 const allTags = computed(() => {
   const tags = new Set<string>()
@@ -527,10 +545,17 @@ const formatShortDate = (iso?: string) => {
 }
 
 .row-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.3);
   white-space: nowrap;
+}
+
+.row-views-icon {
+  font-size: 0.8rem;
 }
 
 .row-arrow {

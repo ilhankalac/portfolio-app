@@ -36,6 +36,12 @@
         ".write": "auth != null"
       }
     },
+    "blogViews": {
+      ".read": true,
+      "$slug": {
+        ".write": "auth != null || (newData.isNumber() && ((!data.exists() && newData.val() === 1) || (data.exists() && newData.val() === data.val() + 1)))"
+      }
+    },
     "contacted": {
       ".read": "auth != null",
       ".write": true,
