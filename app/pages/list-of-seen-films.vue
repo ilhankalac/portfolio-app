@@ -4,17 +4,32 @@
     <div class="list-header">
       <span class="list-label">Cinema</span>
       <h1 class="list-title">Films I've Watched</h1>
+      <p class="list-subtitle">
+        Collection of films I have seen since 2016.
+      </p>
       <div class="list-header-row">
-        <p class="list-subtitle">
-          Collection of films I have seen since 2016.
-        </p>
+        <div class="tab-row">
+          <button class="tab-btn" :class="{ 'tab-btn--active': activeTab === 'diary' }" @click="activeTab = 'diary'">
+            <UIcon name="i-mdi-format-list-bulleted" class="tab-icon" />
+            Diary
+            <span v-if="filmStatsData.totalFilms" class="tab-count">{{ filmStatsData.totalFilms.toLocaleString('en-US') }}</span>
+          </button>
+          <button class="tab-btn" :class="{ 'tab-btn--active': activeTab === 'favorites' }" @click="activeTab = 'favorites'">
+            <UIcon name="i-mdi-heart-outline" class="tab-icon" />
+            Favorites
+            <span class="tab-count">{{ favoriteFilms.length }}</span>
+          </button>
+        </div>
         <button class="stats-btn" @click="openStatsDialog">
           <UIcon name="i-mdi-chart-bar" class="stats-icon" />
-          Stats
+          <span class="stats-label">Stats</span>
         </button>
       </div>
     </div>
 
+    <FavoriteFilms v-if="activeTab === 'favorites'" />
+
+    <div v-show="activeTab === 'diary'">
     <!-- Search -->
     <div class="search-wrap">
       <UInput
@@ -145,6 +160,7 @@
     <div v-if="!isSearchInvoked" class="text-center mt-5">
       <UIcon name="i-mdi-loading" class="animate-spin text-2xl text-white/30" />
     </div>
+    </div>
     <div class="bottom-spacer" />
     <div ref="bottomElement" />
   </div>
@@ -153,6 +169,8 @@
 <script setup lang="ts">
 import debounce from 'lodash/debounce'
 import FilmStats from '~/components/common/FilmStats.vue'
+import FavoriteFilms from '~/components/common/FavoriteFilms.vue'
+import { favoriteFilms } from '~/data/favoriteFilms'
 import type { IFilm, IFilmStatsData, IDirectorStats } from '~/types/models'
 
 definePageMeta({ layout: 'blog' })
@@ -176,6 +194,16 @@ useSeoMeta({
 })
 
 const { getVal, getValWithSearchTerm } = useFirebase()
+const route = useRoute()
+const router = useRouter()
+
+type Tab = 'diary' | 'favorites'
+
+// Synced to ?tab= so the Favorites view can be linked to directly.
+const activeTab = computed<Tab>({
+  get: () => (route.query.tab === 'favorites' ? 'favorites' : 'diary'),
+  set: (tab) => router.replace({ query: { ...route.query, tab: tab === 'diary' ? undefined : tab } }),
+})
 
 const isDataLoaded = ref(false)
 const films = ref<IFilm[]>([])
@@ -229,7 +257,7 @@ const getFilmsBySearchTerm = () => {
 const debouncedGetFilmsBySearchTerm = debounce(getFilmsBySearchTerm, 500)
 
 const onBottomReached = () => {
-  if (searchTerm.value || isSearchInvoked.value) return
+  if (activeTab.value !== 'diary' || searchTerm.value || isSearchInvoked.value) return
 
   isBottomReached.value = true
   getVal('listOfSeenfilms', 10, films.value.length.toString()).then((val: any) => {
@@ -304,14 +332,59 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .list-subtitle {
   font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.4);
-  margin: 0;
+  margin: 0.5rem 0 0;
   line-height: 1.6;
+}
+
+.tab-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  &--active {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.14);
+
+    .tab-icon { color: #818cf8; }
+  }
+}
+
+.tab-icon {
+  font-size: 0.9rem;
+}
+
+.tab-count {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-variant-numeric: tabular-nums;
 }
 
 .stats-btn {
@@ -341,6 +414,12 @@ onBeforeUnmount(() => {
 .stats-icon {
   font-size: 0.85rem;
   color: #818cf8;
+}
+
+.stats-label {
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 /* Search */
