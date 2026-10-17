@@ -147,41 +147,41 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-label {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.4rem;
 }
 
 .now-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--v2-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   margin: 0;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .now-subtitle {
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
 }
 
 .now-link {
-  color: rgba(129, 140, 248, 0.85);
+  color: rgba(216, 195, 160, 0.85);
   text-decoration: none;
-  border-bottom: 1px dashed rgba(129, 140, 248, 0.4);
+  border-bottom: 1px dashed rgba(216, 195, 160, 0.4);
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(129, 140, 248, 1);
-    border-bottom-color: rgba(129, 140, 248, 0.8);
+    color: rgba(216, 195, 160, 1);
+    border-bottom-color: rgba(216, 195, 160, 0.8);
   }
 }
 
@@ -196,14 +196,14 @@ const statusLabel = (s: WorkStatus) => {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
 }
 
 .now-meta-icon {
   font-size: 0.95rem;
-  color: rgba(129, 140, 248, 0.75);
+  color: rgba(216, 195, 160, 0.75);
 }
 
 /* Sections */
@@ -215,17 +215,17 @@ const statusLabel = (s: WorkStatus) => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 239, 228, 0.9);
   margin: 0 0 0.85rem;
   letter-spacing: -0.01em;
 }
 
 .section-icon {
   font-size: 1rem;
-  color: #818cf8;
+  color: var(--v2-accent);
 }
 
 /* Working on cards */
@@ -237,14 +237,14 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-card {
   padding: 1rem 1.1rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.05);
   border-radius: 0.75rem;
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.045);
-    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(245, 239, 228, 0.045);
+    border-color: rgba(245, 239, 228, 0.08);
   }
 }
 
@@ -257,17 +257,17 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .card-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(245, 239, 228, 0.92);
   margin: 0;
   line-height: 1.4;
 }
 
 .card-status {
   flex-shrink: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -283,9 +283,9 @@ const statusLabel = (s: WorkStatus) => {
   }
 
   &.status-shipped {
-    color: #60a5fa;
-    background: rgba(96, 165, 250, 0.1);
-    border: 1px solid rgba(96, 165, 250, 0.2);
+    color: var(--v2-accent);
+    background: rgba(216, 195, 160, 0.1);
+    border: 1px solid rgba(216, 195, 160, 0.2);
   }
 
   &.status-wip {
@@ -295,17 +295,17 @@ const statusLabel = (s: WorkStatus) => {
   }
 
   &.status-paused {
-    color: rgba(255, 255, 255, 0.45);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(245, 239, 228, 0.45);
+    background: rgba(245, 239, 228, 0.05);
+    border: 1px solid rgba(245, 239, 228, 0.08);
   }
 }
 
 .card-text {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-body);
   font-size: 0.825rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
   margin: 0;
 }
 
@@ -321,10 +321,10 @@ const statusLabel = (s: WorkStatus) => {
   li {
     position: relative;
     padding-left: 1.1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--v2-body);
     font-size: 0.875rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(245, 239, 228, 0.7);
 
     &::before {
       content: '';
@@ -334,17 +334,17 @@ const statusLabel = (s: WorkStatus) => {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: #818cf8;
+      background: var(--v2-accent);
     }
   }
 }
 
 /* Prose block (Thinking about) */
 .now-prose {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-body);
   font-size: 0.875rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(245, 239, 228, 0.7);
   margin: 0;
   max-width: 42rem;
 }
@@ -360,18 +360,18 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .book-item {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-body);
   font-size: 0.875rem;
   line-height: 1.6;
 }
 
 .book-title {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(245, 239, 228, 0.85);
   font-weight: 500;
 }
 
 .book-author {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin-left: 0.25rem;
 }
 
@@ -390,29 +390,29 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .goal-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(245, 239, 228, 0.8);
 }
 
 .goal-progress {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(245, 239, 228, 0.45);
   font-variant-numeric: tabular-nums;
 }
 
 .goal-bar {
   width: 100%;
   height: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.06);
   border-radius: 9999px;
   overflow: hidden;
 }
 
 .goal-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4f46e5, #818cf8);
+  background: linear-gradient(90deg, #8f7d60, var(--v2-accent));
   border-radius: 9999px;
   transition: width 0.4s ease;
 }

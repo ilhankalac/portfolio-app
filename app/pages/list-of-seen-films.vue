@@ -37,7 +37,7 @@
         placeholder="Search films..."
         size="lg"
         class="flex-1"
-        :ui="{ base: 'bg-transparent text-white placeholder-white/30' }"
+        :ui="{ base: 'bg-transparent text-[#f5efe4] placeholder-[#f5efe4]/30' }"
         @keyup.enter="debouncedGetFilmsBySearchTerm"
       >
         <template v-if="searchTerm" #trailing>
@@ -158,7 +158,7 @@
     </UModal>
 
     <div v-if="!isSearchInvoked" class="text-center mt-5">
-      <UIcon name="i-mdi-loading" class="animate-spin text-2xl text-white/30" />
+      <UIcon name="i-mdi-loading" class="animate-spin text-2xl text-[#f5efe4]/30" />
     </div>
     </div>
     <div class="bottom-spacer" />
@@ -308,23 +308,23 @@ onBeforeUnmount(() => {
 
 .list-label {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.4rem;
 }
 
 .list-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--v2-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   margin: 0;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .list-header-row {
@@ -337,7 +337,7 @@ onBeforeUnmount(() => {
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
 }
@@ -352,28 +352,28 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.85rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(245, 239, 228, 0.45);
+  background: rgba(245, 239, 228, 0.02);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.8);
-    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(245, 239, 228, 0.8);
+    border-color: rgba(245, 239, 228, 0.12);
   }
 
   &--active {
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.14);
+    color: rgba(245, 239, 228, 0.95);
+    background: rgba(245, 239, 228, 0.07);
+    border-color: rgba(245, 239, 228, 0.14);
 
-    .tab-icon { color: #818cf8; }
+    .tab-icon { color: var(--v2-accent); }
   }
 }
 
@@ -383,7 +383,7 @@ onBeforeUnmount(() => {
 
 .tab-count {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   font-variant-numeric: tabular-nums;
 }
 
@@ -392,12 +392,12 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.35rem;
   padding: 0.4rem 0.75rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(245, 239, 228, 0.45);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -405,15 +405,15 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(245, 239, 228, 0.8);
+    background: rgba(245, 239, 228, 0.08);
+    border-color: rgba(245, 239, 228, 0.1);
   }
 }
 
 .stats-icon {
   font-size: 0.85rem;
-  color: #818cf8;
+  color: var(--v2-accent);
 }
 
 .stats-label {
@@ -430,7 +430,7 @@ onBeforeUnmount(() => {
 
 .search-info {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
 }
 
 /* Grid */
@@ -446,8 +446,8 @@ onBeforeUnmount(() => {
 
 /* Film Card */
 .film-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 1rem;
   overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -458,8 +458,8 @@ onBeforeUnmount(() => {
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.1);
+                0 0 0 1px rgba(245, 239, 228, 0.08);
+    border-color: rgba(245, 239, 228, 0.1);
   }
 }
 
@@ -492,7 +492,7 @@ onBeforeUnmount(() => {
 }
 
 .star-outline {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
 }
 
 /* Duration Badge */
@@ -504,7 +504,7 @@ onBeforeUnmount(() => {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   border-radius: 16px;
-  color: white;
+  color: var(--v2-text);
   font-size: 0.85rem;
   font-weight: 300;
 }
@@ -517,14 +517,14 @@ onBeforeUnmount(() => {
 }
 
 .film-number {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 239, 228, 0.9);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
 .film-title {
-  color: white;
+  color: var(--v2-text);
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.2;
@@ -537,7 +537,7 @@ onBeforeUnmount(() => {
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   font-size: 0.875rem;
   line-height: 1.4;
 }
@@ -552,7 +552,7 @@ onBeforeUnmount(() => {
 }
 
 .meta-separator {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
 }
 
 /* Footer */
@@ -562,13 +562,13 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.02);
+  border-top: 1px solid rgba(245, 239, 228, 0.04);
 }
 
 .synopsis {
   margin: 0;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(245, 239, 228, 0.45);
   font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.6;
@@ -588,22 +588,22 @@ onBeforeUnmount(() => {
 .watched-date {
   display: flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
   font-size: 0.7rem;
   font-weight: 400;
 }
 
 /* Skeleton */
 .skeleton-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 1rem;
   overflow: hidden;
 }
 
 .skeleton-image {
   min-height: 200px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -617,7 +617,7 @@ onBeforeUnmount(() => {
 .skeleton-line {
   height: 0.75rem;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.06);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 
   &--title { width: 70%; height: 0.85rem; }

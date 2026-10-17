@@ -75,8 +75,8 @@ const work = computed(() => quoteWork(props.quote))
   overflow: hidden;
   padding: 1.6rem 1.75rem 1.4rem;
   border-radius: 1.1rem;
-  background: linear-gradient(150deg, rgba(129, 140, 248, 0.09), rgba(255, 255, 255, 0.02) 45%);
-  border: 1px solid rgba(129, 140, 248, 0.18);
+  background: linear-gradient(150deg, rgba(216, 195, 160, 0.09), rgba(245, 239, 228, 0.02) 45%);
+  border: 1px solid rgba(216, 195, 160, 0.18);
   animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -87,7 +87,7 @@ const work = computed(() => quoteWork(props.quote))
   width: 24rem;
   height: 24rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(129, 140, 248, 0.16), transparent 68%);
+  background: radial-gradient(circle, rgba(216, 195, 160, 0.16), transparent 68%);
   pointer-events: none;
 }
 
@@ -104,12 +104,12 @@ const work = computed(() => quoteWork(props.quote))
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #a5b4fc;
+  color: var(--v2-accent);
 }
 
 .label-icon {
@@ -122,19 +122,19 @@ const work = computed(() => quoteWork(props.quote))
   gap: 0.35rem;
   padding: 0.3rem 0.7rem;
   border-radius: 9999px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.72rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(245, 239, 228, 0.5);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.08);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: #c7d2fe;
-    border-color: rgba(129, 140, 248, 0.35);
-    background: rgba(129, 140, 248, 0.1);
+    color: #e6d6bb;
+    border-color: rgba(216, 195, 160, 0.35);
+    background: rgba(216, 195, 160, 0.1);
 
     .shuffle-icon { transform: rotate(180deg); }
   }
@@ -159,7 +159,7 @@ const work = computed(() => quoteWork(props.quote))
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 5rem;
   line-height: 1;
-  color: rgba(129, 140, 248, 0.3);
+  color: rgba(216, 195, 160, 0.3);
   pointer-events: none;
 }
 
@@ -170,7 +170,7 @@ const work = computed(() => quoteWork(props.quote))
   font-weight: 300;
   line-height: 1.5;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.93);
+  color: rgba(245, 239, 228, 0.93);
 }
 
 .spotlight-foot {
@@ -183,7 +183,7 @@ const work = computed(() => quoteWork(props.quote))
   margin-top: 1.4rem;
   padding-top: 1rem;
   padding-left: 2.4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(245, 239, 228, 0.06);
 }
 
 .spotlight-author {
@@ -197,7 +197,7 @@ const work = computed(() => quoteWork(props.quote))
   cursor: pointer;
   text-align: left;
 
-  &:hover .author-name { color: #c7d2fe; }
+  &:hover .author-name { color: #e6d6bb; }
 }
 
 .author-text {
@@ -207,18 +207,18 @@ const work = computed(() => quoteWork(props.quote))
 }
 
 .author-name {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(245, 239, 228, 0.8);
   line-height: 1.35;
   transition: color 0.2s ease;
 }
 
 .author-work {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   line-height: 1.35;
 }
 
@@ -234,30 +234,30 @@ const work = computed(() => quoteWork(props.quote))
   gap: 0.35rem;
   padding: 0.35rem 0.75rem;
   border-radius: 0.55rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(245, 239, 228, 0.45);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.06);
+    color: rgba(245, 239, 228, 0.9);
+    border-color: rgba(245, 239, 228, 0.14);
+    background: rgba(245, 239, 228, 0.06);
   }
 
   &--accent {
-    color: #a5b4fc;
-    border-color: rgba(129, 140, 248, 0.25);
-    background: rgba(129, 140, 248, 0.1);
+    color: var(--v2-accent);
+    border-color: rgba(216, 195, 160, 0.25);
+    background: rgba(216, 195, 160, 0.1);
 
     &:hover {
-      color: #e0e7ff;
-      border-color: rgba(129, 140, 248, 0.45);
-      background: rgba(129, 140, 248, 0.18);
+      color: var(--v2-text);
+      border-color: rgba(216, 195, 160, 0.45);
+      background: rgba(216, 195, 160, 0.18);
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen">
-    <BaseNavigation origin="configure" />
+  <div class="v2">
+    <V2Nav />
 
     <div class="explore-shell">
       <!-- Sidebar -->
@@ -30,11 +30,14 @@
         <slot />
       </main>
     </div>
+
+    <V2Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-import BaseNavigation from '~/components/base/BaseNavigation.vue'
+import V2Nav from '~/components/v2/V2Nav.vue'
+import V2Footer from '~/components/v2/V2Footer.vue'
 
 const route = useRoute()
 
@@ -54,17 +57,17 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   display: grid;
   grid-template-columns: 15rem minmax(0, 1fr);
   gap: 3rem;
-  max-width: 72rem;
+  max-width: var(--v2-max);
   margin: 0 auto;
-  /* Top padding clears the fixed navbar (~3.3rem) so page eyebrows/titles aren't hidden */
-  padding: 5.5rem 1.5rem 3rem;
+  /* Top padding clears the fixed navbar so page eyebrows/titles aren't hidden */
+  padding: 7rem var(--v2-gutter) 3rem;
   min-height: 70vh;
 }
 
 /* Sidebar */
 .explore-sidebar {
   position: sticky;
-  top: 5.5rem;
+  top: 7rem;
   align-self: start;
   /* Offset the items' internal padding so icons/text align with the navbar brand */
   margin-left: -0.75rem;
@@ -72,12 +75,12 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
 
 .sidebar-label {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
   padding: 0 0.75rem;
   margin-bottom: 0.75rem;
 }
@@ -98,28 +101,28 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(245, 239, 228, 0.04);
 
     .item-label {
-      color: rgba(255, 255, 255, 0.95);
+      color: rgba(245, 239, 228, 0.95);
     }
   }
 
   &--active {
-    background: rgba(129, 140, 248, 0.08);
+    background: rgba(216, 195, 160, 0.08);
 
     .item-icon-wrap {
-      color: #a5b4fc;
-      background: rgba(129, 140, 248, 0.14);
-      border-color: rgba(129, 140, 248, 0.3);
+      color: var(--v2-accent);
+      background: rgba(216, 195, 160, 0.14);
+      border-color: rgba(216, 195, 160, 0.3);
     }
 
     .item-label {
-      color: #e0e7ff;
+      color: var(--v2-text);
     }
 
     &:hover {
-      background: rgba(129, 140, 248, 0.12);
+      background: rgba(216, 195, 160, 0.12);
     }
   }
 }
@@ -132,9 +135,9 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   width: 2rem;
   height: 2rem;
   border-radius: 0.55rem;
-  color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.45);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   transition: all 0.2s ease;
 }
 
@@ -150,18 +153,18 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
 }
 
 .item-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.85rem;
   font-weight: 550;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(245, 239, 228, 0.75);
   line-height: 1.35;
   transition: color 0.2s ease;
 }
 
 .item-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(245, 239, 228, 0.32);
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
@@ -178,19 +181,19 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   .explore-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
-    padding-top: 3.5rem;
+    padding-top: 5rem;
   }
 
   .explore-sidebar {
     position: sticky;
-    top: 3.5rem;
+    top: 4.4rem;
     z-index: 100;
     margin: 0 -1.5rem;
     padding: 0.6rem 1.5rem;
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(11, 11, 10, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(245, 239, 228, 0.06);
   }
 
   .sidebar-label {
@@ -215,7 +218,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
     border: 1px solid transparent;
 
     &--active {
-      border-color: rgba(129, 140, 248, 0.3);
+      border-color: rgba(216, 195, 160, 0.3);
     }
   }
 

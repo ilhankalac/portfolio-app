@@ -132,28 +132,28 @@ onMounted(() => {
 
 .list-label {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.4rem;
 }
 
 .list-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--v2-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   margin: 0;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
   max-width: 34rem;
@@ -164,19 +164,19 @@ onMounted(() => {
   align-items: center;
   gap: 0.5rem;
   margin-top: 0.85rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
 
   b {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(245, 239, 228, 0.7);
     font-variant-numeric: tabular-nums;
   }
 }
 
 .stat-dot {
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(245, 239, 228, 0.18);
 }
 
 /* Top 10 */
@@ -188,17 +188,17 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
   margin-bottom: 0.9rem;
 }
 
 .eyebrow-icon {
-  color: #818cf8;
+  color: var(--v2-accent);
 }
 
 .top-rail {
@@ -216,15 +216,15 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.6rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   border-radius: 0.9rem;
   position: relative;
   transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: rgba(129, 140, 248, 0.3);
-    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(216, 195, 160, 0.3);
+    background: rgba(245, 239, 228, 0.06);
     transform: translateY(-2px);
   }
 }
@@ -238,10 +238,10 @@ onMounted(() => {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   border-radius: 0.4rem;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--v2-text);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
@@ -258,17 +258,17 @@ onMounted(() => {
 }
 
 .top-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(245, 239, 228, 0.92);
   line-height: 1.3;
 }
 
 .top-artist {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(245, 239, 228, 0.45);
 }
 
 .top-link {
@@ -276,12 +276,12 @@ onMounted(() => {
   bottom: 0.85rem;
   right: 0.85rem;
   font-size: 1.4rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(245, 239, 228, 0.6);
   line-height: 0;
   transition: color 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    color: #a5b4fc;
+    color: var(--v2-accent);
     transform: scale(1.08);
   }
 }
@@ -300,26 +300,26 @@ onMounted(() => {
   gap: 0.4rem;
   padding: 0.35rem 0.85rem;
   border-radius: 9999px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.55);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(245, 239, 228, 0.9);
+    border-color: rgba(245, 239, 228, 0.16);
   }
 
   &--active {
-    color: #a5b4fc;
-    background: rgba(129, 140, 248, 0.12);
-    border-color: rgba(129, 140, 248, 0.35);
+    color: var(--v2-accent);
+    background: rgba(216, 195, 160, 0.12);
+    border-color: rgba(216, 195, 160, 0.35);
 
-    .lens-count { color: rgba(165, 180, 252, 0.6); }
+    .lens-count { color: rgba(216, 195, 160, 0.6); }
   }
 }
 
@@ -330,7 +330,7 @@ onMounted(() => {
 .lens-count {
   font-size: 0.7rem;
   font-variant-numeric: tabular-nums;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(245, 239, 228, 0.28);
 }
 
 /* Song grid */
@@ -346,15 +346,15 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.75rem;
   padding: 0.9rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 0.9rem;
   position: relative;
   transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: rgba(129, 140, 248, 0.25);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(216, 195, 160, 0.25);
+    background: rgba(245, 239, 228, 0.05);
     transform: translateY(-2px);
   }
 }
@@ -374,12 +374,12 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.68rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.15rem;
 }
 
@@ -388,24 +388,24 @@ onMounted(() => {
 }
 
 .song-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(245, 239, 228, 0.92);
   line-height: 1.3;
 }
 
 .song-artist {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(245, 239, 228, 0.45);
 }
 
 .song-note {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(245, 239, 228, 0.32);
   margin-top: 0.2rem;
 }
 
@@ -414,12 +414,12 @@ onMounted(() => {
   top: 0.75rem;
   right: 0.75rem;
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(245, 239, 228, 0.5);
   line-height: 0;
   transition: color 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    color: #a5b4fc;
+    color: var(--v2-accent);
     transform: scale(1.08);
   }
 }

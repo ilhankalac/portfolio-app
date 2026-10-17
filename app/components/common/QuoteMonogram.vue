@@ -22,7 +22,7 @@ const tone = computed(() => authorTone(props.author))
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-weight: 600;
   letter-spacing: 0.02em;
   border-radius: 0.5rem;
@@ -49,7 +49,7 @@ const tone = computed(() => authorTone(props.author))
     border-radius: 0.7rem;
   }
 
-  &--indigo { color: #a5b4fc; background: rgba(129, 140, 248, 0.14); border-color: rgba(129, 140, 248, 0.25); }
+  &--indigo { color: var(--v2-accent); background: rgba(216, 195, 160, 0.14); border-color: rgba(216, 195, 160, 0.25); }
   &--violet { color: #c4b5fd; background: rgba(167, 139, 250, 0.14); border-color: rgba(167, 139, 250, 0.25); }
   &--sky    { color: #7dd3fc; background: rgba(56, 189, 248, 0.13); border-color: rgba(56, 189, 248, 0.24); }
   &--teal   { color: #5eead4; background: rgba(45, 212, 191, 0.12); border-color: rgba(45, 212, 191, 0.22); }

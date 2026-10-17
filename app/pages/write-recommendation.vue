@@ -1,7 +1,7 @@
 <template>
-  <div style="background-color: rgb(var(--color-primary-rgb)); min-height: 100vh;">
-    <BaseNavigation origin="configure" />
-    <div class="max-w-2xl mx-auto px-4 pt-20 pb-10">
+  <div class="v2">
+    <V2Nav />
+    <div class="max-w-2xl mx-auto px-4 pt-28 pb-10">
       <RecommendationEditor
         :selected-recommendation="selectedRecommendation"
         origin="write-recommendation"
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import BaseNavigation from '~/components/base/BaseNavigation.vue'
+import V2Nav from '~/components/v2/V2Nav.vue'
 import RecommendationEditor from '~/components/common/RecommendationEditor.vue'
 import type { IColleagueInfo } from '~/types/models'
 

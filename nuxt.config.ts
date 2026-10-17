@@ -50,6 +50,7 @@ export default defineNuxtConfig({
 
   css: [
     '~/assets/css/main.css',
+    '~/assets/css/v2.scss',
   ],
 
   googleFonts: {
@@ -63,6 +64,10 @@ export default defineNuxtConfig({
       Newsreader: [300, 400, 500],
       // Modern geometric display font — hero name and tagline only.
       'Space Grotesk': [500, 600, 700],
+      // /v2 design preview.
+      Outfit: [400, 500, 600, 700, 800],
+      'Source Sans 3': [400, 600],
+      'JetBrains Mono': [400, 500],
     },
     display: 'swap',
   },

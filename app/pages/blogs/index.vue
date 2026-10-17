@@ -222,28 +222,28 @@ const formatShortDate = (iso?: string) => {
 
 .list-label {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.4rem;
 }
 
 .list-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--v2-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   margin: 0;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
 }
@@ -257,26 +257,26 @@ const formatShortDate = (iso?: string) => {
 }
 
 .tag-pill {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.3rem 0.8rem;
   border-radius: 9999px;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.5);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.85);
-    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(245, 239, 228, 0.85);
+    border-color: rgba(245, 239, 228, 0.15);
   }
 
   &--active {
-    color: #a5b4fc;
-    background: rgba(129, 140, 248, 0.12);
-    border-color: rgba(129, 140, 248, 0.35);
+    color: var(--v2-accent);
+    background: rgba(216, 195, 160, 0.12);
+    border-color: rgba(216, 195, 160, 0.35);
   }
 }
 
@@ -285,8 +285,8 @@ const formatShortDate = (iso?: string) => {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 2.5rem;
@@ -297,7 +297,7 @@ const formatShortDate = (iso?: string) => {
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(245, 239, 228, 0.1);
     box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.45);
 
     .featured-image {
@@ -305,7 +305,7 @@ const formatShortDate = (iso?: string) => {
     }
 
     .featured-cta {
-      color: #a5b4fc;
+      color: var(--v2-accent);
 
       .cta-icon {
         transform: translateX(3px);
@@ -337,12 +337,12 @@ const formatShortDate = (iso?: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(245, 239, 228, 0.03);
 }
 
 .placeholder-icon {
   font-size: 2.5rem;
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(245, 239, 228, 0.1);
 }
 
 .featured-gradient {
@@ -356,16 +356,16 @@ const formatShortDate = (iso?: string) => {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #a5b4fc;
+  color: var(--v2-accent);
   padding: 0.3rem 0.7rem;
   border-radius: 9999px;
-  background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(129, 140, 248, 0.35);
+  background: rgba(11, 11, 10, 0.75);
+  border: 1px solid rgba(216, 195, 160, 0.35);
   backdrop-filter: blur(8px);
 }
 
@@ -378,9 +378,9 @@ const formatShortDate = (iso?: string) => {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin-bottom: 0.65rem;
 }
 
@@ -393,16 +393,16 @@ const formatShortDate = (iso?: string) => {
   font-weight: 500;
   padding: 0.15rem 0.55rem;
   border-radius: 9999px;
-  color: rgba(165, 180, 252, 0.9);
-  background: rgba(129, 140, 248, 0.1);
-  border: 1px solid rgba(129, 140, 248, 0.2);
+  color: rgba(216, 195, 160, 0.9);
+  background: rgba(216, 195, 160, 0.1);
+  border: 1px solid rgba(216, 195, 160, 0.2);
 }
 
 .featured-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: clamp(1.25rem, 3vw, 1.6rem);
   font-weight: 650;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   line-height: 1.3;
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
@@ -411,7 +411,7 @@ const formatShortDate = (iso?: string) => {
 .featured-excerpt {
   font-size: 0.9rem;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(245, 239, 228, 0.45);
   margin: 0 0 1rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -423,10 +423,10 @@ const formatShortDate = (iso?: string) => {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.85rem;
   font-weight: 500;
-  color: #818cf8;
+  color: var(--v2-accent);
   transition: color 0.2s ease;
 
   .cta-icon {
@@ -451,17 +451,17 @@ const formatShortDate = (iso?: string) => {
 }
 
 .year-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
 }
 
 .year-line {
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.06);
 }
 
 /* Post rows */
@@ -477,10 +477,10 @@ const formatShortDate = (iso?: string) => {
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.035);
+    background: rgba(245, 239, 228, 0.035);
 
     .row-title {
-      color: #a5b4fc;
+      color: var(--v2-accent);
     }
 
     .row-arrow {
@@ -493,9 +493,9 @@ const formatShortDate = (iso?: string) => {
 .row-date {
   flex-shrink: 0;
   width: 3.5rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   font-variant-numeric: tabular-nums;
 }
 
@@ -505,10 +505,10 @@ const formatShortDate = (iso?: string) => {
 }
 
 .row-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 239, 228, 0.9);
   line-height: 1.45;
   margin: 0;
   transition: color 0.2s ease;
@@ -517,7 +517,7 @@ const formatShortDate = (iso?: string) => {
 .row-excerpt {
   font-size: 0.8125rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   margin: 0.25rem 0 0;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -533,14 +533,14 @@ const formatShortDate = (iso?: string) => {
 }
 
 .row-tag {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.68rem;
   font-weight: 500;
   padding: 0.15rem 0.55rem;
   border-radius: 9999px;
-  color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.45);
+  background: rgba(245, 239, 228, 0.045);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   white-space: nowrap;
 }
 
@@ -548,9 +548,9 @@ const formatShortDate = (iso?: string) => {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
   white-space: nowrap;
 }
 
@@ -560,7 +560,7 @@ const formatShortDate = (iso?: string) => {
 
 .row-arrow {
   font-size: 1rem;
-  color: #818cf8;
+  color: var(--v2-accent);
   opacity: 0;
   transform: translateX(-4px);
   transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -568,9 +568,9 @@ const formatShortDate = (iso?: string) => {
 
 /* Empty state */
 .empty-state {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   padding: 2rem 0;
 }
 
@@ -584,7 +584,7 @@ const formatShortDate = (iso?: string) => {
 .skeleton-featured {
   aspect-ratio: 21 / 9;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
   margin-bottom: 1rem;
 }
@@ -592,7 +592,7 @@ const formatShortDate = (iso?: string) => {
 .skeleton-row {
   height: 3.5rem;
   border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 

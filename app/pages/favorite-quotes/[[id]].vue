@@ -61,7 +61,7 @@
             icon="i-mdi-magnify"
             size="lg"
             class="search-field"
-            :ui="{ base: 'bg-white/[0.03] border border-white/[0.07] text-white placeholder-white/25' }"
+            :ui="{ base: 'bg-[#f5efe4]/[0.03] border border-[#f5efe4]/[0.07] text-[#f5efe4] placeholder-[#f5efe4]/25' }"
           >
             <template v-if="search" #trailing>
               <UButton icon="i-mdi-close" color="neutral" variant="link" size="xs" @click="clearSearch" />
@@ -137,7 +137,7 @@
     <UModal
       v-model:open="readerOpen"
       :ui="{
-        overlay: 'bg-slate-950/80 backdrop-blur-sm',
+        overlay: 'bg-black/70 backdrop-blur-sm',
         content: 'bg-transparent ring-0 shadow-none divide-y-0 sm:max-w-2xl',
       }"
     >
@@ -466,28 +466,28 @@ onBeforeUnmount(() => {
 
 .list-label {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.4rem;
 }
 
 .list-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--v2-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   margin: 0;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
   max-width: 34rem;
@@ -498,19 +498,19 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.5rem;
   margin-top: 0.85rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
 
   b {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(245, 239, 228, 0.7);
     font-variant-numeric: tabular-nums;
   }
 }
 
 .stat-dot {
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(245, 239, 228, 0.18);
 }
 
 /* Toolbar */
@@ -538,24 +538,24 @@ onBeforeUnmount(() => {
   gap: 0.4rem;
   padding: 0.6rem 0.95rem;
   border-radius: 0.55rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.5);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(245, 239, 228, 0.9);
+    border-color: rgba(245, 239, 228, 0.16);
   }
 
   &--active {
-    color: #a5b4fc;
-    background: rgba(129, 140, 248, 0.12);
-    border-color: rgba(129, 140, 248, 0.35);
+    color: var(--v2-accent);
+    background: rgba(216, 195, 160, 0.12);
+    border-color: rgba(216, 195, 160, 0.35);
   }
 }
 
@@ -572,40 +572,40 @@ onBeforeUnmount(() => {
   gap: 0.4rem;
   padding: 0.3rem 0.8rem;
   border-radius: 9999px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.5);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.85);
-    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(245, 239, 228, 0.85);
+    border-color: rgba(245, 239, 228, 0.15);
   }
 
   &--active {
-    color: #a5b4fc;
-    background: rgba(129, 140, 248, 0.12);
-    border-color: rgba(129, 140, 248, 0.35);
+    color: var(--v2-accent);
+    background: rgba(216, 195, 160, 0.12);
+    border-color: rgba(216, 195, 160, 0.35);
 
-    .lens-count { color: rgba(165, 180, 252, 0.6); }
+    .lens-count { color: rgba(216, 195, 160, 0.6); }
   }
 
   &--voice {
     padding-left: 0.35rem;
-    color: #c7d2fe;
-    background: rgba(129, 140, 248, 0.14);
-    border-color: rgba(129, 140, 248, 0.4);
+    color: #e6d6bb;
+    background: rgba(216, 195, 160, 0.14);
+    border-color: rgba(216, 195, 160, 0.4);
   }
 }
 
 .lens-count {
   font-size: 0.68rem;
   font-variant-numeric: tabular-nums;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(245, 239, 228, 0.28);
 }
 
 .clear-icon {
@@ -616,13 +616,13 @@ onBeforeUnmount(() => {
 /* Results */
 .result-line {
   margin: 1.25rem 0 0.85rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
 
   b {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(245, 239, 228, 0.55);
     font-variant-numeric: tabular-nums;
   }
 }
@@ -640,9 +640,9 @@ onBeforeUnmount(() => {
 .end-text {
   text-align: center;
   padding: 1.25rem 0 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(245, 239, 228, 0.22);
 }
 
 /* States */
@@ -651,11 +651,11 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.65rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.05);
   border-radius: 0.75rem;
-  color: rgba(255, 255, 255, 0.45);
-  font-family: 'Inter', sans-serif;
+  color: rgba(245, 239, 228, 0.45);
+  font-family: var(--v2-display);
   font-size: 0.875rem;
 
   p { margin: 0; }
@@ -663,7 +663,7 @@ onBeforeUnmount(() => {
 
 .quote-state-icon {
   flex: 0 0 auto;
-  color: rgba(129, 140, 248, 0.75);
+  color: rgba(216, 195, 160, 0.75);
   font-size: 1.25rem;
 }
 
@@ -677,7 +677,7 @@ onBeforeUnmount(() => {
 .skeleton-spotlight {
   height: 12rem;
   border-radius: 1.1rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -692,7 +692,7 @@ onBeforeUnmount(() => {
   width: 9rem;
   height: 3.4rem;
   border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -705,7 +705,7 @@ onBeforeUnmount(() => {
 .skeleton-card {
   height: 9rem;
   border-radius: 0.9rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(245, 239, 228, 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 

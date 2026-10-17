@@ -64,8 +64,8 @@ const meta = computed(() => {
 
 <style scoped lang="scss">
 .reader {
-  background: rgb(17, 26, 44);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--v2-surface);
+  border: 1px solid rgba(245, 239, 228, 0.08);
   border-radius: 1rem;
   overflow: hidden;
   max-height: 85vh;
@@ -73,7 +73,7 @@ const meta = computed(() => {
 
   &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
+  &::-webkit-scrollbar-thumb { background: rgba(245, 239, 228, 0.1); border-radius: 3px; }
 }
 
 .reader-image {
@@ -98,12 +98,12 @@ const meta = computed(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-mono);
   font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #a5b4fc;
+  color: var(--v2-accent);
 }
 
 .label-icon { font-size: 0.85rem; }
@@ -116,14 +116,14 @@ const meta = computed(() => {
   height: 1.9rem;
   border-radius: 0.5rem;
   border: none;
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.45);
+  background: rgba(245, 239, 228, 0.04);
+  color: rgba(245, 239, 228, 0.45);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.09);
+    color: rgba(245, 239, 228, 0.9);
+    background: rgba(245, 239, 228, 0.09);
   }
 }
 
@@ -140,7 +140,7 @@ const meta = computed(() => {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 4.75rem;
   line-height: 1;
-  color: rgba(129, 140, 248, 0.28);
+  color: rgba(216, 195, 160, 0.28);
   pointer-events: none;
 }
 
@@ -149,7 +149,7 @@ const meta = computed(() => {
   font-size: clamp(1.05rem, 2.2vw, 1.3rem);
   font-weight: 300;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 239, 228, 0.9);
 
   :deep(p) {
     margin: 0 0 0.9rem;
@@ -158,10 +158,10 @@ const meta = computed(() => {
   }
 
   :deep(em) { font-style: italic; }
-  :deep(strong) { font-weight: 500; color: #fff; }
+  :deep(strong) { font-weight: 500; color: var(--v2-text); }
 
   :deep(a) {
-    color: #a5b4fc;
+    color: var(--v2-accent);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -175,7 +175,7 @@ const meta = computed(() => {
   gap: 1rem;
   margin-top: 1.5rem;
   padding-top: 1.1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(245, 239, 228, 0.07);
 }
 
 .reader-author {
@@ -189,7 +189,7 @@ const meta = computed(() => {
   cursor: pointer;
   text-align: left;
 
-  &:hover .author-name { color: #c7d2fe; }
+  &:hover .author-name { color: #e6d6bb; }
 }
 
 .author-text {
@@ -199,18 +199,18 @@ const meta = computed(() => {
 }
 
 .author-name {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(245, 239, 228, 0.85);
   line-height: 1.4;
   transition: color 0.2s ease;
 }
 
 .author-meta {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   line-height: 1.4;
 }
 
@@ -226,30 +226,30 @@ const meta = computed(() => {
   gap: 0.35rem;
   padding: 0.4rem 0.8rem;
   border-radius: 0.55rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(245, 239, 228, 0.5);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.95);
-    border-color: rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.07);
+    color: rgba(245, 239, 228, 0.95);
+    border-color: rgba(245, 239, 228, 0.16);
+    background: rgba(245, 239, 228, 0.07);
   }
 
   &--accent {
-    color: #a5b4fc;
-    border-color: rgba(129, 140, 248, 0.28);
-    background: rgba(129, 140, 248, 0.1);
+    color: var(--v2-accent);
+    border-color: rgba(216, 195, 160, 0.28);
+    background: rgba(216, 195, 160, 0.1);
 
     &:hover {
-      color: #e0e7ff;
-      border-color: rgba(129, 140, 248, 0.45);
-      background: rgba(129, 140, 248, 0.18);
+      color: var(--v2-text);
+      border-color: rgba(216, 195, 160, 0.45);
+      background: rgba(216, 195, 160, 0.18);
     }
   }
 }

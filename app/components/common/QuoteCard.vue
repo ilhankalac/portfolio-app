@@ -79,8 +79,8 @@ const work = computed(() => quoteWork(props.quote))
   margin-bottom: 1rem;
   padding: 1.35rem 1.4rem 1.1rem;
   border-radius: 0.9rem;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.025);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -91,14 +91,14 @@ const work = computed(() => quoteWork(props.quote))
   &:hover,
   &:focus-visible {
     transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(129, 140, 248, 0.28);
+    background: rgba(245, 239, 228, 0.04);
+    border-color: rgba(216, 195, 160, 0.28);
     box-shadow: 0 18px 36px -22px rgba(0, 0, 0, 0.8);
     outline: none;
 
-    .card-glyph { color: rgba(129, 140, 248, 0.28); }
+    .card-glyph { color: rgba(216, 195, 160, 0.28); }
     .card-actions { opacity: 1; }
-    .card-more { color: #a5b4fc; }
+    .card-more { color: var(--v2-accent); }
     .more-icon { transform: translateX(3px); }
   }
 }
@@ -110,7 +110,7 @@ const work = computed(() => quoteWork(props.quote))
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 4.25rem;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.05);
+  color: rgba(245, 239, 228, 0.05);
   pointer-events: none;
   transition: color 0.25s ease;
 }
@@ -121,7 +121,7 @@ const work = computed(() => quoteWork(props.quote))
   font-family: 'Newsreader', Georgia, serif;
   font-size: 1.02rem;
   line-height: 1.62;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(245, 239, 228, 0.82);
   letter-spacing: 0.003em;
 }
 
@@ -130,10 +130,10 @@ const work = computed(() => quoteWork(props.quote))
   align-items: center;
   gap: 0.3rem;
   margin-top: 0.6rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.72rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   transition: color 0.2s ease;
 }
 
@@ -149,7 +149,7 @@ const work = computed(() => quoteWork(props.quote))
   gap: 0.75rem;
   margin-top: 1rem;
   padding-top: 0.85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(245, 239, 228, 0.05);
 }
 
 .card-author {
@@ -164,7 +164,7 @@ const work = computed(() => quoteWork(props.quote))
   text-align: left;
 
   &:hover .author-name {
-    color: #a5b4fc;
+    color: var(--v2-accent);
   }
 }
 
@@ -175,10 +175,10 @@ const work = computed(() => quoteWork(props.quote))
 }
 
 .author-name {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 550;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(245, 239, 228, 0.6);
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
@@ -187,9 +187,9 @@ const work = computed(() => quoteWork(props.quote))
 }
 
 .author-work {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--v2-display);
   font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
@@ -214,14 +214,14 @@ const work = computed(() => quoteWork(props.quote))
   border-radius: 0.45rem;
   border: none;
   background: none;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
   font-size: 0.85rem;
   cursor: pointer;
   transition: color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    color: #a5b4fc;
-    background: rgba(129, 140, 248, 0.12);
+    color: var(--v2-accent);
+    background: rgba(216, 195, 160, 0.12);
   }
 }
 

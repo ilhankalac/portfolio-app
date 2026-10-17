@@ -163,9 +163,9 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   display: flex;
   flex-direction: column;
   max-height: 85vh;
-  font-family: 'Inter', sans-serif;
-  background: #0b1120;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--v2-display);
+  background: var(--v2-bg);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 1rem;
   overflow: hidden;
 }
@@ -177,7 +177,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   justify-content: space-between;
   gap: 1rem;
   padding: 1.25rem 1.25rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(245, 239, 228, 0.06);
 }
 
 .stats-label {
@@ -186,7 +186,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #818cf8;
+  color: var(--v2-accent);
   margin-bottom: 0.3rem;
 }
 
@@ -194,7 +194,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
   margin: 0;
 }
 
@@ -205,17 +205,17 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(245, 239, 228, 0.45);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(245, 239, 228, 0.9);
+    background: rgba(245, 239, 228, 0.08);
+    border-color: rgba(245, 239, 228, 0.12);
   }
 }
 
@@ -227,10 +227,10 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-track { background: transparent; }
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(245, 239, 228, 0.08);
     border-radius: 3px;
   }
-  &::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.16); }
+  &::-webkit-scrollbar-thumb:hover { background: rgba(245, 239, 228, 0.16); }
 }
 
 /* Overview tiles */
@@ -250,14 +250,14 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   align-items: flex-start;
   gap: 0.35rem;
   padding: 0.85rem 0.9rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 0.75rem;
   transition: border-color 0.25s ease, background 0.25s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(129, 140, 248, 0.25);
+    background: rgba(245, 239, 228, 0.06);
+    border-color: rgba(216, 195, 160, 0.25);
   }
 
   &--skeleton {
@@ -273,8 +273,8 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 0.5rem;
-  background: rgba(129, 140, 248, 0.12);
-  color: #818cf8;
+  background: rgba(216, 195, 160, 0.12);
+  color: var(--v2-accent);
   font-size: 0.9rem;
 }
 
@@ -283,7 +283,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(245, 239, 228, 0.95);
 
   &--sm {
     font-size: 1.125rem;
@@ -296,7 +296,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(245, 239, 228, 0.35);
 }
 
 /* Tabs */
@@ -305,8 +305,8 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   gap: 0.25rem;
   margin-top: 1.5rem;
   padding: 0.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.03);
+  border: 1px solid rgba(245, 239, 228, 0.06);
   border-radius: 0.75rem;
 }
 
@@ -320,7 +320,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(245, 239, 228, 0.4);
   background: transparent;
   border: none;
   border-radius: 0.5rem;
@@ -328,19 +328,19 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(245, 239, 228, 0.75);
   }
 
   &--active {
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.07);
-    box-shadow: inset 0 0 0 1px rgba(129, 140, 248, 0.2);
+    color: rgba(245, 239, 228, 0.95);
+    background: rgba(245, 239, 228, 0.07);
+    box-shadow: inset 0 0 0 1px rgba(216, 195, 160, 0.2);
   }
 }
 
 .tab-icon {
   font-size: 0.9rem;
-  color: #818cf8;
+  color: var(--v2-accent);
 }
 
 .tab-caption {
@@ -349,7 +349,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
 }
 
 /* Ranked list */
@@ -372,7 +372,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   animation: rowFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) both;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(245, 239, 228, 0.04);
   }
 }
 
@@ -382,10 +382,10 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-size: 0.75rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(245, 239, 228, 0.25);
 
   &--top {
-    color: #818cf8;
+    color: var(--v2-accent);
   }
 }
 
@@ -400,7 +400,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
 .rank-name {
   font-size: 0.875rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(245, 239, 228, 0.8);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -409,7 +409,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
 .rank-track {
   height: 3px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.06);
   overflow: hidden;
 }
 
@@ -417,7 +417,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(129, 140, 248, 0.45), #818cf8);
+  background: linear-gradient(90deg, rgba(216, 195, 160, 0.45), var(--v2-accent));
   animation: barGrow 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -429,12 +429,12 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
   font-size: 0.8125rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 239, 228, 0.9);
 }
 
 .rank-value-icon {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(245, 239, 228, 0.3);
 }
 
 /* Skeleton */
@@ -448,7 +448,7 @@ const activeMax = computed(() => Math.max(...activeRows.value.map(row => row.val
 .skeleton-line {
   height: 0.85rem;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(245, 239, 228, 0.06);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
