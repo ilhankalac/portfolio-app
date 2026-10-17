@@ -58,7 +58,7 @@ const message = ref('')
 const channels = [
   { label: 'GitHub', handle: '@ilhankalac', icon: 'i-mdi-github', href: 'https://github.com/ilhankalac' },
   { label: 'LinkedIn', handle: 'Ilhan Kalač', icon: 'i-mdi-linkedin', href: 'https://www.linkedin.com/in/ilhankalac/' },
-  { label: 'Email', handle: 'ilhandeveloper@gmail.com', icon: 'i-mdi-email-outline', href: 'mailto:ilhandeveloper@gmail.com' },
+  { label: 'Email', handle: 'ilhan@haikulabs.me', icon: 'i-mdi-email-outline', href: 'mailto:ilhan@haikulabs.me' },
 ]
 
 const send = () => {

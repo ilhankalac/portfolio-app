@@ -36,7 +36,7 @@ const links = [
   { label: 'GitHub', icon: 'i-mdi-github', href: 'https://github.com/ilhankalac' },
   { label: 'LinkedIn', icon: 'i-mdi-linkedin', href: 'https://www.linkedin.com/in/ilhankalac/' },
   { label: 'Instagram', icon: 'i-mdi-instagram', href: 'https://www.instagram.com/vizija/' },
-  { label: 'Email', icon: 'i-mdi-email-outline', href: 'mailto:ilhandeveloper@gmail.com' },
+  { label: 'Email', icon: 'i-mdi-email-outline', href: 'mailto:ilhan@haikulabs.me' },
 ]
 </script>
 

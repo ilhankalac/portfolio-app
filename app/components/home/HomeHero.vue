@@ -13,7 +13,7 @@
       </p>
 
       <div class="actions">
-        <a class="site-pill" href="/ilhan-kalac-resume.pdf?v=2026-10b" target="_blank" rel="noopener noreferrer">
+        <a class="site-pill" href="/ilhan-kalac-resume.pdf?v=2026-10c" target="_blank" rel="noopener noreferrer">
           View my CV
           <span class="site-pill-disc"><UIcon name="i-mdi-arrow-right" /></span>
         </a>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-const email = 'ilhandeveloper@gmail.com'
+const email = 'ilhan@haikulabs.me'
 const copied = ref(false)
 
 const copyEmail = async () => {
