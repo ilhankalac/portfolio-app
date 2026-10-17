@@ -18,6 +18,7 @@
       <NuxtLink to="/list-of-seen-films">Films</NuxtLink>
       <NuxtLink to="/favorite-quotes">Quotes</NuxtLink>
       <NuxtLink to="/favorite-songs">Songs</NuxtLink>
+      <NuxtLink to="/travel">Travel</NuxtLink>
       <NuxtLink to="/#contact">Contact</NuxtLink>
     </nav>
 

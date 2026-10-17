@@ -2,7 +2,7 @@
   <section id="beyond" class="v2-section">
     <div class="v2-container">
       <span class="v2-eyebrow">Beyond code</span>
-      <h2 class="v2-heading">Films, books<br>and everything between.</h2>
+      <h2 class="v2-heading">Films, books, places<br>and everything between.</h2>
       <p class="v2-lede">
         The things that shape how I think, collected in one place.
       </p>
@@ -52,17 +52,28 @@ const items = [
     text: 'Tracks I keep coming back to, from film scores to prog rock.',
     cta: 'Listen',
   },
+  {
+    to: '/travel',
+    icon: 'i-mdi-map-marker-outline',
+    title: 'Travel',
+    text: 'Countries and cities I have visited, from the Balkans to Japan.',
+    cta: 'See places',
+  },
 ]
 </script>
 
 <style scoped lang="scss">
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 3.5rem;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 800px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

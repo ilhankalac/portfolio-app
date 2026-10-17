@@ -46,6 +46,7 @@ const sections = [
   { label: 'Films', path: '/list-of-seen-films', icon: 'i-mdi-filmstrip', description: 'Every film I’ve seen' },
   { label: 'Quotes', path: '/favorite-quotes', icon: 'i-mdi-format-quote-close', description: 'Lines worth remembering' },
   { label: 'Songs', path: '/favorite-songs', icon: 'i-mdi-music-note-outline', description: 'Tracks on repeat' },
+  { label: 'Travel', path: '/travel', icon: 'i-mdi-map-marker-outline', description: 'Places I’ve been' },
   { label: 'Now', path: '/now', icon: 'i-mdi-pulse', description: 'What I’m up to' },
 ]
 
