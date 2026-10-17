@@ -20,7 +20,7 @@ defineProps<{
 .song-cover-wrap {
   border-radius: 0.6rem;
   overflow: hidden;
-  background: rgba(245, 239, 228, 0.03);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
 }
 
 .cover-img {
@@ -36,11 +36,11 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(216, 195, 160, 0.12) 0%, rgba(216, 195, 160, 0.08) 100%);
+  background: linear-gradient(135deg, rgb(var(--v2-accent-rgb) / 0.12) 0%, rgb(var(--v2-accent-rgb) / 0.08) 100%);
 }
 
 .fallback-icon {
   font-size: 1.6rem;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
 }
 </style>

@@ -17,17 +17,35 @@
       </NuxtLink>
     </nav>
 
-    <span class="status">[ Open to remote ]</span>
+    <div class="right">
+      <span class="status">[ Open to remote ]</span>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      :aria-expanded="menuOpen"
-      aria-label="Menu"
-      @click="menuOpen = !menuOpen"
-    >
-      <UIcon :name="menuOpen ? 'i-mdi-close' : 'i-mdi-menu'" />
-    </button>
+      <button
+        class="round theme-toggle"
+        type="button"
+        :aria-label="themeLabel"
+        :title="themeLabel"
+        @click="toggleTheme"
+      >
+        <!-- The stored preference is only known in the browser; render the icon there. -->
+        <ClientOnly>
+          <UIcon :name="isDark ? 'i-mdi-white-balance-sunny' : 'i-mdi-moon-waning-crescent'" />
+          <template #fallback>
+            <UIcon name="i-mdi-circle-half-full" />
+          </template>
+        </ClientOnly>
+      </button>
+
+      <button
+        class="round menu-toggle"
+        type="button"
+        :aria-expanded="menuOpen"
+        aria-label="Menu"
+        @click="menuOpen = !menuOpen"
+      >
+        <UIcon :name="menuOpen ? 'i-mdi-close' : 'i-mdi-menu'" />
+      </button>
+    </div>
 
     <Transition name="menu">
       <nav v-if="menuOpen" class="sheet" aria-label="Sections">
@@ -61,6 +79,21 @@ const items = [
   { id: 'explore', label: 'Explore', to: '/blogs' },
   { id: 'contact', label: 'Contact', to: '/#contact' },
 ]
+
+const colorMode = useColorMode()
+const isDark = computed(() => colorMode.value === 'dark')
+
+// The stored theme is only known after hydration; until then use a neutral label
+// so the server-rendered attribute is never wrong.
+const hydrated = ref(false)
+onMounted(() => (hydrated.value = true))
+const themeLabel = computed(() => {
+  if (!hydrated.value) return 'Toggle theme'
+  return isDark.value ? 'Switch to light theme' : 'Switch to dark theme'
+})
+const toggleTheme = () => {
+  colorMode.preference = isDark.value ? 'light' : 'dark'
+}
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
@@ -101,11 +134,11 @@ onMounted(() => {
   transition: background-color 0.3s ease;
 
   &.scrolled {
-    background: linear-gradient(180deg, rgba(11, 11, 10, 0.85), rgba(11, 11, 10, 0));
+    background: linear-gradient(180deg, rgb(var(--v2-bg-rgb) / 0.85), rgb(var(--v2-bg-rgb) / 0));
   }
 
   @media (max-width: 900px) {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     gap: 1rem;
     padding: 0.9rem 1rem;
   }
@@ -135,7 +168,7 @@ onMounted(() => {
   padding: 0.3rem;
   border: 1px solid var(--v2-border-strong);
   border-radius: 9999px;
-  background: rgba(20, 20, 19, 0.7);
+  background: rgb(var(--v2-surface-rgb) / 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -185,8 +218,14 @@ onMounted(() => {
   }
 }
 
-.status {
+.right {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
   font-family: var(--v2-mono);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
@@ -198,19 +237,34 @@ onMounted(() => {
   }
 }
 
-.menu-toggle {
-  display: none;
+.round {
+  display: grid;
   place-items: center;
   width: 2.6rem;
   height: 2.6rem;
   border: 1px solid var(--v2-border-strong);
   border-radius: 50%;
-  background: rgba(20, 20, 19, 0.7);
+  background: rgb(var(--v2-surface-rgb) / 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   color: var(--v2-text);
   font-size: 1.2rem;
   cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgb(var(--v2-ink-rgb) / 0.32);
+  }
+}
+
+.theme-toggle {
+  width: 2.3rem;
+  height: 2.3rem;
+  font-size: 1.05rem;
+}
+
+.menu-toggle {
+  display: none;
 
   @media (max-width: 720px) {
     display: grid;
@@ -227,7 +281,7 @@ onMounted(() => {
   padding: 0.5rem;
   border: 1px solid var(--v2-border-strong);
   border-radius: 1.25rem;
-  background: rgba(20, 20, 19, 0.95);
+  background: rgb(var(--v2-surface-rgb) / 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }

@@ -147,7 +147,7 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 0.95rem;
   font-style: italic;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
   margin: 0 0 1.5rem;
 }
 
@@ -160,7 +160,7 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
   margin-bottom: 0.9rem;
 }
 
@@ -189,10 +189,10 @@ const fullDirectors = (film: FavoriteFilm) =>
   justify-content: space-between;
   min-height: 11rem;
   padding: 0.85rem;
-  background-color: rgba(245, 239, 228, 0.04);
+  background-color: rgb(var(--v2-ink-rgb) / 0.04);
   background-size: cover;
   background-position: center;
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   border-radius: 0.9rem;
   text-decoration: none;
   transition: border-color 0.25s ease, transform 0.25s ease;
@@ -204,7 +204,7 @@ const fullDirectors = (film: FavoriteFilm) =>
 
   &:hover {
     transform: translateY(-3px);
-    border-color: rgba(216, 195, 160, 0.35);
+    border-color: rgb(var(--v2-accent-rgb) / 0.35);
   }
 }
 
@@ -213,7 +213,7 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1;
-  color: rgba(245, 239, 228, 0.85);
+  color: rgb(var(--v2-on-image-rgb) / 0.85);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -228,13 +228,13 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.3;
-  color: var(--v2-text);
+  color: var(--v2-on-image);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .top-meta {
   font-size: 0.75rem;
-  color: rgba(245, 239, 228, 0.65);
+  color: rgb(var(--v2-on-image-rgb) / 0.65);
 }
 
 .series-tag {
@@ -245,7 +245,7 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-weight: 500;
   vertical-align: middle;
   color: var(--v2-accent);
-  background: rgba(216, 195, 160, 0.18);
+  background: rgb(var(--v2-accent-rgb) / 0.18);
   border-radius: 0.35rem;
 }
 
@@ -266,23 +266,23 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.55);
-  background: rgba(245, 239, 228, 0.04);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.55);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.9);
-    border-color: rgba(245, 239, 228, 0.16);
+    color: rgb(var(--v2-ink-rgb) / 0.9);
+    border-color: rgb(var(--v2-ink-rgb) / 0.16);
   }
 
   &--active {
     color: var(--v2-accent);
-    background: rgba(216, 195, 160, 0.12);
-    border-color: rgba(216, 195, 160, 0.35);
+    background: rgb(var(--v2-accent-rgb) / 0.12);
+    border-color: rgb(var(--v2-accent-rgb) / 0.35);
 
-    .lens-count { color: rgba(216, 195, 160, 0.6); }
+    .lens-count { color: rgb(var(--v2-accent-rgb) / 0.6); }
   }
 }
 
@@ -292,7 +292,7 @@ const fullDirectors = (film: FavoriteFilm) =>
 
 .lens-count {
   font-size: 0.7rem;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
   font-variant-numeric: tabular-nums;
 }
 
@@ -316,7 +316,7 @@ const fullDirectors = (film: FavoriteFilm) =>
 .group-count {
   font-size: 0.7rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
 }
 
 .fav-row {
@@ -325,7 +325,7 @@ const fullDirectors = (film: FavoriteFilm) =>
   align-items: center;
   gap: 0.75rem;
   padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(245, 239, 228, 0.06);
+  border-bottom: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   text-decoration: none;
 
   &:hover {
@@ -338,7 +338,7 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-family: var(--v2-display);
   font-size: 1rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
   font-variant-numeric: tabular-nums;
 }
 
@@ -353,13 +353,13 @@ const fullDirectors = (film: FavoriteFilm) =>
   font-family: var(--v2-display);
   font-size: 0.9375rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.85);
+  color: rgb(var(--v2-ink-rgb) / 0.85);
   transition: color 0.2s ease;
 }
 
 .row-meta {
   font-size: 0.8rem;
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -82,8 +82,8 @@ const copyEmail = async () => {
   margin: 0 0.08em;
   vertical-align: 0.02em;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, #f5efe4 0%, #a89d8b 22%, #3d3933 58%, #121211 100%);
-  box-shadow: 0 0 24px rgba(216, 195, 160, 0.25);
+  background: radial-gradient(circle at 32% 28%, var(--v2-text) 0%, #a89d8b 22%, #3d3933 58%, #121211 100%);
+  box-shadow: 0 0 24px rgb(var(--v2-accent-rgb) / 0.25);
   animation: orbFloat 6s ease-in-out infinite;
 }
 
@@ -135,10 +135,10 @@ const copyEmail = async () => {
   height: 150vw;
   transform: translate(-50%, 95%);
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 0%, #1d1c19 0%, #0f0f0e 30%, var(--v2-bg) 60%);
+  background: radial-gradient(circle at 50% 0%, var(--v2-surface-2) 0%, var(--v2-surface) 30%, var(--v2-bg) 60%);
   box-shadow:
-    0 -1px 0 rgba(245, 239, 228, 0.45),
-    0 -40px 120px rgba(245, 239, 228, 0.07);
+    0 -1px 0 rgb(var(--v2-ink-rgb) / 0.45),
+    0 -40px 120px rgb(var(--v2-ink-rgb) / 0.07);
 
   @media (max-width: 768px) {
     transform: translate(-50%, 96%);

@@ -93,14 +93,14 @@ const featured = computed(() => {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
 }
 
 .voices-hint {
   margin: 0.3rem 0 0;
   font-family: var(--v2-display);
   font-size: 0.8rem;
-  color: rgba(245, 239, 228, 0.32);
+  color: rgb(var(--v2-ink-rgb) / 0.32);
 }
 
 .expand-btn {
@@ -113,16 +113,16 @@ const featured = computed(() => {
   font-family: var(--v2-display);
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.45);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
   background: none;
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
 
   &:hover {
     color: var(--v2-accent);
-    border-color: rgba(216, 195, 160, 0.3);
+    border-color: rgb(var(--v2-accent-rgb) / 0.3);
   }
 }
 
@@ -137,13 +137,13 @@ const featured = computed(() => {
   overflow-x: auto;
   padding-bottom: 0.35rem;
   scrollbar-width: thin;
-  scrollbar-color: rgba(245, 239, 228, 0.1) transparent;
+  scrollbar-color: rgb(var(--v2-ink-rgb) / 0.1) transparent;
   -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
   mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
 
   &::-webkit-scrollbar { height: 4px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: rgba(245, 239, 228, 0.08); border-radius: 2px; }
+  &::-webkit-scrollbar-thumb { background: rgb(var(--v2-ink-rgb) / 0.08); border-radius: 2px; }
 }
 
 .voice-card {
@@ -153,21 +153,21 @@ const featured = computed(() => {
   gap: 0.6rem;
   padding: 0.6rem 0.9rem 0.6rem 0.6rem;
   border-radius: 0.75rem;
-  background: rgba(245, 239, 228, 0.025);
-  border: 1px solid rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.025);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   cursor: pointer;
   text-align: left;
   transition: all 0.25s ease;
 
   &:hover {
-    background: rgba(245, 239, 228, 0.05);
-    border-color: rgba(245, 239, 228, 0.12);
+    background: rgb(var(--v2-ink-rgb) / 0.05);
+    border-color: rgb(var(--v2-ink-rgb) / 0.12);
     transform: translateY(-2px);
   }
 
   &--active {
-    background: rgba(216, 195, 160, 0.12);
-    border-color: rgba(216, 195, 160, 0.4);
+    background: rgb(var(--v2-accent-rgb) / 0.12);
+    border-color: rgb(var(--v2-accent-rgb) / 0.4);
 
     .voice-name { color: var(--v2-text); }
   }
@@ -183,7 +183,7 @@ const featured = computed(() => {
   font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 550;
-  color: rgba(245, 239, 228, 0.78);
+  color: rgb(var(--v2-ink-rgb) / 0.78);
   line-height: 1.35;
   white-space: nowrap;
   transition: color 0.2s ease;
@@ -192,7 +192,7 @@ const featured = computed(() => {
 .voice-count {
   font-family: var(--v2-display);
   font-size: 0.68rem;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
   line-height: 1.35;
   white-space: nowrap;
 }
@@ -203,12 +203,12 @@ const featured = computed(() => {
   overflow-y: auto;
   padding: 0.85rem;
   border-radius: 0.85rem;
-  background: rgba(245, 239, 228, 0.02);
-  border: 1px solid rgba(245, 239, 228, 0.05);
+  background: rgb(var(--v2-ink-rgb) / 0.02);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.05);
 
   &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: rgba(245, 239, 228, 0.1); border-radius: 3px; }
+  &::-webkit-scrollbar-thumb { background: rgb(var(--v2-ink-rgb) / 0.1); border-radius: 3px; }
 }
 
 .panel-list {
@@ -223,19 +223,19 @@ const featured = computed(() => {
   gap: 0.45rem;
   padding: 0.3rem 0.65rem 0.3rem 0.35rem;
   border-radius: 9999px;
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(245, 239, 228, 0.06);
-    border-color: rgba(245, 239, 228, 0.14);
+    background: rgb(var(--v2-ink-rgb) / 0.06);
+    border-color: rgb(var(--v2-ink-rgb) / 0.14);
   }
 
   &--active {
-    background: rgba(216, 195, 160, 0.14);
-    border-color: rgba(216, 195, 160, 0.4);
+    background: rgb(var(--v2-accent-rgb) / 0.14);
+    border-color: rgb(var(--v2-accent-rgb) / 0.4);
 
     .pill-name { color: var(--v2-text); }
   }
@@ -245,7 +245,7 @@ const featured = computed(() => {
   font-family: var(--v2-display);
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.7);
+  color: rgb(var(--v2-ink-rgb) / 0.7);
   white-space: nowrap;
 }
 
@@ -253,7 +253,7 @@ const featured = computed(() => {
   font-family: var(--v2-display);
   font-size: 0.68rem;
   font-variant-numeric: tabular-nums;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
 }
 
 @keyframes fadeUp {

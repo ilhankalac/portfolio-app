@@ -160,7 +160,7 @@ const statusLabel = (s: WorkStatus) => {
   font-family: var(--v2-display);
   font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   margin: 0;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -168,20 +168,20 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-subtitle {
   font-size: 0.9375rem;
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
 }
 
 .now-link {
-  color: rgba(216, 195, 160, 0.85);
+  color: rgb(var(--v2-accent-rgb) / 0.85);
   text-decoration: none;
-  border-bottom: 1px dashed rgba(216, 195, 160, 0.4);
+  border-bottom: 1px dashed rgb(var(--v2-accent-rgb) / 0.4);
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(216, 195, 160, 1);
-    border-bottom-color: rgba(216, 195, 160, 0.8);
+    color: rgb(var(--v2-accent-rgb) / 1);
+    border-bottom-color: rgb(var(--v2-accent-rgb) / 0.8);
   }
 }
 
@@ -198,12 +198,12 @@ const statusLabel = (s: WorkStatus) => {
   gap: 0.4rem;
   font-family: var(--v2-display);
   font-size: 0.8125rem;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
 }
 
 .now-meta-icon {
   font-size: 0.95rem;
-  color: rgba(216, 195, 160, 0.75);
+  color: rgb(var(--v2-accent-rgb) / 0.75);
 }
 
 /* Sections */
@@ -218,7 +218,7 @@ const statusLabel = (s: WorkStatus) => {
   font-family: var(--v2-display);
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.9);
+  color: rgb(var(--v2-ink-rgb) / 0.9);
   margin: 0 0 0.85rem;
   letter-spacing: -0.01em;
 }
@@ -237,14 +237,14 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-card {
   padding: 1rem 1.1rem;
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.05);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.05);
   border-radius: 0.75rem;
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(245, 239, 228, 0.045);
-    border-color: rgba(245, 239, 228, 0.08);
+    background: rgb(var(--v2-ink-rgb) / 0.045);
+    border-color: rgb(var(--v2-ink-rgb) / 0.08);
   }
 }
 
@@ -260,7 +260,7 @@ const statusLabel = (s: WorkStatus) => {
   font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.92);
+  color: rgb(var(--v2-ink-rgb) / 0.92);
   margin: 0;
   line-height: 1.4;
 }
@@ -284,8 +284,8 @@ const statusLabel = (s: WorkStatus) => {
 
   &.status-shipped {
     color: var(--v2-accent);
-    background: rgba(216, 195, 160, 0.1);
-    border: 1px solid rgba(216, 195, 160, 0.2);
+    background: rgb(var(--v2-accent-rgb) / 0.1);
+    border: 1px solid rgb(var(--v2-accent-rgb) / 0.2);
   }
 
   &.status-wip {
@@ -295,9 +295,9 @@ const statusLabel = (s: WorkStatus) => {
   }
 
   &.status-paused {
-    color: rgba(245, 239, 228, 0.45);
-    background: rgba(245, 239, 228, 0.05);
-    border: 1px solid rgba(245, 239, 228, 0.08);
+    color: rgb(var(--v2-ink-rgb) / 0.45);
+    background: rgb(var(--v2-ink-rgb) / 0.05);
+    border: 1px solid rgb(var(--v2-ink-rgb) / 0.08);
   }
 }
 
@@ -305,7 +305,7 @@ const statusLabel = (s: WorkStatus) => {
   font-family: var(--v2-body);
   font-size: 0.825rem;
   line-height: 1.6;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
   margin: 0;
 }
 
@@ -324,7 +324,7 @@ const statusLabel = (s: WorkStatus) => {
     font-family: var(--v2-body);
     font-size: 0.875rem;
     line-height: 1.6;
-    color: rgba(245, 239, 228, 0.7);
+    color: rgb(var(--v2-ink-rgb) / 0.7);
 
     &::before {
       content: '';
@@ -344,7 +344,7 @@ const statusLabel = (s: WorkStatus) => {
   font-family: var(--v2-body);
   font-size: 0.875rem;
   line-height: 1.7;
-  color: rgba(245, 239, 228, 0.7);
+  color: rgb(var(--v2-ink-rgb) / 0.7);
   margin: 0;
   max-width: 42rem;
 }
@@ -366,12 +366,12 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .book-title {
-  color: rgba(245, 239, 228, 0.85);
+  color: rgb(var(--v2-ink-rgb) / 0.85);
   font-weight: 500;
 }
 
 .book-author {
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   margin-left: 0.25rem;
 }
 
@@ -392,20 +392,20 @@ const statusLabel = (s: WorkStatus) => {
 .goal-label {
   font-family: var(--v2-display);
   font-size: 0.875rem;
-  color: rgba(245, 239, 228, 0.8);
+  color: rgb(var(--v2-ink-rgb) / 0.8);
 }
 
 .goal-progress {
   font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(245, 239, 228, 0.45);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
   font-variant-numeric: tabular-nums;
 }
 
 .goal-bar {
   width: 100%;
   height: 4px;
-  background: rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.06);
   border-radius: 9999px;
   overflow: hidden;
 }
@@ -421,5 +421,11 @@ const statusLabel = (s: WorkStatus) => {
   .card-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Status colours are tuned for the dark theme; deepen them on light. */
+html.light .card-status {
+  &.status-shipping { color: #047857; }
+  &.status-wip { color: #b45309; }
 }
 </style>

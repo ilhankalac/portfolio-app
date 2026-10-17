@@ -248,7 +248,7 @@ const copyLink = async () => {
   display: list-item !important;
   list-style-type: disc !important;
   margin-bottom: 0.5em !important;
-  color: rgba(245, 239, 228, 0.8) !important;
+  color: rgb(var(--v2-ink-rgb) / 0.8) !important;
 }
 
 .blog-content ul li p {
@@ -266,7 +266,7 @@ const copyLink = async () => {
   display: list-item !important;
   list-style-type: decimal !important;
   margin-bottom: 0.5em !important;
-  color: rgba(245, 239, 228, 0.8) !important;
+  color: rgb(var(--v2-ink-rgb) / 0.8) !important;
 }
 
 .blog-content ol li p {
@@ -289,8 +289,8 @@ const copyLink = async () => {
 }
 
 .blog-content p.image-caption {
-  background-color: rgba(216, 195, 160, 0.15) !important;
-  color: rgba(245, 239, 228, 0.7) !important;
+  background-color: rgb(var(--v2-accent-rgb) / 0.15) !important;
+  color: rgb(var(--v2-ink-rgb) / 0.7) !important;
   padding: 12px 16px !important;
   text-align: center !important;
   font-size: 0.85rem !important;
@@ -335,7 +335,7 @@ const copyLink = async () => {
   font-family: var(--v2-display);
   font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   background: none;
   border: none;
   cursor: pointer;
@@ -355,7 +355,7 @@ const copyLink = async () => {
   font-family: var(--v2-display);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   line-height: 1.25;
   letter-spacing: -0.025em;
   margin: 0 0 1.25rem;
@@ -380,7 +380,7 @@ const copyLink = async () => {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: rgba(216, 195, 160, 0.15);
+  background: rgb(var(--v2-accent-rgb) / 0.15);
   color: var(--v2-accent);
   display: flex;
   align-items: center;
@@ -400,12 +400,12 @@ const copyLink = async () => {
 .meta-author {
   font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.8);
+  color: rgb(var(--v2-ink-rgb) / 0.8);
 }
 
 .meta-date {
   font-size: 0.8125rem;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
 }
 
 .pill-icon {
@@ -425,9 +425,9 @@ const copyLink = async () => {
   padding: 0.25rem 0.65rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.5);
-  background: rgba(245, 239, 228, 0.05);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
+  background: rgb(var(--v2-ink-rgb) / 0.05);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   border-radius: 9999px;
   white-space: nowrap;
 }
@@ -439,7 +439,7 @@ const copyLink = async () => {
   gap: 0.5rem;
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(245, 239, 228, 0.06);
+  border-bottom: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
 }
 
 .share-btn {
@@ -450,30 +450,30 @@ const copyLink = async () => {
   font-family: var(--v2-display);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.45);
-  background: rgba(245, 239, 228, 0.04);
-  border: 1px solid rgba(245, 239, 228, 0.06);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.8);
-    background: rgba(245, 239, 228, 0.08);
-    border-color: rgba(245, 239, 228, 0.1);
+    color: rgb(var(--v2-ink-rgb) / 0.8);
+    background: rgb(var(--v2-ink-rgb) / 0.08);
+    border-color: rgb(var(--v2-ink-rgb) / 0.1);
   }
 }
 
 .lang-btn {
   color: var(--v2-accent);
-  background: rgba(216, 195, 160, 0.1);
-  border-color: rgba(216, 195, 160, 0.25);
+  background: rgb(var(--v2-accent-rgb) / 0.1);
+  border-color: rgb(var(--v2-accent-rgb) / 0.25);
 
   &:hover {
     color: var(--v2-accent);
-    background: rgba(216, 195, 160, 0.18);
-    border-color: rgba(216, 195, 160, 0.4);
+    background: rgb(var(--v2-accent-rgb) / 0.18);
+    border-color: rgb(var(--v2-accent-rgb) / 0.4);
   }
 }
 
@@ -492,7 +492,7 @@ const copyLink = async () => {
 
 /* Blog content (scoped overrides for :deep) */
 .blog-content {
-  color: rgba(245, 239, 228, 0.8);
+  color: rgb(var(--v2-ink-rgb) / 0.8);
   padding: 0;
   line-height: 1.75;
   font-size: 1rem;
@@ -503,7 +503,7 @@ const copyLink = async () => {
 .blog-content :deep(h1) {
   font-size: 1.875em;
   font-weight: 700;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   margin-top: 1.5em;
   margin-bottom: 0.6em;
   line-height: 1.25;
@@ -513,7 +513,7 @@ const copyLink = async () => {
 .blog-content :deep(h2) {
   font-size: 1.5em;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   margin-top: 1.4em;
   margin-bottom: 0.5em;
   line-height: 1.3;
@@ -523,7 +523,7 @@ const copyLink = async () => {
 .blog-content :deep(h3) {
   font-size: 1.25em;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.9);
+  color: rgb(var(--v2-ink-rgb) / 0.9);
   margin-top: 1.2em;
   margin-bottom: 0.4em;
   line-height: 1.35;
@@ -533,7 +533,7 @@ const copyLink = async () => {
   margin: 0.75em 0;
   white-space: pre-wrap;
   line-height: 1.75;
-  color: rgba(245, 239, 228, 0.8);
+  color: rgb(var(--v2-ink-rgb) / 0.8);
 }
 
 .blog-content :deep(br) {
@@ -543,7 +543,7 @@ const copyLink = async () => {
 }
 
 .blog-content :deep(code) {
-  background-color: rgba(245, 239, 228, 0.08);
+  background-color: rgb(var(--v2-ink-rgb) / 0.08);
   color: var(--v2-accent);
   padding: 2px 6px;
   border-radius: 4px;
@@ -552,8 +552,10 @@ const copyLink = async () => {
 }
 
 .blog-content :deep(pre) {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(245, 239, 228, 0.06);
+  /* Code stays dark in both themes so syntax colours keep their contrast. */
+  background-color: #141413 !important;
+  color: var(--v2-on-image);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   padding: 1.25rem !important;
   border-radius: 0.75rem !important;
   overflow-x: auto;
@@ -649,18 +651,18 @@ const copyLink = async () => {
   padding-left: 1em;
   margin: 1em 0;
   font-style: italic;
-  color: rgba(245, 239, 228, 0.6);
+  color: rgb(var(--v2-ink-rgb) / 0.6);
 }
 
 .blog-content :deep(hr) {
   border: none;
-  border-top: 1px solid rgba(245, 239, 228, 0.08);
+  border-top: 1px solid rgb(var(--v2-ink-rgb) / 0.08);
   margin: 2em 0;
 }
 
 .blog-content :deep(strong) {
   font-weight: bold;
-  color: rgba(245, 239, 228, 0.9);
+  color: rgb(var(--v2-ink-rgb) / 0.9);
 }
 
 .blog-content :deep(em) {
@@ -692,14 +694,14 @@ const copyLink = async () => {
 .related-section {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(245, 239, 228, 0.06);
+  border-top: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
 }
 
 .related-heading {
   font-family: var(--v2-display);
   font-size: 1rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.9);
+  color: rgb(var(--v2-ink-rgb) / 0.9);
   letter-spacing: -0.01em;
   margin: 0 0 1rem;
 }
@@ -718,8 +720,8 @@ const copyLink = async () => {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -727,7 +729,7 @@ const copyLink = async () => {
 
   &:hover {
     transform: translateY(-3px);
-    border-color: rgba(245, 239, 228, 0.1);
+    border-color: rgb(var(--v2-ink-rgb) / 0.1);
 
     .related-image {
       transform: scale(1.04);
@@ -758,8 +760,8 @@ const copyLink = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(245, 239, 228, 0.03);
-  color: rgba(245, 239, 228, 0.1);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  color: rgb(var(--v2-ink-rgb) / 0.1);
   font-size: 1.5rem;
 }
 
@@ -771,7 +773,7 @@ const copyLink = async () => {
   display: block;
   font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
   margin-bottom: 0.35rem;
 }
 
@@ -779,7 +781,7 @@ const copyLink = async () => {
   font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.9);
+  color: rgb(var(--v2-ink-rgb) / 0.9);
   line-height: 1.45;
   margin: 0;
   transition: color 0.2s ease;
@@ -800,7 +802,7 @@ const copyLink = async () => {
   width: 8rem;
   height: 1rem;
   border-radius: 4px;
-  background: rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.06);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -808,7 +810,7 @@ const copyLink = async () => {
   width: 70%;
   height: 2rem;
   border-radius: 6px;
-  background: rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.06);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -816,7 +818,7 @@ const copyLink = async () => {
   width: 40%;
   height: 1rem;
   border-radius: 4px;
-  background: rgba(245, 239, 228, 0.04);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -824,14 +826,14 @@ const copyLink = async () => {
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 0.75rem;
-  background: rgba(245, 239, 228, 0.04);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
 .skeleton-line {
   height: 0.85rem;
   border-radius: 4px;
-  background: rgba(245, 239, 228, 0.04);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 

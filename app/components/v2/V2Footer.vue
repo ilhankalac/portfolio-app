@@ -60,8 +60,8 @@ onMounted(() => {
   max-width: var(--v2-max);
   height: 1px;
   margin: 0 auto 3.5rem;
-  background: linear-gradient(90deg, transparent, rgba(245, 239, 228, 0.5), transparent);
-  box-shadow: 0 0 30px rgba(245, 239, 228, 0.25);
+  background: linear-gradient(90deg, transparent, rgb(var(--v2-ink-rgb) / 0.5), transparent);
+  box-shadow: 0 0 30px rgb(var(--v2-ink-rgb) / 0.25);
 }
 
 .status {

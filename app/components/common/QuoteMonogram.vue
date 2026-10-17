@@ -49,11 +49,20 @@ const tone = computed(() => authorTone(props.author))
     border-radius: 0.7rem;
   }
 
-  &--indigo { color: var(--v2-accent); background: rgba(216, 195, 160, 0.14); border-color: rgba(216, 195, 160, 0.25); }
+  &--indigo { color: var(--v2-accent); background: rgb(var(--v2-accent-rgb) / 0.14); border-color: rgb(var(--v2-accent-rgb) / 0.25); }
   &--violet { color: #c4b5fd; background: rgba(167, 139, 250, 0.14); border-color: rgba(167, 139, 250, 0.25); }
   &--sky    { color: #7dd3fc; background: rgba(56, 189, 248, 0.13); border-color: rgba(56, 189, 248, 0.24); }
   &--teal   { color: #5eead4; background: rgba(45, 212, 191, 0.12); border-color: rgba(45, 212, 191, 0.22); }
   &--amber  { color: #fcd34d; background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.22); }
   &--rose   { color: #fda4af; background: rgba(251, 113, 133, 0.12); border-color: rgba(251, 113, 133, 0.22); }
+}
+
+/* The pastel text above is tuned for the dark theme; deepen it on light. */
+html.light .monogram {
+  &--violet { color: #6d28d9; }
+  &--sky    { color: #0369a1; }
+  &--teal   { color: #0f766e; }
+  &--amber  { color: #b45309; }
+  &--rose   { color: #be123c; }
 }
 </style>

@@ -61,7 +61,7 @@
             icon="i-mdi-magnify"
             size="lg"
             class="search-field"
-            :ui="{ base: 'bg-[#f5efe4]/[0.03] border border-[#f5efe4]/[0.07] text-[#f5efe4] placeholder-[#f5efe4]/25' }"
+            :ui="{ base: 'bg-[rgb(var(--v2-ink-rgb)/0.03)] border border-[rgb(var(--v2-ink-rgb)/0.07)] text-[var(--v2-text)] placeholder-[rgb(var(--v2-ink-rgb)/0.25)]' }"
           >
             <template v-if="search" #trailing>
               <UButton icon="i-mdi-close" color="neutral" variant="link" size="xs" @click="clearSearch" />
@@ -479,7 +479,7 @@ onBeforeUnmount(() => {
   font-family: var(--v2-display);
   font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   margin: 0;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -487,7 +487,7 @@ onBeforeUnmount(() => {
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
   max-width: 34rem;
@@ -500,17 +500,17 @@ onBeforeUnmount(() => {
   margin-top: 0.85rem;
   font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
 
   b {
     font-weight: 600;
-    color: rgba(245, 239, 228, 0.7);
+    color: rgb(var(--v2-ink-rgb) / 0.7);
     font-variant-numeric: tabular-nums;
   }
 }
 
 .stat-dot {
-  color: rgba(245, 239, 228, 0.18);
+  color: rgb(var(--v2-ink-rgb) / 0.18);
 }
 
 /* Toolbar */
@@ -541,21 +541,21 @@ onBeforeUnmount(() => {
   font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.5);
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.9);
-    border-color: rgba(245, 239, 228, 0.16);
+    color: rgb(var(--v2-ink-rgb) / 0.9);
+    border-color: rgb(var(--v2-ink-rgb) / 0.16);
   }
 
   &--active {
     color: var(--v2-accent);
-    background: rgba(216, 195, 160, 0.12);
-    border-color: rgba(216, 195, 160, 0.35);
+    background: rgb(var(--v2-accent-rgb) / 0.12);
+    border-color: rgb(var(--v2-accent-rgb) / 0.35);
   }
 }
 
@@ -575,37 +575,37 @@ onBeforeUnmount(() => {
   font-family: var(--v2-display);
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.5);
-  background: rgba(245, 239, 228, 0.04);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.85);
-    border-color: rgba(245, 239, 228, 0.15);
+    color: rgb(var(--v2-ink-rgb) / 0.85);
+    border-color: rgb(var(--v2-ink-rgb) / 0.15);
   }
 
   &--active {
     color: var(--v2-accent);
-    background: rgba(216, 195, 160, 0.12);
-    border-color: rgba(216, 195, 160, 0.35);
+    background: rgb(var(--v2-accent-rgb) / 0.12);
+    border-color: rgb(var(--v2-accent-rgb) / 0.35);
 
-    .lens-count { color: rgba(216, 195, 160, 0.6); }
+    .lens-count { color: rgb(var(--v2-accent-rgb) / 0.6); }
   }
 
   &--voice {
     padding-left: 0.35rem;
-    color: #e6d6bb;
-    background: rgba(216, 195, 160, 0.14);
-    border-color: rgba(216, 195, 160, 0.4);
+    color: var(--v2-accent-soft);
+    background: rgb(var(--v2-accent-rgb) / 0.14);
+    border-color: rgb(var(--v2-accent-rgb) / 0.4);
   }
 }
 
 .lens-count {
   font-size: 0.68rem;
   font-variant-numeric: tabular-nums;
-  color: rgba(245, 239, 228, 0.28);
+  color: rgb(var(--v2-ink-rgb) / 0.28);
 }
 
 .clear-icon {
@@ -618,11 +618,11 @@ onBeforeUnmount(() => {
   margin: 1.25rem 0 0.85rem;
   font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
 
   b {
     font-weight: 600;
-    color: rgba(245, 239, 228, 0.55);
+    color: rgb(var(--v2-ink-rgb) / 0.55);
     font-variant-numeric: tabular-nums;
   }
 }
@@ -642,7 +642,7 @@ onBeforeUnmount(() => {
   padding: 1.25rem 0 0;
   font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(245, 239, 228, 0.22);
+  color: rgb(var(--v2-ink-rgb) / 0.22);
 }
 
 /* States */
@@ -651,10 +651,10 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.65rem;
   padding: 1.5rem;
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.05);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.05);
   border-radius: 0.75rem;
-  color: rgba(245, 239, 228, 0.45);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
   font-family: var(--v2-display);
   font-size: 0.875rem;
 
@@ -663,7 +663,7 @@ onBeforeUnmount(() => {
 
 .quote-state-icon {
   flex: 0 0 auto;
-  color: rgba(216, 195, 160, 0.75);
+  color: rgb(var(--v2-accent-rgb) / 0.75);
   font-size: 1.25rem;
 }
 
@@ -677,7 +677,7 @@ onBeforeUnmount(() => {
 .skeleton-spotlight {
   height: 12rem;
   border-radius: 1.1rem;
-  background: rgba(245, 239, 228, 0.04);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -692,7 +692,7 @@ onBeforeUnmount(() => {
   width: 9rem;
   height: 3.4rem;
   border-radius: 0.75rem;
-  background: rgba(245, 239, 228, 0.04);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
@@ -705,7 +705,7 @@ onBeforeUnmount(() => {
 .skeleton-card {
   height: 9rem;
   border-radius: 0.9rem;
-  background: rgba(245, 239, 228, 0.04);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 

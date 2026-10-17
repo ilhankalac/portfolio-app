@@ -145,7 +145,7 @@ onMounted(() => {
   font-family: var(--v2-display);
   font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   margin: 0;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -153,7 +153,7 @@ onMounted(() => {
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
   max-width: 34rem;
@@ -166,17 +166,17 @@ onMounted(() => {
   margin-top: 0.85rem;
   font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
 
   b {
     font-weight: 600;
-    color: rgba(245, 239, 228, 0.7);
+    color: rgb(var(--v2-ink-rgb) / 0.7);
     font-variant-numeric: tabular-nums;
   }
 }
 
 .stat-dot {
-  color: rgba(245, 239, 228, 0.18);
+  color: rgb(var(--v2-ink-rgb) / 0.18);
 }
 
 /* Top 10 */
@@ -193,7 +193,7 @@ onMounted(() => {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
   margin-bottom: 0.9rem;
 }
 
@@ -216,15 +216,15 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.6rem;
   padding: 1rem;
-  background: rgba(245, 239, 228, 0.04);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   border-radius: 0.9rem;
   position: relative;
   transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: rgba(216, 195, 160, 0.3);
-    background: rgba(245, 239, 228, 0.06);
+    border-color: rgb(var(--v2-accent-rgb) / 0.3);
+    background: rgb(var(--v2-ink-rgb) / 0.06);
     transform: translateY(-2px);
   }
 }
@@ -241,7 +241,7 @@ onMounted(() => {
   font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--v2-text);
+  color: var(--v2-on-image);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
@@ -261,14 +261,14 @@ onMounted(() => {
   font-family: var(--v2-display);
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.92);
+  color: rgb(var(--v2-ink-rgb) / 0.92);
   line-height: 1.3;
 }
 
 .top-artist {
   font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(245, 239, 228, 0.45);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
 }
 
 .top-link {
@@ -276,7 +276,7 @@ onMounted(() => {
   bottom: 0.85rem;
   right: 0.85rem;
   font-size: 1.4rem;
-  color: rgba(245, 239, 228, 0.6);
+  color: rgb(var(--v2-ink-rgb) / 0.6);
   line-height: 0;
   transition: color 0.2s ease, transform 0.2s ease;
 
@@ -303,23 +303,23 @@ onMounted(() => {
   font-family: var(--v2-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.55);
-  background: rgba(245, 239, 228, 0.04);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.55);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.9);
-    border-color: rgba(245, 239, 228, 0.16);
+    color: rgb(var(--v2-ink-rgb) / 0.9);
+    border-color: rgb(var(--v2-ink-rgb) / 0.16);
   }
 
   &--active {
     color: var(--v2-accent);
-    background: rgba(216, 195, 160, 0.12);
-    border-color: rgba(216, 195, 160, 0.35);
+    background: rgb(var(--v2-accent-rgb) / 0.12);
+    border-color: rgb(var(--v2-accent-rgb) / 0.35);
 
-    .lens-count { color: rgba(216, 195, 160, 0.6); }
+    .lens-count { color: rgb(var(--v2-accent-rgb) / 0.6); }
   }
 }
 
@@ -330,7 +330,7 @@ onMounted(() => {
 .lens-count {
   font-size: 0.7rem;
   font-variant-numeric: tabular-nums;
-  color: rgba(245, 239, 228, 0.28);
+  color: rgb(var(--v2-ink-rgb) / 0.28);
 }
 
 /* Song grid */
@@ -346,15 +346,15 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.75rem;
   padding: 0.9rem;
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.06);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   border-radius: 0.9rem;
   position: relative;
   transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 
   &:hover {
-    border-color: rgba(216, 195, 160, 0.25);
-    background: rgba(245, 239, 228, 0.05);
+    border-color: rgb(var(--v2-accent-rgb) / 0.25);
+    background: rgb(var(--v2-ink-rgb) / 0.05);
     transform: translateY(-2px);
   }
 }
@@ -391,21 +391,21 @@ onMounted(() => {
   font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.92);
+  color: rgb(var(--v2-ink-rgb) / 0.92);
   line-height: 1.3;
 }
 
 .song-artist {
   font-family: var(--v2-display);
   font-size: 0.8rem;
-  color: rgba(245, 239, 228, 0.45);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
 }
 
 .song-note {
   font-family: var(--v2-display);
   font-size: 0.75rem;
   font-style: italic;
-  color: rgba(245, 239, 228, 0.32);
+  color: rgb(var(--v2-ink-rgb) / 0.32);
   margin-top: 0.2rem;
 }
 
@@ -414,7 +414,7 @@ onMounted(() => {
   top: 0.75rem;
   right: 0.75rem;
   font-size: 1.25rem;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
   line-height: 0;
   transition: color 0.2s ease, transform 0.2s ease;
 

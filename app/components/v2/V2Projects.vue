@@ -182,7 +182,7 @@ const hostname = (url?: string) => {
     width: 0.45rem;
     height: 0.45rem;
     border-radius: 50%;
-    background: rgba(245, 239, 228, 0.16);
+    background: rgb(var(--v2-ink-rgb) / 0.16);
   }
 }
 
@@ -231,7 +231,7 @@ const hostname = (url?: string) => {
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(11, 11, 10, 0.55);
+  background: rgb(var(--v2-bg-rgb) / 0.55);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -358,7 +358,7 @@ const hostname = (url?: string) => {
   height: 2.25rem;
   border: 1px solid var(--v2-border-strong);
   border-radius: 50%;
-  background: rgba(11, 11, 10, 0.7);
+  background: rgb(var(--v2-bg-rgb) / 0.7);
   color: var(--v2-text);
   cursor: pointer;
 }

@@ -77,7 +77,7 @@ const links = [
 
   &:hover {
     color: var(--v2-text);
-    border-color: rgba(245, 239, 228, 0.35);
+    border-color: rgb(var(--v2-ink-rgb) / 0.35);
   }
 }
 
@@ -97,7 +97,7 @@ const links = [
   border-radius: 50%;
   border: 1px solid var(--v2-border-strong);
   background: radial-gradient(circle, var(--v2-surface-2), var(--v2-bg) 70%);
-  box-shadow: 0 0 80px rgba(245, 239, 228, 0.05), inset 0 0 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 80px rgb(var(--v2-ink-rgb) / 0.05), inset 0 0 40px rgba(0, 0, 0, 0.6);
 
   img {
     width: 100%;

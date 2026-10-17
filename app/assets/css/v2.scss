@@ -4,16 +4,28 @@
  * .v2 paints a page shell with the background, text colour and body font.
  */
 :root {
-  --v2-bg: #0b0b0a;
-  --v2-surface: #141413;
+  /* Dark (default) */
+  --v2-bg-rgb: 11 11 10;
+  --v2-surface-rgb: 20 20 19;
   --v2-surface-2: #1b1b19;
-  --v2-border: rgba(245, 239, 228, 0.08);
-  --v2-border-strong: rgba(245, 239, 228, 0.16);
-  --v2-text: #f5efe4;
-  --v2-muted: rgba(245, 239, 228, 0.62);
-  --v2-faint: rgba(245, 239, 228, 0.38);
-  --v2-accent: #d8c3a0;
+  --v2-ink-rgb: 245 239 228;
+  --v2-accent-rgb: 216 195 160;
+  --v2-accent-soft: #e6d6bb;
   --v2-live: #4ade80;
+
+  /* Text and controls sitting on photos stay light in both themes. */
+  --v2-on-image-rgb: 245 239 228;
+  --v2-on-image: rgb(var(--v2-on-image-rgb));
+
+  --v2-bg: rgb(var(--v2-bg-rgb));
+  --v2-surface: rgb(var(--v2-surface-rgb));
+  --v2-text: rgb(var(--v2-ink-rgb));
+  --v2-muted: rgb(var(--v2-ink-rgb) / 0.62);
+  --v2-faint: rgb(var(--v2-ink-rgb) / 0.38);
+  --v2-border: rgb(var(--v2-ink-rgb) / 0.08);
+  --v2-border-strong: rgb(var(--v2-ink-rgb) / 0.16);
+  --v2-accent: rgb(var(--v2-accent-rgb));
+
   --v2-display: 'Outfit', 'Inter', sans-serif;
   --v2-body: 'Source Sans 3', 'Inter', sans-serif;
   --v2-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -21,20 +33,41 @@
   --v2-gutter: 1.5rem;
 }
 
+/* Light: warm paper, dark ink and a bronze accent that stays readable on white. */
+html.light {
+  --v2-bg-rgb: 250 248 243;
+  --v2-surface-rgb: 255 255 255;
+  --v2-surface-2: #f2eee6;
+  --v2-ink-rgb: 28 26 22;
+  --v2-accent-rgb: 138 106 58;
+  --v2-accent-soft: #6f5428;
+  --v2-live: #16a34a;
+
+  --v2-muted: rgb(var(--v2-ink-rgb) / 0.68);
+  --v2-faint: rgb(var(--v2-ink-rgb) / 0.48);
+  --v2-border: rgb(var(--v2-ink-rgb) / 0.1);
+  --v2-border-strong: rgb(var(--v2-ink-rgb) / 0.18);
+}
+
 .v2 {
   min-height: 100vh;
   background:
     /* A faint scatter of "stars", like the reference's night sky. */
-    radial-gradient(1px 1px at 12% 18%, rgba(245, 239, 228, 0.35), transparent),
-    radial-gradient(1px 1px at 78% 9%, rgba(245, 239, 228, 0.25), transparent),
-    radial-gradient(1px 1px at 33% 64%, rgba(245, 239, 228, 0.2), transparent),
-    radial-gradient(1px 1px at 91% 47%, rgba(245, 239, 228, 0.3), transparent),
-    radial-gradient(1px 1px at 55% 83%, rgba(245, 239, 228, 0.2), transparent),
+    radial-gradient(1px 1px at 12% 18%, rgb(var(--v2-ink-rgb) / 0.35), transparent),
+    radial-gradient(1px 1px at 78% 9%, rgb(var(--v2-ink-rgb) / 0.25), transparent),
+    radial-gradient(1px 1px at 33% 64%, rgb(var(--v2-ink-rgb) / 0.2), transparent),
+    radial-gradient(1px 1px at 91% 47%, rgb(var(--v2-ink-rgb) / 0.3), transparent),
+    radial-gradient(1px 1px at 55% 83%, rgb(var(--v2-ink-rgb) / 0.2), transparent),
     var(--v2-bg);
   background-size: 900px 900px, 900px 900px, 900px 900px, 900px 900px, 900px 900px, auto;
   color: var(--v2-text);
   font-family: var(--v2-body);
   -webkit-font-smoothing: antialiased;
+}
+
+/* The star scatter only reads as stars on the dark background. */
+html.light .v2 {
+  background: var(--v2-bg);
 }
 
 .v2-container {
@@ -97,7 +130,7 @@
   transition: border-color 0.25s ease, background-color 0.25s ease;
 
   &:hover {
-    border-color: rgba(245, 239, 228, 0.32);
+    border-color: rgb(var(--v2-ink-rgb) / 0.32);
     background: var(--v2-surface-2);
   }
 

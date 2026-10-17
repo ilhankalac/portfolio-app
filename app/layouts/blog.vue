@@ -81,7 +81,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(245, 239, 228, 0.3);
+  color: rgb(var(--v2-ink-rgb) / 0.3);
   padding: 0 0.75rem;
   margin-bottom: 0.75rem;
 }
@@ -102,20 +102,20 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgba(245, 239, 228, 0.04);
+    background: rgb(var(--v2-ink-rgb) / 0.04);
 
     .item-label {
-      color: rgba(245, 239, 228, 0.95);
+      color: rgb(var(--v2-ink-rgb) / 0.95);
     }
   }
 
   &--active {
-    background: rgba(216, 195, 160, 0.08);
+    background: rgb(var(--v2-accent-rgb) / 0.08);
 
     .item-icon-wrap {
       color: var(--v2-accent);
-      background: rgba(216, 195, 160, 0.14);
-      border-color: rgba(216, 195, 160, 0.3);
+      background: rgb(var(--v2-accent-rgb) / 0.14);
+      border-color: rgb(var(--v2-accent-rgb) / 0.3);
     }
 
     .item-label {
@@ -123,7 +123,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
     }
 
     &:hover {
-      background: rgba(216, 195, 160, 0.12);
+      background: rgb(var(--v2-accent-rgb) / 0.12);
     }
   }
 }
@@ -136,9 +136,9 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   width: 2rem;
   height: 2rem;
   border-radius: 0.55rem;
-  color: rgba(245, 239, 228, 0.45);
-  background: rgba(245, 239, 228, 0.04);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   transition: all 0.2s ease;
 }
 
@@ -157,7 +157,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   font-family: var(--v2-display);
   font-size: 0.85rem;
   font-weight: 550;
-  color: rgba(245, 239, 228, 0.75);
+  color: rgb(var(--v2-ink-rgb) / 0.75);
   line-height: 1.35;
   transition: color 0.2s ease;
 }
@@ -165,7 +165,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
 .item-desc {
   font-family: var(--v2-display);
   font-size: 0.72rem;
-  color: rgba(245, 239, 228, 0.32);
+  color: rgb(var(--v2-ink-rgb) / 0.32);
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
@@ -191,10 +191,10 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
     z-index: 100;
     margin: 0 -1.5rem;
     padding: 0.6rem 1.5rem;
-    background: rgba(11, 11, 10, 0.85);
+    background: rgb(var(--v2-bg-rgb) / 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(245, 239, 228, 0.06);
+    border-bottom: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
   }
 
   .sidebar-label {
@@ -219,7 +219,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
     border: 1px solid transparent;
 
     &--active {
-      border-color: rgba(216, 195, 160, 0.3);
+      border-color: rgb(var(--v2-accent-rgb) / 0.3);
     }
   }
 

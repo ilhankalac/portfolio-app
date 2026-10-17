@@ -135,7 +135,7 @@ const send = () => {
 
     &:focus {
       outline: none;
-      border-color: rgba(245, 239, 228, 0.35);
+      border-color: rgb(var(--v2-ink-rgb) / 0.35);
     }
   }
 }

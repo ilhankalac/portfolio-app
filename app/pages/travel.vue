@@ -171,7 +171,7 @@ onMounted(() => {
   font-family: var(--v2-display);
   font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.95);
+  color: rgb(var(--v2-ink-rgb) / 0.95);
   margin: 0;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -179,7 +179,7 @@ onMounted(() => {
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgba(245, 239, 228, 0.4);
+  color: rgb(var(--v2-ink-rgb) / 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
   max-width: 34rem;
@@ -192,17 +192,17 @@ onMounted(() => {
   margin-top: 0.85rem;
   font-family: var(--v2-display);
   font-size: 0.78rem;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
 
   b {
     font-weight: 600;
-    color: rgba(245, 239, 228, 0.7);
+    color: rgb(var(--v2-ink-rgb) / 0.7);
     font-variant-numeric: tabular-nums;
   }
 }
 
 .stat-dot {
-  color: rgba(245, 239, 228, 0.18);
+  color: rgb(var(--v2-ink-rgb) / 0.18);
 }
 
 .grid {
@@ -258,14 +258,14 @@ onMounted(() => {
     place-items: center;
     cursor: default;
     background:
-      radial-gradient(circle at 30% 20%, rgba(216, 195, 160, 0.08), transparent 60%),
+      radial-gradient(circle at 30% 20%, rgb(var(--v2-accent-rgb) / 0.08), transparent 60%),
       var(--v2-surface-2);
 
     span {
       font-family: var(--v2-mono);
       font-size: 2.5rem;
       letter-spacing: 0.2em;
-      color: rgba(245, 239, 228, 0.12);
+      color: rgb(var(--v2-ink-rgb) / 0.12);
     }
   }
 }
@@ -279,7 +279,7 @@ onMounted(() => {
   gap: 0.3rem;
   padding: 0.25rem 0.6rem;
   border-radius: 9999px;
-  background: rgba(11, 11, 10, 0.7);
+  background: rgb(var(--v2-bg-rgb) / 0.7);
   backdrop-filter: blur(6px);
   font-family: var(--v2-mono);
   font-size: 0.7rem;
@@ -372,7 +372,7 @@ onMounted(() => {
   height: 2.6rem;
   border: 1px solid var(--v2-border-strong);
   border-radius: 50%;
-  background: rgba(11, 11, 10, 0.65);
+  background: rgb(var(--v2-bg-rgb) / 0.65);
   backdrop-filter: blur(6px);
   color: var(--v2-text);
   font-size: 1.4rem;
@@ -380,7 +380,7 @@ onMounted(() => {
   transition: background-color 0.2s ease;
 
   &:hover {
-    background: rgba(11, 11, 10, 0.9);
+    background: rgb(var(--v2-bg-rgb) / 0.9);
   }
 }
 

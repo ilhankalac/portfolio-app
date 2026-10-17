@@ -65,7 +65,7 @@ const meta = computed(() => {
 <style scoped lang="scss">
 .reader {
   background: var(--v2-surface);
-  border: 1px solid rgba(245, 239, 228, 0.08);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.08);
   border-radius: 1rem;
   overflow: hidden;
   max-height: 85vh;
@@ -73,7 +73,7 @@ const meta = computed(() => {
 
   &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: rgba(245, 239, 228, 0.1); border-radius: 3px; }
+  &::-webkit-scrollbar-thumb { background: rgb(var(--v2-ink-rgb) / 0.1); border-radius: 3px; }
 }
 
 .reader-image {
@@ -116,14 +116,14 @@ const meta = computed(() => {
   height: 1.9rem;
   border-radius: 0.5rem;
   border: none;
-  background: rgba(245, 239, 228, 0.04);
-  color: rgba(245, 239, 228, 0.45);
+  background: rgb(var(--v2-ink-rgb) / 0.04);
+  color: rgb(var(--v2-ink-rgb) / 0.45);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.9);
-    background: rgba(245, 239, 228, 0.09);
+    color: rgb(var(--v2-ink-rgb) / 0.9);
+    background: rgb(var(--v2-ink-rgb) / 0.09);
   }
 }
 
@@ -140,7 +140,7 @@ const meta = computed(() => {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 4.75rem;
   line-height: 1;
-  color: rgba(216, 195, 160, 0.28);
+  color: rgb(var(--v2-accent-rgb) / 0.28);
   pointer-events: none;
 }
 
@@ -149,7 +149,7 @@ const meta = computed(() => {
   font-size: clamp(1.05rem, 2.2vw, 1.3rem);
   font-weight: 300;
   line-height: 1.65;
-  color: rgba(245, 239, 228, 0.9);
+  color: rgb(var(--v2-ink-rgb) / 0.9);
 
   :deep(p) {
     margin: 0 0 0.9rem;
@@ -175,7 +175,7 @@ const meta = computed(() => {
   gap: 1rem;
   margin-top: 1.5rem;
   padding-top: 1.1rem;
-  border-top: 1px solid rgba(245, 239, 228, 0.07);
+  border-top: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
 }
 
 .reader-author {
@@ -189,7 +189,7 @@ const meta = computed(() => {
   cursor: pointer;
   text-align: left;
 
-  &:hover .author-name { color: #e6d6bb; }
+  &:hover .author-name { color: var(--v2-accent-soft); }
 }
 
 .author-text {
@@ -202,7 +202,7 @@ const meta = computed(() => {
   font-family: var(--v2-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(245, 239, 228, 0.85);
+  color: rgb(var(--v2-ink-rgb) / 0.85);
   line-height: 1.4;
   transition: color 0.2s ease;
 }
@@ -210,7 +210,7 @@ const meta = computed(() => {
 .author-meta {
   font-family: var(--v2-display);
   font-size: 0.75rem;
-  color: rgba(245, 239, 228, 0.35);
+  color: rgb(var(--v2-ink-rgb) / 0.35);
   line-height: 1.4;
 }
 
@@ -229,27 +229,27 @@ const meta = computed(() => {
   font-family: var(--v2-display);
   font-size: 0.78rem;
   font-weight: 500;
-  color: rgba(245, 239, 228, 0.5);
-  background: rgba(245, 239, 228, 0.03);
-  border: 1px solid rgba(245, 239, 228, 0.07);
+  color: rgb(var(--v2-ink-rgb) / 0.5);
+  background: rgb(var(--v2-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgba(245, 239, 228, 0.95);
-    border-color: rgba(245, 239, 228, 0.16);
-    background: rgba(245, 239, 228, 0.07);
+    color: rgb(var(--v2-ink-rgb) / 0.95);
+    border-color: rgb(var(--v2-ink-rgb) / 0.16);
+    background: rgb(var(--v2-ink-rgb) / 0.07);
   }
 
   &--accent {
     color: var(--v2-accent);
-    border-color: rgba(216, 195, 160, 0.28);
-    background: rgba(216, 195, 160, 0.1);
+    border-color: rgb(var(--v2-accent-rgb) / 0.28);
+    background: rgb(var(--v2-accent-rgb) / 0.1);
 
     &:hover {
       color: var(--v2-text);
-      border-color: rgba(216, 195, 160, 0.45);
-      background: rgba(216, 195, 160, 0.18);
+      border-color: rgb(var(--v2-accent-rgb) / 0.45);
+      background: rgb(var(--v2-accent-rgb) / 0.18);
     }
   }
 }
