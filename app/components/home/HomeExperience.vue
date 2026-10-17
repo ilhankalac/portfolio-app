@@ -1,7 +1,7 @@
 <template>
-  <section id="experience" class="v2-section">
-    <div class="v2-container">
-      <h2 class="v2-heading">Experience</h2>
+  <section id="experience" class="site-section">
+    <div class="site-container">
+      <h2 class="site-heading">Experience</h2>
 
       <ol class="timeline">
         <li v-for="job in jobs" :key="job.title" class="row">
@@ -29,7 +29,7 @@
           <div class="main">
             <h3>{{ job.position }}</h3>
             <div
-              class="v2-prose description"
+              class="site-prose description"
               :class="{ clamped: job.long && !expanded.has(job.title) }"
               v-html="job.description"
             />
@@ -38,7 +38,7 @@
               <UIcon :name="expanded.has(job.title) ? 'i-mdi-chevron-up' : 'i-mdi-chevron-down'" />
             </button>
             <div v-if="job.techs.length" class="techs">
-              <span v-for="tech in job.techs" :key="tech" class="v2-chip">{{ tech }}</span>
+              <span v-for="tech in job.techs" :key="tech" class="site-chip">{{ tech }}</span>
             </div>
           </div>
         </li>
@@ -84,10 +84,10 @@ const toggle = (title?: string) => {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 2fr);
   padding: 3rem 0;
-  border-top: 1px solid var(--v2-border);
+  border-top: 1px solid var(--site-border);
 
   &:last-child {
-    border-bottom: 1px solid var(--v2-border);
+    border-bottom: 1px solid var(--site-border);
   }
 
   @media (max-width: 768px) {
@@ -105,21 +105,21 @@ const toggle = (title?: string) => {
 }
 
 .date {
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 }
 
 .company {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--v2-text);
+  color: var(--site-text);
   text-decoration: none;
 }
 
@@ -137,7 +137,7 @@ const toggle = (title?: string) => {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
-  color: var(--v2-muted);
+  color: var(--site-muted);
 }
 
 .track {
@@ -151,7 +151,7 @@ const toggle = (title?: string) => {
     top: -3rem;
     bottom: -3rem;
     width: 1px;
-    background: var(--v2-border);
+    background: var(--site-border);
   }
 
   @media (max-width: 768px) {
@@ -165,13 +165,13 @@ const toggle = (title?: string) => {
   height: 0.6rem;
   margin-top: 0.5rem;
   border-radius: 50%;
-  background: var(--v2-text);
-  box-shadow: 0 0 0 5px var(--v2-bg), 0 0 0 6px var(--v2-border-strong);
+  background: var(--site-text);
+  box-shadow: 0 0 0 5px var(--site-bg), 0 0 0 6px var(--site-border-strong);
 }
 
 .main {
   h3 {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -199,13 +199,13 @@ const toggle = (title?: string) => {
   padding: 0;
   background: none;
   border: none;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.88rem;
-  color: var(--v2-text);
+  color: var(--site-text);
   cursor: pointer;
 
   &:hover {
-    color: var(--v2-accent);
+    color: var(--site-accent);
   }
 }
 

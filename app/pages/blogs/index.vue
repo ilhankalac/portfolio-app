@@ -222,20 +222,20 @@ const formatShortDate = (iso?: string) => {
 
 .list-label {
   display: block;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--v2-accent);
+  color: var(--site-accent);
   margin-bottom: 0.4rem;
 }
 
 .list-title {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgb(var(--v2-ink-rgb) / 0.95);
+  color: rgb(var(--site-ink-rgb) / 0.95);
   margin: 0;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -243,7 +243,7 @@ const formatShortDate = (iso?: string) => {
 
 .list-subtitle {
   font-size: 0.9375rem;
-  color: rgb(var(--v2-ink-rgb) / 0.4);
+  color: rgb(var(--site-ink-rgb) / 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
 }
@@ -257,26 +257,26 @@ const formatShortDate = (iso?: string) => {
 }
 
 .tag-pill {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.3rem 0.8rem;
   border-radius: 9999px;
-  color: rgb(var(--v2-ink-rgb) / 0.5);
-  background: rgb(var(--v2-ink-rgb) / 0.04);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
+  color: rgb(var(--site-ink-rgb) / 0.5);
+  background: rgb(var(--site-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.07);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgb(var(--v2-ink-rgb) / 0.85);
-    border-color: rgb(var(--v2-ink-rgb) / 0.15);
+    color: rgb(var(--site-ink-rgb) / 0.85);
+    border-color: rgb(var(--site-ink-rgb) / 0.15);
   }
 
   &--active {
-    color: var(--v2-accent);
-    background: rgb(var(--v2-accent-rgb) / 0.12);
-    border-color: rgb(var(--v2-accent-rgb) / 0.35);
+    color: var(--site-accent);
+    background: rgb(var(--site-accent-rgb) / 0.12);
+    border-color: rgb(var(--site-accent-rgb) / 0.35);
   }
 }
 
@@ -285,8 +285,8 @@ const formatShortDate = (iso?: string) => {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: rgb(var(--v2-ink-rgb) / 0.03);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
+  background: rgb(var(--site-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.06);
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 2.5rem;
@@ -297,7 +297,7 @@ const formatShortDate = (iso?: string) => {
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgb(var(--v2-ink-rgb) / 0.1);
+    border-color: rgb(var(--site-ink-rgb) / 0.1);
     box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.45);
 
     .featured-image {
@@ -305,7 +305,7 @@ const formatShortDate = (iso?: string) => {
     }
 
     .featured-cta {
-      color: var(--v2-accent);
+      color: var(--site-accent);
 
       .cta-icon {
         transform: translateX(3px);
@@ -337,12 +337,12 @@ const formatShortDate = (iso?: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(var(--v2-ink-rgb) / 0.03);
+  background: rgb(var(--site-ink-rgb) / 0.03);
 }
 
 .placeholder-icon {
   font-size: 2.5rem;
-  color: rgb(var(--v2-ink-rgb) / 0.1);
+  color: rgb(var(--site-ink-rgb) / 0.1);
 }
 
 .featured-gradient {
@@ -356,16 +356,16 @@ const formatShortDate = (iso?: string) => {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--v2-accent);
+  color: var(--site-accent);
   padding: 0.3rem 0.7rem;
   border-radius: 9999px;
-  background: rgb(var(--v2-bg-rgb) / 0.75);
-  border: 1px solid rgb(var(--v2-accent-rgb) / 0.35);
+  background: rgb(var(--site-bg-rgb) / 0.75);
+  border: 1px solid rgb(var(--site-accent-rgb) / 0.35);
   backdrop-filter: blur(8px);
 }
 
@@ -378,9 +378,9 @@ const formatShortDate = (iso?: string) => {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.8125rem;
-  color: rgb(var(--v2-ink-rgb) / 0.4);
+  color: rgb(var(--site-ink-rgb) / 0.4);
   margin-bottom: 0.65rem;
 }
 
@@ -393,16 +393,16 @@ const formatShortDate = (iso?: string) => {
   font-weight: 500;
   padding: 0.15rem 0.55rem;
   border-radius: 9999px;
-  color: rgb(var(--v2-accent-rgb) / 0.9);
-  background: rgb(var(--v2-accent-rgb) / 0.1);
-  border: 1px solid rgb(var(--v2-accent-rgb) / 0.2);
+  color: rgb(var(--site-accent-rgb) / 0.9);
+  background: rgb(var(--site-accent-rgb) / 0.1);
+  border: 1px solid rgb(var(--site-accent-rgb) / 0.2);
 }
 
 .featured-title {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: clamp(1.25rem, 3vw, 1.6rem);
   font-weight: 650;
-  color: rgb(var(--v2-ink-rgb) / 0.95);
+  color: rgb(var(--site-ink-rgb) / 0.95);
   line-height: 1.3;
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
@@ -411,7 +411,7 @@ const formatShortDate = (iso?: string) => {
 .featured-excerpt {
   font-size: 0.9rem;
   line-height: 1.65;
-  color: rgb(var(--v2-ink-rgb) / 0.45);
+  color: rgb(var(--site-ink-rgb) / 0.45);
   margin: 0 0 1rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -423,10 +423,10 @@ const formatShortDate = (iso?: string) => {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--v2-accent);
+  color: var(--site-accent);
   transition: color 0.2s ease;
 
   .cta-icon {
@@ -451,17 +451,17 @@ const formatShortDate = (iso?: string) => {
 }
 
 .year-label {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: rgb(var(--v2-ink-rgb) / 0.35);
+  color: rgb(var(--site-ink-rgb) / 0.35);
 }
 
 .year-line {
   flex: 1;
   height: 1px;
-  background: rgb(var(--v2-ink-rgb) / 0.06);
+  background: rgb(var(--site-ink-rgb) / 0.06);
 }
 
 /* Post rows */
@@ -477,10 +477,10 @@ const formatShortDate = (iso?: string) => {
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgb(var(--v2-ink-rgb) / 0.035);
+    background: rgb(var(--site-ink-rgb) / 0.035);
 
     .row-title {
-      color: var(--v2-accent);
+      color: var(--site-accent);
     }
 
     .row-arrow {
@@ -493,9 +493,9 @@ const formatShortDate = (iso?: string) => {
 .row-date {
   flex-shrink: 0;
   width: 3.5rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.8125rem;
-  color: rgb(var(--v2-ink-rgb) / 0.35);
+  color: rgb(var(--site-ink-rgb) / 0.35);
   font-variant-numeric: tabular-nums;
 }
 
@@ -505,10 +505,10 @@ const formatShortDate = (iso?: string) => {
 }
 
 .row-title {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgb(var(--v2-ink-rgb) / 0.9);
+  color: rgb(var(--site-ink-rgb) / 0.9);
   line-height: 1.45;
   margin: 0;
   transition: color 0.2s ease;
@@ -517,7 +517,7 @@ const formatShortDate = (iso?: string) => {
 .row-excerpt {
   font-size: 0.8125rem;
   line-height: 1.6;
-  color: rgb(var(--v2-ink-rgb) / 0.35);
+  color: rgb(var(--site-ink-rgb) / 0.35);
   margin: 0.25rem 0 0;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -533,14 +533,14 @@ const formatShortDate = (iso?: string) => {
 }
 
 .row-tag {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.68rem;
   font-weight: 500;
   padding: 0.15rem 0.55rem;
   border-radius: 9999px;
-  color: rgb(var(--v2-ink-rgb) / 0.45);
-  background: rgb(var(--v2-ink-rgb) / 0.045);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
+  color: rgb(var(--site-ink-rgb) / 0.45);
+  background: rgb(var(--site-ink-rgb) / 0.045);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.07);
   white-space: nowrap;
 }
 
@@ -548,9 +548,9 @@ const formatShortDate = (iso?: string) => {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.75rem;
-  color: rgb(var(--v2-ink-rgb) / 0.3);
+  color: rgb(var(--site-ink-rgb) / 0.3);
   white-space: nowrap;
 }
 
@@ -560,7 +560,7 @@ const formatShortDate = (iso?: string) => {
 
 .row-arrow {
   font-size: 1rem;
-  color: var(--v2-accent);
+  color: var(--site-accent);
   opacity: 0;
   transform: translateX(-4px);
   transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -568,9 +568,9 @@ const formatShortDate = (iso?: string) => {
 
 /* Empty state */
 .empty-state {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.9rem;
-  color: rgb(var(--v2-ink-rgb) / 0.35);
+  color: rgb(var(--site-ink-rgb) / 0.35);
   padding: 2rem 0;
 }
 
@@ -584,7 +584,7 @@ const formatShortDate = (iso?: string) => {
 .skeleton-featured {
   aspect-ratio: 21 / 9;
   border-radius: 1rem;
-  background: rgb(var(--v2-ink-rgb) / 0.04);
+  background: rgb(var(--site-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
   margin-bottom: 1rem;
 }
@@ -592,7 +592,7 @@ const formatShortDate = (iso?: string) => {
 .skeleton-row {
   height: 3.5rem;
   border-radius: 0.75rem;
-  background: rgb(var(--v2-ink-rgb) / 0.04);
+  background: rgb(var(--site-ink-rgb) / 0.04);
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-[var(--v2-surface)] text-[var(--v2-text)] rounded-lg">
-    <div v-if="origin === 'configure'" class="bg-[var(--v2-surface-2)] p-4 rounded-t-lg">
+  <div class="bg-[var(--site-surface)] text-[var(--site-text)] rounded-lg">
+    <div v-if="origin === 'configure'" class="bg-[var(--site-surface-2)] p-4 rounded-t-lg">
       <p class="font-light">Edit {{ selectedRecommendation?.fullName }}'s recommendation</p>
     </div>
     <div v-else class="p-4">

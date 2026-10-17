@@ -1,11 +1,11 @@
 <template>
-  <section id="contact" class="v2-section">
-    <div class="v2-container">
-      <div class="v2-card panel">
+  <section id="contact" class="site-section">
+    <div class="site-container">
+      <div class="site-card panel">
         <div class="pitch">
-          <span class="v2-eyebrow">Contact</span>
-          <h2 class="v2-heading">Let's build<br>something.</h2>
-          <p class="v2-lede">
+          <span class="site-eyebrow">Contact</span>
+          <h2 class="site-heading">Let's build<br>something.</h2>
+          <p class="site-lede">
             A role, a project or just a question. Write a few lines and I'll get back to you.
           </p>
         </div>
@@ -23,9 +23,9 @@
 
           <div class="submit-row">
             <span class="hint">Usually replies within a day or two.</span>
-            <button type="submit" class="v2-pill">
+            <button type="submit" class="site-pill">
               Send message
-              <span class="v2-pill-disc"><UIcon name="i-mdi-arrow-right" /></span>
+              <span class="site-pill-disc"><UIcon name="i-mdi-arrow-right" /></span>
             </button>
           </div>
         </form>
@@ -84,11 +84,11 @@ const send = () => {
 
 .pitch {
   padding: 2.5rem;
-  border-right: 1px solid var(--v2-border);
+  border-right: 1px solid var(--site-border);
 
   @media (max-width: 900px) {
     border-right: none;
-    border-bottom: 1px solid var(--v2-border);
+    border-bottom: 1px solid var(--site-border);
     padding: 1.75rem;
   }
 }
@@ -109,11 +109,11 @@ const send = () => {
     gap: 0.45rem;
 
     span {
-      font-family: var(--v2-mono);
+      font-family: var(--site-mono);
       font-size: 0.68rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--v2-faint);
+      color: var(--site-faint);
     }
   }
 
@@ -121,21 +121,21 @@ const send = () => {
   textarea {
     width: 100%;
     padding: 0.85rem 1rem;
-    border: 1px solid var(--v2-border);
+    border: 1px solid var(--site-border);
     border-radius: 0.8rem;
-    background: var(--v2-bg);
-    color: var(--v2-text);
+    background: var(--site-bg);
+    color: var(--site-text);
     font: inherit;
     resize: vertical;
     transition: border-color 0.2s ease;
 
     &::placeholder {
-      color: var(--v2-faint);
+      color: var(--site-faint);
     }
 
     &:focus {
       outline: none;
-      border-color: rgb(var(--v2-ink-rgb) / 0.35);
+      border-color: rgb(var(--site-ink-rgb) / 0.35);
     }
   }
 }
@@ -157,20 +157,20 @@ const send = () => {
 
 .hint {
   font-size: 0.85rem;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 }
 
 .reach {
   grid-column: 1 / -1;
-  border-top: 1px solid var(--v2-border);
+  border-top: 1px solid var(--site-border);
 }
 
 .reach-label {
   margin: 0;
   padding: 1rem 1.5rem;
   font-size: 0.85rem;
-  color: var(--v2-faint);
-  border-bottom: 1px solid var(--v2-border);
+  color: var(--site-faint);
+  border-bottom: 1px solid var(--site-border);
 }
 
 .reach-grid {
@@ -191,34 +191,34 @@ const send = () => {
     transition: background-color 0.2s ease;
 
     &:not(:last-child) {
-      border-right: 1px solid var(--v2-border);
+      border-right: 1px solid var(--site-border);
 
       @media (max-width: 700px) {
         border-right: none;
-        border-bottom: 1px solid var(--v2-border);
+        border-bottom: 1px solid var(--site-border);
       }
     }
 
     &:hover {
-      background: var(--v2-surface-2);
+      background: var(--site-surface-2);
     }
   }
 
   strong {
     display: block;
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-weight: 500;
     font-size: 0.9rem;
   }
 
   small {
     font-size: 0.78rem;
-    color: var(--v2-faint);
+    color: var(--site-faint);
   }
 }
 
 .reach-icon {
   font-size: 1.2rem;
-  color: var(--v2-muted);
+  color: var(--site-muted);
 }
 </style>

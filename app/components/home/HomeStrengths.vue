@@ -1,14 +1,14 @@
 <template>
-  <section id="why" class="v2-section">
-    <div class="v2-container">
-      <span class="v2-eyebrow">What I bring</span>
-      <h2 class="v2-heading">Frontend depth,<br>full-stack reach.</h2>
-      <p class="v2-lede">
+  <section id="why" class="site-section">
+    <div class="site-container">
+      <span class="site-eyebrow">What I bring</span>
+      <h2 class="site-heading">Frontend depth,<br>full-stack reach.</h2>
+      <p class="site-lede">
         Six years of shipping production applications, from the interface down to the API.
       </p>
 
       <div class="bento">
-        <article class="v2-card tile tile--tall">
+        <article class="site-card tile tile--tall">
           <h3>Enterprise apps,<br>used every day.</h3>
           <p>Healthcare, POS and education platforms where performance and reliability are not optional.</p>
           <dl class="numbers">
@@ -19,23 +19,23 @@
           </dl>
         </article>
 
-        <article class="v2-card tile">
+        <article class="site-card tile">
           <h3>Nuxt & Vue<br>at the core.</h3>
           <p>Vue 3, Nuxt and TypeScript, with architecture built for performance and accessibility.</p>
           <div class="chips">
-            <span v-for="skill in topSkills" :key="skill.key" class="v2-chip">
+            <span v-for="skill in topSkills" :key="skill.key" class="site-chip">
               <UIcon :name="`i-mdi-${skill.icon}`" />
               {{ skill.name }}
             </span>
           </div>
         </article>
 
-        <article class="v2-card tile">
+        <article class="site-card tile">
           <h3>Backend<br>when it counts.</h3>
           <p>ASP.NET Core, C# and SQL, so features ship end to end instead of stopping at the API boundary.</p>
         </article>
 
-        <article class="v2-card tile">
+        <article class="site-card tile">
           <h3>Remote-first,<br>EU and Balkans.</h3>
           <p>Open to remote worldwide or hybrid in the EU and Balkans. Based in Podgorica.</p>
           <span class="clock">
@@ -44,7 +44,7 @@
           </span>
         </article>
 
-        <NuxtLink to="/now" class="v2-card tile tile--link">
+        <NuxtLink to="/now" class="site-card tile tile--link">
           <h3>Right now.</h3>
           <p>{{ currentWork.short ?? currentWork.title }}</p>
           <span class="tile-more">
@@ -112,7 +112,7 @@ onMounted(() => {
   color: inherit;
 
   h3 {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-weight: 600;
     font-size: 1.45rem;
     line-height: 1.15;
@@ -122,7 +122,7 @@ onMounted(() => {
 
   p {
     margin: 0;
-    color: var(--v2-muted);
+    color: var(--site-muted);
     line-height: 1.6;
   }
 
@@ -138,8 +138,8 @@ onMounted(() => {
     transition: border-color 0.25s ease, background-color 0.25s ease;
 
     &:hover {
-      border-color: var(--v2-border-strong);
-      background: var(--v2-surface-2);
+      border-color: var(--site-border-strong);
+      background: var(--site-surface-2);
     }
   }
 }
@@ -155,11 +155,11 @@ onMounted(() => {
     align-items: baseline;
     gap: 0.75rem;
     padding-top: 1.25rem;
-    border-top: 1px solid var(--v2-border);
+    border-top: 1px solid var(--site-border);
   }
 
   dt {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-size: 2.6rem;
     font-weight: 600;
     letter-spacing: -0.03em;
@@ -168,11 +168,11 @@ onMounted(() => {
 
   dd {
     margin: 0;
-    font-family: var(--v2-mono);
+    font-family: var(--site-mono);
     font-size: 0.7rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--v2-faint);
+    color: var(--site-faint);
   }
 }
 
@@ -188,18 +188,18 @@ onMounted(() => {
   align-items: center;
   gap: 0.5rem;
   margin-top: auto;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-  color: var(--v2-muted);
+  color: var(--site-muted);
 }
 
 .live-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--v2-live);
-  box-shadow: 0 0 10px var(--v2-live);
+  background: var(--site-live);
+  box-shadow: 0 0 10px var(--site-live);
 }
 
 .tile-more {
@@ -207,8 +207,8 @@ onMounted(() => {
   align-items: center;
   gap: 0.4rem;
   margin-top: auto;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.9rem;
-  color: var(--v2-text);
+  color: var(--site-text);
 }
 </style>

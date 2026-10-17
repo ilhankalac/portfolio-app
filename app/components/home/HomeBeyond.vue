@@ -1,14 +1,14 @@
 <template>
-  <section id="beyond" class="v2-section">
-    <div class="v2-container">
-      <span class="v2-eyebrow">Beyond code</span>
-      <h2 class="v2-heading">Films, books, places<br>and everything between.</h2>
-      <p class="v2-lede">
+  <section id="beyond" class="site-section">
+    <div class="site-container">
+      <span class="site-eyebrow">Beyond code</span>
+      <h2 class="site-heading">Films, books, places<br>and everything between.</h2>
+      <p class="site-lede">
         The things that shape how I think, collected in one place.
       </p>
 
       <div class="grid">
-        <NuxtLink v-for="item in items" :key="item.to" :to="item.to" class="v2-card tile">
+        <NuxtLink v-for="item in items" :key="item.to" :to="item.to" class="site-card tile">
           <span class="icon"><UIcon :name="item.icon" /></span>
           <h3>{{ item.title }}</h3>
           <p>{{ item.text }}</p>
@@ -93,7 +93,7 @@ const items = [
   transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 
   h3 {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-weight: 600;
     font-size: 1.35rem;
     letter-spacing: -0.02em;
@@ -102,19 +102,19 @@ const items = [
 
   p {
     margin: 0;
-    color: var(--v2-muted);
+    color: var(--site-muted);
     line-height: 1.6;
     font-size: 0.95rem;
   }
 
   &:hover {
-    border-color: var(--v2-border-strong);
-    background: var(--v2-surface-2);
+    border-color: var(--site-border-strong);
+    background: var(--site-surface-2);
     transform: translateY(-3px);
   }
 
   &:hover .go {
-    color: var(--v2-accent);
+    color: var(--site-accent);
   }
 }
 
@@ -123,10 +123,10 @@ const items = [
   place-items: center;
   width: 2.6rem;
   height: 2.6rem;
-  border: 1px solid var(--v2-border-strong);
+  border: 1px solid var(--site-border-strong);
   border-radius: 50%;
   font-size: 1.15rem;
-  color: var(--v2-accent);
+  color: var(--site-accent);
 }
 
 .go {
@@ -135,9 +135,9 @@ const items = [
   gap: 0.4rem;
   margin-top: auto;
   padding-top: 1rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.88rem;
-  color: var(--v2-text);
+  color: var(--site-text);
   transition: color 0.2s ease;
 }
 

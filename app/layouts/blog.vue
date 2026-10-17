@@ -1,6 +1,6 @@
 <template>
-  <div class="v2">
-    <V2Nav />
+  <div class="site">
+    <SiteNav />
 
     <div class="explore-shell">
       <!-- Sidebar -->
@@ -31,13 +31,13 @@
       </main>
     </div>
 
-    <V2Footer />
+    <SiteFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import V2Nav from '~/components/v2/V2Nav.vue'
-import V2Footer from '~/components/v2/V2Footer.vue'
+import SiteNav from '~/components/base/SiteNav.vue'
+import SiteFooter from '~/components/base/SiteFooter.vue'
 
 const route = useRoute()
 
@@ -58,10 +58,10 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   display: grid;
   grid-template-columns: 15rem minmax(0, 1fr);
   gap: 3rem;
-  max-width: var(--v2-max);
+  max-width: var(--site-max);
   margin: 0 auto;
   /* Top padding clears the fixed navbar so page eyebrows/titles aren't hidden */
-  padding: 7rem var(--v2-gutter) 3rem;
+  padding: 7rem var(--site-gutter) 3rem;
   min-height: 70vh;
 }
 
@@ -76,12 +76,12 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
 
 .sidebar-label {
   display: block;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgb(var(--v2-ink-rgb) / 0.3);
+  color: rgb(var(--site-ink-rgb) / 0.3);
   padding: 0 0.75rem;
   margin-bottom: 0.75rem;
 }
@@ -102,28 +102,28 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgb(var(--v2-ink-rgb) / 0.04);
+    background: rgb(var(--site-ink-rgb) / 0.04);
 
     .item-label {
-      color: rgb(var(--v2-ink-rgb) / 0.95);
+      color: rgb(var(--site-ink-rgb) / 0.95);
     }
   }
 
   &--active {
-    background: rgb(var(--v2-accent-rgb) / 0.08);
+    background: rgb(var(--site-accent-rgb) / 0.08);
 
     .item-icon-wrap {
-      color: var(--v2-accent);
-      background: rgb(var(--v2-accent-rgb) / 0.14);
-      border-color: rgb(var(--v2-accent-rgb) / 0.3);
+      color: var(--site-accent);
+      background: rgb(var(--site-accent-rgb) / 0.14);
+      border-color: rgb(var(--site-accent-rgb) / 0.3);
     }
 
     .item-label {
-      color: var(--v2-text);
+      color: var(--site-text);
     }
 
     &:hover {
-      background: rgb(var(--v2-accent-rgb) / 0.12);
+      background: rgb(var(--site-accent-rgb) / 0.12);
     }
   }
 }
@@ -136,9 +136,9 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
   width: 2rem;
   height: 2rem;
   border-radius: 0.55rem;
-  color: rgb(var(--v2-ink-rgb) / 0.45);
-  background: rgb(var(--v2-ink-rgb) / 0.04);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.07);
+  color: rgb(var(--site-ink-rgb) / 0.45);
+  background: rgb(var(--site-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.07);
   transition: all 0.2s ease;
 }
 
@@ -154,18 +154,18 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
 }
 
 .item-label {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.85rem;
   font-weight: 550;
-  color: rgb(var(--v2-ink-rgb) / 0.75);
+  color: rgb(var(--site-ink-rgb) / 0.75);
   line-height: 1.35;
   transition: color 0.2s ease;
 }
 
 .item-desc {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.72rem;
-  color: rgb(var(--v2-ink-rgb) / 0.32);
+  color: rgb(var(--site-ink-rgb) / 0.32);
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
@@ -191,10 +191,10 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
     z-index: 100;
     margin: 0 -1.5rem;
     padding: 0.6rem 1.5rem;
-    background: rgb(var(--v2-bg-rgb) / 0.85);
+    background: rgb(var(--site-bg-rgb) / 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
+    border-bottom: 1px solid rgb(var(--site-ink-rgb) / 0.06);
   }
 
   .sidebar-label {
@@ -219,7 +219,7 @@ const isActive = (section: { path: string }) => route.path.startsWith(section.pa
     border: 1px solid transparent;
 
     &--active {
-      border-color: rgb(var(--v2-accent-rgb) / 0.3);
+      border-color: rgb(var(--site-accent-rgb) / 0.3);
     }
   }
 

@@ -134,7 +134,7 @@ onMounted(() => {
   transition: background-color 0.3s ease;
 
   &.scrolled {
-    background: linear-gradient(180deg, rgb(var(--v2-bg-rgb) / 0.85), rgb(var(--v2-bg-rgb) / 0));
+    background: linear-gradient(180deg, rgb(var(--site-bg-rgb) / 0.85), rgb(var(--site-bg-rgb) / 0));
   }
 
   @media (max-width: 900px) {
@@ -151,13 +151,13 @@ onMounted(() => {
 .logo {
   display: flex;
   flex-direction: column;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-weight: 800;
   font-size: 0.82rem;
   line-height: 0.95;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--v2-text);
+  color: var(--site-text);
   text-decoration: none;
   justify-self: start;
 }
@@ -166,9 +166,9 @@ onMounted(() => {
   display: flex;
   gap: 0.25rem;
   padding: 0.3rem;
-  border: 1px solid var(--v2-border-strong);
+  border: 1px solid var(--site-border-strong);
   border-radius: 9999px;
-  background: rgb(var(--v2-surface-rgb) / 0.7);
+  background: rgb(var(--site-surface-rgb) / 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -186,19 +186,19 @@ onMounted(() => {
   position: relative;
   padding: 0.45rem 0.9rem;
   border-radius: 9999px;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.82rem;
-  color: var(--v2-faint);
+  color: var(--site-faint);
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
 
   &:hover {
-    color: var(--v2-text);
+    color: var(--site-text);
   }
 
   &.active {
-    color: var(--v2-text);
+    color: var(--site-text);
 
     &::after {
       content: '';
@@ -208,7 +208,7 @@ onMounted(() => {
       width: 1rem;
       height: 2px;
       border-radius: 2px;
-      background: var(--v2-text);
+      background: var(--site-text);
       transform: translateX(-50%);
     }
   }
@@ -226,11 +226,11 @@ onMounted(() => {
 }
 
 .status {
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 
   @media (max-width: 900px) {
     display: none;
@@ -242,18 +242,18 @@ onMounted(() => {
   place-items: center;
   width: 2.6rem;
   height: 2.6rem;
-  border: 1px solid var(--v2-border-strong);
+  border: 1px solid var(--site-border-strong);
   border-radius: 50%;
-  background: rgb(var(--v2-surface-rgb) / 0.7);
+  background: rgb(var(--site-surface-rgb) / 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  color: var(--v2-text);
+  color: var(--site-text);
   font-size: 1.2rem;
   cursor: pointer;
   transition: border-color 0.2s ease;
 
   &:hover {
-    border-color: rgb(var(--v2-ink-rgb) / 0.32);
+    border-color: rgb(var(--site-ink-rgb) / 0.32);
   }
 }
 
@@ -279,9 +279,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  border: 1px solid var(--v2-border-strong);
+  border: 1px solid var(--site-border-strong);
   border-radius: 1.25rem;
-  background: rgb(var(--v2-surface-rgb) / 0.95);
+  background: rgb(var(--site-surface-rgb) / 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -289,24 +289,24 @@ onMounted(() => {
 .sheet-link {
   padding: 0.85rem 1rem;
   border-radius: 0.8rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 1.05rem;
-  color: var(--v2-muted);
+  color: var(--site-muted);
   text-decoration: none;
 
   &.active {
-    color: var(--v2-text);
-    background: var(--v2-surface-2);
+    color: var(--site-text);
+    background: var(--site-surface-2);
   }
 }
 
 .sheet-status {
   padding: 0.85rem 1rem 0.5rem;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 }
 
 .menu-enter-active,

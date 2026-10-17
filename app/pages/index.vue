@@ -1,31 +1,31 @@
 <template>
-  <div class="v2">
-    <V2Nav />
+  <div class="site">
+    <SiteNav />
     <main>
-      <V2Hero />
-      <V2Strengths :skills="skills ?? []" />
-      <V2Projects :projects="projects ?? []" />
-      <V2Story :description="aboutDescription ?? ''" />
-      <V2Experience :experiences="experiences ?? []" />
-      <V2Recommendations :recommendations="recommendations ?? []" />
-      <V2Beyond />
-      <V2Contact />
+      <HomeHero />
+      <HomeStrengths :skills="skills ?? []" />
+      <HomeProjects :projects="projects ?? []" />
+      <HomeStory :description="aboutDescription ?? ''" />
+      <HomeExperience :experiences="experiences ?? []" />
+      <HomeRecommendations :recommendations="recommendations ?? []" />
+      <HomeBeyond />
+      <HomeContact />
     </main>
-    <V2Footer />
+    <SiteFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import V2Nav from '~/components/v2/V2Nav.vue'
-import V2Hero from '~/components/v2/V2Hero.vue'
-import V2Strengths from '~/components/v2/V2Strengths.vue'
-import V2Projects from '~/components/v2/V2Projects.vue'
-import V2Story from '~/components/v2/V2Story.vue'
-import V2Experience from '~/components/v2/V2Experience.vue'
-import V2Recommendations from '~/components/v2/V2Recommendations.vue'
-import V2Beyond from '~/components/v2/V2Beyond.vue'
-import V2Contact from '~/components/v2/V2Contact.vue'
-import V2Footer from '~/components/v2/V2Footer.vue'
+import SiteNav from '~/components/base/SiteNav.vue'
+import HomeHero from '~/components/home/HomeHero.vue'
+import HomeStrengths from '~/components/home/HomeStrengths.vue'
+import HomeProjects from '~/components/home/HomeProjects.vue'
+import HomeStory from '~/components/home/HomeStory.vue'
+import HomeExperience from '~/components/home/HomeExperience.vue'
+import HomeRecommendations from '~/components/home/HomeRecommendations.vue'
+import HomeBeyond from '~/components/home/HomeBeyond.vue'
+import HomeContact from '~/components/home/HomeContact.vue'
+import SiteFooter from '~/components/base/SiteFooter.vue'
 import type { IExperience, ISkill, IFreeProject, IColleagueInfo } from '~/types/models'
 
 useHead({
@@ -65,12 +65,12 @@ const [
 onMounted(() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-  const targets = document.querySelectorAll<HTMLElement>('.v2-section .v2-container > *')
+  const targets = document.querySelectorAll<HTMLElement>('.site-section .site-container > *')
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue
-        entry.target.classList.add('v2-reveal--in')
+        entry.target.classList.add('site-reveal--in')
         observer.unobserve(entry.target)
       }
     },
@@ -78,7 +78,7 @@ onMounted(() => {
   )
 
   targets.forEach((el) => {
-    el.classList.add('v2-reveal')
+    el.classList.add('site-reveal')
     observer.observe(el)
   })
 

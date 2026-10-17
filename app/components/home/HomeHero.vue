@@ -13,9 +13,9 @@
       </p>
 
       <div class="actions">
-        <a class="v2-pill" href="/ilhan-kalac-resume.pdf?v=2026-10b" target="_blank" rel="noopener noreferrer">
+        <a class="site-pill" href="/ilhan-kalac-resume.pdf?v=2026-10b" target="_blank" rel="noopener noreferrer">
           View my CV
-          <span class="v2-pill-disc"><UIcon name="i-mdi-arrow-right" /></span>
+          <span class="site-pill-disc"><UIcon name="i-mdi-arrow-right" /></span>
         </a>
 
         <button class="email" type="button" @click="copyEmail">
@@ -51,7 +51,7 @@ const copyEmail = async () => {
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 7rem var(--v2-gutter) 12rem;
+  padding: 7rem var(--site-gutter) 12rem;
   text-align: center;
 }
 
@@ -62,7 +62,7 @@ const copyEmail = async () => {
 }
 
 .title {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-weight: 600;
   font-size: clamp(2.6rem, 7.2vw, 5.4rem);
   line-height: 1.02;
@@ -71,7 +71,7 @@ const copyEmail = async () => {
 }
 
 .accent {
-  color: var(--v2-accent);
+  color: var(--site-accent);
 }
 
 /* The small metallic sphere that sits inside the headline. */
@@ -82,8 +82,8 @@ const copyEmail = async () => {
   margin: 0 0.08em;
   vertical-align: 0.02em;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, var(--v2-text) 0%, #a89d8b 22%, #3d3933 58%, #121211 100%);
-  box-shadow: 0 0 24px rgb(var(--v2-accent-rgb) / 0.25);
+  background: radial-gradient(circle at 32% 28%, var(--site-text) 0%, #a89d8b 22%, #3d3933 58%, #121211 100%);
+  box-shadow: 0 0 24px rgb(var(--site-accent-rgb) / 0.25);
   animation: orbFloat 6s ease-in-out infinite;
 }
 
@@ -97,7 +97,7 @@ const copyEmail = async () => {
   margin: 1.75rem auto 0;
   font-size: 1.1rem;
   line-height: 1.65;
-  color: var(--v2-muted);
+  color: var(--site-muted);
 }
 
 .actions {
@@ -115,14 +115,14 @@ const copyEmail = async () => {
   gap: 0.5rem;
   background: none;
   border: none;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.9rem;
-  color: var(--v2-muted);
+  color: var(--site-muted);
   cursor: pointer;
   transition: color 0.2s ease;
 
   &:hover {
-    color: var(--v2-text);
+    color: var(--site-text);
   }
 }
 
@@ -135,10 +135,10 @@ const copyEmail = async () => {
   height: 150vw;
   transform: translate(-50%, 95%);
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 0%, var(--v2-surface-2) 0%, var(--v2-surface) 30%, var(--v2-bg) 60%);
+  background: radial-gradient(circle at 50% 0%, var(--site-surface-2) 0%, var(--site-surface) 30%, var(--site-bg) 60%);
   box-shadow:
-    0 -1px 0 rgb(var(--v2-ink-rgb) / 0.45),
-    0 -40px 120px rgb(var(--v2-ink-rgb) / 0.07);
+    0 -1px 0 rgb(var(--site-ink-rgb) / 0.45),
+    0 -40px 120px rgb(var(--site-ink-rgb) / 0.07);
 
   @media (max-width: 768px) {
     transform: translate(-50%, 96%);

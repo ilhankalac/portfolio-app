@@ -1,9 +1,9 @@
 <template>
-  <section id="about" class="v2-section">
-    <div class="v2-container story">
+  <section id="about" class="site-section">
+    <div class="site-container story">
       <div class="text">
-        <h2 class="v2-heading">My story</h2>
-        <div class="v2-prose body" v-html="description" />
+        <h2 class="site-heading">My story</h2>
+        <div class="site-prose body" v-html="description" />
 
         <div class="socials">
           <a
@@ -69,15 +69,15 @@ const links = [
   place-items: center;
   width: 2.6rem;
   height: 2.6rem;
-  border: 1px solid var(--v2-border-strong);
+  border: 1px solid var(--site-border-strong);
   border-radius: 50%;
-  color: var(--v2-muted);
+  color: var(--site-muted);
   font-size: 1.1rem;
   transition: color 0.2s ease, border-color 0.2s ease;
 
   &:hover {
-    color: var(--v2-text);
-    border-color: rgb(var(--v2-ink-rgb) / 0.35);
+    color: var(--site-text);
+    border-color: rgb(var(--site-ink-rgb) / 0.35);
   }
 }
 
@@ -95,9 +95,9 @@ const links = [
   aspect-ratio: 1;
   padding: 1rem;
   border-radius: 50%;
-  border: 1px solid var(--v2-border-strong);
-  background: radial-gradient(circle, var(--v2-surface-2), var(--v2-bg) 70%);
-  box-shadow: 0 0 80px rgb(var(--v2-ink-rgb) / 0.05), inset 0 0 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--site-border-strong);
+  background: radial-gradient(circle, var(--site-surface-2), var(--site-bg) 70%);
+  box-shadow: 0 0 80px rgb(var(--site-ink-rgb) / 0.05), inset 0 0 40px rgba(0, 0, 0, 0.6);
 
   img {
     width: 100%;
@@ -105,7 +105,6 @@ const links = [
     border-radius: 50%;
     object-fit: cover;
     object-position: center 20%;
-    filter: grayscale(1) contrast(1.05);
   }
 }
 </style>

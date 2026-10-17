@@ -52,16 +52,16 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .footer {
-  padding: 4rem var(--v2-gutter) 2.5rem;
+  padding: 4rem var(--site-gutter) 2.5rem;
   text-align: center;
 }
 
 .rim {
-  max-width: var(--v2-max);
+  max-width: var(--site-max);
   height: 1px;
   margin: 0 auto 3.5rem;
-  background: linear-gradient(90deg, transparent, rgb(var(--v2-ink-rgb) / 0.5), transparent);
-  box-shadow: 0 0 30px rgb(var(--v2-ink-rgb) / 0.25);
+  background: linear-gradient(90deg, transparent, rgb(var(--site-ink-rgb) / 0.5), transparent);
+  box-shadow: 0 0 30px rgb(var(--site-ink-rgb) / 0.25);
 }
 
 .status {
@@ -71,14 +71,14 @@ onMounted(() => {
   justify-content: center;
   gap: 0.6rem;
   margin: 0;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 
   strong {
-    color: var(--v2-text);
+    color: var(--site-text);
     font-weight: 500;
   }
 }
@@ -87,8 +87,8 @@ onMounted(() => {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--v2-live);
-  box-shadow: 0 0 10px var(--v2-live);
+  background: var(--site-live);
+  box-shadow: 0 0 10px var(--site-live);
 }
 
 .sep {
@@ -103,13 +103,13 @@ onMounted(() => {
   margin: 2.25rem 0;
 
   a {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-size: 0.9rem;
-    color: var(--v2-muted);
+    color: var(--site-muted);
     text-decoration: none;
 
     &:hover {
-      color: var(--v2-text);
+      color: var(--site-text);
     }
   }
 }
@@ -117,6 +117,6 @@ onMounted(() => {
 .copy {
   margin: 0;
   font-size: 0.8rem;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 }
 </style>

@@ -1,0 +1,194 @@
+/*
+ * Site-wide design tokens and shared building blocks (navy night, sand accent; warm paper in light).
+ * The tokens live on :root so every page and scoped component can read them;
+ * .site paints a page shell with the background, text colour and body font.
+ */
+:root {
+  /* Dark (default): navy #0f172a with cool off-white text */
+  --site-bg-rgb: 15 23 42;
+  --site-surface-rgb: 22 32 54;
+  --site-surface-2: #1c2942;
+  --site-ink-rgb: 241 245 249;
+  --site-accent-rgb: 216 195 160;
+  --site-accent-soft: #e6d6bb;
+  --site-live: #4ade80;
+
+  /* Text and controls sitting on photos stay light in both themes. */
+  --site-on-image-rgb: 245 239 228;
+  --site-on-image: rgb(var(--site-on-image-rgb));
+
+  --site-bg: rgb(var(--site-bg-rgb));
+  --site-surface: rgb(var(--site-surface-rgb));
+  --site-text: rgb(var(--site-ink-rgb));
+  --site-muted: rgb(var(--site-ink-rgb) / 0.62);
+  --site-faint: rgb(var(--site-ink-rgb) / 0.38);
+  --site-border: rgb(var(--site-ink-rgb) / 0.08);
+  --site-border-strong: rgb(var(--site-ink-rgb) / 0.16);
+  --site-accent: rgb(var(--site-accent-rgb));
+
+  --site-display: 'Outfit', 'Inter', sans-serif;
+  --site-body: 'Source Sans 3', 'Inter', sans-serif;
+  --site-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --site-max: 72rem;
+  --site-gutter: 1.5rem;
+}
+
+/* Light: warm paper, dark ink and a bronze accent that stays readable on white. */
+html.light {
+  --site-bg-rgb: 250 248 243;
+  --site-surface-rgb: 255 255 255;
+  --site-surface-2: #f2eee6;
+  --site-ink-rgb: 28 26 22;
+  --site-accent-rgb: 138 106 58;
+  --site-accent-soft: #6f5428;
+  --site-live: #16a34a;
+
+  --site-muted: rgb(var(--site-ink-rgb) / 0.68);
+  --site-faint: rgb(var(--site-ink-rgb) / 0.48);
+  --site-border: rgb(var(--site-ink-rgb) / 0.1);
+  --site-border-strong: rgb(var(--site-ink-rgb) / 0.18);
+}
+
+.site {
+  min-height: 100vh;
+  background:
+    /* A faint scatter of "stars", like the reference's night sky. */
+    radial-gradient(1px 1px at 12% 18%, rgb(var(--site-ink-rgb) / 0.35), transparent),
+    radial-gradient(1px 1px at 78% 9%, rgb(var(--site-ink-rgb) / 0.25), transparent),
+    radial-gradient(1px 1px at 33% 64%, rgb(var(--site-ink-rgb) / 0.2), transparent),
+    radial-gradient(1px 1px at 91% 47%, rgb(var(--site-ink-rgb) / 0.3), transparent),
+    radial-gradient(1px 1px at 55% 83%, rgb(var(--site-ink-rgb) / 0.2), transparent),
+    var(--site-bg);
+  background-size: 900px 900px, 900px 900px, 900px 900px, 900px 900px, 900px 900px, auto;
+  color: var(--site-text);
+  font-family: var(--site-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The star scatter only reads as stars on the dark background. */
+html.light .site {
+  background: var(--site-bg);
+}
+
+.site-container {
+  max-width: var(--site-max);
+  margin: 0 auto;
+  padding: 0 var(--site-gutter);
+}
+
+.site-section {
+  padding: 7rem 0;
+  scroll-margin-top: 4rem;
+
+  @media (max-width: 768px) {
+    padding: 4.5rem 0;
+  }
+}
+
+.site-eyebrow {
+  display: inline-block;
+  font-family: var(--site-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--site-faint);
+  margin-bottom: 1rem;
+}
+
+.site-heading {
+  font-family: var(--site-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.site-lede {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--site-muted);
+  max-width: 34rem;
+  margin: 1.1rem 0 0;
+}
+
+/* Pill button with the cream arrow disc used across the reference. */
+.site-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.25rem;
+  border: 1px solid var(--site-border-strong);
+  border-radius: 9999px;
+  background: var(--site-surface);
+  color: var(--site-text);
+  font-family: var(--site-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+
+  &:hover {
+    border-color: rgb(var(--site-ink-rgb) / 0.32);
+    background: var(--site-surface-2);
+  }
+
+  &:hover .site-pill-disc {
+    transform: translateX(2px);
+  }
+}
+
+.site-pill-disc {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background: var(--site-text);
+  color: var(--site-bg);
+  transition: transform 0.25s ease;
+}
+
+.site-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--site-border);
+  border-radius: 9999px;
+  background: var(--site-surface);
+  font-size: 0.78rem;
+  color: var(--site-muted);
+  white-space: nowrap;
+}
+
+.site-card {
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  border-radius: 1.25rem;
+}
+
+.site-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &--in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Rich text from the CMS (about, experience, recommendations). */
+.site-prose {
+  color: var(--site-muted);
+  line-height: 1.7;
+
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--site-text); font-weight: 600; }
+  a { color: var(--site-accent); }
+  ul { padding-left: 1.1rem; margin: 0.5rem 0 1rem; }
+  li { margin: 0.25rem 0; }
+}

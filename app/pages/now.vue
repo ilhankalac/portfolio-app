@@ -147,20 +147,20 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-label {
   display: block;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--v2-accent);
+  color: var(--site-accent);
   margin-bottom: 0.4rem;
 }
 
 .now-title {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: clamp(2.2rem, 4.5vw, 3.25rem);
   font-weight: 600;
-  color: rgb(var(--v2-ink-rgb) / 0.95);
+  color: rgb(var(--site-ink-rgb) / 0.95);
   margin: 0;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -168,20 +168,20 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-subtitle {
   font-size: 0.9375rem;
-  color: rgb(var(--v2-ink-rgb) / 0.4);
+  color: rgb(var(--site-ink-rgb) / 0.4);
   margin: 0.5rem 0 0;
   line-height: 1.6;
 }
 
 .now-link {
-  color: rgb(var(--v2-accent-rgb) / 0.85);
+  color: rgb(var(--site-accent-rgb) / 0.85);
   text-decoration: none;
-  border-bottom: 1px dashed rgb(var(--v2-accent-rgb) / 0.4);
+  border-bottom: 1px dashed rgb(var(--site-accent-rgb) / 0.4);
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgb(var(--v2-accent-rgb) / 1);
-    border-bottom-color: rgb(var(--v2-accent-rgb) / 0.8);
+    color: rgb(var(--site-accent-rgb) / 1);
+    border-bottom-color: rgb(var(--site-accent-rgb) / 0.8);
   }
 }
 
@@ -196,14 +196,14 @@ const statusLabel = (s: WorkStatus) => {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.8125rem;
-  color: rgb(var(--v2-ink-rgb) / 0.5);
+  color: rgb(var(--site-ink-rgb) / 0.5);
 }
 
 .now-meta-icon {
   font-size: 0.95rem;
-  color: rgb(var(--v2-accent-rgb) / 0.75);
+  color: rgb(var(--site-accent-rgb) / 0.75);
 }
 
 /* Sections */
@@ -215,17 +215,17 @@ const statusLabel = (s: WorkStatus) => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgb(var(--v2-ink-rgb) / 0.9);
+  color: rgb(var(--site-ink-rgb) / 0.9);
   margin: 0 0 0.85rem;
   letter-spacing: -0.01em;
 }
 
 .section-icon {
   font-size: 1rem;
-  color: var(--v2-accent);
+  color: var(--site-accent);
 }
 
 /* Working on cards */
@@ -237,14 +237,14 @@ const statusLabel = (s: WorkStatus) => {
 
 .now-card {
   padding: 1rem 1.1rem;
-  background: rgb(var(--v2-ink-rgb) / 0.03);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.05);
+  background: rgb(var(--site-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.05);
   border-radius: 0.75rem;
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgb(var(--v2-ink-rgb) / 0.045);
-    border-color: rgb(var(--v2-ink-rgb) / 0.08);
+    background: rgb(var(--site-ink-rgb) / 0.045);
+    border-color: rgb(var(--site-ink-rgb) / 0.08);
   }
 }
 
@@ -257,17 +257,17 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .card-title {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgb(var(--v2-ink-rgb) / 0.92);
+  color: rgb(var(--site-ink-rgb) / 0.92);
   margin: 0;
   line-height: 1.4;
 }
 
 .card-status {
   flex-shrink: 0;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.65rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -283,9 +283,9 @@ const statusLabel = (s: WorkStatus) => {
   }
 
   &.status-shipped {
-    color: var(--v2-accent);
-    background: rgb(var(--v2-accent-rgb) / 0.1);
-    border: 1px solid rgb(var(--v2-accent-rgb) / 0.2);
+    color: var(--site-accent);
+    background: rgb(var(--site-accent-rgb) / 0.1);
+    border: 1px solid rgb(var(--site-accent-rgb) / 0.2);
   }
 
   &.status-wip {
@@ -295,17 +295,17 @@ const statusLabel = (s: WorkStatus) => {
   }
 
   &.status-paused {
-    color: rgb(var(--v2-ink-rgb) / 0.45);
-    background: rgb(var(--v2-ink-rgb) / 0.05);
-    border: 1px solid rgb(var(--v2-ink-rgb) / 0.08);
+    color: rgb(var(--site-ink-rgb) / 0.45);
+    background: rgb(var(--site-ink-rgb) / 0.05);
+    border: 1px solid rgb(var(--site-ink-rgb) / 0.08);
   }
 }
 
 .card-text {
-  font-family: var(--v2-body);
+  font-family: var(--site-body);
   font-size: 0.825rem;
   line-height: 1.6;
-  color: rgb(var(--v2-ink-rgb) / 0.5);
+  color: rgb(var(--site-ink-rgb) / 0.5);
   margin: 0;
 }
 
@@ -321,10 +321,10 @@ const statusLabel = (s: WorkStatus) => {
   li {
     position: relative;
     padding-left: 1.1rem;
-    font-family: var(--v2-body);
+    font-family: var(--site-body);
     font-size: 0.875rem;
     line-height: 1.6;
-    color: rgb(var(--v2-ink-rgb) / 0.7);
+    color: rgb(var(--site-ink-rgb) / 0.7);
 
     &::before {
       content: '';
@@ -334,17 +334,17 @@ const statusLabel = (s: WorkStatus) => {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--v2-accent);
+      background: var(--site-accent);
     }
   }
 }
 
 /* Prose block (Thinking about) */
 .now-prose {
-  font-family: var(--v2-body);
+  font-family: var(--site-body);
   font-size: 0.875rem;
   line-height: 1.7;
-  color: rgb(var(--v2-ink-rgb) / 0.7);
+  color: rgb(var(--site-ink-rgb) / 0.7);
   margin: 0;
   max-width: 42rem;
 }
@@ -360,18 +360,18 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .book-item {
-  font-family: var(--v2-body);
+  font-family: var(--site-body);
   font-size: 0.875rem;
   line-height: 1.6;
 }
 
 .book-title {
-  color: rgb(var(--v2-ink-rgb) / 0.85);
+  color: rgb(var(--site-ink-rgb) / 0.85);
   font-weight: 500;
 }
 
 .book-author {
-  color: rgb(var(--v2-ink-rgb) / 0.4);
+  color: rgb(var(--site-ink-rgb) / 0.4);
   margin-left: 0.25rem;
 }
 
@@ -390,29 +390,29 @@ const statusLabel = (s: WorkStatus) => {
 }
 
 .goal-label {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.875rem;
-  color: rgb(var(--v2-ink-rgb) / 0.8);
+  color: rgb(var(--site-ink-rgb) / 0.8);
 }
 
 .goal-progress {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.75rem;
-  color: rgb(var(--v2-ink-rgb) / 0.45);
+  color: rgb(var(--site-ink-rgb) / 0.45);
   font-variant-numeric: tabular-nums;
 }
 
 .goal-bar {
   width: 100%;
   height: 4px;
-  background: rgb(var(--v2-ink-rgb) / 0.06);
+  background: rgb(var(--site-ink-rgb) / 0.06);
   border-radius: 9999px;
   overflow: hidden;
 }
 
 .goal-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #8f7d60, var(--v2-accent));
+  background: linear-gradient(90deg, #8f7d60, var(--site-accent));
   border-radius: 9999px;
   transition: width 0.4s ease;
 }

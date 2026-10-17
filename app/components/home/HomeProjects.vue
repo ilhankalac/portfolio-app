@@ -1,11 +1,11 @@
 <template>
-  <section id="projects" class="v2-section">
-    <div class="v2-container">
-      <span class="v2-eyebrow">Side projects</span>
-      <h2 class="v2-heading">See it in practice.</h2>
+  <section id="projects" class="site-section">
+    <div class="site-container">
+      <span class="site-eyebrow">Side projects</span>
+      <h2 class="site-heading">See it in practice.</h2>
 
       <div class="grid">
-        <article v-for="project in projects" :key="project.key" class="v2-card project">
+        <article v-for="project in projects" :key="project.key" class="site-card project">
           <div class="chrome">
             <span class="dots" aria-hidden="true"><i /><i /><i /></span>
             <span class="url">{{ hostname(project.live_demo) || project.title }}</span>
@@ -20,9 +20,9 @@
           >
             <img :src="project.image" :alt="project.title" loading="lazy">
             <span v-if="project.live_demo" class="shot-cta">
-              <span class="v2-pill">
+              <span class="site-pill">
                 Live demo
-                <span class="v2-pill-disc"><UIcon name="i-mdi-arrow-top-right" /></span>
+                <span class="site-pill-disc"><UIcon name="i-mdi-arrow-top-right" /></span>
               </span>
             </span>
           </a>
@@ -31,7 +31,7 @@
             <span class="year">{{ project.dateOfCreation }}</span>
             <h3>{{ project.title }}</h3>
 
-            <div class="v2-prose description clamped" v-html="project.description" />
+            <div class="site-prose description clamped" v-html="project.description" />
             <button type="button" class="more" @click="open(project)">
               Read more
               <UIcon name="i-mdi-arrow-right" />
@@ -40,7 +40,7 @@
             <!-- Pinned to the bottom so every card in a row ends on the same line. -->
             <footer class="foot">
               <div class="techs">
-                <span v-for="tech in project.technologies" :key="tech.id" class="v2-chip">
+                <span v-for="tech in project.technologies" :key="tech.id" class="site-chip">
                   {{ tech.name }}
                 </span>
               </div>
@@ -69,7 +69,7 @@
       }"
     >
       <template #content>
-        <article v-if="selected" class="v2-card detail">
+        <article v-if="selected" class="site-card detail">
           <button type="button" class="close" aria-label="Close" @click="modalOpen = false">
             <UIcon name="i-mdi-close" />
           </button>
@@ -79,10 +79,10 @@
           <div class="detail-body">
             <span class="year">{{ selected.dateOfCreation }}</span>
             <h3>{{ selected.title }}</h3>
-            <div class="v2-prose description" v-html="selected.description" />
+            <div class="site-prose description" v-html="selected.description" />
 
             <div class="techs">
-              <span v-for="tech in selected.technologies" :key="tech.id" class="v2-chip">
+              <span v-for="tech in selected.technologies" :key="tech.id" class="site-chip">
                 {{ tech.name }}
               </span>
             </div>
@@ -90,13 +90,13 @@
             <div class="detail-actions">
               <a
                 v-if="selected.live_demo"
-                class="v2-pill"
+                class="site-pill"
                 :href="selected.live_demo"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Live demo
-                <span class="v2-pill-disc"><UIcon name="i-mdi-arrow-top-right" /></span>
+                <span class="site-pill-disc"><UIcon name="i-mdi-arrow-top-right" /></span>
               </a>
               <a
                 v-if="selected.source_code"
@@ -162,7 +162,7 @@ const hostname = (url?: string) => {
   transition: border-color 0.25s ease;
 
   &:hover {
-    border-color: var(--v2-border-strong);
+    border-color: var(--site-border-strong);
   }
 }
 
@@ -171,7 +171,7 @@ const hostname = (url?: string) => {
   align-items: center;
   gap: 0.75rem;
   padding: 0.55rem 0.8rem;
-  border-bottom: 1px solid var(--v2-border);
+  border-bottom: 1px solid var(--site-border);
 }
 
 .dots {
@@ -182,7 +182,7 @@ const hostname = (url?: string) => {
     width: 0.45rem;
     height: 0.45rem;
     border-radius: 50%;
-    background: rgb(var(--v2-ink-rgb) / 0.16);
+    background: rgb(var(--site-ink-rgb) / 0.16);
   }
 }
 
@@ -191,10 +191,10 @@ const hostname = (url?: string) => {
   min-width: 0;
   padding: 0.2rem 0.6rem;
   border-radius: 0.35rem;
-  background: var(--v2-surface-2);
-  font-family: var(--v2-mono);
+  background: var(--site-surface-2);
+  font-family: var(--site-mono);
   font-size: 0.66rem;
-  color: var(--v2-faint);
+  color: var(--site-faint);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -231,7 +231,7 @@ const hostname = (url?: string) => {
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgb(var(--v2-bg-rgb) / 0.55);
+  background: rgb(var(--site-bg-rgb) / 0.55);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -244,7 +244,7 @@ const hostname = (url?: string) => {
   padding: 1.1rem 1.2rem 1.25rem;
 
   h3 {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-weight: 600;
     font-size: 1.15rem;
     line-height: 1.25;
@@ -273,7 +273,7 @@ const hostname = (url?: string) => {
 
   /* CMS descriptions carry inline `color: white` on links. */
   :deep(a) {
-    color: var(--v2-accent) !important;
+    color: var(--site-accent) !important;
   }
 
   /* About four lines, fading out — works across several <p> blocks. */
@@ -293,22 +293,22 @@ const hostname = (url?: string) => {
   padding: 0;
   background: none;
   border: none;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.82rem;
-  color: var(--v2-text);
+  color: var(--site-text);
   cursor: pointer;
 
   &:hover {
-    color: var(--v2-accent);
+    color: var(--site-accent);
   }
 }
 
 .year {
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.66rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--v2-faint);
+  color: var(--site-faint);
 }
 
 .techs {
@@ -317,7 +317,7 @@ const hostname = (url?: string) => {
   gap: 0.35rem;
   margin-top: 0.25rem;
 
-  .v2-chip {
+  .site-chip {
     padding: 0.2rem 0.55rem;
     font-size: 0.72rem;
   }
@@ -327,14 +327,14 @@ const hostname = (url?: string) => {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.82rem;
-  color: var(--v2-muted);
+  color: var(--site-muted);
   text-decoration: none;
   align-self: flex-start;
 
   &:hover {
-    color: var(--v2-text);
+    color: var(--site-text);
   }
 }
 
@@ -343,8 +343,8 @@ const hostname = (url?: string) => {
   position: relative;
   max-height: 88vh;
   overflow-y: auto;
-  background: var(--v2-surface);
-  color: var(--v2-text);
+  background: var(--site-surface);
+  color: var(--site-text);
 }
 
 .close {
@@ -356,10 +356,10 @@ const hostname = (url?: string) => {
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
-  border: 1px solid var(--v2-border-strong);
+  border: 1px solid var(--site-border-strong);
   border-radius: 50%;
-  background: rgb(var(--v2-bg-rgb) / 0.7);
-  color: var(--v2-text);
+  background: rgb(var(--site-bg-rgb) / 0.7);
+  color: var(--site-text);
   cursor: pointer;
 }
 
@@ -369,7 +369,7 @@ const hostname = (url?: string) => {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top;
-  border-bottom: 1px solid var(--v2-border);
+  border-bottom: 1px solid var(--site-border);
 }
 
 .detail-body {
@@ -379,7 +379,7 @@ const hostname = (url?: string) => {
   padding: 1.75rem;
 
   h3 {
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-weight: 600;
     font-size: 1.6rem;
     letter-spacing: -0.02em;

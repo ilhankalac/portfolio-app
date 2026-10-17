@@ -75,8 +75,8 @@ const work = computed(() => quoteWork(props.quote))
   overflow: hidden;
   padding: 1.6rem 1.75rem 1.4rem;
   border-radius: 1.1rem;
-  background: linear-gradient(150deg, rgb(var(--v2-accent-rgb) / 0.09), rgb(var(--v2-ink-rgb) / 0.02) 45%);
-  border: 1px solid rgb(var(--v2-accent-rgb) / 0.18);
+  background: linear-gradient(150deg, rgb(var(--site-accent-rgb) / 0.09), rgb(var(--site-ink-rgb) / 0.02) 45%);
+  border: 1px solid rgb(var(--site-accent-rgb) / 0.18);
   animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -87,7 +87,7 @@ const work = computed(() => quoteWork(props.quote))
   width: 24rem;
   height: 24rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(var(--v2-accent-rgb) / 0.16), transparent 68%);
+  background: radial-gradient(circle, rgb(var(--site-accent-rgb) / 0.16), transparent 68%);
   pointer-events: none;
 }
 
@@ -104,12 +104,12 @@ const work = computed(() => quoteWork(props.quote))
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--v2-mono);
+  font-family: var(--site-mono);
   font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--v2-accent);
+  color: var(--site-accent);
 }
 
 .label-icon {
@@ -122,19 +122,19 @@ const work = computed(() => quoteWork(props.quote))
   gap: 0.35rem;
   padding: 0.3rem 0.7rem;
   border-radius: 9999px;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.72rem;
   font-weight: 500;
-  color: rgb(var(--v2-ink-rgb) / 0.5);
-  background: rgb(var(--v2-ink-rgb) / 0.04);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.08);
+  color: rgb(var(--site-ink-rgb) / 0.5);
+  background: rgb(var(--site-ink-rgb) / 0.04);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.08);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: var(--v2-accent-soft);
-    border-color: rgb(var(--v2-accent-rgb) / 0.35);
-    background: rgb(var(--v2-accent-rgb) / 0.1);
+    color: var(--site-accent-soft);
+    border-color: rgb(var(--site-accent-rgb) / 0.35);
+    background: rgb(var(--site-accent-rgb) / 0.1);
 
     .shuffle-icon { transform: rotate(180deg); }
   }
@@ -159,7 +159,7 @@ const work = computed(() => quoteWork(props.quote))
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 5rem;
   line-height: 1;
-  color: rgb(var(--v2-accent-rgb) / 0.3);
+  color: rgb(var(--site-accent-rgb) / 0.3);
   pointer-events: none;
 }
 
@@ -170,7 +170,7 @@ const work = computed(() => quoteWork(props.quote))
   font-weight: 300;
   line-height: 1.5;
   letter-spacing: -0.01em;
-  color: rgb(var(--v2-ink-rgb) / 0.93);
+  color: rgb(var(--site-ink-rgb) / 0.93);
 }
 
 .spotlight-foot {
@@ -183,7 +183,7 @@ const work = computed(() => quoteWork(props.quote))
   margin-top: 1.4rem;
   padding-top: 1rem;
   padding-left: 2.4rem;
-  border-top: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
+  border-top: 1px solid rgb(var(--site-ink-rgb) / 0.06);
 }
 
 .spotlight-author {
@@ -197,7 +197,7 @@ const work = computed(() => quoteWork(props.quote))
   cursor: pointer;
   text-align: left;
 
-  &:hover .author-name { color: var(--v2-accent-soft); }
+  &:hover .author-name { color: var(--site-accent-soft); }
 }
 
 .author-text {
@@ -207,18 +207,18 @@ const work = computed(() => quoteWork(props.quote))
 }
 
 .author-name {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgb(var(--v2-ink-rgb) / 0.8);
+  color: rgb(var(--site-ink-rgb) / 0.8);
   line-height: 1.35;
   transition: color 0.2s ease;
 }
 
 .author-work {
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.72rem;
-  color: rgb(var(--v2-ink-rgb) / 0.35);
+  color: rgb(var(--site-ink-rgb) / 0.35);
   line-height: 1.35;
 }
 
@@ -234,30 +234,30 @@ const work = computed(() => quoteWork(props.quote))
   gap: 0.35rem;
   padding: 0.35rem 0.75rem;
   border-radius: 0.55rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgb(var(--v2-ink-rgb) / 0.45);
-  background: rgb(var(--v2-ink-rgb) / 0.03);
-  border: 1px solid rgb(var(--v2-ink-rgb) / 0.06);
+  color: rgb(var(--site-ink-rgb) / 0.45);
+  background: rgb(var(--site-ink-rgb) / 0.03);
+  border: 1px solid rgb(var(--site-ink-rgb) / 0.06);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    color: rgb(var(--v2-ink-rgb) / 0.9);
-    border-color: rgb(var(--v2-ink-rgb) / 0.14);
-    background: rgb(var(--v2-ink-rgb) / 0.06);
+    color: rgb(var(--site-ink-rgb) / 0.9);
+    border-color: rgb(var(--site-ink-rgb) / 0.14);
+    background: rgb(var(--site-ink-rgb) / 0.06);
   }
 
   &--accent {
-    color: var(--v2-accent);
-    border-color: rgb(var(--v2-accent-rgb) / 0.25);
-    background: rgb(var(--v2-accent-rgb) / 0.1);
+    color: var(--site-accent);
+    border-color: rgb(var(--site-accent-rgb) / 0.25);
+    background: rgb(var(--site-accent-rgb) / 0.1);
 
     &:hover {
-      color: var(--v2-text);
-      border-color: rgb(var(--v2-accent-rgb) / 0.45);
-      background: rgb(var(--v2-accent-rgb) / 0.18);
+      color: var(--site-text);
+      border-color: rgb(var(--site-accent-rgb) / 0.45);
+      background: rgb(var(--site-accent-rgb) / 0.18);
     }
   }
 }

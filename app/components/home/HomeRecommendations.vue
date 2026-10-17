@@ -1,12 +1,12 @@
 <template>
-  <section v-if="recommendations.length" id="recommendations" class="v2-section">
-    <div class="v2-container">
-      <span class="v2-eyebrow">Recommendations</span>
-      <h2 class="v2-heading">Kind words from<br>people I've worked with.</h2>
+  <section v-if="recommendations.length" id="recommendations" class="site-section">
+    <div class="site-container">
+      <span class="site-eyebrow">Recommendations</span>
+      <h2 class="site-heading">Kind words from<br>people I've worked with.</h2>
 
       <div class="track">
-        <figure v-for="rec in recommendations" :key="rec.fullName" class="v2-card quote">
-          <blockquote class="v2-prose text" v-html="rec.textHtml" />
+        <figure v-for="rec in recommendations" :key="rec.fullName" class="site-card quote">
+          <blockquote class="site-prose text" v-html="rec.textHtml" />
           <figcaption class="author">
             <img v-if="rec.avatarSrc" :src="rec.avatarSrc" :alt="rec.fullName" class="avatar" loading="lazy">
             <span v-else class="avatar avatar--initial">{{ rec.fullName?.charAt(0) }}</span>
@@ -69,17 +69,17 @@ defineProps<{ recommendations: IColleagueInfo[] }>()
   align-items: center;
   gap: 0.75rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--v2-border);
+  border-top: 1px solid var(--site-border);
 
   strong {
     display: block;
-    font-family: var(--v2-display);
+    font-family: var(--site-display);
     font-weight: 600;
     font-size: 0.95rem;
   }
 
   small {
-    color: var(--v2-faint);
+    color: var(--site-faint);
     font-size: 0.8rem;
   }
 }
@@ -94,8 +94,8 @@ defineProps<{ recommendations: IColleagueInfo[] }>()
   &--initial {
     display: grid;
     place-items: center;
-    background: var(--v2-surface-2);
-    font-family: var(--v2-display);
+    background: var(--site-surface-2);
+    font-family: var(--site-display);
   }
 }
 
@@ -104,13 +104,13 @@ defineProps<{ recommendations: IColleagueInfo[] }>()
   align-items: center;
   gap: 0.4rem;
   margin-top: 2rem;
-  font-family: var(--v2-display);
+  font-family: var(--site-display);
   font-size: 0.9rem;
-  color: var(--v2-muted);
+  color: var(--site-muted);
   text-decoration: none;
 
   &:hover {
-    color: var(--v2-text);
+    color: var(--site-text);
   }
 }
 </style>
