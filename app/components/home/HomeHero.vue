@@ -1,6 +1,17 @@
 <template>
   <section id="home" class="hero">
     <div class="hero-inner">
+      <div class="avatar">
+        <img
+          src="~/assets/images/landing-portrait.webp"
+          alt="Portrait of Ilhan Kalač"
+          width="160"
+          height="160"
+          fetchpriority="high"
+        >
+        <span class="avatar-dot" title="Open to remote work" aria-hidden="true" />
+      </div>
+
       <h1 class="title">
         Hi, I'm <span class="accent">Ilhan.</span><br>
         I build <span class="orb" aria-hidden="true" /> web apps<br>
@@ -59,6 +70,38 @@ const copyEmail = async () => {
   position: relative;
   z-index: 1;
   max-width: 56rem;
+}
+
+.avatar {
+  position: relative;
+  width: 4.75rem;
+  height: 4.75rem;
+  margin: 0 auto 1.75rem;
+  padding: 3px;
+  border-radius: 50%;
+  border: 1px solid var(--site-border-strong);
+  background: var(--site-surface);
+  box-shadow: 0 0 40px rgb(var(--site-accent-rgb) / 0.12);
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Keeps the face centred in the circle — the source is a tall portrait. */
+    object-position: center 22%;
+  }
+}
+
+.avatar-dot {
+  position: absolute;
+  right: 0.2rem;
+  bottom: 0.2rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: var(--site-live);
+  box-shadow: 0 0 0 3px var(--site-bg), 0 0 10px var(--site-live);
 }
 
 .title {

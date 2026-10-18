@@ -3,11 +3,12 @@
     <SiteNav />
     <main>
       <HomeHero />
+      <!-- Work first (claim, proof, what others say, side work), then the person. -->
       <HomeStrengths :skills="skills ?? []" />
-      <HomeProjects :projects="projects ?? []" />
-      <HomeStory :description="aboutDescription ?? ''" />
       <HomeExperience :experiences="experiences ?? []" />
       <HomeRecommendations :recommendations="recommendations ?? []" />
+      <HomeProjects :projects="projects ?? []" />
+      <HomeStory :description="aboutDescription ?? ''" />
       <HomeBeyond />
       <HomeContact />
     </main>

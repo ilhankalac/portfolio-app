@@ -69,13 +69,13 @@
 const route = useRoute()
 
 /** Home sections link by hash; "Explore" covers the blog, films, quotes, songs and now pages. */
-const sections = ['home', 'why', 'projects', 'about', 'experience', 'contact']
+const sections = ['home', 'why', 'experience', 'projects', 'about', 'contact']
 const items = [
   { id: 'home', label: 'Home', to: '/' },
   { id: 'why', label: 'Why me', to: '/#why' },
+  { id: 'experience', label: 'Experience', to: '/#experience' },
   { id: 'projects', label: 'Projects', to: '/#projects' },
   { id: 'about', label: 'About', to: '/#about' },
-  { id: 'experience', label: 'Experience', to: '/#experience' },
   { id: 'explore', label: 'Explore', to: '/blogs' },
   { id: 'contact', label: 'Contact', to: '/#contact' },
 ]

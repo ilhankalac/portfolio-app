@@ -11,9 +11,9 @@
 
     <nav class="links" aria-label="Footer">
       <NuxtLink to="/">Home</NuxtLink>
+      <NuxtLink to="/#experience">Experience</NuxtLink>
       <NuxtLink to="/#projects">Projects</NuxtLink>
       <NuxtLink to="/#about">About</NuxtLink>
-      <NuxtLink to="/#experience">Experience</NuxtLink>
       <NuxtLink to="/blogs">Blog</NuxtLink>
       <NuxtLink to="/list-of-seen-films">Films</NuxtLink>
       <NuxtLink to="/favorite-quotes">Quotes</NuxtLink>
