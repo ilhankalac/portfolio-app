@@ -33,7 +33,10 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://ilhan.io/og-image.jpg' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/profile.ico' },
+        // Rounded-corner favicons; iOS rounds the apple-touch icon itself, so it stays square.
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicon-192x192.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'canonical', href: 'https://ilhan.io' },
         { rel: 'alternate', type: 'application/rss+xml', title: 'Ilhan Kalač — Blog', href: '/rss.xml' },
       ],

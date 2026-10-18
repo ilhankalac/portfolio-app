@@ -9,7 +9,6 @@
           height="160"
           fetchpriority="high"
         >
-        <span class="avatar-dot" title="Open to remote work" aria-hidden="true" />
       </div>
 
       <h1 class="title">
@@ -93,16 +92,6 @@ const copyEmail = async () => {
   }
 }
 
-.avatar-dot {
-  position: absolute;
-  right: 0.2rem;
-  bottom: 0.2rem;
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 50%;
-  background: var(--site-live);
-  box-shadow: 0 0 0 3px var(--site-bg), 0 0 10px var(--site-live);
-}
 
 .title {
   font-family: var(--site-display);
