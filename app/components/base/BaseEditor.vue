@@ -1,23 +1,27 @@
 <template>
-  <div v-if="editor">
-    <div class="flex justify-between items-center html-editor">
-      <div class="flex flex-wrap">
+  <div v-if="editor" class="editor-shell">
+    <div class="html-editor flex items-center justify-between gap-2 px-1.5 py-1.5">
+      <div class="flex flex-wrap gap-0.5">
         <button
           v-for="btn in toolbarButtons"
           :key="btn.label || btn.icon"
-          class="menu-button h-[50px] w-[43px] flex items-center justify-center border-r border-gray-300 hover:bg-gray-100"
-          :class="{ 'bg-gray-200': btn.isActive?.() }"
+          type="button"
+          class="menu-button"
+          :class="{ 'is-active': btn.isActive?.() }"
+          :aria-label="btn.label || btn.icon"
           @click="btn.action()"
         >
-          <UIcon v-if="btn.icon" :name="btn.icon" class="text-black text-base" />
-          <span v-else class="text-sm font-bold text-black">{{ btn.label }}</span>
+          <UIcon v-if="btn.icon" :name="btn.icon" class="text-lg" />
+          <span v-else class="text-xs font-bold">{{ btn.label }}</span>
         </button>
       </div>
       <button
-        class="menu-button h-[50px] w-[43px] flex items-center justify-center border-l border-gray-300"
+        type="button"
+        class="menu-button"
+        aria-label="Fullscreen"
         @click="$emit('fullscreen')"
       >
-        <UIcon :name="editorProps.fullscreenIcon ? `i-${editorProps.fullscreenIcon}` : 'i-mdi-fullscreen'" class="text-black text-base" />
+        <UIcon :name="editorProps.fullscreenIcon ? `i-${editorProps.fullscreenIcon}` : 'i-mdi-fullscreen'" class="text-lg" />
       </button>
     </div>
 
@@ -197,7 +201,7 @@ defineExpose({ setContent })
 
 <style lang="scss" scoped>
 :deep(.valid-border) {
-  border: 1px solid #D0D0D0 !important;
+  border: 0 !important;
 }
 
 :deep(.error-border) {
@@ -205,10 +209,9 @@ defineExpose({ setContent })
 }
 
 :deep(.ProseMirror) {
-  padding: 20px;
-  min-height: 200px;
-  border: 1px solid #D0D0D0;
-  border-top: 0;
+  padding: 16px 18px;
+  min-height: 220px;
+  outline: none;
   white-space: pre-wrap;
 
   p {
@@ -232,8 +235,8 @@ defineExpose({ setContent })
   h3 { font-size: 1.17em; font-weight: bold; margin: 1em 0; }
 
   code {
-    background-color: #f4f4f4;
-    color: #c7254e;
+    background-color: var(--site-surface-2);
+    color: var(--site-accent);
     padding: 2px 6px;
     border-radius: 3px;
     font-family: 'Courier New', Courier, monospace;
@@ -267,13 +270,41 @@ defineExpose({ setContent })
   a { color: #3b82f6; cursor: pointer; }
 }
 
+.editor-shell {
+  border: 1px solid var(--site-border-strong);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--site-bg);
+  transition: border-color 0.15s ease;
+
+  &:focus-within {
+    border-color: var(--site-accent);
+  }
+}
+
 .html-editor {
-  border-top: 1px solid #D0D0D0;
-  border-left: 1px solid #D0D0D0;
-  border-right: 1px solid #D0D0D0;
+  border-bottom: 1px solid var(--site-border-strong);
+  background: var(--site-surface-2);
 }
 
 .menu-button {
-  transition: background-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.375rem;
+  color: var(--site-muted);
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: var(--site-border-strong);
+    color: var(--site-text);
+  }
+
+  &.is-active {
+    background: rgb(var(--site-accent-rgb) / 0.18);
+    color: var(--site-accent);
+  }
 }
 </style>

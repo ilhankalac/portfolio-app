@@ -1,83 +1,64 @@
 <template>
-  <div class="bg-[var(--site-surface)] text-[var(--site-text)] rounded-lg">
-    <div v-if="origin === 'configure'" class="bg-[var(--site-surface-2)] p-4 rounded-t-lg">
-      <p class="font-light">Edit {{ selectedRecommendation?.fullName }}'s recommendation</p>
+  <div class="rec-card bg-[var(--site-surface)] text-[var(--site-text)] rounded-xl border border-[var(--site-border)]">
+    <div class="px-6 pt-6 pb-4 border-b border-[var(--site-border)]">
+      <template v-if="origin === 'configure'">
+        <h2 class="text-lg font-semibold">Edit {{ selectedRecommendation?.fullName }}'s recommendation</h2>
+      </template>
+      <template v-else>
+        <h1 class="text-xl font-semibold">Write a recommendation</h1>
+        <p class="text-sm text-[var(--site-muted)] mt-1">
+          Worked with Ilhan Kalač? Share why you'd recommend him as a frontend engineer.
+        </p>
+      </template>
     </div>
-    <div v-else class="p-4">
-      <p class="text-sm opacity-80">Write recommendation for Ilhan Kalač</p>
-    </div>
-    <div class="p-4">
-      <form ref="form" @submit.prevent="save">
-        <UInput
-          v-model="selectedRecommendation.fullName"
-          placeholder="Full Name"
-          required
-          class="mb-3"
-        />
-        <UInput
-          v-model="selectedRecommendation.role"
-          placeholder="Role (e.g. Frontend Engineer)"
-          required
-          class="mb-3"
-        />
+
+    <form ref="form" class="px-6 py-5 flex flex-col gap-5" @submit.prevent="save">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <UFormField label="Full name" required>
+          <UInput v-model="selectedRecommendation.fullName" placeholder="Jane Doe" required size="lg" class="w-full" />
+        </UFormField>
+        <UFormField label="Role" required>
+          <UInput v-model="selectedRecommendation.role" placeholder="e.g. Frontend Engineer" required size="lg" class="w-full" />
+        </UFormField>
+      </div>
+
+      <UFormField label="Recommendation">
         <BaseEditor
           :editor-content="selectedRecommendation.textHtml"
           fullscreen-icon="mdi-fullscreen"
           :error="false"
           @update:editor-content="onEditorUpdate"
         />
-        <p class="opacity-60 text-xs text-left mb-2 mt-2">
-          This is where you can share why you'd recommend me as a frontend engineer.
+      </UFormField>
+
+      <div>
+        <p class="text-sm font-medium mb-2">
+          Profile & links <span class="text-[var(--site-faint)] font-normal">(optional)</span>
         </p>
-        <UInput
-          v-model="selectedRecommendation.avatarSrc"
-          placeholder="Profile Image URL"
-          class="mb-3"
-        >
-          <template #leading>
-            <UIcon name="i-mdi-link" />
-          </template>
-        </UInput>
-        <UInput
-          v-model="selectedRecommendation.githubLink"
-          placeholder="GitHub URL"
-          class="mb-3"
-        >
-          <template #leading>
-            <UIcon name="i-mdi-github" />
-          </template>
-        </UInput>
-        <UInput
-          v-model="selectedRecommendation.linkedinLink"
-          placeholder="LinkedIn URL"
-          class="mb-3"
-        >
-          <template #leading>
-            <UIcon name="i-mdi-linkedin" />
-          </template>
-        </UInput>
-        <UInput
-          v-model="selectedRecommendation.instagramLink"
-          placeholder="Instagram URL"
-          class="mb-3"
-        >
-          <template #leading>
-            <UIcon name="i-mdi-instagram" />
-          </template>
-        </UInput>
-        <div v-if="origin === 'configure'" class="mb-3">
-          <label class="flex items-center gap-2 text-sm">
-            <input type="checkbox" v-model="selectedRecommendation.showPublic" class="rounded" />
-            Show Public
-          </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <UInput
+            v-for="field in linkFields"
+            :key="field.key"
+            v-model="selectedRecommendation[field.key]"
+            :placeholder="field.placeholder"
+            :leading-icon="field.icon"
+            type="url"
+            size="lg"
+            class="w-full"
+          />
         </div>
-      </form>
-    </div>
-    <div class="p-4">
-      <UButton variant="outline" color="neutral" block @click="save">
-        {{ origin === 'write-recommendation' ? 'Send' : 'Save' }}
-      </UButton>
-    </div>
+      </div>
+
+      <label v-if="origin === 'configure'" class="flex items-center gap-2 text-sm">
+        <input v-model="selectedRecommendation.showPublic" type="checkbox" class="rounded" />
+        Show Public
+      </label>
+
+      <button type="submit" class="site-pill self-end">
+        {{ origin === 'write-recommendation' ? 'Send recommendation' : 'Save' }}
+        <span class="site-pill-disc"><UIcon name="i-mdi-arrow-right" /></span>
+      </button>
+    </form>
   </div>
 </template>
 
@@ -96,6 +77,13 @@ const props = defineProps<{
 
 const emit = defineEmits(['close'])
 const form = ref<HTMLFormElement | null>(null)
+
+const linkFields = [
+  { key: 'avatarSrc', placeholder: 'Profile image URL', icon: 'i-mdi-account-circle' },
+  { key: 'linkedinLink', placeholder: 'LinkedIn URL', icon: 'i-mdi-linkedin' },
+  { key: 'githubLink', placeholder: 'GitHub URL', icon: 'i-mdi-github' },
+  { key: 'instagramLink', placeholder: 'Instagram URL', icon: 'i-mdi-instagram' },
+] as const
 
 const save = async () => {
   if (!props.selectedRecommendation.fullName || !props.selectedRecommendation.role) {
