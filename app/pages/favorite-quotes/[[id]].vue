@@ -630,7 +630,7 @@ onBeforeUnmount(() => {
 .quote-grid {
   columns: 2;
   column-gap: 1rem;
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 200ms backwards; /* backwards: no transform left on the tall grid once done (iOS scroll jumps) */
 }
 
 .sentinel {
@@ -720,7 +720,7 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 900px) {
-  .quote-grid { columns: 1; }
+  .quote-grid { columns: auto; } /* plain block flow: WebKit multicol + appended batches jumps the scroll on iOS */
   .skeleton-grid { grid-template-columns: 1fr; }
 }
 
