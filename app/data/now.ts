@@ -26,7 +26,7 @@ export interface Goal {
   progress: number
 }
 
-export const lastUpdated = 'October 2026'
+export const lastUpdated = 'November 2026'
 export const location = 'Podgorica, Montenegro'
 
 export const workingOn: WorkItem[] = [
@@ -54,11 +54,11 @@ export const learning: string[] = [
 ]
 
 export const reading: Book[] = [
-  { title: 'The Sorrows of Young Werther', author: 'Johann Wolfgang von Goethe' },
+  { title: 'The Red and the Black', author: 'Stendhal' },
 ]
 
 export const goals: Goal[] = [
-  { label: 'Read 3 books', progress: 10 },
+  { label: 'Read 3 books', progress: 33 },
   { label: 'Finish validation & error handling in ASP.NET Core (FluentValidation)', progress: 70 },
   { label: 'Learn PostgreSQL + EF Core in ASP.NET Core', progress: 0 },
 ]
