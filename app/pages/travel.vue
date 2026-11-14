@@ -17,8 +17,8 @@
       </div>
     </div>
 
-    <div class="grid">
-      <article v-for="country in countries" :key="country.code" class="card">
+    <ul class="list">
+      <li v-for="country in countries" :key="country.code" class="row">
         <button
           v-if="country.photos"
           type="button"
@@ -26,26 +26,23 @@
           :aria-label="`Open ${country.name} photos`"
           @click="openGallery(country)"
         >
-          <img :src="coverUrl(country)!" :alt="`${country.name}`" loading="lazy">
-          <span class="badge">
-            <UIcon name="i-mdi-image-multiple-outline" />
-            {{ country.photos }}
-          </span>
+          <img :src="coverUrl(country)!" alt="" loading="lazy">
         </button>
         <div v-else class="cover cover--empty" aria-hidden="true">
           <span>{{ country.code }}</span>
         </div>
 
-        <div class="body">
-          <div class="head">
-            <span class="code">{{ country.code }}</span>
-            <h2 class="name">{{ country.name }}</h2>
-            <span class="since">Since {{ country.since }}</span>
-          </div>
+        <div class="info">
+          <h2 class="name">{{ country.name }}</h2>
           <p class="cities">{{ country.cities.join(' · ') }}</p>
         </div>
-      </article>
-    </div>
+
+        <div class="meta">
+          <span>{{ country.since }}</span>
+          <span v-if="country.photos" class="photos">{{ country.photos }} {{ country.photos === 1 ? 'photo' : 'photos' }}</span>
+        </div>
+      </li>
+    </ul>
 
     <UModal
       v-model:open="galleryOpen"
@@ -205,38 +202,32 @@ onMounted(() => {
   color: rgb(var(--site-ink-rgb) / 0.18);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
+.list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 44rem;
 }
 
-.card {
+.row {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--site-border);
-  border-radius: 1rem;
-  background: var(--site-surface);
-  transition: border-color 0.25s ease;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--site-border);
 
-  &:hover {
-    border-color: var(--site-border-strong);
+  &:last-child {
+    border-bottom: none;
   }
 }
 
 .cover {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  flex-shrink: 0;
+  width: 3.5rem;
+  aspect-ratio: 1;
   padding: 0;
   border: none;
+  border-radius: 0.6rem;
   overflow: hidden;
   background: var(--site-surface-2);
   cursor: zoom-in;
@@ -245,92 +236,65 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.85;
+    transition: opacity 0.25s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &:hover img,
   &:focus-visible img {
-    transform: scale(1.04);
+    opacity: 1;
+    transform: scale(1.06);
   }
 
   &--empty {
     display: grid;
     place-items: center;
     cursor: default;
-    background:
-      radial-gradient(circle at 30% 20%, rgb(var(--site-accent-rgb) / 0.08), transparent 60%),
-      var(--site-surface-2);
 
     span {
       font-family: var(--site-mono);
-      font-size: 2.5rem;
-      letter-spacing: 0.2em;
-      color: rgb(var(--site-ink-rgb) / 0.12);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgb(var(--site-ink-rgb) / 0.3);
     }
   }
 }
 
-.badge {
-  position: absolute;
-  right: 0.7rem;
-  bottom: 0.7rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 9999px;
-  background: rgb(var(--site-bg-rgb) / 0.7);
-  backdrop-filter: blur(6px);
-  font-family: var(--site-mono);
-  font-size: 0.7rem;
-  color: var(--site-text);
-}
-
-.body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  padding: 1rem 1.1rem 1.15rem;
-}
-
-.head {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.code {
-  font-family: var(--site-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: var(--site-accent);
+.info {
+  flex: 1;
+  min-width: 0;
 }
 
 .name {
   margin: 0;
   font-family: var(--site-display);
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
+.cities {
+  margin: 0.1rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--site-muted);
+}
 
-.since {
-  margin-left: auto;
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  flex-shrink: 0;
   font-family: var(--site-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.7rem;
   color: var(--site-faint);
   white-space: nowrap;
 }
 
-.cities {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--site-muted);
+.photos {
+  font-size: 0.65rem;
+  opacity: 0.8;
 }
 
 /* Gallery */
@@ -453,6 +417,7 @@ onMounted(() => {
 
 @media (prefers-reduced-motion: reduce) {
   .photo { animation: none; }
-  .cover:hover img { transform: none; }
+  .cover:hover img,
+  .cover:focus-visible img { transform: none; }
 }
 </style>
